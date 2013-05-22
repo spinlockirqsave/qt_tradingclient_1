@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Qt_tradingclient_1
+PROJECTNAME=qt_tradingclient_1
 
 # Active Configuration
 DEFAULTCONF=Debug

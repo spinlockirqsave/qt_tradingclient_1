@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU_4.7-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU_4.7-Linux-x86
-CND_ARTIFACT_NAME_Debug=Qt_tradingclient_1
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU_4.7-Linux-x86/Qt_tradingclient_1
+CND_ARTIFACT_NAME_Debug=qt_tradingclient_1
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU_4.7-Linux-x86/qt_tradingclient_1
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU_4.7-Linux-x86/package
-CND_PACKAGE_NAME_Debug=Qttradingclient1.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU_4.7-Linux-x86/package/Qttradingclient1.tar
+CND_PACKAGE_NAME_Debug=qttradingclient1.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU_4.7-Linux-x86/package/qttradingclient1.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=Qt_tradingclient_1
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/Qt_tradingclient_1
+CND_ARTIFACT_NAME_Release=qt_tradingclient_1
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/qt_tradingclient_1
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=Qttradingclient1.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/Qttradingclient1.tar
+CND_PACKAGE_NAME_Release=qttradingclient1.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/qttradingclient1.tar
 #
 # include compiler specific variables
 #

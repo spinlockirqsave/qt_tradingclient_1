@@ -12,7 +12,11 @@
       <itemPath>GUI.cpp</itemPath>
       <itemPath>GUI.h</itemPath>
       <itemPath>GUI.ui</itemPath>
+      <itemPath>MainWindow.cpp</itemPath>
+      <itemPath>MainWindow.h</itemPath>
+      <itemPath>MainWindow.ui</itemPath>
       <itemPath>ui_GUI.h</itemPath>
+      <itemPath>ui_MainWindow.h</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"

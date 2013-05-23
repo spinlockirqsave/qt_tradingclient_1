@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>cf16tradingclient_1</class>
+ <widget class="QMainWindow" name="cf16tradingclient_1">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>cf16tradingclient_1</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(42, 42, 42);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-color: rgb(0, 0, 255);</string>
+   </property>
+   <widget class="QMenu" name="menuCf16_tradingclient_1">
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 255);
+border: 1px solid rgb(0,0,200);</string>
+    </property>
+    <property name="title">
+     <string>cf16 tradingclient_1</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSave_as"/>
+   </widget>
+   <widget class="QMenu" name="menuStrategies">
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 255);
+border: 1px solid rgb(0,0,255);</string>
+    </property>
+    <property name="title">
+     <string>Strategies</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuMarket">
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 255);
+border: 1px solid rgb(0,0,150);</string>
+    </property>
+    <property name="title">
+     <string>Market</string>
+    </property>
+    <addaction name="actionFX"/>
+    <addaction name="actionIR"/>
+    <addaction name="actionStocks"/>
+    <addaction name="actionOptions"/>
+    <addaction name="actionForwards"/>
+    <addaction name="actionFutures"/>
+    <addaction name="actionSwaps"/>
+    <addaction name="actionBonds"/>
+   </widget>
+   <addaction name="menuCf16_tradingclient_1"/>
+   <addaction name="menuStrategies"/>
+   <addaction name="menuMarket"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSave_as">
+   <property name="text">
+    <string>Save as</string>
+   </property>
+  </action>
+  <action name="actionFX">
+   <property name="text">
+    <string>FX</string>
+   </property>
+  </action>
+  <action name="actionIR">
+   <property name="text">
+    <string>IR</string>
+   </property>
+  </action>
+  <action name="actionStocks">
+   <property name="text">
+    <string>Stocks</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="text">
+    <string>Options</string>
+   </property>
+  </action>
+  <action name="actionForwards">
+   <property name="text">
+    <string>Forwards</string>
+   </property>
+  </action>
+  <action name="actionFutures">
+   <property name="text">
+    <string>Futures</string>
+   </property>
+  </action>
+  <action name="actionSwaps">
+   <property name="text">
+    <string>Swaps</string>
+   </property>
+  </action>
+  <action name="actionBonds">
+   <property name="text">
+    <string>Bonds</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

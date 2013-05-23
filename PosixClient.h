@@ -1,3 +1,10 @@
+/*
+ * File:   GUI.cpp
+ * Author: Piotr Gregor  postmaster@cf16.eu
+ *
+ * Created on May 22, 2013, 8:36 PM
+ */
+
 #ifndef posixtestclient_h__INCLUDED
 #define posixtestclient_h__INCLUDED
 

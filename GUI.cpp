@@ -1,6 +1,6 @@
 /*
  * File:   GUI.cpp
- * Author: root
+ * Author: Piotr Gregor  postmaster@cf16.eu
  *
  * Created on May 22, 2013, 8:36 PM
  */

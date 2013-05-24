@@ -170,8 +170,7 @@ void PosixClient::processMessages()
 
 //////////////////////////////////////////////////////////////////
 // methods
-void PosixClient::reqCurrentTime()
-{
+void PosixClient::reqCurrentTime(){
 	printf( "--> Requesting Current Time2\n");
 
 	// set ping deadline to "now + n seconds"
@@ -182,16 +181,13 @@ void PosixClient::reqCurrentTime()
 	m_pClient->reqCurrentTime();
 }
 
-void PosixClient::placeOrder_MSFT()
-{
+void PosixClient::placeOrder_MSFT(){
 	Contract contract;
 	Order order;
-
 	contract.symbol = "MSFT";
 	contract.secType = "STK";
 	contract.exchange = "SMART";
 	contract.currency = "USD";
-
 	order.action = "BUY";
 	order.totalQuantity = 1000;
 	order.orderType = "LMT";
@@ -200,7 +196,6 @@ void PosixClient::placeOrder_MSFT()
 	printf( "tradingclient_1: Placing Order %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
 
 	m_state = ST_PLACEORDER_ACK;
-
 	m_pClient->placeOrder( m_orderId, contract, order);
 }
 
@@ -213,7 +208,7 @@ void PosixClient::reqMktData_MSFT(){
 	contract.exchange = "SMART";
 	contract.currency = "USD";
 
-	printf( "trading client_1: Requesting MSFT mktData %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
+	printf( "tradingclient_1: Requesting MSFT mktData %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
 
 	m_state = ST_REQMKTDATA_ACK;
         IBString i="233";

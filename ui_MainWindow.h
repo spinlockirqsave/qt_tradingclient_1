@@ -36,6 +36,7 @@ public:
     QAction *actionFutures;
     QAction *actionSwaps;
     QAction *actionBonds;
+    QAction *actionCointegration;
     QWidget *centralwidget;
     QMenuBar *menubar;
     QMenu *menuCf16_tradingclient_1;
@@ -47,7 +48,7 @@ public:
     {
         if (cf16tradingclient_1->objectName().isEmpty())
             cf16tradingclient_1->setObjectName(QStringLiteral("cf16tradingclient_1"));
-        cf16tradingclient_1->resize(800, 600);
+        cf16tradingclient_1->resize(967, 798);
         cf16tradingclient_1->setStyleSheet(QStringLiteral("background-color: rgb(42, 42, 42);"));
         actionOpen = new QAction(cf16tradingclient_1);
         actionOpen->setObjectName(QStringLiteral("actionOpen"));
@@ -71,12 +72,14 @@ public:
         actionSwaps->setObjectName(QStringLiteral("actionSwaps"));
         actionBonds = new QAction(cf16tradingclient_1);
         actionBonds->setObjectName(QStringLiteral("actionBonds"));
+        actionCointegration = new QAction(cf16tradingclient_1);
+        actionCointegration->setObjectName(QStringLiteral("actionCointegration"));
         centralwidget = new QWidget(cf16tradingclient_1);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         cf16tradingclient_1->setCentralWidget(centralwidget);
         menubar = new QMenuBar(cf16tradingclient_1);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 967, 25));
         menubar->setFocusPolicy(Qt::NoFocus);
         menubar->setContextMenuPolicy(Qt::DefaultContextMenu);
         menubar->setStyleSheet(QStringLiteral("border-color: rgb(0, 0, 255);"));
@@ -105,6 +108,7 @@ public:
         menuCf16_tradingclient_1->addAction(actionOpen);
         menuCf16_tradingclient_1->addAction(actionSave);
         menuCf16_tradingclient_1->addAction(actionSave_as);
+        menuStrategies->addAction(actionCointegration);
         menuMarket->addAction(actionFX);
         menuMarket->addAction(actionIR);
         menuMarket->addAction(actionStocks);
@@ -133,6 +137,7 @@ public:
         actionFutures->setText(QApplication::translate("cf16tradingclient_1", "Futures", 0));
         actionSwaps->setText(QApplication::translate("cf16tradingclient_1", "Swaps", 0));
         actionBonds->setText(QApplication::translate("cf16tradingclient_1", "Bonds", 0));
+        actionCointegration->setText(QApplication::translate("cf16tradingclient_1", "Cointegration", 0));
         menuCf16_tradingclient_1->setTitle(QApplication::translate("cf16tradingclient_1", "cf16 tradingclient_1", 0));
         menuStrategies->setTitle(QApplication::translate("cf16tradingclient_1", "Strategies", 0));
         menuMarket->setTitle(QApplication::translate("cf16tradingclient_1", "Market", 0));

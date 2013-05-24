@@ -16,8 +16,6 @@ int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     // create and show your widgets here
-    //GUI gui;
-    //gui.show();
     cf16tradingclient_1 cf16;
     cf16.show();
     

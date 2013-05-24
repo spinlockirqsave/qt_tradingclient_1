@@ -213,7 +213,7 @@ void PosixClient::reqMktData_MSFT(){
 	contract.exchange = "SMART";
 	contract.currency = "USD";
 
-	printf( "tradingclient_1: Requesting MSFT mktData %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
+	printf( "trading client_1: Requesting MSFT mktData %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
 
 	m_state = ST_REQMKTDATA_ACK;
         IBString i="233";

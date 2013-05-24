@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>967</width>
+    <height>798</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>967</width>
      <height>25</height>
     </rect>
    </property>
@@ -58,6 +58,7 @@ border: 1px solid rgb(0,0,255);</string>
     <property name="title">
      <string>Strategies</string>
     </property>
+    <addaction name="actionCointegration"/>
    </widget>
    <widget class="QMenu" name="menuMarket">
     <property name="focusPolicy">
@@ -137,6 +138,11 @@ border: 1px solid rgb(0,0,150);</string>
   <action name="actionBonds">
    <property name="text">
     <string>Bonds</string>
+   </property>
+  </action>
+  <action name="actionCointegration">
+   <property name="text">
+    <string>Cointegration</string>
    </property>
   </action>
  </widget>

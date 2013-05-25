@@ -15,9 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(42, 42, 42);
-menubar::menuMarket::item {
-     background-color: red;
- }</string>
+QMenu::item:selected {border: 1px solid dark blue;}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -115,18 +113,15 @@ menubar::menuMarket::item {
     <enum>Qt::DefaultContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-color: rgb(0, 0, 255);
-QMenu::item:selected { 
-     background-color: #654321;
- }</string>
+    <string notr="true">border-color: rgb(0, 0, 255);</string>
    </property>
    <widget class="QMenu" name="menuCf16_tradingclient_1">
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-color: rgb(0, 0, 255);
-border: 1px solid rgb(0,0,200);</string>
+     <string notr="true">
+</string>
     </property>
     <property name="title">
      <string>cf16 tradingclient_1</string>
@@ -137,8 +132,7 @@ border: 1px solid rgb(0,0,200);</string>
    </widget>
    <widget class="QMenu" name="menuStrategies">
     <property name="styleSheet">
-     <string notr="true">border-color: rgb(0, 0, 255);
-border: 1px solid rgb(0,0,255);</string>
+     <string notr="true"/>
     </property>
     <property name="title">
      <string>Strategies</string>
@@ -151,8 +145,7 @@ border: 1px solid rgb(0,0,255);</string>
      <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-color: rgb(0, 0, 255);
-border: 1px solid rgb(0,0,150);</string>
+     <string notr="true"/>
     </property>
     <property name="title">
      <string>Market</string>

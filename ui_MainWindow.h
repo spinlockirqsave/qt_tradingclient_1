@@ -73,9 +73,7 @@ public:
             cf16tradingclient_1->setObjectName(QStringLiteral("cf16tradingclient_1"));
         cf16tradingclient_1->resize(956, 888);
         cf16tradingclient_1->setStyleSheet(QLatin1String("background-color: rgb(42, 42, 42);\n"
-"menubar::menuMarket::item {\n"
-"     background-color: red;\n"
-" }"));
+"QMenu::item:selected {border: 1px solid dark blue;}"));
         actionOpen = new QAction(cf16tradingclient_1);
         actionOpen->setObjectName(QStringLiteral("actionOpen"));
         actionSave = new QAction(cf16tradingclient_1);
@@ -176,24 +174,18 @@ public:
         menubar->setGeometry(QRect(0, 0, 956, 25));
         menubar->setFocusPolicy(Qt::NoFocus);
         menubar->setContextMenuPolicy(Qt::DefaultContextMenu);
-        menubar->setStyleSheet(QLatin1String("border-color: rgb(0, 0, 255);\n"
-"QMenu::item:selected { \n"
-"     background-color: #654321;\n"
-" }"));
+        menubar->setStyleSheet(QStringLiteral("border-color: rgb(0, 0, 255);"));
         menuCf16_tradingclient_1 = new QMenu(menubar);
         menuCf16_tradingclient_1->setObjectName(QStringLiteral("menuCf16_tradingclient_1"));
         menuCf16_tradingclient_1->setFocusPolicy(Qt::NoFocus);
-        menuCf16_tradingclient_1->setStyleSheet(QLatin1String("border-color: rgb(0, 0, 255);\n"
-"border: 1px solid rgb(0,0,200);"));
+        menuCf16_tradingclient_1->setStyleSheet(QStringLiteral(""));
         menuStrategies = new QMenu(menubar);
         menuStrategies->setObjectName(QStringLiteral("menuStrategies"));
-        menuStrategies->setStyleSheet(QLatin1String("border-color: rgb(0, 0, 255);\n"
-"border: 1px solid rgb(0,0,255);"));
+        menuStrategies->setStyleSheet(QStringLiteral(""));
         menuMarket = new QMenu(menubar);
         menuMarket->setObjectName(QStringLiteral("menuMarket"));
         menuMarket->setFocusPolicy(Qt::NoFocus);
-        menuMarket->setStyleSheet(QLatin1String("border-color: rgb(0, 0, 255);\n"
-"border: 1px solid rgb(0,0,150);"));
+        menuMarket->setStyleSheet(QStringLiteral(""));
         menuAction = new QMenu(menubar);
         menuAction->setObjectName(QStringLiteral("menuAction"));
         cf16tradingclient_1->setMenuBar(menubar);

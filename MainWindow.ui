@@ -6,29 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>967</width>
-    <height>798</height>
+    <width>956</width>
+    <height>888</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>cf16tradingclient_1</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(42, 42, 42);</string>
+   <string notr="true">background-color: rgb(42, 42, 42);
+menubar::menuMarket::item {
+     background-color: red;
+ }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="2">
      <widget class="QGroupBox" name="groupBox">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="title">
        <string/>
       </property>
       <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>-1</x>
-         <y>-3</y>
-         <width>311</width>
+         <x>6</x>
+         <y>5</y>
+         <width>301</width>
          <height>71</height>
         </rect>
        </property>
@@ -98,7 +104,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>967</width>
+     <width>956</width>
      <height>25</height>
     </rect>
    </property>
@@ -109,7 +115,10 @@
     <enum>Qt::DefaultContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-color: rgb(0, 0, 255);</string>
+    <string notr="true">border-color: rgb(0, 0, 255);
+QMenu::item:selected { 
+     background-color: #654321;
+ }</string>
    </property>
    <widget class="QMenu" name="menuCf16_tradingclient_1">
     <property name="focusPolicy">
@@ -157,9 +166,17 @@ border: 1px solid rgb(0,0,150);</string>
     <addaction name="actionSwaps"/>
     <addaction name="actionBonds"/>
    </widget>
+   <widget class="QMenu" name="menuAction">
+    <property name="title">
+     <string>Action</string>
+    </property>
+    <addaction name="actionReqMktData"/>
+    <addaction name="actionReqContractDetails"/>
+   </widget>
    <addaction name="menuCf16_tradingclient_1"/>
    <addaction name="menuStrategies"/>
    <addaction name="menuMarket"/>
+   <addaction name="menuAction"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen">
@@ -220,6 +237,16 @@ border: 1px solid rgb(0,0,150);</string>
   <action name="actionCointegration">
    <property name="text">
     <string>Cointegration</string>
+   </property>
+  </action>
+  <action name="actionReqMktData">
+   <property name="text">
+    <string>ReqMktData</string>
+   </property>
+  </action>
+  <action name="actionReqContractDetails">
+   <property name="text">
+    <string>ReqContractDetails</string>
    </property>
   </action>
  </widget>

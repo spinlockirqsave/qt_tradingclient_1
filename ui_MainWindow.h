@@ -43,6 +43,8 @@ public:
     QAction *actionSwaps;
     QAction *actionBonds;
     QAction *actionCointegration;
+    QAction *actionReqMktData;
+    QAction *actionReqContractDetails;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QGroupBox *groupBox;
@@ -62,14 +64,18 @@ public:
     QMenu *menuCf16_tradingclient_1;
     QMenu *menuStrategies;
     QMenu *menuMarket;
+    QMenu *menuAction;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *cf16tradingclient_1)
     {
         if (cf16tradingclient_1->objectName().isEmpty())
             cf16tradingclient_1->setObjectName(QStringLiteral("cf16tradingclient_1"));
-        cf16tradingclient_1->resize(967, 798);
-        cf16tradingclient_1->setStyleSheet(QStringLiteral("background-color: rgb(42, 42, 42);"));
+        cf16tradingclient_1->resize(956, 888);
+        cf16tradingclient_1->setStyleSheet(QLatin1String("background-color: rgb(42, 42, 42);\n"
+"menubar::menuMarket::item {\n"
+"     background-color: red;\n"
+" }"));
         actionOpen = new QAction(cf16tradingclient_1);
         actionOpen->setObjectName(QStringLiteral("actionOpen"));
         actionSave = new QAction(cf16tradingclient_1);
@@ -94,15 +100,20 @@ public:
         actionBonds->setObjectName(QStringLiteral("actionBonds"));
         actionCointegration = new QAction(cf16tradingclient_1);
         actionCointegration->setObjectName(QStringLiteral("actionCointegration"));
+        actionReqMktData = new QAction(cf16tradingclient_1);
+        actionReqMktData->setObjectName(QStringLiteral("actionReqMktData"));
+        actionReqContractDetails = new QAction(cf16tradingclient_1);
+        actionReqContractDetails->setObjectName(QStringLiteral("actionReqContractDetails"));
         centralwidget = new QWidget(cf16tradingclient_1);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setStyleSheet(QStringLiteral(""));
         widget = new QWidget(groupBox);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(-1, -3, 311, 71));
+        widget->setGeometry(QRect(6, 5, 301, 71));
         gridLayout_2 = new QGridLayout(widget);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -162,10 +173,13 @@ public:
         cf16tradingclient_1->setCentralWidget(centralwidget);
         menubar = new QMenuBar(cf16tradingclient_1);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 967, 25));
+        menubar->setGeometry(QRect(0, 0, 956, 25));
         menubar->setFocusPolicy(Qt::NoFocus);
         menubar->setContextMenuPolicy(Qt::DefaultContextMenu);
-        menubar->setStyleSheet(QStringLiteral("border-color: rgb(0, 0, 255);"));
+        menubar->setStyleSheet(QLatin1String("border-color: rgb(0, 0, 255);\n"
+"QMenu::item:selected { \n"
+"     background-color: #654321;\n"
+" }"));
         menuCf16_tradingclient_1 = new QMenu(menubar);
         menuCf16_tradingclient_1->setObjectName(QStringLiteral("menuCf16_tradingclient_1"));
         menuCf16_tradingclient_1->setFocusPolicy(Qt::NoFocus);
@@ -180,6 +194,8 @@ public:
         menuMarket->setFocusPolicy(Qt::NoFocus);
         menuMarket->setStyleSheet(QLatin1String("border-color: rgb(0, 0, 255);\n"
 "border: 1px solid rgb(0,0,150);"));
+        menuAction = new QMenu(menubar);
+        menuAction->setObjectName(QStringLiteral("menuAction"));
         cf16tradingclient_1->setMenuBar(menubar);
         statusbar = new QStatusBar(cf16tradingclient_1);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -188,6 +204,7 @@ public:
         menubar->addAction(menuCf16_tradingclient_1->menuAction());
         menubar->addAction(menuStrategies->menuAction());
         menubar->addAction(menuMarket->menuAction());
+        menubar->addAction(menuAction->menuAction());
         menuCf16_tradingclient_1->addAction(actionOpen);
         menuCf16_tradingclient_1->addAction(actionSave);
         menuCf16_tradingclient_1->addAction(actionSave_as);
@@ -201,6 +218,8 @@ public:
         menuMarket->addAction(actionFutures);
         menuMarket->addAction(actionSwaps);
         menuMarket->addAction(actionBonds);
+        menuAction->addAction(actionReqMktData);
+        menuAction->addAction(actionReqContractDetails);
 
         retranslateUi(cf16tradingclient_1);
 
@@ -222,6 +241,8 @@ public:
         actionSwaps->setText(QApplication::translate("cf16tradingclient_1", "Swaps", 0));
         actionBonds->setText(QApplication::translate("cf16tradingclient_1", "Bonds", 0));
         actionCointegration->setText(QApplication::translate("cf16tradingclient_1", "Cointegration", 0));
+        actionReqMktData->setText(QApplication::translate("cf16tradingclient_1", "ReqMktData", 0));
+        actionReqContractDetails->setText(QApplication::translate("cf16tradingclient_1", "ReqContractDetails", 0));
         groupBox->setTitle(QString());
         label_2->setText(QApplication::translate("cf16tradingclient_1", "time", 0));
         label_3->setText(QApplication::translate("cf16tradingclient_1", "TextLabel", 0));
@@ -232,6 +253,7 @@ public:
         menuCf16_tradingclient_1->setTitle(QApplication::translate("cf16tradingclient_1", "cf16 tradingclient_1", 0));
         menuStrategies->setTitle(QApplication::translate("cf16tradingclient_1", "Strategies", 0));
         menuMarket->setTitle(QApplication::translate("cf16tradingclient_1", "Market", 0));
+        menuAction->setTitle(QApplication::translate("cf16tradingclient_1", "Action", 0));
     } // retranslateUi
 
 };

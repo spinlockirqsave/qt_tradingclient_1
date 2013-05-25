@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     // initialize resources, if needed
     // Q_INIT_RESOURCE(resfile);
     QApplication app(argc, argv);
-
+    app.setStyleSheet("QMenu::item:selected {border: 1px solid blue;font: color white;}");
     // create and show your widgets here
     cf16tradingclient_1 cf16;
     cf16.show();

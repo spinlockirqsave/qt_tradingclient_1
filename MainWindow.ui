@@ -19,7 +19,23 @@ QMenu::item:selected {border: 1px solid dark blue;}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="2">
+    <item row="2" column="0" colspan="2">
+     <widget class="QListView" name="listView_2"/>
+    </item>
+    <item row="2" column="3">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>GroupBox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QTableView" name="tableView"/>
+    </item>
+    <item row="1" column="0" colspan="4">
+     <widget class="QListView" name="listView"/>
+    </item>
+    <item row="0" column="3">
      <widget class="QGroupBox" name="groupBox">
       <property name="styleSheet">
        <string notr="true"/>
@@ -27,7 +43,7 @@ QMenu::item:selected {border: 1px solid dark blue;}</string>
       <property name="title">
        <string/>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>6</x>
@@ -79,20 +95,50 @@ QMenu::item:selected {border: 1px solid dark blue;}</string>
       </widget>
      </widget>
     </item>
-    <item row="0" column="0" colspan="2">
-     <widget class="QTableView" name="tableView"/>
-    </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="QListView" name="listView_2"/>
-    </item>
-    <item row="1" column="0" colspan="3">
-     <widget class="QListView" name="listView"/>
-    </item>
-    <item row="2" column="2">
-     <widget class="QGroupBox" name="groupBox_2">
+    <item row="0" column="2">
+     <widget class="QGroupBox" name="groupBox_3">
       <property name="title">
-       <string>GroupBox</string>
+       <string>Status</string>
       </property>
+      <widget class="QLabel" name="label_6_connected">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>131</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Not connected</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="connectButton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>99</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>connect</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="disconnectButton">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>80</y>
+         <width>99</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>disconnect</string>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -120,8 +166,7 @@ QMenu::item:selected {border: 1px solid dark blue;}</string>
      <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-</string>
+     <string notr="true"/>
     </property>
     <property name="title">
      <string>cf16 tradingclient_1</string>

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>271</width>
-    <height>607</height>
+    <width>301</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="font">
@@ -59,35 +59,18 @@
       <string>Contract Description</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="label_8">
-        <property name="text">
-         <string>Contract Id</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="2" colspan="2">
        <widget class="QLineEdit" name="lineEdit"/>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label">
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Symbol</string>
+         <string>Multiplier</string>
         </property>
        </widget>
       </item>
       <item row="1" column="2" colspan="2">
        <widget class="QLineEdit" name="lineEdit_2"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Type</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2" colspan="2">
-       <widget class="QLineEdit" name="lineEdit_3"/>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="label_3">
@@ -96,8 +79,8 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_4"/>
+      <item row="6" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_7"/>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_4">
@@ -109,25 +92,34 @@
       <item row="4" column="1" colspan="3">
        <widget class="QLineEdit" name="lineEdit_5"/>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_5">
+      <item row="13" column="2" colspan="2">
+       <widget class="QCheckBox" name="checkBox">
         <property name="text">
-         <string>Right</string>
+         <string>CheckBox</string>
         </property>
        </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Type</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_4"/>
+      </item>
+      <item row="2" column="2" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_3"/>
       </item>
       <item row="5" column="1" colspan="3">
        <widget class="QLineEdit" name="lineEdit_6"/>
       </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>Multiplier</string>
-        </property>
-       </widget>
+      <item row="9" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_10"/>
       </item>
-      <item row="6" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_7"/>
+      <item row="7" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_8"/>
       </item>
       <item row="7" column="0">
        <widget class="QLabel" name="label_7">
@@ -136,37 +128,10 @@
         </property>
        </widget>
       </item>
-      <item row="7" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_8"/>
-      </item>
-      <item row="8" column="0" colspan="3">
-       <widget class="QLabel" name="label_9">
+      <item row="1" column="0">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>Primary Exchange</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="3">
-       <widget class="QLineEdit" name="lineEdit_9"/>
-      </item>
-      <item row="9" column="0">
-       <widget class="QLabel" name="label_10">
-        <property name="text">
-         <string>Currency</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="0">
-       <widget class="QLabel" name="label_11">
-        <property name="text">
-         <string>Local Symbol</string>
-        </property>
-       </widget>
-      </item>
-      <item row="11" column="0">
-       <widget class="QLabel" name="label_12">
-        <property name="text">
-         <string>include Expired</string>
+         <string>Symbol</string>
         </property>
        </widget>
       </item>
@@ -177,6 +142,30 @@
         </property>
        </widget>
       </item>
+      <item row="8" column="0" colspan="3">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>Primary Exchange</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_13"/>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>include Expired</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>Currency</string>
+        </property>
+       </widget>
+      </item>
       <item row="13" column="0">
        <widget class="QLabel" name="label_14">
         <property name="text">
@@ -184,22 +173,33 @@
         </property>
        </widget>
       </item>
-      <item row="9" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_10"/>
-      </item>
       <item row="10" column="1" colspan="3">
        <widget class="QLineEdit" name="lineEdit_11"/>
+      </item>
+      <item row="8" column="3">
+       <widget class="QLineEdit" name="lineEdit_9"/>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>Contract Id</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Right</string>
+        </property>
+       </widget>
       </item>
       <item row="11" column="1" colspan="3">
        <widget class="QLineEdit" name="lineEdit_12"/>
       </item>
-      <item row="12" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_13"/>
-      </item>
-      <item row="13" column="2" colspan="2">
-       <widget class="QCheckBox" name="checkBox">
+      <item row="10" column="0">
+       <widget class="QLabel" name="label_11">
         <property name="text">
-         <string>CheckBox</string>
+         <string>Local Symbol</string>
         </property>
        </widget>
       </item>
@@ -235,50 +235,21 @@
     </widget>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+    <widget class="QPushButton" name="cancelButton">
+     <property name="text">
+      <string>Cancel</string>
      </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="requestButton">
+     <property name="text">
+      <string>Request</string>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>reqMktDataGUI</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>reqMktDataGUI</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

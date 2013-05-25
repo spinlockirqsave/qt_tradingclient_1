@@ -9,14 +9,14 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
-      <itemPath>GUI.cpp</itemPath>
-      <itemPath>GUI.h</itemPath>
-      <itemPath>GUI.ui</itemPath>
       <itemPath>MainWindow.cpp</itemPath>
       <itemPath>MainWindow.h</itemPath>
       <itemPath>MainWindow.ui</itemPath>
-      <itemPath>ui_GUI.h</itemPath>
+      <itemPath>reqMktDataGUI.cpp</itemPath>
+      <itemPath>reqMktDataGUI.h</itemPath>
+      <itemPath>reqMktDataGUI.ui</itemPath>
       <itemPath>ui_MainWindow.h</itemPath>
+      <itemPath>ui_reqMktDataGUI.h</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -54,6 +54,7 @@
             <pElem>../twsapi/Shared</pElem>
             <pElem>../twsapi</pElem>
             <pElem>../twsapi/PosixSocketClient</pElem>
+            <pElem>/usr/include/boost</pElem>
           </incDir>
           <preprocessorList>
             <Elem>DEBUG</Elem>

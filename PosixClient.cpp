@@ -87,11 +87,11 @@ void PosixClient::processMessages()
 		case ST_PLACEORDER:
 			//placeOrder_MSFT();
                     printf("tradingclient_1: ST_PLACEORDER\n");
-                    reqMktData_MSFT();
+                    //reqMktData_MSFT();
 			break;
 		case ST_PLACEORDER_ACK:
                         printf("tradingclient_1: ST_PLACEORDER_ACK\n");
-                        reqMktData_MSFT();
+                        //reqMktData_MSFT();
 			break;
 		case ST_CANCELORDER:
                         printf("tradingclient_1: ST_CANCELORDER\n");
@@ -213,6 +213,21 @@ void PosixClient::reqMktData_MSFT(){
 	m_state = ST_REQMKTDATA_ACK;
         IBString i="233";
 	m_pClient->reqMktData( 100, contract, i, false);
+}
+
+void PosixClient::reqMktData(IBString symbol, IBString secType,
+        IBString exchange, IBString currency, int tickerId, IBString genericTicks, bool snapshot){
+    	Contract contract;
+
+	contract.symbol = symbol;
+	contract.secType = secType;
+	contract.exchange = exchange;
+	contract.currency = currency;
+
+	printf( "tradingclient_1: Requesting mktData: %s\n",  contract.symbol.c_str());
+
+	m_state = ST_REQMKTDATA_ACK;
+	m_pClient->reqMktData( tickerId, contract, genericTicks, snapshot);
 }
 
 void PosixClient::cancelOrder()

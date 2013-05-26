@@ -22,8 +22,15 @@ reqMktDataGUI::~reqMktDataGUI() {
 
 //public slots
 void reqMktDataGUI::requestClicked(){
-    //client.connect(host,port,clientId);
-    //QMessageBox::information(this,"Button clicked!\n", "Warning");
+    client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
+        widget.label_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 
+            widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
+            widget.checkBox_Snapshot->isChecked());
+    int i=0;
+    while(i<1000000){
+        client->processMessages();
+        i++;
+    }
 }  
 
 void reqMktDataGUI::cancelClicked(){

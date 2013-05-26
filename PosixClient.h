@@ -46,6 +46,9 @@ public:
 	void disconnect() const;
 	bool isConnected() const;
 
+        void reqMktData(IBString symbol, IBString secType,
+        IBString exchange, IBString currency, int tickerId, IBString genericTicks, bool snapshot);        
+
 private:
 
 	void reqCurrentTime();

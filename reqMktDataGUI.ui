@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>301</width>
+    <width>585</width>
     <height>640</height>
    </rect>
   </property>
@@ -41,14 +41,31 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0">
-       <widget class="QLabel" name="label_43">
+       <widget class="QLabel" name="label_Id">
         <property name="text">
          <string>Id</string>
         </property>
        </widget>
       </item>
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit_43"/>
+       <widget class="QLineEdit" name="lineEdit_Id">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -59,179 +76,262 @@
       <string>Contract Description</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="2" colspan="2">
-       <widget class="QLineEdit" name="lineEdit"/>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="label_6">
+      <item row="3" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_Expiry">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
-         <string>Multiplier</string>
+         <string/>
         </property>
        </widget>
-      </item>
-      <item row="1" column="2" colspan="2">
-       <widget class="QLineEdit" name="lineEdit_2"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Expiry</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_7"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Strike</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_5"/>
       </item>
       <item row="13" column="2" colspan="2">
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="checkBox_Snapshot">
         <property name="text">
          <string>CheckBox</string>
         </property>
        </widget>
       </item>
+      <item row="4" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_Strike">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_Strike">
+        <property name="text">
+         <string>Strike</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_LocalSymbol">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="3">
+       <widget class="QLineEdit" name="lineEdit_PrimaryExchange">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_Multiplier">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_Type">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="label_Type">
         <property name="text">
          <string>Type</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_4"/>
-      </item>
-      <item row="2" column="2" colspan="2">
-       <widget class="QLineEdit" name="lineEdit_3"/>
+      <item row="5" column="4">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item row="5" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_6"/>
-      </item>
-      <item row="9" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_10"/>
-      </item>
-      <item row="7" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_8"/>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Exchange</string>
+       <widget class="QLineEdit" name="lineEdit_Right">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label">
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_Multiplier">
         <property name="text">
-         <string>Symbol</string>
-        </property>
-       </widget>
-      </item>
-      <item row="12" column="0">
-       <widget class="QLabel" name="label_13">
-        <property name="text">
-         <string>Generic Tick Tags</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0" colspan="3">
-       <widget class="QLabel" name="label_9">
-        <property name="text">
-         <string>Primary Exchange</string>
+         <string>Multiplier</string>
         </property>
        </widget>
       </item>
       <item row="12" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_13"/>
+       <widget class="QLineEdit" name="lineEdit_genericTickTags">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
       </item>
       <item row="11" column="0">
-       <widget class="QLabel" name="label_12">
+       <widget class="QLabel" name="label_IncludeExpired">
         <property name="text">
          <string>include Expired</string>
         </property>
        </widget>
       </item>
       <item row="9" column="0">
-       <widget class="QLabel" name="label_10">
+       <widget class="QLabel" name="label_Currency">
         <property name="text">
          <string>Currency</string>
         </property>
        </widget>
       </item>
       <item row="13" column="0">
-       <widget class="QLabel" name="label_14">
+       <widget class="QLabel" name="label_Snapshot">
         <property name="text">
          <string>Snapshot</string>
         </property>
        </widget>
       </item>
-      <item row="10" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_11"/>
+      <item row="0" column="2" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_ContractId">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
       </item>
-      <item row="8" column="3">
-       <widget class="QLineEdit" name="lineEdit_9"/>
+      <item row="9" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_Currency">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="label_LocalSymbol">
+        <property name="text">
+         <string>Local Symbol</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_Symbol">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="label_GenericTickTags">
+        <property name="text">
+         <string>Generic Tick Tags</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0" colspan="3">
+       <widget class="QLabel" name="label_PrimaryExchange">
+        <property name="text">
+         <string>Primary Exchange</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_Exchange">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="label_8">
+       <widget class="QLabel" name="label_ContractId">
         <property name="text">
          <string>Contract Id</string>
         </property>
        </widget>
       </item>
       <item row="5" column="0">
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="label_Right">
         <property name="text">
          <string>Right</string>
         </property>
        </widget>
       </item>
       <item row="11" column="1" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_12"/>
+       <widget class="QLineEdit" name="lineEdit_IncludeExpired">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
       </item>
-      <item row="10" column="0">
-       <widget class="QLabel" name="label_11">
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_Expiry">
         <property name="text">
-         <string>Local Symbol</string>
+         <string>Expiry</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_Symbol">
+        <property name="text">
+         <string>Symbol</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_Exchange">
+        <property name="text">
+         <string>Exchange</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4" rowspan="14" colspan="2">
+       <widget class="QTextEdit" name="textEdit">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(197, 197, 197);</string>
         </property>
        </widget>
       </item>
      </layout>
-     <zorder>label</zorder>
-     <zorder>label_2</zorder>
-     <zorder>label_3</zorder>
-     <zorder>label_4</zorder>
-     <zorder>label_5</zorder>
-     <zorder>label_6</zorder>
-     <zorder>label_7</zorder>
-     <zorder>lineEdit_2</zorder>
-     <zorder>lineEdit_3</zorder>
-     <zorder>lineEdit_4</zorder>
-     <zorder>lineEdit_5</zorder>
-     <zorder>lineEdit_6</zorder>
-     <zorder>lineEdit_7</zorder>
-     <zorder>lineEdit_8</zorder>
-     <zorder>label_9</zorder>
-     <zorder>lineEdit_9</zorder>
-     <zorder>label_10</zorder>
-     <zorder>label_11</zorder>
-     <zorder>label_14</zorder>
-     <zorder>label_12</zorder>
-     <zorder>label_13</zorder>
-     <zorder>lineEdit_10</zorder>
-     <zorder>lineEdit_11</zorder>
-     <zorder>lineEdit_12</zorder>
-     <zorder>lineEdit_13</zorder>
-     <zorder>label_8</zorder>
-     <zorder>lineEdit</zorder>
-     <zorder>checkBox</zorder>
+     <zorder>label_Symbol</zorder>
+     <zorder>label_Type</zorder>
+     <zorder>label_Expiry</zorder>
+     <zorder>label_Strike</zorder>
+     <zorder>label_Right</zorder>
+     <zorder>label_Multiplier</zorder>
+     <zorder>label_Exchange</zorder>
+     <zorder>lineEdit_Symbol</zorder>
+     <zorder>lineEdit_Type</zorder>
+     <zorder>lineEdit_Expiry</zorder>
+     <zorder>lineEdit_Strike</zorder>
+     <zorder>lineEdit_Right</zorder>
+     <zorder>lineEdit_Multiplier</zorder>
+     <zorder>lineEdit_Exchange</zorder>
+     <zorder>label_PrimaryExchange</zorder>
+     <zorder>lineEdit_PrimaryExchange</zorder>
+     <zorder>label_Currency</zorder>
+     <zorder>label_LocalSymbol</zorder>
+     <zorder>label_Snapshot</zorder>
+     <zorder>label_IncludeExpired</zorder>
+     <zorder>label_GenericTickTags</zorder>
+     <zorder>lineEdit_Currency</zorder>
+     <zorder>lineEdit_LocalSymbol</zorder>
+     <zorder>lineEdit_IncludeExpired</zorder>
+     <zorder>lineEdit_genericTickTags</zorder>
+     <zorder>label_ContractId</zorder>
+     <zorder>lineEdit_ContractId</zorder>
+     <zorder>checkBox_Snapshot</zorder>
+     <zorder>verticalSpacer</zorder>
+     <zorder>textEdit</zorder>
     </widget>
    </item>
    <item>

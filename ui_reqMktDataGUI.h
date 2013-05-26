@@ -21,6 +21,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -31,38 +33,41 @@ public:
     QVBoxLayout *verticalLayout;
     QGroupBox *groupBox_4;
     QGridLayout *gridLayout_4;
-    QLabel *label_43;
-    QLineEdit *lineEdit_43;
+    QLabel *label_Id;
+    QSpacerItem *horizontalSpacer;
+    QLineEdit *lineEdit_Id;
     QGroupBox *groupBox;
     QGridLayout *gridLayout;
-    QLineEdit *lineEdit;
-    QLabel *label_6;
-    QLineEdit *lineEdit_2;
-    QLabel *label_3;
-    QLineEdit *lineEdit_7;
-    QLabel *label_4;
-    QLineEdit *lineEdit_5;
-    QCheckBox *checkBox;
-    QLabel *label_2;
-    QLineEdit *lineEdit_4;
-    QLineEdit *lineEdit_3;
-    QLineEdit *lineEdit_6;
-    QLineEdit *lineEdit_10;
-    QLineEdit *lineEdit_8;
-    QLabel *label_7;
-    QLabel *label;
-    QLabel *label_13;
-    QLabel *label_9;
-    QLineEdit *lineEdit_13;
-    QLabel *label_12;
-    QLabel *label_10;
-    QLabel *label_14;
-    QLineEdit *lineEdit_11;
-    QLineEdit *lineEdit_9;
-    QLabel *label_8;
-    QLabel *label_5;
-    QLineEdit *lineEdit_12;
-    QLabel *label_11;
+    QLineEdit *lineEdit_Expiry;
+    QCheckBox *checkBox_Snapshot;
+    QLineEdit *lineEdit_Strike;
+    QLabel *label_Strike;
+    QLineEdit *lineEdit_LocalSymbol;
+    QLineEdit *lineEdit_PrimaryExchange;
+    QLineEdit *lineEdit_Multiplier;
+    QLineEdit *lineEdit_Type;
+    QLabel *label_Type;
+    QSpacerItem *verticalSpacer;
+    QLineEdit *lineEdit_Right;
+    QLabel *label_Multiplier;
+    QLineEdit *lineEdit_genericTickTags;
+    QLabel *label_IncludeExpired;
+    QLabel *label_Currency;
+    QLabel *label_Snapshot;
+    QLineEdit *lineEdit_ContractId;
+    QLineEdit *lineEdit_Currency;
+    QLabel *label_LocalSymbol;
+    QLineEdit *lineEdit_Symbol;
+    QLabel *label_GenericTickTags;
+    QLabel *label_PrimaryExchange;
+    QLineEdit *lineEdit_Exchange;
+    QLabel *label_ContractId;
+    QLabel *label_Right;
+    QLineEdit *lineEdit_IncludeExpired;
+    QLabel *label_Expiry;
+    QLabel *label_Symbol;
+    QLabel *label_Exchange;
+    QTextEdit *textEdit;
     QPushButton *cancelButton;
     QPushButton *requestButton;
 
@@ -71,7 +76,7 @@ public:
         if (reqMktDataGUI->objectName().isEmpty())
             reqMktDataGUI->setObjectName(QStringLiteral("reqMktDataGUI"));
         reqMktDataGUI->setEnabled(true);
-        reqMktDataGUI->resize(301, 640);
+        reqMktDataGUI->resize(585, 640);
         QFont font;
         font.setBold(false);
         font.setItalic(false);
@@ -87,15 +92,20 @@ public:
         groupBox_4->setCheckable(false);
         gridLayout_4 = new QGridLayout(groupBox_4);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        label_43 = new QLabel(groupBox_4);
-        label_43->setObjectName(QStringLiteral("label_43"));
+        label_Id = new QLabel(groupBox_4);
+        label_Id->setObjectName(QStringLiteral("label_Id"));
 
-        gridLayout_4->addWidget(label_43, 0, 0, 1, 1);
+        gridLayout_4->addWidget(label_Id, 0, 0, 1, 1);
 
-        lineEdit_43 = new QLineEdit(groupBox_4);
-        lineEdit_43->setObjectName(QStringLiteral("lineEdit_43"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_4->addWidget(lineEdit_43, 0, 1, 1, 1);
+        gridLayout_4->addItem(horizontalSpacer, 0, 2, 1, 1);
+
+        lineEdit_Id = new QLineEdit(groupBox_4);
+        lineEdit_Id->setObjectName(QStringLiteral("lineEdit_Id"));
+        lineEdit_Id->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        gridLayout_4->addWidget(lineEdit_Id, 0, 1, 1, 1);
 
 
         verticalLayout->addWidget(groupBox_4);
@@ -104,174 +114,198 @@ public:
         groupBox->setObjectName(QStringLiteral("groupBox"));
         gridLayout = new QGridLayout(groupBox);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        lineEdit = new QLineEdit(groupBox);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit_Expiry = new QLineEdit(groupBox);
+        lineEdit_Expiry->setObjectName(QStringLiteral("lineEdit_Expiry"));
+        lineEdit_Expiry->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit, 0, 2, 1, 2);
+        gridLayout->addWidget(lineEdit_Expiry, 3, 1, 1, 3);
 
-        label_6 = new QLabel(groupBox);
-        label_6->setObjectName(QStringLiteral("label_6"));
+        checkBox_Snapshot = new QCheckBox(groupBox);
+        checkBox_Snapshot->setObjectName(QStringLiteral("checkBox_Snapshot"));
 
-        gridLayout->addWidget(label_6, 6, 0, 1, 1);
+        gridLayout->addWidget(checkBox_Snapshot, 13, 2, 1, 2);
 
-        lineEdit_2 = new QLineEdit(groupBox);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        lineEdit_Strike = new QLineEdit(groupBox);
+        lineEdit_Strike->setObjectName(QStringLiteral("lineEdit_Strike"));
+        lineEdit_Strike->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit_2, 1, 2, 1, 2);
+        gridLayout->addWidget(lineEdit_Strike, 4, 1, 1, 3);
 
-        label_3 = new QLabel(groupBox);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_Strike = new QLabel(groupBox);
+        label_Strike->setObjectName(QStringLiteral("label_Strike"));
 
-        gridLayout->addWidget(label_3, 3, 0, 1, 1);
+        gridLayout->addWidget(label_Strike, 4, 0, 1, 1);
 
-        lineEdit_7 = new QLineEdit(groupBox);
-        lineEdit_7->setObjectName(QStringLiteral("lineEdit_7"));
+        lineEdit_LocalSymbol = new QLineEdit(groupBox);
+        lineEdit_LocalSymbol->setObjectName(QStringLiteral("lineEdit_LocalSymbol"));
+        lineEdit_LocalSymbol->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit_7, 6, 1, 1, 3);
+        gridLayout->addWidget(lineEdit_LocalSymbol, 10, 1, 1, 3);
 
-        label_4 = new QLabel(groupBox);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        lineEdit_PrimaryExchange = new QLineEdit(groupBox);
+        lineEdit_PrimaryExchange->setObjectName(QStringLiteral("lineEdit_PrimaryExchange"));
+        lineEdit_PrimaryExchange->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(label_4, 4, 0, 1, 1);
+        gridLayout->addWidget(lineEdit_PrimaryExchange, 8, 3, 1, 1);
 
-        lineEdit_5 = new QLineEdit(groupBox);
-        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
+        lineEdit_Multiplier = new QLineEdit(groupBox);
+        lineEdit_Multiplier->setObjectName(QStringLiteral("lineEdit_Multiplier"));
+        lineEdit_Multiplier->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit_5, 4, 1, 1, 3);
+        gridLayout->addWidget(lineEdit_Multiplier, 6, 1, 1, 3);
 
-        checkBox = new QCheckBox(groupBox);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
+        lineEdit_Type = new QLineEdit(groupBox);
+        lineEdit_Type->setObjectName(QStringLiteral("lineEdit_Type"));
+        lineEdit_Type->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(checkBox, 13, 2, 1, 2);
+        gridLayout->addWidget(lineEdit_Type, 2, 2, 1, 2);
 
-        label_2 = new QLabel(groupBox);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_Type = new QLabel(groupBox);
+        label_Type->setObjectName(QStringLiteral("label_Type"));
 
-        gridLayout->addWidget(label_2, 2, 0, 1, 1);
+        gridLayout->addWidget(label_Type, 2, 0, 1, 1);
 
-        lineEdit_4 = new QLineEdit(groupBox);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addWidget(lineEdit_4, 3, 1, 1, 3);
+        gridLayout->addItem(verticalSpacer, 5, 4, 1, 1);
 
-        lineEdit_3 = new QLineEdit(groupBox);
-        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        lineEdit_Right = new QLineEdit(groupBox);
+        lineEdit_Right->setObjectName(QStringLiteral("lineEdit_Right"));
+        lineEdit_Right->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit_3, 2, 2, 1, 2);
+        gridLayout->addWidget(lineEdit_Right, 5, 1, 1, 3);
 
-        lineEdit_6 = new QLineEdit(groupBox);
-        lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
+        label_Multiplier = new QLabel(groupBox);
+        label_Multiplier->setObjectName(QStringLiteral("label_Multiplier"));
 
-        gridLayout->addWidget(lineEdit_6, 5, 1, 1, 3);
+        gridLayout->addWidget(label_Multiplier, 6, 0, 1, 1);
 
-        lineEdit_10 = new QLineEdit(groupBox);
-        lineEdit_10->setObjectName(QStringLiteral("lineEdit_10"));
+        lineEdit_genericTickTags = new QLineEdit(groupBox);
+        lineEdit_genericTickTags->setObjectName(QStringLiteral("lineEdit_genericTickTags"));
+        lineEdit_genericTickTags->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit_10, 9, 1, 1, 3);
+        gridLayout->addWidget(lineEdit_genericTickTags, 12, 1, 1, 3);
 
-        lineEdit_8 = new QLineEdit(groupBox);
-        lineEdit_8->setObjectName(QStringLiteral("lineEdit_8"));
+        label_IncludeExpired = new QLabel(groupBox);
+        label_IncludeExpired->setObjectName(QStringLiteral("label_IncludeExpired"));
 
-        gridLayout->addWidget(lineEdit_8, 7, 1, 1, 3);
+        gridLayout->addWidget(label_IncludeExpired, 11, 0, 1, 1);
 
-        label_7 = new QLabel(groupBox);
-        label_7->setObjectName(QStringLiteral("label_7"));
+        label_Currency = new QLabel(groupBox);
+        label_Currency->setObjectName(QStringLiteral("label_Currency"));
 
-        gridLayout->addWidget(label_7, 7, 0, 1, 1);
+        gridLayout->addWidget(label_Currency, 9, 0, 1, 1);
 
-        label = new QLabel(groupBox);
-        label->setObjectName(QStringLiteral("label"));
+        label_Snapshot = new QLabel(groupBox);
+        label_Snapshot->setObjectName(QStringLiteral("label_Snapshot"));
 
-        gridLayout->addWidget(label, 1, 0, 1, 1);
+        gridLayout->addWidget(label_Snapshot, 13, 0, 1, 1);
 
-        label_13 = new QLabel(groupBox);
-        label_13->setObjectName(QStringLiteral("label_13"));
+        lineEdit_ContractId = new QLineEdit(groupBox);
+        lineEdit_ContractId->setObjectName(QStringLiteral("lineEdit_ContractId"));
+        lineEdit_ContractId->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(label_13, 12, 0, 1, 1);
+        gridLayout->addWidget(lineEdit_ContractId, 0, 2, 1, 2);
 
-        label_9 = new QLabel(groupBox);
-        label_9->setObjectName(QStringLiteral("label_9"));
+        lineEdit_Currency = new QLineEdit(groupBox);
+        lineEdit_Currency->setObjectName(QStringLiteral("lineEdit_Currency"));
+        lineEdit_Currency->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(label_9, 8, 0, 1, 3);
+        gridLayout->addWidget(lineEdit_Currency, 9, 1, 1, 3);
 
-        lineEdit_13 = new QLineEdit(groupBox);
-        lineEdit_13->setObjectName(QStringLiteral("lineEdit_13"));
+        label_LocalSymbol = new QLabel(groupBox);
+        label_LocalSymbol->setObjectName(QStringLiteral("label_LocalSymbol"));
 
-        gridLayout->addWidget(lineEdit_13, 12, 1, 1, 3);
+        gridLayout->addWidget(label_LocalSymbol, 10, 0, 1, 1);
 
-        label_12 = new QLabel(groupBox);
-        label_12->setObjectName(QStringLiteral("label_12"));
+        lineEdit_Symbol = new QLineEdit(groupBox);
+        lineEdit_Symbol->setObjectName(QStringLiteral("lineEdit_Symbol"));
+        lineEdit_Symbol->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(label_12, 11, 0, 1, 1);
+        gridLayout->addWidget(lineEdit_Symbol, 1, 2, 1, 2);
 
-        label_10 = new QLabel(groupBox);
-        label_10->setObjectName(QStringLiteral("label_10"));
+        label_GenericTickTags = new QLabel(groupBox);
+        label_GenericTickTags->setObjectName(QStringLiteral("label_GenericTickTags"));
 
-        gridLayout->addWidget(label_10, 9, 0, 1, 1);
+        gridLayout->addWidget(label_GenericTickTags, 12, 0, 1, 1);
 
-        label_14 = new QLabel(groupBox);
-        label_14->setObjectName(QStringLiteral("label_14"));
+        label_PrimaryExchange = new QLabel(groupBox);
+        label_PrimaryExchange->setObjectName(QStringLiteral("label_PrimaryExchange"));
 
-        gridLayout->addWidget(label_14, 13, 0, 1, 1);
+        gridLayout->addWidget(label_PrimaryExchange, 8, 0, 1, 3);
 
-        lineEdit_11 = new QLineEdit(groupBox);
-        lineEdit_11->setObjectName(QStringLiteral("lineEdit_11"));
+        lineEdit_Exchange = new QLineEdit(groupBox);
+        lineEdit_Exchange->setObjectName(QStringLiteral("lineEdit_Exchange"));
+        lineEdit_Exchange->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit_11, 10, 1, 1, 3);
+        gridLayout->addWidget(lineEdit_Exchange, 7, 1, 1, 3);
 
-        lineEdit_9 = new QLineEdit(groupBox);
-        lineEdit_9->setObjectName(QStringLiteral("lineEdit_9"));
+        label_ContractId = new QLabel(groupBox);
+        label_ContractId->setObjectName(QStringLiteral("label_ContractId"));
 
-        gridLayout->addWidget(lineEdit_9, 8, 3, 1, 1);
+        gridLayout->addWidget(label_ContractId, 0, 0, 1, 2);
 
-        label_8 = new QLabel(groupBox);
-        label_8->setObjectName(QStringLiteral("label_8"));
+        label_Right = new QLabel(groupBox);
+        label_Right->setObjectName(QStringLiteral("label_Right"));
 
-        gridLayout->addWidget(label_8, 0, 0, 1, 2);
+        gridLayout->addWidget(label_Right, 5, 0, 1, 1);
 
-        label_5 = new QLabel(groupBox);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        lineEdit_IncludeExpired = new QLineEdit(groupBox);
+        lineEdit_IncludeExpired->setObjectName(QStringLiteral("lineEdit_IncludeExpired"));
+        lineEdit_IncludeExpired->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(label_5, 5, 0, 1, 1);
+        gridLayout->addWidget(lineEdit_IncludeExpired, 11, 1, 1, 3);
 
-        lineEdit_12 = new QLineEdit(groupBox);
-        lineEdit_12->setObjectName(QStringLiteral("lineEdit_12"));
+        label_Expiry = new QLabel(groupBox);
+        label_Expiry->setObjectName(QStringLiteral("label_Expiry"));
 
-        gridLayout->addWidget(lineEdit_12, 11, 1, 1, 3);
+        gridLayout->addWidget(label_Expiry, 3, 0, 1, 1);
 
-        label_11 = new QLabel(groupBox);
-        label_11->setObjectName(QStringLiteral("label_11"));
+        label_Symbol = new QLabel(groupBox);
+        label_Symbol->setObjectName(QStringLiteral("label_Symbol"));
 
-        gridLayout->addWidget(label_11, 10, 0, 1, 1);
+        gridLayout->addWidget(label_Symbol, 1, 0, 1, 1);
 
-        label->raise();
-        label_2->raise();
-        label_3->raise();
-        label_4->raise();
-        label_5->raise();
-        label_6->raise();
-        label_7->raise();
-        lineEdit_2->raise();
-        lineEdit_3->raise();
-        lineEdit_4->raise();
-        lineEdit_5->raise();
-        lineEdit_6->raise();
-        lineEdit_7->raise();
-        lineEdit_8->raise();
-        label_9->raise();
-        lineEdit_9->raise();
-        label_10->raise();
-        label_11->raise();
-        label_14->raise();
-        label_12->raise();
-        label_13->raise();
-        lineEdit_10->raise();
-        lineEdit_11->raise();
-        lineEdit_12->raise();
-        lineEdit_13->raise();
-        label_8->raise();
-        lineEdit->raise();
-        checkBox->raise();
+        label_Exchange = new QLabel(groupBox);
+        label_Exchange->setObjectName(QStringLiteral("label_Exchange"));
+
+        gridLayout->addWidget(label_Exchange, 7, 0, 1, 1);
+
+        textEdit = new QTextEdit(groupBox);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setStyleSheet(QStringLiteral("color: rgb(197, 197, 197);"));
+
+        gridLayout->addWidget(textEdit, 0, 4, 14, 2);
+
+        label_Symbol->raise();
+        label_Type->raise();
+        label_Expiry->raise();
+        label_Strike->raise();
+        label_Right->raise();
+        label_Multiplier->raise();
+        label_Exchange->raise();
+        lineEdit_Symbol->raise();
+        lineEdit_Type->raise();
+        lineEdit_Expiry->raise();
+        lineEdit_Strike->raise();
+        lineEdit_Right->raise();
+        lineEdit_Multiplier->raise();
+        lineEdit_Exchange->raise();
+        label_PrimaryExchange->raise();
+        lineEdit_PrimaryExchange->raise();
+        label_Currency->raise();
+        label_LocalSymbol->raise();
+        label_Snapshot->raise();
+        label_IncludeExpired->raise();
+        label_GenericTickTags->raise();
+        lineEdit_Currency->raise();
+        lineEdit_LocalSymbol->raise();
+        lineEdit_IncludeExpired->raise();
+        lineEdit_genericTickTags->raise();
+        label_ContractId->raise();
+        lineEdit_ContractId->raise();
+        checkBox_Snapshot->raise();
+        textEdit->raise();
 
         verticalLayout->addWidget(groupBox);
 
@@ -295,23 +329,26 @@ public:
     {
         reqMktDataGUI->setWindowTitle(QApplication::translate("reqMktDataGUI", "reqMktData", 0));
         groupBox_4->setTitle(QApplication::translate("reqMktDataGUI", "Market Data Request Description", 0));
-        label_43->setText(QApplication::translate("reqMktDataGUI", "Id", 0));
+        label_Id->setText(QApplication::translate("reqMktDataGUI", "Id", 0));
         groupBox->setTitle(QApplication::translate("reqMktDataGUI", "Contract Description", 0));
-        label_6->setText(QApplication::translate("reqMktDataGUI", "Multiplier", 0));
-        label_3->setText(QApplication::translate("reqMktDataGUI", "Expiry", 0));
-        label_4->setText(QApplication::translate("reqMktDataGUI", "Strike", 0));
-        checkBox->setText(QApplication::translate("reqMktDataGUI", "CheckBox", 0));
-        label_2->setText(QApplication::translate("reqMktDataGUI", "Type", 0));
-        label_7->setText(QApplication::translate("reqMktDataGUI", "Exchange", 0));
-        label->setText(QApplication::translate("reqMktDataGUI", "Symbol", 0));
-        label_13->setText(QApplication::translate("reqMktDataGUI", "Generic Tick Tags", 0));
-        label_9->setText(QApplication::translate("reqMktDataGUI", "Primary Exchange", 0));
-        label_12->setText(QApplication::translate("reqMktDataGUI", "include Expired", 0));
-        label_10->setText(QApplication::translate("reqMktDataGUI", "Currency", 0));
-        label_14->setText(QApplication::translate("reqMktDataGUI", "Snapshot", 0));
-        label_8->setText(QApplication::translate("reqMktDataGUI", "Contract Id", 0));
-        label_5->setText(QApplication::translate("reqMktDataGUI", "Right", 0));
-        label_11->setText(QApplication::translate("reqMktDataGUI", "Local Symbol", 0));
+        lineEdit_Expiry->setText(QString());
+        checkBox_Snapshot->setText(QApplication::translate("reqMktDataGUI", "CheckBox", 0));
+        label_Strike->setText(QApplication::translate("reqMktDataGUI", "Strike", 0));
+        lineEdit_Type->setText(QString());
+        label_Type->setText(QApplication::translate("reqMktDataGUI", "Type", 0));
+        label_Multiplier->setText(QApplication::translate("reqMktDataGUI", "Multiplier", 0));
+        label_IncludeExpired->setText(QApplication::translate("reqMktDataGUI", "include Expired", 0));
+        label_Currency->setText(QApplication::translate("reqMktDataGUI", "Currency", 0));
+        label_Snapshot->setText(QApplication::translate("reqMktDataGUI", "Snapshot", 0));
+        label_LocalSymbol->setText(QApplication::translate("reqMktDataGUI", "Local Symbol", 0));
+        lineEdit_Symbol->setText(QString());
+        label_GenericTickTags->setText(QApplication::translate("reqMktDataGUI", "Generic Tick Tags", 0));
+        label_PrimaryExchange->setText(QApplication::translate("reqMktDataGUI", "Primary Exchange", 0));
+        label_ContractId->setText(QApplication::translate("reqMktDataGUI", "Contract Id", 0));
+        label_Right->setText(QApplication::translate("reqMktDataGUI", "Right", 0));
+        label_Expiry->setText(QApplication::translate("reqMktDataGUI", "Expiry", 0));
+        label_Symbol->setText(QApplication::translate("reqMktDataGUI", "Symbol", 0));
+        label_Exchange->setText(QApplication::translate("reqMktDataGUI", "Exchange", 0));
         cancelButton->setText(QApplication::translate("reqMktDataGUI", "Cancel", 0));
         requestButton->setText(QApplication::translate("reqMktDataGUI", "Request", 0));
     } // retranslateUi

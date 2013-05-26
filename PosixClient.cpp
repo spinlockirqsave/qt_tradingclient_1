@@ -83,49 +83,49 @@ void PosixClient::processMessages()
 
 	time_t now = time(NULL);
 
-	switch (m_state) {
-		case ST_PLACEORDER:
-			//placeOrder_MSFT();
-                    printf("tradingclient_1: ST_PLACEORDER\n");
-                    //reqMktData_MSFT();
-			break;
-		case ST_PLACEORDER_ACK:
-                        printf("tradingclient_1: ST_PLACEORDER_ACK\n");
-                        //reqMktData_MSFT();
-			break;
-		case ST_CANCELORDER:
-                        printf("tradingclient_1: ST_CANCELORDER\n");
-			//cancelOrder();
-			break;
-		case ST_CANCELORDER_ACK:
-                        printf("tradingclient_1: ST_CANCELORDER_ACK\n");
-			break;
-                case ST_REQMKTDATA:
-                        printf("tradingclient_1: ST_REQMKTDATA\n");
-			//cancelOrder();
-			break;
-		case ST_REQMKTDATA_ACK:
-                        //printf("tradingclient_1: ST_REQMKTDATA_ACK\n");
-			break;        
-		case ST_PING:
-			printf("tradingclient_1: ST_PING\n");
-                        //reqCurrentTime();
-			break;
-		case ST_PING_ACK:
-                        printf("tradingclient_1: ST_PING_ACK\n");
-			if( m_sleepDeadline < now) {
-				disconnect();
-				return;
-			}
-			break;
-		case ST_IDLE:
-                        printf("tradingclient_1: ST_IDLE\n");
-			if( m_sleepDeadline < now) {
-				m_state = ST_PING;
-				return;
-			}
-			break;
-	}
+//	switch (m_state) {
+//		case ST_PLACEORDER:
+//			//placeOrder_MSFT();
+//                    printf("tradingclient_1: ST_PLACEORDER\n");
+//                    //reqMktData_MSFT();
+//			break;
+//		case ST_PLACEORDER_ACK:
+//                        printf("tradingclient_1: ST_PLACEORDER_ACK\n");
+//                        //reqMktData_MSFT();
+//			break;
+//		case ST_CANCELORDER:
+//                        printf("tradingclient_1: ST_CANCELORDER\n");
+//			//cancelOrder();
+//			break;
+//		case ST_CANCELORDER_ACK:
+//                        printf("tradingclient_1: ST_CANCELORDER_ACK\n");
+//			break;
+//                case ST_REQMKTDATA:
+//                        printf("tradingclient_1: ST_REQMKTDATA\n");
+//			//cancelOrder();
+//			break;
+//		case ST_REQMKTDATA_ACK:
+//                        //printf("tradingclient_1: ST_REQMKTDATA_ACK\n");
+//			break;        
+//		case ST_PING:
+//			printf("tradingclient_1: ST_PING\n");
+//                        //reqCurrentTime();
+//			break;
+//		case ST_PING_ACK:
+//                        printf("tradingclient_1: ST_PING_ACK\n");
+//			if( m_sleepDeadline < now) {
+//				disconnect();
+//				return;
+//			}
+//			break;
+//		case ST_IDLE:
+//                        printf("tradingclient_1: ST_IDLE\n");
+//			if( m_sleepDeadline < now) {
+//				m_state = ST_PING;
+//				return;
+//			}
+//			break;
+//	}
 
 	if( m_sleepDeadline > 0) {
 		// initialize timeout with m_sleepDeadline - now
@@ -210,7 +210,7 @@ void PosixClient::reqMktData_MSFT(){
 
 	printf( "tradingclient_1: Requesting MSFT mktData %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
 
-	m_state = ST_REQMKTDATA_ACK;
+	//m_state = ST_REQMKTDATA_ACK;
         IBString i="233";
 	m_pClient->reqMktData( 100, contract, i, false);
 }
@@ -221,10 +221,12 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
 
 	contract.symbol = symbol;
 	contract.secType = secType;
-	contract.exchange = exchange;
+	contract.exchange = exchange;//"SMART";//exchange;
 	contract.currency = currency;
 
-	printf( "tradingclient_1: Requesting mktData: %s\n",  contract.symbol.c_str());
+	printf( "tradingclient_1: Requesting mktData. symbol: %s secType: %s  exchange: %s  currency: %s\n",
+                contract.symbol.c_str(), contract.secType.c_str(), contract.exchange.c_str(),
+                contract.currency.c_str());
 
 	m_state = ST_REQMKTDATA_ACK;
 	m_pClient->reqMktData( tickerId, contract, genericTicks, snapshot);

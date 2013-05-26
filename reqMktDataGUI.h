@@ -10,7 +10,9 @@
 
 #include "ui_reqMktDataGUI.h"
 #include "PosixClient.h"
+#include "MarketData.h"
 #include <boost/shared_ptr.hpp>
+#include <boost/bind.hpp>
 
 class reqMktDataGUI : public QDialog {
     Q_OBJECT
@@ -23,6 +25,8 @@ public slots:
 private:
     Ui::reqMktDataGUI widget;
     boost::shared_ptr<IB::PosixClient> client;
+    boost::shared_ptr<MarketDataObserver> observer;
+    void myUpdate(int tickerId, IB::Record);
 };
 
 #endif	/* _GUI_H */

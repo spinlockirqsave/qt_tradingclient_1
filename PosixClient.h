@@ -11,6 +11,8 @@
 #include "EWrapper.h"
 #include <memory>
 #include <stdio.h> //printf()
+#include <vector>
+#include "MarketData.h"
 
 namespace IB {
 
@@ -47,7 +49,9 @@ public:
 	bool isConnected() const;
 
         void reqMktData(IBString symbol, IBString secType,
-        IBString exchange, IBString currency, int tickerId, IBString genericTicks, bool snapshot);        
+        IBString exchange, IBString currency, int tickerId, IBString genericTicks, bool snapshot); 
+        //additions
+        void dataRepositoryAdd(boost::shared_ptr<MarketData> marketData);
 
 private:
 
@@ -116,6 +120,9 @@ private:
 	time_t m_sleepDeadline;
 
 	OrderId m_orderId;
+        
+        //additions
+        std::vector< boost::shared_ptr<MarketData> > dataRepository;
 };
 
 }

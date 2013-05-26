@@ -20,8 +20,22 @@ reqMktDataGUI::~reqMktDataGUI() {
     printf( "I am dead!\n");
 }
 
+void reqMktDataGUI::myUpdate(int tickerId, IB::Record record){
+    printf( "myUpdate! for tickerId: %d\n",tickerId);
+}
 //public slots
 void reqMktDataGUI::requestClicked(){
+    IB::Contract contract;
+    	contract.symbol = widget.lineEdit_Symbol->text().toStdString();
+	contract.secType = widget.lineEdit_Type->text().toStdString();
+	contract.exchange = widget.lineEdit_Exchange->text().toStdString();
+	contract.currency = widget.lineEdit_Currency->text().toStdString();
+        
+    boost::shared_ptr<MarketData> md(new MarketData(contract,widget.lineEdit_Id->text().toInt()));
+    MarketDataObserver* mkdobs_ptr = new MarketDataObserver(md,boost::bind(&reqMktDataGUI::myUpdate,this,_1,_2));
+    observer.reset(mkdobs_ptr);
+    client->dataRepositoryAdd(md);
+    
     client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
         widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 
             widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 

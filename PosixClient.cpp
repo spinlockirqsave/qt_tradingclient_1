@@ -232,6 +232,10 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
 	m_pClient->reqMktData( tickerId, contract, genericTicks, snapshot);
 }
 
+void PosixClient::dataRepositoryAdd(boost::shared_ptr<MarketData> marketData){
+    dataRepository.push_back(marketData);
+}
+
 void PosixClient::cancelOrder()
 {
 	printf( "Cancelling Order %ld\n", m_orderId);
@@ -289,7 +293,16 @@ void PosixClient::error(const int id, const int errorCode, const IBString errorS
 }
 
 void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, int canAutoExecute) {
-    printf("tradingclient_1: tickPrice: \n");}
+    printf("tradingclient_1: tickPrice: \n");
+    for(std::vector<boost::shared_ptr<MarketData> >::iterator it=dataRepository.begin(); 
+            it!=dataRepository.end(); it++){
+        if((*it)->tickerId==tickerId){
+            (*it)->tickPriceData.push_back(tickSizeRecord(field,price,canAutoExecute));
+            (*it)->notifyObservers();
+            //TODO: start thread to store incoming data in repository
+        }
+    }
+}
 void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {printf("tradingclient_1: tickSize\n");}
 void PosixClient::tickOptionComputation( TickerId tickerId, TickType tickType, double impliedVol, double delta,
 											 double optPrice, double pvDividend,

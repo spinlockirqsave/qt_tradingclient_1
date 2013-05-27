@@ -25,7 +25,7 @@ public slots:
 private:
     Ui::reqMktDataGUI widget;
     boost::shared_ptr<IB::PosixClient> client;
-    boost::shared_ptr<MarketDataObserver> observer;
+    std::vector<boost::shared_ptr<MarketDataObserver> > observers;
     void myUpdate(int tickerId, IB::Record);
 };
 

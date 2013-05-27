@@ -32,8 +32,7 @@ void reqMktDataGUI::requestClicked(){
 	contract.currency = widget.lineEdit_Currency->text().toStdString();
         
     boost::shared_ptr<MarketData> md(new MarketData(contract,widget.lineEdit_Id->text().toInt()));
-    MarketDataObserver* mkdobs_ptr = new MarketDataObserver(md,boost::bind(&reqMktDataGUI::myUpdate,this,_1,_2));
-    observer.reset(mkdobs_ptr);
+    observers.push_back(boost::shared_ptr<MarketDataObserver>(new MarketDataObserver(md,boost::bind(&reqMktDataGUI::myUpdate,this,_1,_2))));
     client->dataRepositoryAdd(md);
     
     client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),

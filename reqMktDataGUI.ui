@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>585</width>
+    <width>637</width>
     <height>640</height>
    </rect>
   </property>
@@ -54,7 +54,7 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>40</width>
+          <width>360</width>
           <height>20</height>
          </size>
         </property>
@@ -295,7 +295,13 @@
        </widget>
       </item>
       <item row="0" column="4" rowspan="14" colspan="2">
-       <widget class="QTextEdit" name="textEdit">
+       <widget class="QTextEdit" name="textEdit_dataFeed">
+        <property name="minimumSize">
+         <size>
+          <width>360</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(197, 197, 197);</string>
         </property>
@@ -331,7 +337,7 @@
      <zorder>lineEdit_ContractId</zorder>
      <zorder>checkBox_Snapshot</zorder>
      <zorder>verticalSpacer</zorder>
-     <zorder>textEdit</zorder>
+     <zorder>textEdit_dataFeed</zorder>
     </widget>
    </item>
    <item>

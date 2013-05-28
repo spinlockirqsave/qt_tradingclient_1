@@ -122,7 +122,7 @@ private:
 	OrderId m_orderId;
         
         //additions
-        std::vector< boost::shared_ptr<MarketData> > dataRepository;
+        std::vector< boost::shared_ptr<MarketData> > marketDataRepository;
 };
 
 }

@@ -4,24 +4,36 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>PosixClient.h</itemPath>
+      <logicalFolder name="f2" displayName="Data Layer" projectFiles="true">
+        <itemPath>PosixClient.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Design Patterns" projectFiles="true">
+        <itemPath>MarketData.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
-      <itemPath>MainWindow.cpp</itemPath>
-      <itemPath>MainWindow.h</itemPath>
-      <itemPath>MainWindow.ui</itemPath>
-      <itemPath>reqMktDataGUI.cpp</itemPath>
-      <itemPath>reqMktDataGUI.h</itemPath>
-      <itemPath>reqMktDataGUI.ui</itemPath>
-      <itemPath>ui_MainWindow.h</itemPath>
-      <itemPath>ui_reqMktDataGUI.h</itemPath>
+      <logicalFolder name="f1" displayName="GUI" projectFiles="true">
+        <itemPath>MainWindow.cpp</itemPath>
+        <itemPath>MainWindow.h</itemPath>
+        <itemPath>MainWindow.ui</itemPath>
+        <itemPath>reqMktDataGUI.cpp</itemPath>
+        <itemPath>reqMktDataGUI.h</itemPath>
+        <itemPath>reqMktDataGUI.ui</itemPath>
+        <itemPath>ui_MainWindow.h</itemPath>
+        <itemPath>ui_reqMktDataGUI.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>PosixClient.cpp</itemPath>
+      <logicalFolder name="f2" displayName="Data Layer" projectFiles="true">
+        <itemPath>PosixClient.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Design Patterns" projectFiles="true">
+        <itemPath>MarketData.cpp</itemPath>
+      </logicalFolder>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -36,8 +48,6 @@
       <itemPath>Makefile</itemPath>
       <itemPath>README</itemPath>
     </logicalFolder>
-    <itemPath>MarketData.cpp</itemPath>
-    <itemPath>MarketData.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

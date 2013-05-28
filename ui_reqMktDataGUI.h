@@ -67,7 +67,7 @@ public:
     QLabel *label_Expiry;
     QLabel *label_Symbol;
     QLabel *label_Exchange;
-    QTextEdit *textEdit;
+    QTextEdit *textEdit_dataFeed;
     QPushButton *cancelButton;
     QPushButton *requestButton;
 
@@ -76,7 +76,7 @@ public:
         if (reqMktDataGUI->objectName().isEmpty())
             reqMktDataGUI->setObjectName(QStringLiteral("reqMktDataGUI"));
         reqMktDataGUI->setEnabled(true);
-        reqMktDataGUI->resize(585, 640);
+        reqMktDataGUI->resize(637, 640);
         QFont font;
         font.setBold(false);
         font.setItalic(false);
@@ -97,7 +97,7 @@ public:
 
         gridLayout_4->addWidget(label_Id, 0, 0, 1, 1);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(360, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout_4->addItem(horizontalSpacer, 0, 2, 1, 1);
 
@@ -271,11 +271,12 @@ public:
 
         gridLayout->addWidget(label_Exchange, 7, 0, 1, 1);
 
-        textEdit = new QTextEdit(groupBox);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setStyleSheet(QStringLiteral("color: rgb(197, 197, 197);"));
+        textEdit_dataFeed = new QTextEdit(groupBox);
+        textEdit_dataFeed->setObjectName(QStringLiteral("textEdit_dataFeed"));
+        textEdit_dataFeed->setMinimumSize(QSize(360, 0));
+        textEdit_dataFeed->setStyleSheet(QStringLiteral("color: rgb(197, 197, 197);"));
 
-        gridLayout->addWidget(textEdit, 0, 4, 14, 2);
+        gridLayout->addWidget(textEdit_dataFeed, 0, 4, 14, 2);
 
         label_Symbol->raise();
         label_Type->raise();
@@ -305,7 +306,7 @@ public:
         label_ContractId->raise();
         lineEdit_ContractId->raise();
         checkBox_Snapshot->raise();
-        textEdit->raise();
+        textEdit_dataFeed->raise();
 
         verticalLayout->addWidget(groupBox);
 

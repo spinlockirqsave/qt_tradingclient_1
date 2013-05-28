@@ -13,20 +13,21 @@
 #include <boost/function.hpp>
 
 
-struct MarketData : public QuantLib::Observable {
-//public:
+class MarketData : public QuantLib::Observable {
+public:
     MarketData();
     MarketData(IB::Contract c, int tickerId):c(c),tickerId(tickerId){}
-    MarketData(const MarketData& orig);
     virtual ~MarketData();
-    std::vector<IB::Record> tickPriceData; //market data fed in tickPrice
-//private:
+    std::vector<IB::TickPriceRecord> tickPriceData; //market data fed in tickPrice
+    std::vector<IB::TickSizeRecord> tickSizeData; //market data fed in tickSize
     IB::Contract c;
     int tickerId;
+private:
+    MarketData(const MarketData& orig);
 };
 
 typedef boost::shared_ptr<MarketData> pMyObservable;
-typedef boost::function<void (int tickerId, IB::Record record)> f_action_ptr;
+typedef boost::function<void (int tickerId, const IB::Record& record)> f_action_ptr;
 
 class MarketDataObserver : public QuantLib::Observer{
 public:
@@ -37,15 +38,12 @@ public:
     MarketDataObserver(const MarketDataObserver &observer)
       : Observer(observer),
         observable(observer.observable){ // faction_ptr is not copied!
-    }
-    
+    }  
     void update(){
-        data=observable->tickPriceData.back();
-        //printf("new data: %l\n",data.price);
+        const IB::Record& data=observable->tickPriceData.back();
         f_ptr(observable->tickerId, data);
     }
 private:
-    IB::Record data;
     pMyObservable observable;
     f_action_ptr f_ptr;
 };

@@ -26,7 +26,9 @@ private:
     Ui::reqMktDataGUI widget;
     boost::shared_ptr<IB::PosixClient> client;
     std::vector<boost::shared_ptr<MarketDataObserver> > observers;
-    void myUpdate(int tickerId, IB::Record);
+    void myTickPriceUpdate(int tickerId, const IB::Record&);
+    void myTickSizeUpdate(int tickerId, const IB::Record&);
+    void myTickStringUpdate(int tickerId, const IB::Record&);
 };
 
 #endif	/* _GUI_H */

@@ -58,12 +58,11 @@ void reqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
 //public slots
 void reqMktDataGUI::requestClicked(){
     IB::Contract contract;
-    	contract.symbol = widget.lineEdit_Symbol->text().toStdString();
-	contract.secType = widget.lineEdit_Type->text().toStdString();
-	contract.exchange = widget.lineEdit_Exchange->text().toStdString();
-	contract.currency = widget.lineEdit_Currency->text().toStdString();
+    contract.symbol = widget.lineEdit_Symbol->text().toStdString();
+    contract.secType = widget.lineEdit_Type->text().toStdString();
+    contract.exchange = widget.lineEdit_Exchange->text().toStdString();
+    contract.currency = widget.lineEdit_Currency->text().toStdString();
         
-    //IB::Event processedEvent = IB::TickPrice;
     // map MarketData to event, tickerId and contractDescription
     boost::shared_ptr<MarketData> tickPriceMktData(new MarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));
     // create tickPrice event observer and push it into vector stored in this GUI form

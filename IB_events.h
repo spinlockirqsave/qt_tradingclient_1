@@ -8,6 +8,7 @@
 #ifndef IB_EVENTS_H
 #define	IB_EVENTS_H
 
+
 namespace IB{
     enum Event {
         TickPrice,

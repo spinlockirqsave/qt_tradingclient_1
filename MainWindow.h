@@ -20,7 +20,8 @@ public:
     cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> client_ptr);
     virtual ~cf16tradingclient_1();
 public slots:
-    void connectClicked();  
+    void connectClicked();
+    void disconnectClicked();
     void actionReqMktDataClicked();
 private:
     Ui::cf16tradingclient_1 widget;

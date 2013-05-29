@@ -51,7 +51,7 @@ public:
         void reqMktData(IBString symbol, IBString secType,
         IBString exchange, IBString currency, int tickerId, IBString genericTicks, bool snapshot); 
         //additions
-        void dataRepositoryAdd(boost::shared_ptr<MarketData> marketData);
+        void marketDataFeedInsert(boost::shared_ptr<MarketData> marketData);
 
 private:
 
@@ -125,6 +125,13 @@ private:
         //std::vector< boost::shared_ptr<MarketData> > marketDataRepository;
         std::map< int, boost::shared_ptr<MarketData> > marketDataFeed;
         typedef std::map< int, boost::shared_ptr<MarketData> > tickerIdMarketDataMap;
+        
+//        std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;
+//        std::vector<boost::shared_ptr<MarketDataObserver> > tickPricebservers;
+//        std::vector<boost::shared_ptr<MarketDataObserver> > tickStringbservers;
+        tickerIdMarketDataMap tickSizeMarketDataFeed;
+        tickerIdMarketDataMap tickPriceMarketDataFeed;
+        tickerIdMarketDataMap tickStringMarketDataFeed;        
 };
 
 }

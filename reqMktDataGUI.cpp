@@ -53,16 +53,15 @@ void reqMktDataGUI::requestClicked(){
 	contract.exchange = widget.lineEdit_Exchange->text().toStdString();
 	contract.currency = widget.lineEdit_Currency->text().toStdString();
         
-    std::list<IB::Event> availableEventList;
-    availableEventList.push_back(IB::TickPrice);
-    availableEventList.push_back(IB::TickSize);
-    availableEventList.push_back(IB::TickString);
-    boost::shared_ptr<MarketData> md(new MarketData(availableEventList,widget.lineEdit_Id->text().toInt()));
-    observers.push_back(boost::shared_ptr<MarketDataObserver>(
+    IB::Event processedEvent = IB::TickPrice;
+    //availableEventList.push_back(IB::TickSize);
+    //availableEventList.push_back(IB::TickString);
+    boost::shared_ptr<MarketData> md(new MarketData(processedEvent,widget.lineEdit_Id->text().toInt(),contract));
+    tickPriceObservers.push_back(boost::shared_ptr<MarketDataObserver>(
             new MarketDataObserver(md,IB::TickPrice,boost::bind(&reqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
-    observers.push_back(boost::shared_ptr<MarketDataObserver>(
-            new MarketDataObserver(md,IB::TickSize,boost::bind(&reqMktDataGUI::myTickSizeUpdate,this,_1,_2))));    
-    client->dataRepositoryAdd(md);
+//    observers.push_back(boost::shared_ptr<MarketDataObserver>(
+//            new MarketDataObserver(md,IB::TickSize,boost::bind(&reqMktDataGUI::myTickSizeUpdate,this,_1,_2))));    
+    client->marketDataFeedInsert(md);
     
     client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
         widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 

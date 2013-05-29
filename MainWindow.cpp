@@ -14,6 +14,7 @@ cf16tradingclient_1::cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> clie
 host(""), port(7496), clientId(0), client(client_ptr){
     widget.setupUi(this);
         QObject::connect(widget.connectButton, SIGNAL(clicked()), this, SLOT(connectClicked()));
+        QObject::connect(widget.disconnectButton, SIGNAL(clicked()), this, SLOT(disconnectClicked()));
         QObject::connect(widget.actionReqMktData, SIGNAL(triggered()), this, SLOT(actionReqMktDataClicked()));
 }
 
@@ -21,8 +22,22 @@ cf16tradingclient_1::~cf16tradingclient_1() {
 }
 
 //public slots
-void cf16tradingclient_1::connectClicked(){
-    client->connect(host,port,clientId);
+void cf16tradingclient_1::connectClicked() {
+    if (!client->isConnected()) {
+        client->connect(host, port, clientId);
+        if (client->isConnected()) {
+            widget.label_6_connected->setText(QStringLiteral("connected"));
+        }
+    }
+}
+
+void cf16tradingclient_1::disconnectClicked() {
+    if (client->isConnected()) {
+        client->disconnect();
+        if (!client->isConnected()) {
+            widget.label_6_connected->setText(QStringLiteral("not connected"));
+        }
+    }
 }
 
 void cf16tradingclient_1::actionReqMktDataClicked(){

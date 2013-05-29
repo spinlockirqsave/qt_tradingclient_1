@@ -21,31 +21,29 @@ typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
 class MarketData : public QuantLib::Observable {
 public:
     MarketData();
-    MarketData(std::list<IB::Event> availableEventList, int tickerId):availableEventList_(availableEventList),
-    tickerId(tickerId) {}
+    MarketData(IB::Event processedEvent, int tickerId, IB::Contract contractDescription):
+    processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~MarketData();
     //std::vector<IB::TickPriceRecord> tickPriceData; //market data fed in tickPrice
     //std::vector<IB::TickSizeRecord> tickSizeData; //market data fed in tickSize
-    int tickerId;
+    int getTickerId(){ return tickerId; }
     void putRecord(boost::shared_ptr<IB::Record> record){
         record_=record;
     }
     boost::shared_ptr<IB::Record> getRecord(){
         return record_;
     }
-    void setCurrentEvent(const IB::Event& event){
-        currentEvent=event;
-    }
     IB::Event getEvent(){
-        return currentEvent;
+        return processedEvent;
     }    
 private:
     MarketData(const MarketData& orig);
     boost::shared_ptr<IB::Record> record_;
     // this MarketData object can handle these events
     // any observer can subscribe to one of those events
-    std::list<IB::Event> availableEventList_;
-    IB::Event currentEvent;
+    IB::Event processedEvent;
+    int tickerId;
+    IB::Contract contractDescription;
 };
 
 typedef boost::shared_ptr<MarketData> pMyObservable;
@@ -76,7 +74,7 @@ public:
             // myTickSizeUpdate or myTickStringUpdate depending on what
             // subscribing object specified in f_action_ptr ptr
             // in MarketDataObserver constructor
-            f_ptr(observable->tickerId, data);
+            f_ptr(observable->getTickerId(), data);
         }
     }
 private:

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_cf16tradingclient_1_t {
-    QByteArrayData data[4];
-    char stringdata[61];
+    QByteArrayData data[5];
+    char stringdata[79];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,10 +32,11 @@ static const qt_meta_stringdata_cf16tradingclient_1_t qt_meta_stringdata_cf16tra
 QT_MOC_LITERAL(0, 0, 19),
 QT_MOC_LITERAL(1, 20, 14),
 QT_MOC_LITERAL(2, 35, 0),
-QT_MOC_LITERAL(3, 36, 23)
+QT_MOC_LITERAL(3, 36, 17),
+QT_MOC_LITERAL(4, 54, 23)
     },
     "cf16tradingclient_1\0connectClicked\0\0"
-    "actionReqMktDataClicked\0"
+    "disconnectClicked\0actionReqMktDataClicked\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -45,7 +46,7 @@ static const uint qt_meta_data_cf16tradingclient_1[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -53,10 +54,12 @@ static const uint qt_meta_data_cf16tradingclient_1[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x0a,
-       3,    0,   25,    2, 0x0a,
+       1,    0,   29,    2, 0x0a,
+       3,    0,   30,    2, 0x0a,
+       4,    0,   31,    2, 0x0a,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -69,7 +72,8 @@ void cf16tradingclient_1::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         cf16tradingclient_1 *_t = static_cast<cf16tradingclient_1 *>(_o);
         switch (_id) {
         case 0: _t->connectClicked(); break;
-        case 1: _t->actionReqMktDataClicked(); break;
+        case 1: _t->disconnectClicked(); break;
+        case 2: _t->actionReqMktDataClicked(); break;
         default: ;
         }
     }
@@ -101,13 +105,13 @@ int cf16tradingclient_1::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

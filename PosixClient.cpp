@@ -230,11 +230,24 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
 
 	m_state = ST_REQMKTDATA_ACK;
 	m_pClient->reqMktData( tickerId, contract, genericTicks, snapshot);
-}
+    }
 
-void PosixClient::dataRepositoryAdd(boost::shared_ptr<MarketData> marketData){
-    marketDataFeed.insert ( std::pair<int,mktData_ptr>(marketData->tickerId,marketData) );
-}
+    void PosixClient::marketDataFeedInsert(boost::shared_ptr<MarketData> marketData) {
+        IB::Event event = marketData->getEvent();
+        switch (event) {
+            case IB::TickSize: 
+                tickSizeMarketDataFeed.insert(std::pair<int, mktData_ptr > (marketData->getTickerId(), marketData));
+                break;
+            case IB::TickPrice: 
+                tickPriceMarketDataFeed.insert(std::pair<int, mktData_ptr > (marketData->getTickerId(), marketData));
+                break;
+            case IB::TickString: 
+                tickStringMarketDataFeed.insert(std::pair<int, mktData_ptr > (marketData->getTickerId(), marketData));
+                break;
+            default:
+                break;
+        }
+    }
 
 void PosixClient::cancelOrder()
 {
@@ -294,11 +307,9 @@ void PosixClient::error(const int id, const int errorCode, const IBString errorS
 
 void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, int canAutoExecute) {
     printf("tradingclient_1: tickPrice: \n");
-    tickerIdMarketDataMap::iterator it=marketDataFeed.find(tickerId);
+    tickerIdMarketDataMap::iterator it=tickPriceMarketDataFeed.find(tickerId);
         if(it!=marketDataFeed.end()){
             //(*it)->tickPriceData.push_back(TickPriceRecord(field,price,canAutoExecute));
-            IB::Event e = TickPrice;
-            ((*it).second)->setCurrentEvent(e);
             ((*it).second)->putRecord(tickPriceRec_ptr(new TickPriceRecord(field,price,canAutoExecute)));
             ((*it).second)->notifyObservers();
             //TODO: start thread to store incoming data in repository
@@ -307,14 +318,14 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
 void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
     printf("tradingclient_1: tickSize\n");
         tickerIdMarketDataMap::iterator it=marketDataFeed.find(tickerId);
-        if(it!=marketDataFeed.end()){
-            //(*it)->tickPriceData.push_back(TickPriceRecord(field,price,canAutoExecute));
-            IB::Event e = TickSize;
-            ((*it).second)->setCurrentEvent(e);
-            ((*it).second)->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
-            ((*it).second)->notifyObservers();
-            //TODO: start thread to store incoming data in repository
-        }
+//        if(it!=marketDataFeed.end()){
+//            //(*it)->tickPriceData.push_back(TickPriceRecord(field,price,canAutoExecute));
+//            IB::Event e = TickSize;
+//            ((*it).second)->setCurrentEvent(e);
+//            ((*it).second)->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
+//            ((*it).second)->notifyObservers();
+//            //TODO: start thread to store incoming data in repository
+//        }
 //    for(std::vector<boost::shared_ptr<MarketData> >::iterator it=marketDataRepository.begin(); 
 //            it!=marketDataRepository.end(); it++){
 //        if((*it)->tickerId==tickerId){

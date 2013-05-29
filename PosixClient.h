@@ -123,7 +123,6 @@ private:
         
         //additions
         //std::vector< boost::shared_ptr<MarketData> > marketDataRepository;
-        std::map< int, boost::shared_ptr<MarketData> > marketDataFeed;
         typedef std::map< int, boost::shared_ptr<MarketData> > tickerIdMarketDataMap;
         
 //        std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;

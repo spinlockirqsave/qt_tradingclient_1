@@ -18,28 +18,38 @@ reqMktDataGUI::reqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr):clie
 }
 
 reqMktDataGUI::~reqMktDataGUI() {
-    printf( "I am dead!\n");
+   #ifdef DEBUG 
+        printf( "I am dead!\n");
+   #endif
 }
 
 void reqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
     try{
         //const IB::TickPriceRecord* tickPriceRecord = dynamic_cast<const IB::TickPriceRecord*>(record.get());
         tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IB::TickPriceRecord>(record_ptr));
-        printf( "myTickPriceUpdate! for tickerId: %d, with price: %d\n",tickerId,tickPriceRecord_ptr->price_);
+        #ifdef DEBUG 
+           printf( "myTickPriceUpdate! for tickerId: %d, with price: %d\n",tickerId,tickPriceRecord_ptr->price_);
+        #endif
         QString qs=QString("myTickPriceUpdate! for tickerId: %1, price: %2").arg(tickerId).arg(tickPriceRecord_ptr->price_);
         widget.textEdit_dataFeed->append(qs);
     }catch(std::bad_cast& e){
-        printf( "myTickPriceUpdate: badCast for tickerId: %d\n",tickerId);
+        #ifdef DEBUG 
+           printf( "myTickPriceUpdate: badCast for tickerId: %d\n",tickerId);
+        #endif
     }
 }
 void reqMktDataGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
     try{
         tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IB::TickSizeRecord>(record_ptr));
+    #ifdef DEBUG 
         printf( "myTickSizeUpdate! for tickerId: %d, with size: %d\n",tickerId,tickSizeRecord_ptr->size_);
+    #endif
         QString qs=QString("myTickSizeUpdate! for tickerId: %1, size: %2").arg(tickerId).arg(tickSizeRecord_ptr->size_);
         widget.textEdit_dataFeed->append(qs);
     }catch(std::bad_cast& e){
-        printf( "myTickSizeUpdate: badCast for tickerId: %d\n",tickerId);
+        #ifdef DEBUG 
+            printf( "myTickSizeUpdate: badCast for tickerId: %d\n",tickerId);
+        #endif
     }
 }
 void reqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
@@ -53,15 +63,23 @@ void reqMktDataGUI::requestClicked(){
 	contract.exchange = widget.lineEdit_Exchange->text().toStdString();
 	contract.currency = widget.lineEdit_Currency->text().toStdString();
         
-    IB::Event processedEvent = IB::TickPrice;
-    //availableEventList.push_back(IB::TickSize);
-    //availableEventList.push_back(IB::TickString);
-    boost::shared_ptr<MarketData> md(new MarketData(processedEvent,widget.lineEdit_Id->text().toInt(),contract));
+    //IB::Event processedEvent = IB::TickPrice;
+    // map MarketData to event, tickerId and contractDescription
+    boost::shared_ptr<MarketData> tickPriceMktData(new MarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));
+    // create tickPrice event observer and push it into vector stored in this GUI form
     tickPriceObservers.push_back(boost::shared_ptr<MarketDataObserver>(
-            new MarketDataObserver(md,IB::TickPrice,boost::bind(&reqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
-//    observers.push_back(boost::shared_ptr<MarketDataObserver>(
-//            new MarketDataObserver(md,IB::TickSize,boost::bind(&reqMktDataGUI::myTickSizeUpdate,this,_1,_2))));    
-    client->marketDataFeedInsert(md);
+            new MarketDataObserver(tickPriceMktData,IB::TickPrice,boost::bind(&reqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
+    // put this connection into marketDataFeed map, it will be stored in tickPriceMarketDataFeed
+    client->marketDataFeedInsert(tickPriceMktData);
+    
+    // also register for tickSize updates
+    // map MarketData to event, tickerId and contractDescription
+    boost::shared_ptr<MarketData> tickSizeMktData(new MarketData(IB::TickSize,widget.lineEdit_Id->text().toInt(),contract));    
+    // create tickSize event observer and push it into vector stored in this GUI form
+    tickSizeObservers.push_back(boost::shared_ptr<MarketDataObserver>(
+            new MarketDataObserver(tickSizeMktData,IB::TickSize,boost::bind(&reqMktDataGUI::myTickSizeUpdate,this,_1,_2))));
+    // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
+    client->marketDataFeedInsert(tickSizeMktData);
     
     client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
         widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 

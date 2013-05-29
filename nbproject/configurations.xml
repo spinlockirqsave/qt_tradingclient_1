@@ -89,7 +89,7 @@
     <conf name="Release" type="4">
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
-        <compilerSet>default</compilerSet>
+        <compilerSet>GNU_4.7|GNU</compilerSet>
       </toolsSet>
       <qt>
         <buildMode>1</buildMode>
@@ -101,6 +101,18 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>../twsapi/PosixSocketClient/src</pElem>
+            <pElem>../twsapi/Shared</pElem>
+            <pElem>../twsapi</pElem>
+            <pElem>../twsapi/PosixSocketClient</pElem>
+            <pElem>/usr/include/boost</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+            <Elem>IB_USE_STD_STRING</Elem>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -108,6 +120,12 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibLibItem>QuantLib</linkerLibLibItem>
+            <linkerLibLibItem>twsapi</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
     </conf>
   </confs>

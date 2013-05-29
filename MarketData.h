@@ -43,7 +43,7 @@ private:
     MarketData(const MarketData& orig);
     boost::shared_ptr<IB::Record> record_;
     // this MarketData object can handle these events
-    // any 
+    // any observer can subscribe to one of those events
     std::list<IB::Event> availableEventList_;
     IB::Event currentEvent;
 };

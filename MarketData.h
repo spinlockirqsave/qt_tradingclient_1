@@ -11,42 +11,81 @@
 #include <ql/patterns/observable.hpp>
 #include "Contract.h"
 #include <boost/function.hpp>
+#include "IB_events.h"
+#include <list>
 
+typedef boost::shared_ptr<IB::Record> rec_ptr;
+typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;
+typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
 
 class MarketData : public QuantLib::Observable {
 public:
     MarketData();
-    MarketData(IB::Contract c, int tickerId):c(c),tickerId(tickerId){}
+    MarketData(std::list<IB::Event> availableEventList, int tickerId):availableEventList_(availableEventList),
+    tickerId(tickerId) {}
     virtual ~MarketData();
-    std::vector<IB::TickPriceRecord> tickPriceData; //market data fed in tickPrice
-    std::vector<IB::TickSizeRecord> tickSizeData; //market data fed in tickSize
-    IB::Contract c;
+    //std::vector<IB::TickPriceRecord> tickPriceData; //market data fed in tickPrice
+    //std::vector<IB::TickSizeRecord> tickSizeData; //market data fed in tickSize
     int tickerId;
+    void putRecord(boost::shared_ptr<IB::Record> record){
+        record_=record;
+    }
+    boost::shared_ptr<IB::Record> getRecord(){
+        return record_;
+    }
+    void setCurrentEvent(const IB::Event& event){
+        currentEvent=event;
+    }
+    IB::Event getEvent(){
+        return currentEvent;
+    }    
 private:
     MarketData(const MarketData& orig);
+    boost::shared_ptr<IB::Record> record_;
+    // this MarketData object can handle these events
+    // any 
+    std::list<IB::Event> availableEventList_;
+    IB::Event currentEvent;
 };
 
 typedef boost::shared_ptr<MarketData> pMyObservable;
-typedef boost::function<void (int tickerId, const IB::Record& record)> f_action_ptr;
+typedef boost::function<void (int tickerId, boost::shared_ptr<IB::Record> record)> f_action_ptr;
 
+// one MarketDataObserver may observe one tickerId and for one event
+// if you want to be notified when many events happened (i.e. TickSize and TickPrice)
+// you can subscribe many MarketDataObservers to one and the same MarketData instance
 class MarketDataObserver : public QuantLib::Observer{
 public:
-    MarketDataObserver(pMyObservable obs, f_action_ptr ptr)
-        : observable(obs), f_ptr(ptr){
+    MarketDataObserver(pMyObservable obs, IB::Event observedEvent, f_action_ptr ptr)
+        : observable(obs), observedEvent_(observedEvent), f_ptr(ptr){
       this->registerWith(observable);
     }
     MarketDataObserver(const MarketDataObserver &observer)
       : Observer(observer),
         observable(observer.observable){ // faction_ptr is not copied!
-    }  
-    void update(){
-        const IB::Record& data=observable->tickPriceData.back();
-        f_ptr(observable->tickerId, data);
+    }
+    
+    // object which subscribed to data stream using this MarketDataObserver
+    // will be notified about incoming IB::Record
+    void update() {
+        if (observable->getEvent() == observedEvent_) {
+            //const IB::Record& data=observable->tickPriceData.back();
+            boost::shared_ptr<IB::Record> data = observable->getRecord();
+
+            // here appropriate function is called: myTickPriceUpdate,
+            // myTickSizeUpdate or myTickStringUpdate depending on what
+            // subscribing object specified in f_action_ptr ptr
+            // in MarketDataObserver constructor
+            f_ptr(observable->tickerId, data);
+        }
     }
 private:
     pMyObservable observable;
     f_action_ptr f_ptr;
+    IB::Event observedEvent_; // the single event in which observer is interested
 };
+
+typedef boost::shared_ptr<MarketData>  mktData_ptr;
 
 #endif	/* MARKETDATA_H */
 

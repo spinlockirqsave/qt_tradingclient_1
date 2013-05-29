@@ -21,20 +21,28 @@ reqMktDataGUI::~reqMktDataGUI() {
     printf( "I am dead!\n");
 }
 
-void reqMktDataGUI::myTickPriceUpdate(int tickerId, const IB::Record& record){
+void reqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
     try{
-        const IB::TickPriceRecord& tickPriceRecord = dynamic_cast<const IB::TickPriceRecord&>(record);
-        printf( "myUpdate! for tickerId: %d\n",tickerId);
-        QString qs=QString("myUpdate! for tickerId: %1, price: %2").arg(tickerId).arg(tickPriceRecord.price_);
+        //const IB::TickPriceRecord* tickPriceRecord = dynamic_cast<const IB::TickPriceRecord*>(record.get());
+        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IB::TickPriceRecord>(record_ptr));
+        printf( "myTickPriceUpdate! for tickerId: %d, with price: %d\n",tickerId,tickPriceRecord_ptr->price_);
+        QString qs=QString("myTickPriceUpdate! for tickerId: %1, price: %2").arg(tickerId).arg(tickPriceRecord_ptr->price_);
         widget.textEdit_dataFeed->append(qs);
     }catch(std::bad_cast& e){
         printf( "myTickPriceUpdate: badCast for tickerId: %d\n",tickerId);
     }
 }
-void reqMktDataGUI::myTickSizeUpdate(int tickerId, const IB::Record& record){
-
+void reqMktDataGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
+    try{
+        tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IB::TickSizeRecord>(record_ptr));
+        printf( "myTickSizeUpdate! for tickerId: %d, with size: %d\n",tickerId,tickSizeRecord_ptr->size_);
+        QString qs=QString("myTickSizeUpdate! for tickerId: %1, size: %2").arg(tickerId).arg(tickSizeRecord_ptr->size_);
+        widget.textEdit_dataFeed->append(qs);
+    }catch(std::bad_cast& e){
+        printf( "myTickSizeUpdate: badCast for tickerId: %d\n",tickerId);
+    }
 }
-void reqMktDataGUI::myTickStringUpdate(int tickerId, const IB::Record& record){
+void reqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
 
 }
 //public slots
@@ -45,8 +53,15 @@ void reqMktDataGUI::requestClicked(){
 	contract.exchange = widget.lineEdit_Exchange->text().toStdString();
 	contract.currency = widget.lineEdit_Currency->text().toStdString();
         
-    boost::shared_ptr<MarketData> md(new MarketData(contract,widget.lineEdit_Id->text().toInt()));
-    observers.push_back(boost::shared_ptr<MarketDataObserver>(new MarketDataObserver(md,boost::bind(&reqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
+    std::list<IB::Event> availableEventList;
+    availableEventList.push_back(IB::TickPrice);
+    availableEventList.push_back(IB::TickSize);
+    availableEventList.push_back(IB::TickString);
+    boost::shared_ptr<MarketData> md(new MarketData(availableEventList,widget.lineEdit_Id->text().toInt()));
+    observers.push_back(boost::shared_ptr<MarketDataObserver>(
+            new MarketDataObserver(md,IB::TickPrice,boost::bind(&reqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
+    observers.push_back(boost::shared_ptr<MarketDataObserver>(
+            new MarketDataObserver(md,IB::TickSize,boost::bind(&reqMktDataGUI::myTickSizeUpdate,this,_1,_2))));    
     client->dataRepositoryAdd(md);
     
     client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),

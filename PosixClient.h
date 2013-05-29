@@ -11,7 +11,7 @@
 #include "EWrapper.h"
 #include <memory>
 #include <stdio.h> //printf()
-#include <vector>
+#include <map>
 #include "MarketData.h"
 
 namespace IB {
@@ -122,7 +122,9 @@ private:
 	OrderId m_orderId;
         
         //additions
-        std::vector< boost::shared_ptr<MarketData> > marketDataRepository;
+        //std::vector< boost::shared_ptr<MarketData> > marketDataRepository;
+        std::map< int, boost::shared_ptr<MarketData> > marketDataFeed;
+        typedef std::map< int, boost::shared_ptr<MarketData> > tickerIdMarketDataMap;
 };
 
 }

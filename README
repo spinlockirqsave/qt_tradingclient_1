@@ -1,7 +1,11 @@
-This is a base for a Qt C++ trading application 
+This is a public base for a Qt C++ trading application 
 which uses IB TWS API forked from Ruediger Meier's 
 repository [https://github.com/rudimeier/twsapi],
 QuantLib-1.2.1, CUDA 5.0, and Qt 5.0 as gui library.
+This is only public base. Individual modules, strategies,
+trading algorithms, pricing snippets or Monte Carlo simulations
+are not included here, they are being now developed in another,
+private repository.
 This trading client application is compiled 
 on Ubuntu 12.10 with g++ 4.7 and now it is 
 being constantly developed.

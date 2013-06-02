@@ -17,6 +17,7 @@
 typedef boost::shared_ptr<IB::Record> rec_ptr;
 typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;
 typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
+typedef boost::shared_ptr<IB::TickStringRecord>  tickStringRec_ptr;
 
 class MarketData : public QuantLib::Observable {
 public:

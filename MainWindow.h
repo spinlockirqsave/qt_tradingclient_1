@@ -30,6 +30,7 @@ private:
     unsigned int port;
     int clientId;
     boost::shared_ptr<reqMktDataGUI> reqMDGUI_ptr;
+    reqMktDataGUI* ptr;
 };
 
 

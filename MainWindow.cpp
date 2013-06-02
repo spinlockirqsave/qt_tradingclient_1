@@ -43,7 +43,7 @@ void cf16tradingclient_1::disconnectClicked() {
 void cf16tradingclient_1::actionReqMktDataClicked(){
     //reqMDGUI_ptr=boost::shared_ptr<reqMktDataGUI>(new reqMktDataGUI(client));
     //reqMDGUI_ptr->show();
-    reqMktDataGUI* ptr=new reqMktDataGUI(client);
+    ptr=new reqMktDataGUI(client);
     ptr->show();
 }
 

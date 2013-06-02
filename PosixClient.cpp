@@ -333,9 +333,18 @@ void PosixClient::tickOptionComputation( TickerId tickerId, TickType tickType, d
 											 double optPrice, double pvDividend,
 											 double gamma, double vega, double theta, double undPrice) {}
 void PosixClient::tickGeneric(TickerId tickerId, TickType tickType, double value) {printf("tradingclient_1: tickGeneric\n");}
-void PosixClient::tickString(TickerId tickerId, TickType tickType, const IBString& value) {
+void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& value) {
+    #ifdef DEBUG 
     printf("tradingclient_1: tickString\n");
-    printf("tickerId: %lu, TickType: %d, value: %s\n", tickerId, tickType, value.c_str());
+#endif
+    tickerIdMarketDataMap::iterator it=tickStringMarketDataFeed.find(tickerId);
+        if(it!=tickStringMarketDataFeed.end()){
+            //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
+            ((*it).second)->putRecord(tickStringRec_ptr(new TickStringRecord(field,value)));
+            ((*it).second)->notifyObservers();
+            //TODO: start thread to store incoming data in repository
+        }
+    //printf("tickerId: %lu, TickType: %d, value: %s\n", tickerId, tickType, value.c_str());
 }
 void PosixClient::tickEFP(TickerId tickerId, TickType tickType, double basisPoints, const IBString& formattedBasisPoints,
 							   double totalDividends, int holdDays, const IBString& futureExpiry, double dividendImpact, double dividendsToExpiry) {}

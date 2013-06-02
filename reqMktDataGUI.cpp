@@ -56,7 +56,7 @@ void reqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
         try{
         tickStringRec_ptr tickStringRecord_ptr(boost::dynamic_pointer_cast<IB::TickStringRecord>(record_ptr));
     #ifdef DEBUG 
-        printf( "myTickStringUpdate! Id: %d, string: %s\n",tickerId,tickStringRecord_ptr->string);
+        printf( "myTickStringUpdate! Id: %d, string: %s, tickType: %d\n",tickerId,tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
     #endif
         QString qs=QString("myTickStringUpdate! Id: %1, string: ").arg(tickerId)+QString::fromStdString(tickStringRecord_ptr->string);
         qs+=QString(" tickType: %1").arg(tickStringRecord_ptr->tickType_);

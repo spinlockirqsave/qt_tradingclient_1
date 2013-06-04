@@ -25,8 +25,6 @@ public:
     MarketData(IB::Event processedEvent, int tickerId, IB::Contract contractDescription):
     processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~MarketData();
-    //std::vector<IB::TickPriceRecord> tickPriceData; //market data fed in tickPrice
-    //std::vector<IB::TickSizeRecord> tickSizeData; //market data fed in tickSize
     int getTickerId(){ return tickerId; }
     void putRecord(boost::shared_ptr<IB::Record> record){
         record_=record;

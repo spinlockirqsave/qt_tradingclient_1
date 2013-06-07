@@ -25,14 +25,14 @@ public:
     MarketData(IB::Event processedEvent, int tickerId, IB::Contract contractDescription):
     processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~MarketData();
-    int getTickerId(){ return tickerId; }
+    int getTickerId()const{ return tickerId; }
     void putRecord(boost::shared_ptr<IB::Record> record){
         record_=record;
     }
-    boost::shared_ptr<IB::Record> getRecord(){
+    boost::shared_ptr<IB::Record> getRecord()const{
         return record_;
     }
-    IB::Event getEvent(){
+    IB::Event getEvent()const{
         return processedEvent;
     }    
 private:
@@ -64,15 +64,15 @@ public:
     
     // object which subscribed to data stream using this MarketDataObserver
     // will be notified about incoming IB::Record
-    void update() {
+    void update(){
         if (observable->getEvent() == observedEvent_) {
             //const IB::Record& data=observable->tickPriceData.back();
             boost::shared_ptr<IB::Record> data = observable->getRecord();
 
-            // here appropriate function is called: myTickPriceUpdate,
-            // myTickSizeUpdate or myTickStringUpdate depending on what
-            // subscribing object specified in f_action_ptr ptr
-            // in MarketDataObserver constructor
+            // here appropriate function of subscribing object is called:
+            // myTickPriceUpdate, myTickSizeUpdate or myTickStringUpdate 
+            // depending on what subscribing object has specified in 
+            //f_action_ptr ptr in MarketDataObserver constructor
             f_ptr(observable->getTickerId(), data);
         }
     }

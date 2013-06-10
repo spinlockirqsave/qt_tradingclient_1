@@ -82,6 +82,7 @@
           <linkerLibItems>
             <linkerLibLibItem>twsapi</linkerLibLibItem>
             <linkerLibLibItem>QuantLib</linkerLibLibItem>
+            <linkerLibLibItem>pthread-2.15</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

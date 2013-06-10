@@ -10,6 +10,7 @@
 #include "MainWindow.h"
 #include "reqMktDataGUI.h"
 #include <boost/shared_ptr.hpp>
+#include <pthread.h>
 
 int main(int argc, char *argv[]) {
     // initialize resources, if needed

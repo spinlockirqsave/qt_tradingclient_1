@@ -117,11 +117,12 @@ void reqMktDataGUI::requestClicked(){
 //        client->processMessages();
 //        i++;
 //    }
-   //processMessages(); //seg fault at this moment!
+   processMessages(); //seg fault at this moment!
 }  
 
 void reqMktDataGUI::cancelClicked(){
     marketDataFeedDelete();
+    endProcessMessages();
     //this->~reqMktDataGUI();
 } 
 

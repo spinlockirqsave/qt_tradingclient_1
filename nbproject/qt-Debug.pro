@@ -1,7 +1,7 @@
 # This file is generated automatically. Do not edit.
 # Use project properties -> Build -> Qt -> Expert -> Custom Definitions.
 TEMPLATE = app
-DESTDIR = dist/Debug/GNU_4.7-Linux-x86
+DESTDIR = dist/Debug/GNU-Linux-x86
 TARGET = qt_tradingclient_1
 VERSION = 1.0.0
 CONFIG -= debug_and_release app_bundle lib_bundle
@@ -13,7 +13,7 @@ HEADERS += MarketData.h ui_reqMktDataGUI.h PosixClient.h MainWindow.h reqMktData
 FORMS += reqMktDataGUI.ui MainWindow.ui
 RESOURCES +=
 TRANSLATIONS +=
-OBJECTS_DIR = build/Debug/GNU_4.7-Linux-x86
+OBJECTS_DIR = build/Debug/GNU-Linux-x86
 MOC_DIR = 
 RCC_DIR = 
 UI_DIR = 

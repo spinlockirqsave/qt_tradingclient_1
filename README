@@ -22,7 +22,7 @@ Includes
 TWS API:                      QuantLib:          CUDA:             Qt:
 twsapi/Shared                 Quantlib-1.2.1/ql  cuda-5.0/include  QtCore
 twsapi/PosixSocketClient/src                                       QtGui
-                                                                   QtopenGL
+                                                                   QtOpenGL
 
 
 

@@ -1,7 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.0.1
+** Created: Mon Jun 10 09:39:45 2013
+**      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,22 +11,22 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QGroupBox>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLCDNumber>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QListView>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTableView>
-#include <QtWidgets/QWidget>
+#include <QtGui/QAction>
+#include <QtGui/QApplication>
+#include <QtGui/QButtonGroup>
+#include <QtGui/QGridLayout>
+#include <QtGui/QGroupBox>
+#include <QtGui/QHeaderView>
+#include <QtGui/QLCDNumber>
+#include <QtGui/QLabel>
+#include <QtGui/QListView>
+#include <QtGui/QMainWindow>
+#include <QtGui/QMenu>
+#include <QtGui/QMenuBar>
+#include <QtGui/QPushButton>
+#include <QtGui/QStatusBar>
+#include <QtGui/QTableView>
+#include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -75,98 +76,98 @@ public:
     void setupUi(QMainWindow *cf16tradingclient_1)
     {
         if (cf16tradingclient_1->objectName().isEmpty())
-            cf16tradingclient_1->setObjectName(QStringLiteral("cf16tradingclient_1"));
+            cf16tradingclient_1->setObjectName(QString::fromUtf8("cf16tradingclient_1"));
         cf16tradingclient_1->resize(956, 888);
-        cf16tradingclient_1->setStyleSheet(QLatin1String("background-color: rgb(42, 42, 42);\n"
+        cf16tradingclient_1->setStyleSheet(QString::fromUtf8("background-color: rgb(42, 42, 42);\n"
 "QMenu::item:selected {border: 1px solid dark blue;}"));
         actionOpen = new QAction(cf16tradingclient_1);
-        actionOpen->setObjectName(QStringLiteral("actionOpen"));
+        actionOpen->setObjectName(QString::fromUtf8("actionOpen"));
         actionSave = new QAction(cf16tradingclient_1);
-        actionSave->setObjectName(QStringLiteral("actionSave"));
+        actionSave->setObjectName(QString::fromUtf8("actionSave"));
         actionSave_as = new QAction(cf16tradingclient_1);
-        actionSave_as->setObjectName(QStringLiteral("actionSave_as"));
+        actionSave_as->setObjectName(QString::fromUtf8("actionSave_as"));
         actionFX = new QAction(cf16tradingclient_1);
-        actionFX->setObjectName(QStringLiteral("actionFX"));
+        actionFX->setObjectName(QString::fromUtf8("actionFX"));
         actionIR = new QAction(cf16tradingclient_1);
-        actionIR->setObjectName(QStringLiteral("actionIR"));
+        actionIR->setObjectName(QString::fromUtf8("actionIR"));
         actionStocks = new QAction(cf16tradingclient_1);
-        actionStocks->setObjectName(QStringLiteral("actionStocks"));
+        actionStocks->setObjectName(QString::fromUtf8("actionStocks"));
         actionOptions = new QAction(cf16tradingclient_1);
-        actionOptions->setObjectName(QStringLiteral("actionOptions"));
+        actionOptions->setObjectName(QString::fromUtf8("actionOptions"));
         actionForwards = new QAction(cf16tradingclient_1);
-        actionForwards->setObjectName(QStringLiteral("actionForwards"));
+        actionForwards->setObjectName(QString::fromUtf8("actionForwards"));
         actionFutures = new QAction(cf16tradingclient_1);
-        actionFutures->setObjectName(QStringLiteral("actionFutures"));
+        actionFutures->setObjectName(QString::fromUtf8("actionFutures"));
         actionSwaps = new QAction(cf16tradingclient_1);
-        actionSwaps->setObjectName(QStringLiteral("actionSwaps"));
+        actionSwaps->setObjectName(QString::fromUtf8("actionSwaps"));
         actionBonds = new QAction(cf16tradingclient_1);
-        actionBonds->setObjectName(QStringLiteral("actionBonds"));
+        actionBonds->setObjectName(QString::fromUtf8("actionBonds"));
         actionCointegration = new QAction(cf16tradingclient_1);
-        actionCointegration->setObjectName(QStringLiteral("actionCointegration"));
+        actionCointegration->setObjectName(QString::fromUtf8("actionCointegration"));
         actionReqMktData = new QAction(cf16tradingclient_1);
-        actionReqMktData->setObjectName(QStringLiteral("actionReqMktData"));
+        actionReqMktData->setObjectName(QString::fromUtf8("actionReqMktData"));
         actionReqContractDetails = new QAction(cf16tradingclient_1);
-        actionReqContractDetails->setObjectName(QStringLiteral("actionReqContractDetails"));
+        actionReqContractDetails->setObjectName(QString::fromUtf8("actionReqContractDetails"));
         centralwidget = new QWidget(cf16tradingclient_1);
-        centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         listView_2 = new QListView(centralwidget);
-        listView_2->setObjectName(QStringLiteral("listView_2"));
+        listView_2->setObjectName(QString::fromUtf8("listView_2"));
 
         gridLayout->addWidget(listView_2, 2, 0, 1, 2);
 
         groupBox_2 = new QGroupBox(centralwidget);
-        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
 
         gridLayout->addWidget(groupBox_2, 2, 3, 1, 1);
 
         tableView = new QTableView(centralwidget);
-        tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setObjectName(QString::fromUtf8("tableView"));
 
         gridLayout->addWidget(tableView, 0, 0, 1, 2);
 
         listView = new QListView(centralwidget);
-        listView->setObjectName(QStringLiteral("listView"));
+        listView->setObjectName(QString::fromUtf8("listView"));
 
         gridLayout->addWidget(listView, 1, 0, 1, 4);
 
         groupBox = new QGroupBox(centralwidget);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setStyleSheet(QStringLiteral(""));
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setStyleSheet(QString::fromUtf8(""));
         layoutWidget = new QWidget(groupBox);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(6, 5, 301, 71));
         gridLayout_2 = new QGridLayout(layoutWidget);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
         lcdNumber = new QLCDNumber(layoutWidget);
-        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setObjectName(QString::fromUtf8("lcdNumber"));
 
         gridLayout_2->addWidget(lcdNumber, 2, 1, 1, 1);
 
         label_2 = new QLabel(layoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
 
         gridLayout_2->addWidget(label_2, 0, 0, 1, 1);
 
         label_3 = new QLabel(layoutWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
         gridLayout_2->addWidget(label_3, 0, 1, 1, 1);
 
         label = new QLabel(layoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
 
         gridLayout_2->addWidget(label, 2, 0, 1, 1);
 
         label_4 = new QLabel(layoutWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setObjectName(QString::fromUtf8("label_4"));
 
         gridLayout_2->addWidget(label_4, 1, 0, 1, 1);
 
         label_5 = new QLabel(layoutWidget);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setObjectName(QString::fromUtf8("label_5"));
 
         gridLayout_2->addWidget(label_5, 1, 1, 1, 1);
 
@@ -174,42 +175,42 @@ public:
         gridLayout->addWidget(groupBox, 0, 3, 1, 1);
 
         groupBox_3 = new QGroupBox(centralwidget);
-        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         label_6_connected = new QLabel(groupBox_3);
-        label_6_connected->setObjectName(QStringLiteral("label_6_connected"));
+        label_6_connected->setObjectName(QString::fromUtf8("label_6_connected"));
         label_6_connected->setGeometry(QRect(10, 40, 131, 17));
         connectButton = new QPushButton(groupBox_3);
-        connectButton->setObjectName(QStringLiteral("connectButton"));
+        connectButton->setObjectName(QString::fromUtf8("connectButton"));
         connectButton->setGeometry(QRect(10, 80, 99, 27));
         disconnectButton = new QPushButton(groupBox_3);
-        disconnectButton->setObjectName(QStringLiteral("disconnectButton"));
+        disconnectButton->setObjectName(QString::fromUtf8("disconnectButton"));
         disconnectButton->setGeometry(QRect(120, 80, 99, 27));
 
         gridLayout->addWidget(groupBox_3, 0, 2, 1, 1);
 
         cf16tradingclient_1->setCentralWidget(centralwidget);
         menubar = new QMenuBar(cf16tradingclient_1);
-        menubar->setObjectName(QStringLiteral("menubar"));
+        menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 956, 25));
         menubar->setFocusPolicy(Qt::NoFocus);
         menubar->setContextMenuPolicy(Qt::DefaultContextMenu);
-        menubar->setStyleSheet(QStringLiteral("border-color: rgb(0, 0, 255);"));
+        menubar->setStyleSheet(QString::fromUtf8("border-color: rgb(0, 0, 255);"));
         menuCf16_tradingclient_1 = new QMenu(menubar);
-        menuCf16_tradingclient_1->setObjectName(QStringLiteral("menuCf16_tradingclient_1"));
+        menuCf16_tradingclient_1->setObjectName(QString::fromUtf8("menuCf16_tradingclient_1"));
         menuCf16_tradingclient_1->setFocusPolicy(Qt::NoFocus);
-        menuCf16_tradingclient_1->setStyleSheet(QStringLiteral(""));
+        menuCf16_tradingclient_1->setStyleSheet(QString::fromUtf8(""));
         menuStrategies = new QMenu(menubar);
-        menuStrategies->setObjectName(QStringLiteral("menuStrategies"));
-        menuStrategies->setStyleSheet(QStringLiteral(""));
+        menuStrategies->setObjectName(QString::fromUtf8("menuStrategies"));
+        menuStrategies->setStyleSheet(QString::fromUtf8(""));
         menuMarket = new QMenu(menubar);
-        menuMarket->setObjectName(QStringLiteral("menuMarket"));
+        menuMarket->setObjectName(QString::fromUtf8("menuMarket"));
         menuMarket->setFocusPolicy(Qt::NoFocus);
-        menuMarket->setStyleSheet(QStringLiteral(""));
+        menuMarket->setStyleSheet(QString::fromUtf8(""));
         menuAction = new QMenu(menubar);
-        menuAction->setObjectName(QStringLiteral("menuAction"));
+        menuAction->setObjectName(QString::fromUtf8("menuAction"));
         cf16tradingclient_1->setMenuBar(menubar);
         statusbar = new QStatusBar(cf16tradingclient_1);
-        statusbar->setObjectName(QStringLiteral("statusbar"));
+        statusbar->setObjectName(QString::fromUtf8("statusbar"));
         cf16tradingclient_1->setStatusBar(statusbar);
 
         menubar->addAction(menuCf16_tradingclient_1->menuAction());
@@ -239,36 +240,36 @@ public:
 
     void retranslateUi(QMainWindow *cf16tradingclient_1)
     {
-        cf16tradingclient_1->setWindowTitle(QApplication::translate("cf16tradingclient_1", "cf16tradingclient_1", 0));
-        actionOpen->setText(QApplication::translate("cf16tradingclient_1", "Open", 0));
-        actionSave->setText(QApplication::translate("cf16tradingclient_1", "Save", 0));
-        actionSave_as->setText(QApplication::translate("cf16tradingclient_1", "Save as", 0));
-        actionFX->setText(QApplication::translate("cf16tradingclient_1", "FX", 0));
-        actionIR->setText(QApplication::translate("cf16tradingclient_1", "IR", 0));
-        actionStocks->setText(QApplication::translate("cf16tradingclient_1", "Stocks", 0));
-        actionOptions->setText(QApplication::translate("cf16tradingclient_1", "Options", 0));
-        actionForwards->setText(QApplication::translate("cf16tradingclient_1", "Forwards", 0));
-        actionFutures->setText(QApplication::translate("cf16tradingclient_1", "Futures", 0));
-        actionSwaps->setText(QApplication::translate("cf16tradingclient_1", "Swaps", 0));
-        actionBonds->setText(QApplication::translate("cf16tradingclient_1", "Bonds", 0));
-        actionCointegration->setText(QApplication::translate("cf16tradingclient_1", "Cointegration", 0));
-        actionReqMktData->setText(QApplication::translate("cf16tradingclient_1", "ReqMktData", 0));
-        actionReqContractDetails->setText(QApplication::translate("cf16tradingclient_1", "ReqContractDetails", 0));
-        groupBox_2->setTitle(QApplication::translate("cf16tradingclient_1", "GroupBox", 0));
+        cf16tradingclient_1->setWindowTitle(QApplication::translate("cf16tradingclient_1", "cf16tradingclient_1", 0, QApplication::UnicodeUTF8));
+        actionOpen->setText(QApplication::translate("cf16tradingclient_1", "Open", 0, QApplication::UnicodeUTF8));
+        actionSave->setText(QApplication::translate("cf16tradingclient_1", "Save", 0, QApplication::UnicodeUTF8));
+        actionSave_as->setText(QApplication::translate("cf16tradingclient_1", "Save as", 0, QApplication::UnicodeUTF8));
+        actionFX->setText(QApplication::translate("cf16tradingclient_1", "FX", 0, QApplication::UnicodeUTF8));
+        actionIR->setText(QApplication::translate("cf16tradingclient_1", "IR", 0, QApplication::UnicodeUTF8));
+        actionStocks->setText(QApplication::translate("cf16tradingclient_1", "Stocks", 0, QApplication::UnicodeUTF8));
+        actionOptions->setText(QApplication::translate("cf16tradingclient_1", "Options", 0, QApplication::UnicodeUTF8));
+        actionForwards->setText(QApplication::translate("cf16tradingclient_1", "Forwards", 0, QApplication::UnicodeUTF8));
+        actionFutures->setText(QApplication::translate("cf16tradingclient_1", "Futures", 0, QApplication::UnicodeUTF8));
+        actionSwaps->setText(QApplication::translate("cf16tradingclient_1", "Swaps", 0, QApplication::UnicodeUTF8));
+        actionBonds->setText(QApplication::translate("cf16tradingclient_1", "Bonds", 0, QApplication::UnicodeUTF8));
+        actionCointegration->setText(QApplication::translate("cf16tradingclient_1", "Cointegration", 0, QApplication::UnicodeUTF8));
+        actionReqMktData->setText(QApplication::translate("cf16tradingclient_1", "ReqMktData", 0, QApplication::UnicodeUTF8));
+        actionReqContractDetails->setText(QApplication::translate("cf16tradingclient_1", "ReqContractDetails", 0, QApplication::UnicodeUTF8));
+        groupBox_2->setTitle(QApplication::translate("cf16tradingclient_1", "GroupBox", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QString());
-        label_2->setText(QApplication::translate("cf16tradingclient_1", "time", 0));
-        label_3->setText(QApplication::translate("cf16tradingclient_1", "TextLabel", 0));
-        label->setText(QApplication::translate("cf16tradingclient_1", "strategies running", 0));
-        label_4->setText(QApplication::translate("cf16tradingclient_1", "IB time", 0));
-        label_5->setText(QApplication::translate("cf16tradingclient_1", "TextLabel", 0));
-        groupBox_3->setTitle(QApplication::translate("cf16tradingclient_1", "Status", 0));
-        label_6_connected->setText(QApplication::translate("cf16tradingclient_1", "Not connected", 0));
-        connectButton->setText(QApplication::translate("cf16tradingclient_1", "connect", 0));
-        disconnectButton->setText(QApplication::translate("cf16tradingclient_1", "disconnect", 0));
-        menuCf16_tradingclient_1->setTitle(QApplication::translate("cf16tradingclient_1", "cf16 tradingclient_1", 0));
-        menuStrategies->setTitle(QApplication::translate("cf16tradingclient_1", "Strategies", 0));
-        menuMarket->setTitle(QApplication::translate("cf16tradingclient_1", "Market", 0));
-        menuAction->setTitle(QApplication::translate("cf16tradingclient_1", "Action", 0));
+        label_2->setText(QApplication::translate("cf16tradingclient_1", "time", 0, QApplication::UnicodeUTF8));
+        label_3->setText(QApplication::translate("cf16tradingclient_1", "TextLabel", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("cf16tradingclient_1", "strategies running", 0, QApplication::UnicodeUTF8));
+        label_4->setText(QApplication::translate("cf16tradingclient_1", "IB time", 0, QApplication::UnicodeUTF8));
+        label_5->setText(QApplication::translate("cf16tradingclient_1", "TextLabel", 0, QApplication::UnicodeUTF8));
+        groupBox_3->setTitle(QApplication::translate("cf16tradingclient_1", "Status", 0, QApplication::UnicodeUTF8));
+        label_6_connected->setText(QApplication::translate("cf16tradingclient_1", "Not connected", 0, QApplication::UnicodeUTF8));
+        connectButton->setText(QApplication::translate("cf16tradingclient_1", "connect", 0, QApplication::UnicodeUTF8));
+        disconnectButton->setText(QApplication::translate("cf16tradingclient_1", "disconnect", 0, QApplication::UnicodeUTF8));
+        menuCf16_tradingclient_1->setTitle(QApplication::translate("cf16tradingclient_1", "cf16 tradingclient_1", 0, QApplication::UnicodeUTF8));
+        menuStrategies->setTitle(QApplication::translate("cf16tradingclient_1", "Strategies", 0, QApplication::UnicodeUTF8));
+        menuMarket->setTitle(QApplication::translate("cf16tradingclient_1", "Market", 0, QApplication::UnicodeUTF8));
+        menuAction->setTitle(QApplication::translate("cf16tradingclient_1", "Action", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

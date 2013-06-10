@@ -5,8 +5,8 @@
  * Created on May 22, 2013, 5:59 PM
  */
 #include "PosixClient.h"
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QLabel>
+#include <QApplication>
+#include <QLabel>
 #include "MainWindow.h"
 #include "reqMktDataGUI.h"
 #include <boost/shared_ptr.hpp>

@@ -57,7 +57,7 @@
     <conf name="Debug" type="4">
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
-        <compilerSet>GNU_4.7|GNU</compilerSet>
+        <compilerSet>GNU|GNU</compilerSet>
       </toolsSet>
       <qt>
         <modules>core gui opengl</modules>

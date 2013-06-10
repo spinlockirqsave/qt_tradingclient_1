@@ -6,8 +6,8 @@
  */
 
 #include "reqMktDataGUI.h"
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QMessageBox>
+#include <QWidget>
+#include <QMessageBox>
 #include <typeinfo>
     
 reqMktDataGUI::reqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr):client(client_ptr){

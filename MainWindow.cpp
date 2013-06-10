@@ -6,8 +6,8 @@
  */
 
 #include "MainWindow.h"
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QMessageBox>
+#include <QWidget>
+#include <QMessageBox>
 #include "reqMktDataGUI.h"
     
 cf16tradingclient_1::cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> client_ptr): 
@@ -26,7 +26,7 @@ void cf16tradingclient_1::connectClicked() {
     if (!client->isConnected()) {
         client->connect(host, port, clientId);
         if (client->isConnected()) {
-            widget.label_6_connected->setText(QStringLiteral("connected"));
+            widget.label_6_connected->setText(QString("connected"));
         }
     }
 }
@@ -35,7 +35,7 @@ void cf16tradingclient_1::disconnectClicked() {
     if (client->isConnected()) {
         client->disconnect();
         if (!client->isConnected()) {
-            widget.label_6_connected->setText(QStringLiteral("not connected"));
+            widget.label_6_connected->setText(QString("not connected"));
         }
     }
 }

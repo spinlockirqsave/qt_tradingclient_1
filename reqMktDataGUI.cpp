@@ -9,6 +9,7 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QMessageBox>
 #include <typeinfo>
+#include <ql/patterns/observable.hpp>
     
 reqMktDataGUI::reqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr):client(client_ptr){
     widget.setupUi(this);
@@ -69,12 +70,14 @@ void reqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
 }
 //public slots
 void reqMktDataGUI::requestClicked(){
+    
     IB::Contract contract;
     contract.symbol = widget.lineEdit_Symbol->text().toStdString();
     contract.secType = widget.lineEdit_Type->text().toStdString();
     contract.exchange = widget.lineEdit_Exchange->text().toStdString();
     contract.currency = widget.lineEdit_Currency->text().toStdString();
         
+    
     // map MarketData to event, tickerId and contractDescription
     boost::shared_ptr<MarketData> tickPriceMktData(new MarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));
     // create tickPrice event observer and push it into vector stored in this GUI form
@@ -82,6 +85,7 @@ void reqMktDataGUI::requestClicked(){
             new MarketDataObserver(tickPriceMktData,IB::TickPrice,boost::bind(&reqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
     // put this connection into marketDataFeed map, it will be stored in tickPriceMarketDataFeed
     client->marketDataFeedInsert(tickPriceMktData);
+    
     
     // also register for tickSize updates
     // map MarketData to event, tickerId and contractDescription
@@ -92,6 +96,7 @@ void reqMktDataGUI::requestClicked(){
     // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
     client->marketDataFeedInsert(tickSizeMktData);
     
+    
     // and register also for tickString updates
     // map MarketData to event, tickerId and contractDescription
     boost::shared_ptr<MarketData> tickStringMktData(new MarketData(IB::TickString,widget.lineEdit_Id->text().toInt(),contract));    
@@ -101,17 +106,39 @@ void reqMktDataGUI::requestClicked(){
     // put this connection into marketDataFeed map, it will be stored in tickStringMarketDataFeed
     client->marketDataFeedInsert(tickStringMktData);    
     
+    
     client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
         widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 
             widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
             widget.checkBox_Snapshot->isChecked());
-    int i=0;
-    while(i<10000000){
-        client->processMessages();
-        i++;
-    }
+    observedContracts.push_back(contract);
+//    int i=0;
+//    while(i<10000000){
+//        client->processMessages();
+//        i++;
+//    }
+   //processMessages(); //seg fault at this moment!
 }  
 
 void reqMktDataGUI::cancelClicked(){
-    this->~reqMktDataGUI();
+    marketDataFeedDelete();
+    //this->~reqMktDataGUI();
 } 
+
+void reqMktDataGUI::marketDataFeedDelete(void){
+    BOOST_FOREACH( pMktDataObserver o, tickSizeObservers )
+    {
+        client->cancelMktData(o->get_pMktDataObservable()->getTickerId());
+        o->unregisterWithAll();
+    } 
+    BOOST_FOREACH( pMktDataObserver o, tickPriceObservers )
+    {
+        client->cancelMktData(o->get_pMktDataObservable()->getTickerId());
+        o->unregisterWithAll();
+    }
+    BOOST_FOREACH( pMktDataObserver o, tickStringObservers )
+    {
+        client->cancelMktData(o->get_pMktDataObservable()->getTickerId());
+        o->unregisterWithAll();
+    }
+}

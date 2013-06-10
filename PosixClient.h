@@ -52,6 +52,7 @@ public:
         IBString exchange, IBString currency, int tickerId, IBString genericTicks, bool snapshot); 
         //additions
         void marketDataFeedInsert(boost::shared_ptr<MarketData> marketData);
+        void cancelMktData(TickerId tickerId);
 
 private:
 

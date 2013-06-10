@@ -129,6 +129,7 @@ void PosixClient::processMessages()
 
 	if( m_sleepDeadline > 0) {
 		// initialize timeout with m_sleepDeadline - now
+                printf("PosixClient::processMessages: m_sleepDeadline\n");
 		tval.tv_sec = m_sleepDeadline - now;
 	}
 
@@ -145,16 +146,19 @@ void PosixClient::processMessages()
 		int ret = select( m_pClient->fd() + 1, &readSet, &writeSet, NULL, &tval);
 
 		if( ret == 0) { // timeout
+                        printf("PosixClient::processMessages: timeout\n");
 			return;
 		}
 
 		if( ret < 0) {	// error
+                        printf("PosixClient::processMessages: disconnect\n");
 			disconnect();
 			return;
 		}
 
 		if( FD_ISSET( m_pClient->fd(), &writeSet)) {
 			// socket is ready for writing
+                        printf("PosixClient::processMessages: onSend\n");
 			m_pClient->onSend();
 		}
 
@@ -163,6 +167,7 @@ void PosixClient::processMessages()
 
 		if( FD_ISSET( m_pClient->fd(), &readSet)) {
 			// socket is ready for reading
+                        printf("PosixClient::processMessages: onReceive\n");
 			m_pClient->onReceive();
 		}
 	}
@@ -236,13 +241,13 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
         IB::Event event = marketData->getEvent();
         switch (event) {
             case IB::TickSize: 
-                tickSizeMarketDataFeed.insert(std::pair<int, mktData_ptr > (marketData->getTickerId(), marketData));
+                tickSizeMarketDataFeed.insert(std::pair<int, pMktDataObservable > (marketData->getTickerId(), marketData));
                 break;
             case IB::TickPrice: 
-                tickPriceMarketDataFeed.insert(std::pair<int, mktData_ptr > (marketData->getTickerId(), marketData));
+                tickPriceMarketDataFeed.insert(std::pair<int, pMktDataObservable > (marketData->getTickerId(), marketData));
                 break;
             case IB::TickString: 
-                tickStringMarketDataFeed.insert(std::pair<int, mktData_ptr > (marketData->getTickerId(), marketData));
+                tickStringMarketDataFeed.insert(std::pair<int, pMktDataObservable > (marketData->getTickerId(), marketData));
                 break;
             default:
                 break;
@@ -256,6 +261,10 @@ void PosixClient::cancelOrder()
 	m_state = ST_CANCELORDER_ACK;
 
 	m_pClient->cancelOrder( m_orderId);
+}
+
+void PosixClient::cancelMktData(TickerId tickerId){
+    m_pClient->cancelMktData(tickerId);
 }
 
 ///////////////////////////////////////////////////////////////////

@@ -13,6 +13,10 @@
 #include "MarketData.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
+#include <boost/foreach.hpp>
+
+
+void processMessages();
 
 class reqMktDataGUI : public QDialog {
     Q_OBJECT
@@ -25,12 +29,18 @@ public slots:
 private:
     Ui::reqMktDataGUI widget;
     boost::shared_ptr<IB::PosixClient> client;
+    
     std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;
     std::vector<boost::shared_ptr<MarketDataObserver> > tickPriceObservers;
     std::vector<boost::shared_ptr<MarketDataObserver> > tickStringObservers;
+    
     void myTickPriceUpdate(int tickerId, rec_ptr record_ptr);
     void myTickSizeUpdate(int tickerId, rec_ptr record_ptr);
     void myTickStringUpdate(int tickerId, rec_ptr record_ptr);
+    
+    void marketDataFeedDelete(void);
+    
+    std::vector<IB::Contract> observedContracts;
 };
 
 #endif	/* _GUI_H */

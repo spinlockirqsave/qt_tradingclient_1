@@ -18,6 +18,7 @@
 
 void processMessages();
 void endProcessMessages();
+void processMessages2();
 
 class reqMktDataGUI : public QDialog {
     Q_OBJECT

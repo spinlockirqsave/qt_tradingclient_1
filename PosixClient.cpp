@@ -65,7 +65,7 @@ void PosixClient::disconnect() const
 {
 	m_pClient->eDisconnect();
 
-	printf ( "Disconnected\n");
+	printf ( "PosixClient::disconnect Disconnected\n");
 }
 
 bool PosixClient::isConnected() const
@@ -146,7 +146,7 @@ void PosixClient::processMessages()
 		int ret = select( m_pClient->fd() + 1, &readSet, &writeSet, NULL, &tval);
 
 		if( ret == 0) { // timeout
-                        printf("PosixClient::processMessages: timeout\n");
+                        //printf("PosixClient::processMessages: timeout\n");
 			return;
 		}
 
@@ -316,13 +316,16 @@ void PosixClient::error(const int id, const int errorCode, const IBString errorS
 
 void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, int canAutoExecute) {
 #ifdef DEBUG
-    printf("tradingclient_1: tickPrice: \n");
+    printf("tradingclient_1: tickPrice \n");
 #endif
     tickerIdMarketDataMap::iterator it=tickPriceMarketDataFeed.find(tickerId);
         if(it!=tickPriceMarketDataFeed.end()){
             //(*it)->tickPriceData.push_back(TickPriceRecord(field,price,canAutoExecute));
+            printf("tradingclient_1: putRecord \n");
             ((*it).second)->putRecord(tickPriceRec_ptr(new TickPriceRecord(field,price,canAutoExecute)));
+            printf("tradingclient_1: notify \n");
             ((*it).second)->notifyObservers();
+            printf("tradingclient_1: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
 }
@@ -333,8 +336,11 @@ void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
     tickerIdMarketDataMap::iterator it=tickSizeMarketDataFeed.find(tickerId);
         if(it!=tickSizeMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
+            printf("tradingclient_1: putRecord \n");
             ((*it).second)->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
+            printf("tradingclient_1: notify \n");
             ((*it).second)->notifyObservers();
+            printf("tradingclient_1: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
 }
@@ -349,8 +355,11 @@ void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& 
     tickerIdMarketDataMap::iterator it=tickStringMarketDataFeed.find(tickerId);
         if(it!=tickStringMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
+            printf("tradingclient_1: putRecord \n");
             ((*it).second)->putRecord(tickStringRec_ptr(new TickStringRecord(field,value)));
+            printf("tradingclient_1: notify \n");
             ((*it).second)->notifyObservers();
+            printf("tradingclient_1: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
     //printf("tickerId: %lu, TickType: %d, value: %s\n", tickerId, tickType, value.c_str());

@@ -13,9 +13,13 @@
 #include <pthread.h>
 #include <errno.h>
 
+boost::shared_ptr<IB::PosixClient> client;
+
 #define NUM_THREADS	1
 pthread_t thread[NUM_THREADS];
-pthread_mutex_t mxq; /* mutex used as quit flag */
+pthread_mutex_t mxq; /* mutex used for processMessages as quit flag */
+pthread_attr_t attr;
+pthread_mutex_t mxq2; /* mutex used for processMessages to avoid segmentation fault */
 
 /* Returns 1 (true) if the mutex is unlocked, which is the
  * thread's signal to terminate. 
@@ -32,7 +36,6 @@ int needQuit(pthread_mutex_t *mtx)
   return 1;
 }
 
-boost::shared_ptr<IB::PosixClient> client(new IB::PosixClient);
 
 /* Thread function, containing a loop that's infinite except that it checks for
  * termination with needQuit() 
@@ -40,19 +43,22 @@ boost::shared_ptr<IB::PosixClient> client(new IB::PosixClient);
 void* processMessages(void* t){
     pthread_mutex_t *mx = (pthread_mutex_t *)t;
     while(!needQuit(mx)){
-        client->processMessages();
+        pthread_mutex_lock (&mxq2); // avoid segmentation fault
+            client->processMessages();
+        pthread_mutex_unlock (&mxq2);
     }
     return NULL;
 }
 
 void processMessages(){
-    pthread_attr_t attr;
     //pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
     int rc;
     
     pthread_mutex_init(&mxq,NULL);
     pthread_mutex_lock(&mxq);
 
+    pthread_mutex_init(&mxq2, NULL);
+    
     /* Initialize and set thread detached attribute */
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
@@ -64,13 +70,18 @@ void processMessages(){
          }
 }
 
+void processMessages2(){
+    client->processMessages();
+}
+
 void endProcessMessages(){
-    /* unlock mxq to tell the process messages thread to terminate, then join the thread */
+    /* unlock mxq to tell the processMessages thread to terminate, then join the thread */
     pthread_mutex_unlock(&mxq); 
     pthread_join(thread[0],NULL);
 }
 
 int main(int argc, char *argv[]) {
+    client.reset(new IB::PosixClient());
     // initialize resources, if needed
     // Q_INIT_RESOURCE(resfile);
     QApplication app(argc, argv);

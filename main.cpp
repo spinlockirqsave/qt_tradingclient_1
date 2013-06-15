@@ -7,6 +7,7 @@
 #include "PosixClient.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
+#include "ProcessMsgClass.h"
 #include "MainWindow.h"
 #include "reqMktDataGUI.h"
 #include <boost/shared_ptr.hpp>
@@ -20,6 +21,7 @@ pthread_t thread[NUM_THREADS];
 pthread_mutex_t mxq; /* mutex used for processMessages as quit flag */
 pthread_attr_t attr;
 pthread_mutex_t mxq2; /* mutex used for processMessages to avoid segmentation fault */
+
 
 /* Returns 1 (true) if the mutex is unlocked, which is the
  * thread's signal to terminate. 
@@ -80,13 +82,29 @@ void endProcessMessages(){
     pthread_join(thread[0],NULL);
 }
 
+void processMessages3(){
+    ProcessMsgClass pmc(client);
+    QThread t;
+    pmc.moveToThread(&t);
+    t.start();
+    sleep(10);
+}
+
+
 int main(int argc, char *argv[]) {
     client.reset(new IB::PosixClient());
+    
     // initialize resources, if needed
     // Q_INIT_RESOURCE(resfile);
     QApplication app(argc, argv);
     app.setStyleSheet("QMenu::item:selected {border: 1px solid blue;}");
       
+            ProcessMsgClass pmc(client);
+    QThread t;
+    pmc.moveToThread(&t);
+    t.start();
+    sleep(10);
+    
     // create QMainWindow::QWidget and show it
     cf16tradingclient_1 cf16(client);    
     cf16.show();

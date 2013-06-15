@@ -11,7 +11,7 @@
 #include "reqMktDataGUI.h"
     
 cf16tradingclient_1::cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> client_ptr): 
-host(""), port(7496), clientId(5), client(client_ptr){
+host(""), port(7496), clientId(0), client(client_ptr){
     widget.setupUi(this);
         QObject::connect(widget.connectButton, SIGNAL(clicked()), this, SLOT(connectClicked()));
         QObject::connect(widget.disconnectButton, SIGNAL(clicked()), this, SLOT(disconnectClicked()));
@@ -19,7 +19,7 @@ host(""), port(7496), clientId(5), client(client_ptr){
 }
 
 cf16tradingclient_1::~cf16tradingclient_1() {
-    //endProcessMessages();
+    endProcessMessages();
     if (client->isConnected()) {
         client->disconnect();
         if (!client->isConnected()) {
@@ -36,6 +36,7 @@ void cf16tradingclient_1::connectClicked() {
             widget.label_6_connected->setText(QStringLiteral("connected"));
         }
         //processMessages();
+        //processMessages3();
     }
 }
 

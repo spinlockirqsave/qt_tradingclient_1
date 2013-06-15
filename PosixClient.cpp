@@ -322,9 +322,9 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
         if(it!=tickPriceMarketDataFeed.end()){
             //(*it)->tickPriceData.push_back(TickPriceRecord(field,price,canAutoExecute));
             printf("tradingclient_1: putRecord \n");
-            ((*it).second)->putRecord(tickPriceRec_ptr(new TickPriceRecord(field,price,canAutoExecute)));
+            ((*it).second)->putRecord(tickPriceRec_ptr(new TickPriceRecord(field,price,canAutoExecute))); //what thread r MarketData objects?
             printf("tradingclient_1: notify \n");
-            ((*it).second)->notifyObservers();
+            ((*it).second)->notifyObservers(); // observers are in the main thread
             printf("tradingclient_1: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
@@ -347,7 +347,9 @@ void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
 void PosixClient::tickOptionComputation( TickerId tickerId, TickType tickType, double impliedVol, double delta,
 											 double optPrice, double pvDividend,
 											 double gamma, double vega, double theta, double undPrice) {}
-void PosixClient::tickGeneric(TickerId tickerId, TickType tickType, double value) {printf("tradingclient_1: tickGeneric\n");}
+void PosixClient::tickGeneric(TickerId tickerId, TickType tickType, double value) {
+    printf("tradingclient_1: tickGeneric\n");
+}
 void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& value) {
     #ifdef DEBUG 
     printf("tradingclient_1: tickString\n");

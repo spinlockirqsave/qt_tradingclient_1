@@ -16,6 +16,7 @@ reqMktDataGUI::reqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr):clie
     QObject::connect(widget.requestButton, SIGNAL(clicked()), this, SLOT(requestClicked()));
     QObject::connect(widget.cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
     this->setAttribute(Qt::WA_DeleteOnClose);
+    QObject::connect(this,SIGNAL(newMktData(int,rec_ptr)),this,SLOT(displayData(int,rec_ptr)));
 }
 
 reqMktDataGUI::~reqMktDataGUI() {
@@ -31,8 +32,8 @@ void reqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
         #ifdef DEBUG 
            printf( "myTickPriceUpdate! Id: %d, price: %f, tickType: %d\n",tickerId,tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
         #endif
-        QString qs=QString("myTickPriceUpdate! Id: %1, price: %2, tickType: %3").arg(tickerId).arg(tickPriceRecord_ptr->price_).arg(tickPriceRecord_ptr->tickType_);
-        widget.textEdit_dataFeed->append(qs);
+//        QString qs=QString("myTickPriceUpdate! Id: %1, price: %2, tickType: %3").arg(tickerId).arg(tickPriceRecord_ptr->price_).arg(tickPriceRecord_ptr->tickType_);
+//        widget.textEdit_dataFeed->append(qs);
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
            printf( "myTickPriceUpdate: badCast for tickerId: %d\n",tickerId);
@@ -40,13 +41,16 @@ void reqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
     }
 }
 void reqMktDataGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
+    
+    Q_EMIT newMktData(tickerId, record_ptr);
     try{
         tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IB::TickSizeRecord>(record_ptr));
     #ifdef DEBUG 
-        printf( "myTickSizeUpdate! Id: %d, size: %f, tickType: %d\n",tickerId,tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
+        printf( "myTickSizeUpdate! Id: %d, size: %d, tickType: %d\n",tickerId,tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
     #endif
-        QString qs=QString("myTickSizeUpdate! Id: %1, size: %2, tickType: %3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
-        widget.textEdit_dataFeed->append(qs);
+//        QString qs=QString("myTickSizeUpdate! Id: %1, size: %2, tickType: %3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
+//        widget.textEdit_dataFeed->append(qs);
+        //widget.textEdit_dataFeed->append("myTickSizeUpdate something...");
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
             printf( "myTickSizeUpdate: badCast for tickerId: %d\n",tickerId);
@@ -59,9 +63,9 @@ void reqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
     #ifdef DEBUG 
         printf( "myTickStringUpdate! Id: %d, string: %s, tickType: %d\n",tickerId,tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
     #endif
-        QString qs=QString("myTickStringUpdate! Id: %1, string: ").arg(tickerId)+QString::fromStdString(tickStringRecord_ptr->string);
-        qs+=QString(" tickType: %1").arg(tickStringRecord_ptr->tickType_);
-        widget.textEdit_dataFeed->append(qs);
+//        QString qs=QString("myTickStringUpdate! Id: %1, string: ").arg(tickerId)+QString::fromStdString(tickStringRecord_ptr->string);
+//        qs+=QString(" tickType: %1").arg(tickStringRecord_ptr->tickType_);
+//        widget.textEdit_dataFeed->append(qs);
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
             printf( "myTickStringUpdate: badCast for tickerId: %d\n",tickerId);
@@ -118,7 +122,7 @@ void reqMktDataGUI::requestClicked(){
 //        i++;
 //    }
 
-   processMessages();
+   //processMessages();
 }  
 
 void reqMktDataGUI::cancelClicked(){
@@ -142,4 +146,9 @@ void reqMktDataGUI::marketDataFeedDelete(void){
         client->cancelMktData(o->get_pMktDataObservable()->getTickerId());
         o->unregisterWithAll();
     }
+}
+
+void reqMktDataGUI::displayData(int tickerId, rec_ptr record_ptr){
+    printf( "displayData: for tickerId: %d\n",tickerId);
+    widget.textEdit_dataFeed->append("myTickSizeUpdate something...");
 }

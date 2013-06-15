@@ -19,6 +19,7 @@
 void processMessages();
 void endProcessMessages();
 void processMessages2();
+void processMessages3();
 
 class reqMktDataGUI : public QDialog {
     Q_OBJECT
@@ -27,7 +28,10 @@ public:
     virtual ~reqMktDataGUI();
 public slots:
     void requestClicked();    
-    void cancelClicked();  
+    void cancelClicked();
+    void displayData(int tickerId, rec_ptr record_ptr);
+Q_SIGNALS:
+    void newMktData(int tickerId, rec_ptr record_ptr);
 private:
     Ui::reqMktDataGUI widget;
     boost::shared_ptr<IB::PosixClient> client;

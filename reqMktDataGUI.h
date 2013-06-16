@@ -11,6 +11,7 @@
 #include "ui_reqMktDataGUI.h"
 #include "PosixClient.h"
 #include "MarketData.h"
+#include "GUIMarketData.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
 #include <boost/foreach.hpp>
@@ -29,6 +30,7 @@ public:
 public slots:
     void requestClicked();    
     void cancelClicked();
+    void guiRequestClicked();
     void displayData(int tickerId, rec_ptr record_ptr);
 Q_SIGNALS:
     void newMktData(int tickerId, rec_ptr record_ptr);

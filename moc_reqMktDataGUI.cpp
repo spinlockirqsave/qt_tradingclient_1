@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_reqMktDataGUI_t {
-    QByteArrayData data[9];
-    char stringdata[96];
+    QByteArrayData data[10];
+    char stringdata[114];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,11 +37,13 @@ QT_MOC_LITERAL(4, 35, 7),
 QT_MOC_LITERAL(5, 43, 10),
 QT_MOC_LITERAL(6, 54, 14),
 QT_MOC_LITERAL(7, 69, 13),
-QT_MOC_LITERAL(8, 83, 11)
+QT_MOC_LITERAL(8, 83, 17),
+QT_MOC_LITERAL(9, 101, 11)
     },
     "reqMktDataGUI\0newMktData\0\0tickerId\0"
     "rec_ptr\0record_ptr\0requestClicked\0"
-    "cancelClicked\0displayData\0"
+    "cancelClicked\0guiRequestClicked\0"
+    "displayData\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -51,7 +53,7 @@ static const uint qt_meta_data_reqMktDataGUI[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -59,17 +61,19 @@ static const uint qt_meta_data_reqMktDataGUI[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   34,    2, 0x05,
+       1,    2,   39,    2, 0x05,
 
  // slots: name, argc, parameters, tag, flags
-       6,    0,   39,    2, 0x0a,
-       7,    0,   40,    2, 0x0a,
-       8,    2,   41,    2, 0x0a,
+       6,    0,   44,    2, 0x0a,
+       7,    0,   45,    2, 0x0a,
+       8,    0,   46,    2, 0x0a,
+       9,    2,   47,    2, 0x0a,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, 0x80000000 | 4,    3,    5,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, 0x80000000 | 4,    3,    5,
@@ -85,7 +89,8 @@ void reqMktDataGUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->newMktData((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< rec_ptr(*)>(_a[2]))); break;
         case 1: _t->requestClicked(); break;
         case 2: _t->cancelClicked(); break;
-        case 3: _t->displayData((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< rec_ptr(*)>(_a[2]))); break;
+        case 3: _t->guiRequestClicked(); break;
+        case 4: _t->displayData((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< rec_ptr(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -125,13 +130,13 @@ int reqMktDataGUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

@@ -15,6 +15,7 @@ reqMktDataGUI::reqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr):clie
     widget.setupUi(this);
     QObject::connect(widget.requestButton, SIGNAL(clicked()), this, SLOT(requestClicked()));
     QObject::connect(widget.cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
+    QObject::connect(widget.guiRequestButton, SIGNAL(clicked()), this, SLOT(guiRequestClicked()));
     this->setAttribute(Qt::WA_DeleteOnClose);
     QObject::connect(this,SIGNAL(newMktData(int,rec_ptr)),this,SLOT(displayData(int,rec_ptr)));
 }
@@ -151,4 +152,8 @@ void reqMktDataGUI::marketDataFeedDelete(void){
 void reqMktDataGUI::displayData(int tickerId, rec_ptr record_ptr){
     printf( "displayData: for tickerId: %d\n",tickerId);
     widget.textEdit_dataFeed->append("myTickSizeUpdate something...");
+}
+
+void reqMktDataGUI::guiRequestClicked(){
+    
 }

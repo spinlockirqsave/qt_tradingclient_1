@@ -17,20 +17,20 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTextEdit>
-#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_reqMktDataGUI
 {
 public:
-    QVBoxLayout *verticalLayout;
     QGroupBox *groupBox_4;
     QGridLayout *gridLayout_4;
     QLabel *label_Id;
@@ -68,15 +68,18 @@ public:
     QLabel *label_Symbol;
     QLabel *label_Exchange;
     QTextEdit *textEdit_dataFeed;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout;
     QPushButton *cancelButton;
     QPushButton *requestButton;
+    QPushButton *guiRequestButton;
 
     void setupUi(QDialog *reqMktDataGUI)
     {
         if (reqMktDataGUI->objectName().isEmpty())
             reqMktDataGUI->setObjectName(QStringLiteral("reqMktDataGUI"));
         reqMktDataGUI->setEnabled(true);
-        reqMktDataGUI->resize(637, 640);
+        reqMktDataGUI->resize(637, 586);
         QFont font;
         font.setBold(false);
         font.setItalic(false);
@@ -84,10 +87,9 @@ public:
         font.setStrikeOut(false);
         reqMktDataGUI->setFont(font);
         reqMktDataGUI->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 0);"));
-        verticalLayout = new QVBoxLayout(reqMktDataGUI);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         groupBox_4 = new QGroupBox(reqMktDataGUI);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
+        groupBox_4->setGeometry(QRect(9, 9, 557, 63));
         groupBox_4->setFlat(false);
         groupBox_4->setCheckable(false);
         gridLayout_4 = new QGridLayout(groupBox_4);
@@ -107,11 +109,9 @@ public:
 
         gridLayout_4->addWidget(lineEdit_Id, 0, 1, 1, 1);
 
-
-        verticalLayout->addWidget(groupBox_4);
-
         groupBox = new QGroupBox(reqMktDataGUI);
         groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setGeometry(QRect(9, 78, 619, 454));
         gridLayout = new QGridLayout(groupBox);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         lineEdit_Expiry = new QLineEdit(groupBox);
@@ -307,18 +307,26 @@ public:
         lineEdit_ContractId->raise();
         checkBox_Snapshot->raise();
         textEdit_dataFeed->raise();
-
-        verticalLayout->addWidget(groupBox);
-
-        cancelButton = new QPushButton(reqMktDataGUI);
+        widget = new QWidget(reqMktDataGUI);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(9, 538, 611, 29));
+        horizontalLayout = new QHBoxLayout(widget);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        cancelButton = new QPushButton(widget);
         cancelButton->setObjectName(QStringLiteral("cancelButton"));
 
-        verticalLayout->addWidget(cancelButton);
+        horizontalLayout->addWidget(cancelButton);
 
-        requestButton = new QPushButton(reqMktDataGUI);
+        requestButton = new QPushButton(widget);
         requestButton->setObjectName(QStringLiteral("requestButton"));
 
-        verticalLayout->addWidget(requestButton);
+        horizontalLayout->addWidget(requestButton);
+
+        guiRequestButton = new QPushButton(widget);
+        guiRequestButton->setObjectName(QStringLiteral("guiRequestButton"));
+
+        horizontalLayout->addWidget(guiRequestButton);
 
 
         retranslateUi(reqMktDataGUI);
@@ -352,6 +360,7 @@ public:
         label_Exchange->setText(QApplication::translate("reqMktDataGUI", "Exchange", 0));
         cancelButton->setText(QApplication::translate("reqMktDataGUI", "Cancel", 0));
         requestButton->setText(QApplication::translate("reqMktDataGUI", "Request", 0));
+        guiRequestButton->setText(QApplication::translate("reqMktDataGUI", "GUI Request", 0));
     } // retranslateUi
 
 };

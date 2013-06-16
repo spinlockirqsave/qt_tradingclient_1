@@ -99,11 +99,6 @@ int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     app.setStyleSheet("QMenu::item:selected {border: 1px solid blue;}");
       
-            ProcessMsgClass pmc(client);
-    QThread t;
-    pmc.moveToThread(&t);
-    t.start();
-    sleep(10);
     
     // create QMainWindow::QWidget and show it
     cf16tradingclient_1 cf16(client);    

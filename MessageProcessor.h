@@ -12,6 +12,9 @@
 #include <QtCore/QObject>
 #include "PosixClient.h"
 
+// This is a class which wraps PosixClient::processMessages in a QThread,
+// what is required to properly update GUI objects
+
 class MessageProcessor : public QThread {
 
     Q_OBJECT

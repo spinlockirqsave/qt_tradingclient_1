@@ -12,12 +12,13 @@
 #include <QtCore/QObject>
 #include "PosixClient.h"
 
-class MessageProcessor : public QObject {
+class MessageProcessor : public QThread {
 
     Q_OBJECT
 public:
-    MessageProcessor(boost::shared_ptr<IB::PosixClient> client):client(client){}
-    ~MessageProcessor(){}
+    MessageProcessor(boost::shared_ptr<IB::PosixClient> client, QObject *parent = 0);
+    ~MessageProcessor();
+    
     public Q_SLOTS :
     void start() {
         printf("MessageProcessor::processMessages()\n");

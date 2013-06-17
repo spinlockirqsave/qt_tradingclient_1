@@ -19,6 +19,13 @@ typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;
 typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
 typedef boost::shared_ptr<IB::TickStringRecord>  tickStringRec_ptr;
 
+// This is a class which allows non GUI objects to subscribe
+// to market data being returned from tickSize, tickPrice, tickString
+// and other PosixClient callbacks when corresponding reqMktData request
+// has been sent to be processed by PosixClient instance. This class
+// and MarketDataObserver class use Observer Pattern implemented with 
+// help from QuantLib::Observervable and QuantLib::Observer.
+
 class MarketData : public QuantLib::Observable {
 public:
     MarketData();

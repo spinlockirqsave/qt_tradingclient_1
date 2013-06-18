@@ -258,13 +258,13 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
         IB::Event event = guiMarketData->getEvent();
         switch (event) {
             case IB::TickSize: 
-                tickSizeGUIMarketDataFeed.insert(std::pair<int, pGUIMktDataObservable > (guiMarketData->getTickerId(), guiMarketData));
+                tickSizeGUIMarketDataFeed.insert(std::pair<int, pGUIMktData > (guiMarketData->getTickerId(), guiMarketData));
                 break;
             case IB::TickPrice: 
-                tickPriceGUIMarketDataFeed.insert(std::pair<int, pGUIMktDataObservable > (guiMarketData->getTickerId(), guiMarketData));
+                tickPriceGUIMarketDataFeed.insert(std::pair<int, pGUIMktData > (guiMarketData->getTickerId(), guiMarketData));
                 break;
             case IB::TickString: 
-                tickStringGUIMarketDataFeed.insert(std::pair<int, pGUIMktDataObservable > (guiMarketData->getTickerId(), guiMarketData));
+                tickStringGUIMarketDataFeed.insert(std::pair<int, pGUIMktData > (guiMarketData->getTickerId(), guiMarketData));
                 break;
             default:
                 break;

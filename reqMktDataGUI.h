@@ -32,8 +32,10 @@ public slots:
     void cancelClicked();
     void guiRequestClicked();
     void displayData(int tickerId, rec_ptr record_ptr);
+    void myTickSizeGUIupdate(int tickerId, rec_ptr record_ptr);
 Q_SIGNALS:
     void newMktData(int tickerId, rec_ptr record_ptr);
+
 private:
     Ui::reqMktDataGUI widget;
     boost::shared_ptr<IB::PosixClient> client;
@@ -46,11 +48,12 @@ private:
     void myTickSizeUpdate(int tickerId, rec_ptr record_ptr);
     void myTickStringUpdate(int tickerId, rec_ptr record_ptr);
     
-    void myTickSizeGUIupdate(int tickerId, rec_ptr record_ptr);
-    
     void marketDataFeedDelete(void);
+    void guiMarketDataFeedDelete(void);
     
     std::vector<IB::Contract> observedContracts;
+    std::map<int, boost::shared_ptr<IB::Contract> > guiObservedContracts;
 };
+typedef std::map<int, boost::shared_ptr<IB::Contract> > tickerIdContractMap;
 
 #endif	/* _GUI_H */

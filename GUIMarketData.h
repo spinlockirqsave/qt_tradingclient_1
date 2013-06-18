@@ -15,12 +15,13 @@ typedef boost::shared_ptr<IB::Record> rec_ptr;
 typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;
 typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
 typedef boost::shared_ptr<IB::TickStringRecord>  tickStringRec_ptr;
+typedef boost::shared_ptr<IB::Contract> contract_ptr;
 
 class GUIMarketData : public QObject {
     Q_OBJECT
 public:
     GUIMarketData();
-    GUIMarketData(IB::Event processedEvent, int tickerId, IB::Contract contractDescription):
+    GUIMarketData(IB::Event processedEvent, int tickerId, contract_ptr contractDescription):
                 processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~GUIMarketData();
     int getTickerId()const{ return tickerId; }
@@ -45,10 +46,10 @@ private:
     // any observer can subscribe to one of those events
     IB::Event processedEvent;
     int tickerId;
-    IB::Contract contractDescription;
+    contract_ptr contractDescription;
 };
 
-typedef boost::shared_ptr<GUIMarketData> pGUIMktDataObservable;
+typedef boost::shared_ptr<GUIMarketData> pGUIMktData;
 typedef boost::function<void (int tickerId, rec_ptr record)> f_action_ptr;
 
 
@@ -57,7 +58,7 @@ typedef boost::function<void (int tickerId, rec_ptr record)> f_action_ptr;
 // you can subscribe many GUIMarketDataObservers to one and the same GUIMarketData instance
 class GUIMarketDataObserver{
 public:
-    GUIMarketDataObserver(pGUIMktDataObservable obs, IB::Event observedEvent, f_action_ptr ptr)
+    GUIMarketDataObserver(pGUIMktData obs, IB::Event observedEvent, f_action_ptr ptr)
         : observable(obs), observedEvent_(observedEvent), f_ptr(ptr){
       //this->registerWith(observable);
     }
@@ -77,11 +78,11 @@ public:
         }
     }
     
-    pGUIMktDataObservable get_pMktDataObservable(){
+    pGUIMktData get_pMktDataObservable(){
         return observable;
     }
 private:
-    pGUIMktDataObservable observable;
+    pGUIMktData observable;
     f_action_ptr f_ptr;
     IB::Event observedEvent_; // the single event in which observer is interested
 };

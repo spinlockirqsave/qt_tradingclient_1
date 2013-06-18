@@ -142,6 +142,7 @@ void reqMktDataGUI::requestClicked(){
 
 void reqMktDataGUI::cancelClicked(){
     marketDataFeedDelete();
+    guiMarketDataFeedDelete();
     endProcessMessages();
 } 
 
@@ -163,17 +164,23 @@ void reqMktDataGUI::marketDataFeedDelete(void){
     }
 }
 
+void reqMktDataGUI::guiMarketDataFeedDelete(void){
+    for(tickerIdContractMap::iterator it=guiObservedContracts.begin();it!=guiObservedContracts.end();it++){
+        client->cancelMktData((*it).first);
+    }
+}
+
 void reqMktDataGUI::displayData(int tickerId, rec_ptr record_ptr){
     printf( "displayData: for tickerId: %d\n",tickerId);
     widget.textEdit_dataFeed->append("myTickSizeUpdate something...");
 }
 
 void reqMktDataGUI::guiRequestClicked(){
-    IB::Contract contract;
-    contract.symbol = widget.lineEdit_Symbol->text().toStdString();
-    contract.secType = widget.lineEdit_Type->text().toStdString();
-    contract.exchange = widget.lineEdit_Exchange->text().toStdString();
-    contract.currency = widget.lineEdit_Currency->text().toStdString();
+    contract_ptr contract(new IB::Contract());
+    contract->symbol = widget.lineEdit_Symbol->text().toStdString();
+    contract->secType = widget.lineEdit_Type->text().toStdString();
+    contract->exchange = widget.lineEdit_Exchange->text().toStdString();
+    contract->currency = widget.lineEdit_Currency->text().toStdString();
     
     
     // register for tickSize updates
@@ -190,5 +197,7 @@ void reqMktDataGUI::guiRequestClicked(){
         widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 
             widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
             widget.checkBox_Snapshot->isChecked());
-    observedContracts.push_back(contract);
+    guiObservedContracts.insert(std::pair<int, contract_ptr >(widget.lineEdit_Id->text().toInt(), contract));
+    
+    processMessages();
 }

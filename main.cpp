@@ -93,6 +93,8 @@ void processMessages3(){
 
 
 int main(int argc, char *argv[]) {
+    qRegisterMetaType<rec_ptr>("rec_ptr");
+    
     client.reset(new IB::PosixClient());
     
     // initialize resources, if needed

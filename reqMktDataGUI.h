@@ -46,6 +46,8 @@ private:
     void myTickSizeUpdate(int tickerId, rec_ptr record_ptr);
     void myTickStringUpdate(int tickerId, rec_ptr record_ptr);
     
+    void myTickSizeGUIupdate(int tickerId, rec_ptr record_ptr);
+    
     void marketDataFeedDelete(void);
     
     std::vector<IB::Contract> observedContracts;

@@ -8,6 +8,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include "ProcessMsgClass.h"
+#include "GUIMarketData.h"
 #include "MainWindow.h"
 #include "reqMktDataGUI.h"
 #include <boost/shared_ptr.hpp>

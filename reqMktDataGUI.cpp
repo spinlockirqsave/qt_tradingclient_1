@@ -42,8 +42,6 @@ void reqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
     }
 }
 void reqMktDataGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
-    
-    Q_EMIT newMktData(tickerId, record_ptr);
     try{
         tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IB::TickSizeRecord>(record_ptr));
     #ifdef DEBUG 
@@ -70,6 +68,22 @@ void reqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
             printf( "myTickStringUpdate: badCast for tickerId: %d\n",tickerId);
+        #endif
+    }
+}
+
+void reqMktDataGUI::myTickSizeGUIupdate(int tickerId, rec_ptr record_ptr){
+    try{
+        tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IB::TickSizeRecord>(record_ptr));
+    #ifdef DEBUG 
+        printf( "myTickSizeGUIUpdate! Id: %d, size: %d, tickType: %d\n",tickerId,tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
+    #endif
+//        QString qs=QString("myTickSizeUpdate! Id: %1, size: %2, tickType: %3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
+//        widget.textEdit_dataFeed->append(qs);
+        //widget.textEdit_dataFeed->append("myTickSizeUpdate something...");
+    }catch(std::bad_cast& e){
+        #ifdef DEBUG 
+            printf( "myTickSizeGUIUpdate: badCast for tickerId: %d\n",tickerId);
         #endif
     }
 }
@@ -155,5 +169,26 @@ void reqMktDataGUI::displayData(int tickerId, rec_ptr record_ptr){
 }
 
 void reqMktDataGUI::guiRequestClicked(){
+    IB::Contract contract;
+    contract.symbol = widget.lineEdit_Symbol->text().toStdString();
+    contract.secType = widget.lineEdit_Type->text().toStdString();
+    contract.exchange = widget.lineEdit_Exchange->text().toStdString();
+    contract.currency = widget.lineEdit_Currency->text().toStdString();
     
+    
+    // register for tickSize updates
+    // map MarketData to event, tickerId and contractDescription
+    boost::shared_ptr<GUIMarketData> tickSizeGUIMktData(new GUIMarketData(IB::TickSize,widget.lineEdit_Id->text().toInt(),contract));    
+    // connect slot to signal
+    QObject::connect(tickSizeGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickSizeGUIupdate(int, rec_ptr)), Qt::QueuedConnection);
+    
+    // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
+    client->guiMarketDataFeedInsert(tickSizeGUIMktData);   
+   
+    
+    client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
+        widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 
+            widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
+            widget.checkBox_Snapshot->isChecked());
+    observedContracts.push_back(contract);
 }

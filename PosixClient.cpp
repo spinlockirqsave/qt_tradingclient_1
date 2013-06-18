@@ -253,6 +253,23 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
                 break;
         }
     }
+    
+    void PosixClient::guiMarketDataFeedInsert(boost::shared_ptr<GUIMarketData> guiMarketData) {
+        IB::Event event = guiMarketData->getEvent();
+        switch (event) {
+            case IB::TickSize: 
+                tickSizeGUIMarketDataFeed.insert(std::pair<int, pGUIMktDataObservable > (guiMarketData->getTickerId(), guiMarketData));
+                break;
+            case IB::TickPrice: 
+                tickPriceGUIMarketDataFeed.insert(std::pair<int, pGUIMktDataObservable > (guiMarketData->getTickerId(), guiMarketData));
+                break;
+            case IB::TickString: 
+                tickStringGUIMarketDataFeed.insert(std::pair<int, pGUIMktDataObservable > (guiMarketData->getTickerId(), guiMarketData));
+                break;
+            default:
+                break;
+        }
+    }
 
 void PosixClient::cancelOrder()
 {
@@ -341,6 +358,17 @@ void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
             printf("tradingclient_1: notify \n");
             ((*it).second)->notifyObservers();
             printf("tradingclient_1: notifyOK \n");
+            //TODO: start thread to store incoming data in repository
+        }
+    
+    tickerIdGUIMarketDataMap::iterator it2=tickSizeGUIMarketDataFeed.find(tickerId);
+        if(it2!=tickSizeGUIMarketDataFeed.end()){
+            //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
+            printf("tradingclient_1: putRecord to GUIMarketData object \n");
+            ((*it2).second)->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
+            printf("tradingclient_1: GUIMarketData->notifyObservers \n");
+            ((*it2).second)->notifyObservers();
+            printf("tradingclient_1: GUIMarketData notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
 }

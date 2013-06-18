@@ -13,6 +13,7 @@
 #include <stdio.h> //printf()
 #include <map>
 #include "MarketData.h"
+#include "GUIMarketData.h"
 
 namespace IB {
 
@@ -52,6 +53,7 @@ public:
         IBString exchange, IBString currency, int tickerId, IBString genericTicks, bool snapshot); 
         //additions
         void marketDataFeedInsert(boost::shared_ptr<MarketData> marketData);
+        void guiMarketDataFeedInsert(boost::shared_ptr<GUIMarketData> guiMarketData);
         void cancelMktData(TickerId tickerId);
 
 private:
@@ -125,13 +127,17 @@ private:
         //additions
         //std::vector< boost::shared_ptr<MarketData> > marketDataRepository;
         typedef std::map< int, boost::shared_ptr<MarketData> > tickerIdMarketDataMap;
-        
+        typedef std::map< int, boost::shared_ptr<GUIMarketData> > tickerIdGUIMarketDataMap;
 //        std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;
 //        std::vector<boost::shared_ptr<MarketDataObserver> > tickPricebservers;
 //        std::vector<boost::shared_ptr<MarketDataObserver> > tickStringbservers;
         tickerIdMarketDataMap tickSizeMarketDataFeed;
         tickerIdMarketDataMap tickPriceMarketDataFeed;
-        tickerIdMarketDataMap tickStringMarketDataFeed;        
+        tickerIdMarketDataMap tickStringMarketDataFeed;
+
+        tickerIdGUIMarketDataMap tickSizeGUIMarketDataFeed;
+        tickerIdGUIMarketDataMap tickPriceGUIMarketDataFeed;
+        tickerIdGUIMarketDataMap tickStringGUIMarketDataFeed;        
 };
 
 }

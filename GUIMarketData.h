@@ -8,22 +8,20 @@
 #ifndef GUIMARKETDATA_H
 #define	GUIMARKETDATA_H
 
-#include "Contract.h"
-#include <boost/function.hpp>
-#include "IB_events.h"
-#include <list>
-
+#include <QtCore/QObject>
+#include "MarketData.h"
 
 typedef boost::shared_ptr<IB::Record> rec_ptr;
 typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;
 typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
 typedef boost::shared_ptr<IB::TickStringRecord>  tickStringRec_ptr;
 
-class GUIMarketData {
+class GUIMarketData : public QObject {
+    Q_OBJECT
 public:
     GUIMarketData();
     GUIMarketData(IB::Event processedEvent, int tickerId, IB::Contract contractDescription):
-    processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
+                processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~GUIMarketData();
     int getTickerId()const{ return tickerId; }
     void putRecord(boost::shared_ptr<IB::Record> record){
@@ -35,6 +33,11 @@ public:
     IB::Event getEvent()const{
         return processedEvent;
     }    
+    void notifyObservers(){
+        emit newRecord(tickerId, record_);
+    }
+    signals:
+    void newRecord(int tickerId, rec_ptr record);
 private:
     GUIMarketData(const GUIMarketData& orig);
     boost::shared_ptr<IB::Record> record_;
@@ -46,7 +49,7 @@ private:
 };
 
 typedef boost::shared_ptr<GUIMarketData> pGUIMktDataObservable;
-typedef boost::function<void (int tickerId, boost::shared_ptr<IB::Record> record)> f_action_ptr;
+typedef boost::function<void (int tickerId, rec_ptr record)> f_action_ptr;
 
 
 // one GUIMarketDataObserver may observe one tickerId and for one event

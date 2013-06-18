@@ -350,11 +350,12 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
         if(it2!=tickPriceGUIMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
             //printf("tradingclient_1::tickPrice: putRecord to GUIMarketData object \n");
-            ((*it2).second)->putRecord(tickPriceRec_ptr(new TickPriceRecord(field,price,canAutoExecute)));
+            (*it2).second->putRecord(tickPriceRec_ptr(new TickPriceRecord(field,price,canAutoExecute)));
             //printf("tradingclient_1::tickPrice: GUIMarketData->notifyObservers \n");
-            ((*it2).second)->notifyObservers();
+            (*it2).second->notifyObservers();
             //printf("tradingclient_1::tickPrice: GUIMarketData notifyOK \n");
             //TODO: start thread to store incoming data in repository
+            (*it2).second->saveRecord();
         }
 }
 void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
@@ -376,11 +377,12 @@ void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
         if(it2!=tickSizeGUIMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
             //printf("tradingclient_1: putRecord to GUIMarketData object \n");
-            ((*it2).second)->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
+            (*it2).second->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
             //printf("tradingclient_1: GUIMarketData->notifyObservers \n");
-            ((*it2).second)->notifyObservers();
+            (*it2).second->notifyObservers();
             //printf("tradingclient_1: GUIMarketData notifyOK \n");
             //TODO: start thread to store incoming data in repository
+            (*it2).second->saveRecord();
         }
 }
 void PosixClient::tickOptionComputation( TickerId tickerId, TickType tickType, double impliedVol, double delta,
@@ -408,11 +410,12 @@ void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& 
         if(it2!=tickStringGUIMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
             //printf("tradingclient_1: putRecord \n");
-            ((*it2).second)->putRecord(tickStringRec_ptr(new TickStringRecord(field,value)));
+            (*it2).second->putRecord(tickStringRec_ptr(new TickStringRecord(field,value)));
             //printf("tradingclient_1: notify \n");
-            ((*it2).second)->notifyObservers();
+            (*it2).second->notifyObservers();
             //printf("tradingclient_1: notifyOK \n");
             //TODO: start thread to store incoming data in repository
+            (*it2).second->saveRecord();
         }
     //printf("tickerId: %lu, TickType: %d, value: %s\n", tickerId, tickType, value.c_str());
 }

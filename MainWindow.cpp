@@ -8,7 +8,7 @@
 #include "MainWindow.h"
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QMessageBox>
-#include "reqMktDataGUI.h"
+#include "ReqMktDataGUI.h"
     
 cf16tradingclient_1::cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> client_ptr): 
 host(""), port(7496), clientId(0), client(client_ptr){
@@ -52,7 +52,7 @@ void cf16tradingclient_1::disconnectClicked() {
 void cf16tradingclient_1::actionReqMktDataClicked(){
     //reqMDGUI_ptr=boost::shared_ptr<reqMktDataGUI>(new reqMktDataGUI(client));
     //reqMDGUI_ptr->show();
-    ptr=new reqMktDataGUI(client);
+    ptr=new ReqMktDataGUI(client);
     ptr->show();
 }
 

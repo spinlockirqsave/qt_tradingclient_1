@@ -22,11 +22,11 @@ void endProcessMessages();
 void processMessages2();
 void processMessages3();
 
-class reqMktDataGUI : public QDialog {
+class ReqMktDataGUI : public QDialog {
     Q_OBJECT
 public:
-    reqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr);
-    virtual ~reqMktDataGUI();
+    ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr);
+    virtual ~ReqMktDataGUI();
 public slots:
     void requestClicked();    
     void cancelClicked();

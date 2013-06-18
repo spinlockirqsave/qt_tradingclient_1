@@ -12,7 +12,7 @@
 #include "ui_MainWindow.h"
 #include <boost/shared_ptr.hpp>
 #include "PosixClient.h"
-#include "reqMktDataGUI.h"
+#include "ReqMktDataGUI.h"
 
 class cf16tradingclient_1 : public QMainWindow {
     Q_OBJECT
@@ -29,8 +29,8 @@ private:
     const char* host;
     unsigned int port;
     int clientId;
-    boost::shared_ptr<reqMktDataGUI> reqMDGUI_ptr;
-    reqMktDataGUI* ptr;
+    boost::shared_ptr<ReqMktDataGUI> reqMDGUI_ptr;
+    ReqMktDataGUI* ptr;
 };
 
 

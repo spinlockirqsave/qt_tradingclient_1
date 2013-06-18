@@ -10,7 +10,7 @@
 #include "ProcessMsgClass.h"
 #include "GUIMarketData.h"
 #include "MainWindow.h"
-#include "reqMktDataGUI.h"
+#include "ReqMktDataGUI.h"
 #include <boost/shared_ptr.hpp>
 #include <pthread.h>
 #include <errno.h>

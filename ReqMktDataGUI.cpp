@@ -72,18 +72,50 @@ void ReqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
     }
 }
 
-void ReqMktDataGUI::myTickSizeGUIupdate(int tickerId, rec_ptr record_ptr){
+void ReqMktDataGUI::myTickPriceGUIUpdate(int tickerId, rec_ptr record_ptr){
+    try{
+        //const IB::TickPriceRecord* tickPriceRecord = dynamic_cast<const IB::TickPriceRecord*>(record.get());
+        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IB::TickPriceRecord>(record_ptr));
+        #ifdef DEBUG 
+           printf( "myTickPriceGUIUpdate! Id: %d, price: %f, tickType: %d\n",tickerId,tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
+        #endif
+        QString qs=QString("TickPriceGUIUp! Id:%1, price:%2, tickType:%3").arg(tickerId).arg(tickPriceRecord_ptr->price_).arg(tickPriceRecord_ptr->tickType_);
+        widget.textEdit_dataFeed->append(qs);
+    }catch(std::bad_cast& e){
+        #ifdef DEBUG 
+           printf( "myTickPriceGUIUpdate: badCast for tickerId: %d\n",tickerId);
+        #endif
+    }
+}
+
+void ReqMktDataGUI::myTickSizeGUIUpdate(int tickerId, rec_ptr record_ptr){
     try{
         tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IB::TickSizeRecord>(record_ptr));
     #ifdef DEBUG 
         printf( "myTickSizeGUIUpdate! Id: %d, size: %d, tickType: %d\n",tickerId,tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
     #endif
-//        QString qs=QString("myTickSizeUpdate! Id: %1, size: %2, tickType: %3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
-//        widget.textEdit_dataFeed->append(qs);
-        widget.textEdit_dataFeed->append("myTickSizeGUIUpdate something...");
+        QString qs=QString("TickSizeGUIUp! Id:%1, size:%2, tickType:%3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
+        widget.textEdit_dataFeed->append(qs);
+        //widget.textEdit_dataFeed->append("myTickSizeGUIUpdate something...");
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
             printf( "myTickSizeGUIUpdate: badCast for tickerId: %d\n",tickerId);
+        #endif
+    }
+}
+
+void ReqMktDataGUI::myTickStringGUIUpdate(int tickerId, rec_ptr record_ptr){
+        try{
+        tickStringRec_ptr tickStringRecord_ptr(boost::dynamic_pointer_cast<IB::TickStringRecord>(record_ptr));
+    #ifdef DEBUG 
+        printf( "myTickStringGUIUpdate! Id: %d, string: %s, tickType: %d\n",tickerId,tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
+    #endif
+        QString qs=QString("TickStringGUIUp! Id:%1, string:").arg(tickerId)+QString::fromStdString(tickStringRecord_ptr->string);
+        qs+=QString(" tickType:%1").arg(tickStringRecord_ptr->tickType_);
+        widget.textEdit_dataFeed->append(qs);
+    }catch(std::bad_cast& e){
+        #ifdef DEBUG 
+            printf( "myTickStringGUIUpdate: badCast for tickerId: %d\n",tickerId);
         #endif
     }
 }
@@ -102,7 +134,7 @@ void ReqMktDataGUI::requestClicked(){
     // create tickPrice event observer and push it into vector stored in this GUI form
     tickPriceObservers.push_back(boost::shared_ptr<MarketDataObserver>(
             new MarketDataObserver(tickPriceMktData,IB::TickPrice,boost::bind(&ReqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
-    // put this connection into marketDataFeed map, it will be stored in tickPriceMarketDataFeed
+    // put this connection into tickerIdMarketDataMap, it will be stored in tickSizeMarketDataFeed
     client->marketDataFeedInsert(tickPriceMktData);
     
     
@@ -112,7 +144,7 @@ void ReqMktDataGUI::requestClicked(){
     // create tickSize event observer and push it into vector stored in this GUI form
     tickSizeObservers.push_back(boost::shared_ptr<MarketDataObserver>(
             new MarketDataObserver(tickSizeMktData,IB::TickSize,boost::bind(&ReqMktDataGUI::myTickSizeUpdate,this,_1,_2))));
-    // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
+    // put this connection into tickerIdMarketDataMap, it will be stored in tickSizeMarketDataFeed
     client->marketDataFeedInsert(tickSizeMktData);
     
     
@@ -122,7 +154,7 @@ void ReqMktDataGUI::requestClicked(){
     // create tickString event observer and push it into vector stored in this GUI form
     tickStringObservers.push_back(boost::shared_ptr<MarketDataObserver>(
             new MarketDataObserver(tickStringMktData,IB::TickString,boost::bind(&ReqMktDataGUI::myTickStringUpdate,this,_1,_2))));
-    // put this connection into marketDataFeed map, it will be stored in tickStringMarketDataFeed
+    // put this connection into tickerIdMarketDataMap, it will be stored in tickStringMarketDataFeed
     client->marketDataFeedInsert(tickStringMktData);    
     
     
@@ -182,13 +214,19 @@ void ReqMktDataGUI::guiRequestClicked(){
     contract->exchange = widget.lineEdit_Exchange->text().toStdString();
     contract->currency = widget.lineEdit_Currency->text().toStdString();
     
+    // register for tickPrice updates
+    // map MarketData to event, tickerId and contractDescription
+    boost::shared_ptr<GUIMarketData> tickPriceGUIMktData(new GUIMarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));    
+    // connect slot to signal
+    QObject::connect(tickPriceGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickPriceGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
+    // put this connection into tickerIdGUIMarketDataMap, it will be stored in tickPriceGUIMarketDataFeed
+    client->guiMarketDataFeedInsert(tickPriceGUIMktData);
     
     // register for tickSize updates
     // map MarketData to event, tickerId and contractDescription
     boost::shared_ptr<GUIMarketData> tickSizeGUIMktData(new GUIMarketData(IB::TickSize,widget.lineEdit_Id->text().toInt(),contract));    
     // connect slot to signal
-    QObject::connect(tickSizeGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickSizeGUIupdate(int, rec_ptr)), Qt::QueuedConnection);
-    
+    QObject::connect(tickSizeGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickSizeGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
     // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
     client->guiMarketDataFeedInsert(tickSizeGUIMktData);   
    

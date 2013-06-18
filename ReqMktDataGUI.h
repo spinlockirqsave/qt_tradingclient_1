@@ -32,7 +32,9 @@ public slots:
     void cancelClicked();
     void guiRequestClicked();
     void displayData(int tickerId, rec_ptr record_ptr);
-    void myTickSizeGUIupdate(int tickerId, rec_ptr record_ptr);
+    void myTickSizeGUIUpdate(int tickerId, rec_ptr record_ptr);
+    void myTickPriceGUIUpdate(int tickerId, rec_ptr record_ptr);
+    void myTickStringGUIUpdate(int tickerId, rec_ptr record_ptr);
 Q_SIGNALS:
     void newMktData(int tickerId, rec_ptr record_ptr);
 

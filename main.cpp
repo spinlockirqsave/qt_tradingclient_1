@@ -22,6 +22,7 @@ pthread_t thread[NUM_THREADS];
 pthread_mutex_t mxq; /* mutex used for processMessages as quit flag */
 pthread_attr_t attr;
 pthread_mutex_t mxq2; /* mutex used for processMessages to avoid segmentation fault */
+int ReqMktDataGUI::totalGUIReqActive = 0;
 
 
 /* Returns 1 (true) if the mutex is unlocked, which is the
@@ -53,24 +54,24 @@ void* processMessages(void* t){
     return NULL;
 }
 
-void processMessages(){
+void processMessages() {
     //pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
-    int rc;
-    
-    pthread_mutex_init(&mxq,NULL);
-    pthread_mutex_lock(&mxq);
+        int rc;
 
-    pthread_mutex_init(&mxq2, NULL);
-    
-    /* Initialize and set thread detached attribute */
-    pthread_attr_init(&attr);
-    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-    printf("global::processMessages: creating thread\n");
-      rc = pthread_create(&thread[0], &attr, ::processMessages, &mxq); 
-      if (rc) {
-         printf("ERROR; return code from pthread_create() is %d\n", rc);
-         exit(-1);
-         }
+        pthread_mutex_init(&mxq, NULL);
+        pthread_mutex_lock(&mxq);
+
+        pthread_mutex_init(&mxq2, NULL);
+
+        /* Initialize and set thread detached attribute */
+        pthread_attr_init(&attr);
+        pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+        printf("global::processMessages: creating thread !!!!!!!!!!!!!!!!\n");
+        rc = pthread_create(&thread[0], &attr, ::processMessages, &mxq);
+        if (rc) {
+            printf("ERROR; return code from pthread_create() is %d\n", rc);
+            exit(-1);
+        }
 }
 
 void processMessages2(){
@@ -81,6 +82,11 @@ void endProcessMessages(){
     /* unlock mxq to tell the processMessages thread to terminate, then join the thread */
     pthread_mutex_unlock(&mxq); 
     pthread_join(thread[0],NULL);
+    
+//    pthread_attr_destroy(&attr);
+//    pthread_mutex_destroy(&mxq);
+//    pthread_mutex_destroy(&mxq2);
+    printf("global::endProcessMessages!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
 }
 
 void processMessages3(){
@@ -107,5 +113,6 @@ int main(int argc, char *argv[]) {
     cf16tradingclient_1 cf16(client);    
     cf16.show();
     
+    //pthread_exit (NULL);
     return app.exec();
 }

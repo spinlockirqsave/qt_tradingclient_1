@@ -27,6 +27,7 @@ class ReqMktDataGUI : public QDialog {
 public:
     ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr);
     virtual ~ReqMktDataGUI();
+    static int totalGUIReqActive;
 public slots:
     void requestClicked();    
     void cancelClicked();
@@ -43,8 +44,8 @@ private:
     boost::shared_ptr<IB::PosixClient> client;
     
     std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;
-    std::vector<boost::shared_ptr<MarketDataObserver> > tickPriceObservers;
-    std::vector<boost::shared_ptr<MarketDataObserver> > tickStringObservers;
+    std::vector<pMktDataObserver> tickPriceObservers;
+    std::vector<pMktDataObserver> tickStringObservers;
     
     void myTickPriceUpdate(int tickerId, rec_ptr record_ptr);
     void myTickSizeUpdate(int tickerId, rec_ptr record_ptr);
@@ -55,7 +56,9 @@ private:
     
     std::vector<IB::Contract> observedContracts;
     std::map<int, boost::shared_ptr<IB::Contract> > guiObservedContracts;
+    bool thisGUIReqActive;
 };
 typedef std::map<int, boost::shared_ptr<IB::Contract> > tickerIdContractMap;
+typedef std::vector<boost::shared_ptr<MarketDataObserver> >::iterator vecPmktDataObsIt;
 
 #endif	/* _GUI_H */

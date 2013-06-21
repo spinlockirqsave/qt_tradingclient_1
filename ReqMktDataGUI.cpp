@@ -11,7 +11,7 @@
 #include <typeinfo>
 #include <ql/patterns/observable.hpp>
     
-ReqMktDataGUI::ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr):client(client_ptr){
+ReqMktDataGUI::ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr):client(client_ptr),thisGUIReqActive(false){
     widget.setupUi(this);
     QObject::connect(widget.requestButton, SIGNAL(clicked()), this, SLOT(requestClicked()));
     QObject::connect(widget.cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
@@ -24,6 +24,9 @@ ReqMktDataGUI::~ReqMktDataGUI() {
    #ifdef DEBUG 
         printf( "I am dead!\n");
    #endif
+        if(thisGUIReqActive){
+            cancelClicked();
+        }
 }
 
 void ReqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
@@ -170,29 +173,41 @@ void ReqMktDataGUI::requestClicked(){
 //    }
 
    //processMessages();
-}  
+}
 
-void ReqMktDataGUI::cancelClicked(){
-    marketDataFeedDelete();
-    guiMarketDataFeedDelete();
-    endProcessMessages();
+void ReqMktDataGUI::cancelClicked() {
+    if (thisGUIReqActive) {
+        marketDataFeedDelete();
+        if(client->isConnected()){
+            guiMarketDataFeedDelete();
+            marketDataFeedDelete();
+        }
+//        if (totalGUIReqActive == 1) {
+//            endProcessMessages();
+//        }
+        thisGUIReqActive = false;
+        totalGUIReqActive--;
+    }
 } 
 
 void ReqMktDataGUI::marketDataFeedDelete(void){
-    BOOST_FOREACH( pMktDataObserver o, tickSizeObservers )
-    {
-        client->cancelMktData(o->get_pMktDataObservable()->getTickerId());
-        o->unregisterWithAll();
-    } 
-    BOOST_FOREACH( pMktDataObserver o, tickPriceObservers )
-    {
-        client->cancelMktData(o->get_pMktDataObservable()->getTickerId());
-        o->unregisterWithAll();
+    vecPmktDataObsIt it;
+    for(it=tickPriceObservers.begin();it!=tickPriceObservers.end();it++){
+        client->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
+        (*it)->unregisterWithAll();
+        tickPriceObservers.erase(it);
     }
-    BOOST_FOREACH( pMktDataObserver o, tickStringObservers )
-    {
-        client->cancelMktData(o->get_pMktDataObservable()->getTickerId());
-        o->unregisterWithAll();
+    
+    for(it=tickSizeObservers.begin();it!=tickSizeObservers.end();it++){
+        client->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
+        (*it)->unregisterWithAll();
+        tickSizeObservers.erase(it);
+    }
+
+    for(it=tickStringObservers.begin();it!=tickStringObservers.end();it++){
+        client->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
+        (*it)->unregisterWithAll();
+        tickStringObservers.erase(it);
     }
 }
 
@@ -237,5 +252,9 @@ void ReqMktDataGUI::guiRequestClicked(){
             widget.checkBox_Snapshot->isChecked());
     guiObservedContracts.insert(std::pair<int, contract_ptr >(widget.lineEdit_Id->text().toInt(), contract));
     
-    processMessages();
+    thisGUIReqActive=true;
+    totalGUIReqActive++;
+//    if(totalGUIReqActive==1){
+//        processMessages();
+//    }
 }

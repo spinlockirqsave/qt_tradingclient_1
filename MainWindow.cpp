@@ -19,8 +19,8 @@ host(""), port(7496), clientId(0), client(client_ptr){
 }
 
 cf16tradingclient_1::~cf16tradingclient_1() {
-    endProcessMessages();
     if (client->isConnected()) {
+        endProcessMessages();
         client->disconnect();
         if (!client->isConnected()) {
             widget.label_6_connected->setText(QStringLiteral("not connected"));
@@ -34,10 +34,11 @@ void cf16tradingclient_1::connectClicked() {
         client->connect(host, port, clientId);
         if (client->isConnected()) {
             widget.label_6_connected->setText(QStringLiteral("connected"));
+            processMessages();
         }
-        //processMessages();
-        //processMessages3();
     }
+        //processMessages3();
+    
 }
 
 void cf16tradingclient_1::disconnectClicked() {

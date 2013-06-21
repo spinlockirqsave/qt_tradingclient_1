@@ -24,9 +24,9 @@
         <itemPath>MainWindow.cpp</itemPath>
         <itemPath>MainWindow.h</itemPath>
         <itemPath>MainWindow.ui</itemPath>
-        <itemPath>reqMktDataGUI.cpp</itemPath>
-        <itemPath>reqMktDataGUI.h</itemPath>
-        <itemPath>reqMktDataGUI.ui</itemPath>
+        <itemPath>ReqMktDataGUI.cpp</itemPath>
+        <itemPath>ReqMktDataGUI.h</itemPath>
+        <itemPath>ReqMktDataGUI.ui</itemPath>
         <itemPath>ui_MainWindow.h</itemPath>
         <itemPath>ui_reqMktDataGUI.h</itemPath>
       </logicalFolder>

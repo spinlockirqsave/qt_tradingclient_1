@@ -1,7 +1,7 @@
-This is a public base for a Qt C++ trading application 
-which uses IB TWS API forked from Ruediger Meier's 
-repository [https://github.com/rudimeier/twsapi],
-QuantLib-1.2.1, CUDA 5.0, and Qt 5.0 as gui library.
+This is a public base for a multithreaded Qt C++ trading application 
+which uses POSIX IB TWS API forked from Ruediger Meier's repository 
+[https://github.com/rudimeier/twsapi], QuantLib-1.2.1, CUDA 5.0, 
+Posix threads and Qt 5.0 as gui library.
 This is only public base. Individual modules, strategies,
 trading algorithms, pricing snippets or Monte Carlo simulations
 are not included here, they are being now developed in another,
@@ -19,8 +19,8 @@ https://github.com/cf16/tradingclient_1.git
 Includes
 --------
 
-TWS API:                      QuantLib:          CUDA:             Qt:
-twsapi/Shared                 Quantlib-1.2.1/ql  cuda-5.0/include  QtCore
+TWS API:                      QuantLib:          CUDA:             Qt:       Posix threads:
+twsapi/Shared                 Quantlib-1.2.1/ql  cuda-5.0/include  QtCore    libpthread-2.15.so
 twsapi/PosixSocketClient/src                                       QtGui
                                                                    QtOpenGL
 

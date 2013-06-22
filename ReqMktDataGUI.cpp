@@ -245,7 +245,8 @@ void ReqMktDataGUI::guiRequestClicked(){
     // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
     client->guiMarketDataFeedInsert(tickSizeGUIMktData);   
    
-    
+    //TODO: client->reqMktData has to take all parameters of contract specified in GUI
+    // now we process only few of them
     client->reqMktData(contract->symbol, contract->secType, contract->exchange, contract->currency, 
             widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
             contract->localSymbol, widget.checkBox_Snapshot->isChecked());

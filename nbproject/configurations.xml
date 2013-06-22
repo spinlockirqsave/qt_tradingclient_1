@@ -75,6 +75,7 @@
             <pElem>../twsapi</pElem>
             <pElem>../twsapi/PosixSocketClient</pElem>
             <pElem>/usr/include/boost</pElem>
+            <pElem>/opt/Qt5.0.1/5.0.1/gcc_64/include</pElem>
           </incDir>
           <preprocessorList>
             <Elem>DEBUG</Elem>

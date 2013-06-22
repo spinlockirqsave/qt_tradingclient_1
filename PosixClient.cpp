@@ -221,13 +221,14 @@ void PosixClient::reqMktData_MSFT(){
 }
 
 void PosixClient::reqMktData(IBString symbol, IBString secType,
-        IBString exchange, IBString currency, int tickerId, IBString genericTicks, bool snapshot){
+        IBString exchange, IBString currency, int tickerId, IBString genericTicks, IBString localSymbol, bool snapshot){
     	Contract contract;
 
 	contract.symbol = symbol;
 	contract.secType = secType;
 	contract.exchange = exchange;//"SMART";//exchange;
 	contract.currency = currency;
+        contract.localSymbol = localSymbol;
 
 	printf( "tradingclient_1: Requesting mktData. symbol: %s secType: %s  exchange: %s  currency: %s\n",
                 contract.symbol.c_str(), contract.secType.c_str(), contract.exchange.c_str(),
@@ -281,6 +282,7 @@ void PosixClient::cancelOrder()
 }
 
 void PosixClient::cancelMktData(TickerId tickerId){
+    printf( "PosixClient::cancelMktData for tickerId: %d\n",tickerId);
     m_pClient->cancelMktData(tickerId);
 }
 

@@ -50,7 +50,7 @@ public:
 	bool isConnected() const;
 
         void reqMktData(IBString symbol, IBString secType,
-        IBString exchange, IBString currency, int tickerId, IBString genericTicks, bool snapshot); 
+        IBString exchange, IBString currency, int tickerId, IBString genericTicks, IBString localSymbol, bool snapshot); 
         //additions
         void marketDataFeedInsert(boost::shared_ptr<MarketData> marketData);
         void guiMarketDataFeedInsert(boost::shared_ptr<GUIMarketData> guiMarketData);

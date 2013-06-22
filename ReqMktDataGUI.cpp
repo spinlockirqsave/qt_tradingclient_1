@@ -130,7 +130,7 @@ void ReqMktDataGUI::requestClicked(){
     contract.secType = widget.lineEdit_Type->text().toStdString();
     contract.exchange = widget.lineEdit_Exchange->text().toStdString();
     contract.currency = widget.lineEdit_Currency->text().toStdString();
-        
+    contract.localSymbol = widget.lineEdit_LocalSymbol->text().toStdString();
     
     // map MarketData to event, tickerId and contractDescription
     boost::shared_ptr<MarketData> tickPriceMktData(new MarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));
@@ -164,7 +164,7 @@ void ReqMktDataGUI::requestClicked(){
     client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
         widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 
             widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
-            widget.checkBox_Snapshot->isChecked());
+            widget.lineEdit_LocalSymbol->text().toStdString(), widget.checkBox_Snapshot->isChecked());
     observedContracts.push_back(contract);
 //    int i=0;
 //    while(i<30000000){
@@ -177,7 +177,6 @@ void ReqMktDataGUI::requestClicked(){
 
 void ReqMktDataGUI::cancelClicked() {
     if (thisGUIReqActive) {
-        marketDataFeedDelete();
         if(client->isConnected()){
             guiMarketDataFeedDelete();
             marketDataFeedDelete();
@@ -228,6 +227,7 @@ void ReqMktDataGUI::guiRequestClicked(){
     contract->secType = widget.lineEdit_Type->text().toStdString();
     contract->exchange = widget.lineEdit_Exchange->text().toStdString();
     contract->currency = widget.lineEdit_Currency->text().toStdString();
+    contract->localSymbol = widget.lineEdit_LocalSymbol->text().toStdString();
     
     // register for tickPrice updates
     // map MarketData to event, tickerId and contractDescription
@@ -246,10 +246,9 @@ void ReqMktDataGUI::guiRequestClicked(){
     client->guiMarketDataFeedInsert(tickSizeGUIMktData);   
    
     
-    client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
-        widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 
+    client->reqMktData(contract->symbol, contract->secType, contract->exchange, contract->currency, 
             widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
-            widget.checkBox_Snapshot->isChecked());
+            contract->localSymbol, widget.checkBox_Snapshot->isChecked());
     guiObservedContracts.insert(std::pair<int, contract_ptr >(widget.lineEdit_Id->text().toInt(), contract));
     
     thisGUIReqActive=true;

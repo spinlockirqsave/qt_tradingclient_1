@@ -51,7 +51,7 @@ void* processMessages(void* t){
             client->processMessages();
         pthread_mutex_unlock (&mxq2);
     }
-    return NULL;
+    pthread_exit(NULL);
 }
 
 void processMessages() {
@@ -106,8 +106,7 @@ int main(int argc, char *argv[]) {
     // initialize resources, if needed
     // Q_INIT_RESOURCE(resfile);
     QApplication app(argc, argv);
-    app.setStyleSheet("QMenu::item:selected {border: 1px solid blue;}");
-      
+    app.setStyleSheet("QMenu::item:selected {border: 1px solid blue;}");  
     
     // create QMainWindow::QWidget and show it
     cf16tradingclient_1 cf16(client);    

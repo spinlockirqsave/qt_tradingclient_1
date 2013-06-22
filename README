@@ -19,12 +19,14 @@ https://github.com/cf16/tradingclient_1.git
 Includes
 --------
 
-TWS API:                      QuantLib:          CUDA:             Qt:       Posix threads:
-twsapi/Shared                 Quantlib-1.2.1/ql  cuda-5.0/include  QtCore    libpthread-2.15.so
-twsapi/PosixSocketClient/src                                       QtGui
-                                                                   QtOpenGL
+TWS API:                      QuantLib:          CUDA:             
+twsapi/Shared                 Quantlib-1.2.1/ql  cuda-5.0/include
+twsapi/PosixSocketClient/src
 
-
+Qt:                           Posix threads:
+QtCore                        libpthread-2.15.so
+QtGui
+QtOpenGL
 
 Installation
 ------------

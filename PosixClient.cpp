@@ -48,15 +48,15 @@ PosixClient::~PosixClient()
 bool PosixClient::connect(const char *host, unsigned int port, int clientId)
 {
 	// trying to connect
-	printf( "tradingclient_1: connecting to %s:%u clientId:%d\n", !( host && *host) ? "127.0.0.1" : host, port, clientId);
+	printf( "PosixClient: connecting to %s:%u clientId:%d\n", !( host && *host) ? "127.0.0.1" : host, port, clientId);
 
 	bool bRes = m_pClient->eConnect2( host, port, clientId);
 
 	if (bRes) {
-		printf( "tradingclient_1: connected to %s:%u clientId:%d\n", !( host && *host) ? "127.0.0.1" : host, port, clientId);
+		printf( "PosixClient: connected to %s:%u clientId:%d\n", !( host && *host) ? "127.0.0.1" : host, port, clientId);
 	}
 	else
-		printf( "tradingclient_1: cannot connect to %s:%u clientId:%d\n", !( host && *host) ? "127.0.0.1" : host, port, clientId);
+		printf( "PosixClient: cannot connect to %s:%u clientId:%d\n", !( host && *host) ? "127.0.0.1" : host, port, clientId);
 
 	return bRes;
 }
@@ -86,40 +86,40 @@ void PosixClient::processMessages()
 //	switch (m_state) {
 //		case ST_PLACEORDER:
 //			//placeOrder_MSFT();
-//                    printf("tradingclient_1: ST_PLACEORDER\n");
+//                    printf("PosixClient: ST_PLACEORDER\n");
 //                    //reqMktData_MSFT();
 //			break;
 //		case ST_PLACEORDER_ACK:
-//                        printf("tradingclient_1: ST_PLACEORDER_ACK\n");
+//                        printf("PosixClient: ST_PLACEORDER_ACK\n");
 //                        //reqMktData_MSFT();
 //			break;
 //		case ST_CANCELORDER:
-//                        printf("tradingclient_1: ST_CANCELORDER\n");
+//                        printf("PosixClient: ST_CANCELORDER\n");
 //			//cancelOrder();
 //			break;
 //		case ST_CANCELORDER_ACK:
-//                        printf("tradingclient_1: ST_CANCELORDER_ACK\n");
+//                        printf("PosixClient: ST_CANCELORDER_ACK\n");
 //			break;
 //                case ST_REQMKTDATA:
-//                        printf("tradingclient_1: ST_REQMKTDATA\n");
+//                        printf("PosixClient: ST_REQMKTDATA\n");
 //			//cancelOrder();
 //			break;
 //		case ST_REQMKTDATA_ACK:
-//                        //printf("tradingclient_1: ST_REQMKTDATA_ACK\n");
+//                        //printf("PosixClient: ST_REQMKTDATA_ACK\n");
 //			break;        
 //		case ST_PING:
-//			printf("tradingclient_1: ST_PING\n");
+//			printf("PosixClient: ST_PING\n");
 //                        //reqCurrentTime();
 //			break;
 //		case ST_PING_ACK:
-//                        printf("tradingclient_1: ST_PING_ACK\n");
+//                        printf("PosixClient: ST_PING_ACK\n");
 //			if( m_sleepDeadline < now) {
 //				disconnect();
 //				return;
 //			}
 //			break;
 //		case ST_IDLE:
-//                        printf("tradingclient_1: ST_IDLE\n");
+//                        printf("PosixClient: ST_IDLE\n");
 //			if( m_sleepDeadline < now) {
 //				m_state = ST_PING;
 //				return;
@@ -198,7 +198,7 @@ void PosixClient::placeOrder_MSFT(){
 	order.orderType = "LMT";
 	order.lmtPrice = 26.7;
 
-	printf( "tradingclient_1: Placing Order %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
+	printf( "PosixClient: Placing Order %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
 
 	m_state = ST_PLACEORDER_ACK;
 	m_pClient->placeOrder( m_orderId, contract, order);
@@ -213,7 +213,7 @@ void PosixClient::reqMktData_MSFT(){
 	contract.exchange = "SMART";
 	contract.currency = "USD";
 
-	printf( "tradingclient_1: Requesting MSFT mktData %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
+	printf( "PosixClient: Requesting MSFT mktData %ld: %s %ld %s at %f\n", m_orderId, order.action.c_str(), order.totalQuantity, contract.symbol.c_str(), order.lmtPrice);
 
 	//m_state = ST_REQMKTDATA_ACK;
         IBString i="233";
@@ -230,7 +230,7 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
 	contract.currency = currency;
         contract.localSymbol = localSymbol;
 
-	printf( "tradingclient_1: Requesting mktData. symbol: %s secType: %s  exchange: %s  currency: %s\n",
+	printf( "PosixClient: Requesting mktData. symbol: %s secType: %s  exchange: %s  currency: %s\n",
                 contract.symbol.c_str(), contract.secType.c_str(), contract.exchange.c_str(),
                 contract.currency.c_str());
 
@@ -335,130 +335,248 @@ void PosixClient::error(const int id, const int errorCode, const IBString errorS
 
 void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, int canAutoExecute) {
 #ifdef DEBUG
-    printf("tradingclient_1::tickPrice \n");
+    printf("PosixClient::tickPrice \n");
 #endif
     tickerIdMarketDataMap::iterator it=tickPriceMarketDataFeed.find(tickerId);
         if(it!=tickPriceMarketDataFeed.end()){
             //(*it)->tickPriceData.push_back(TickPriceRecord(field,price,canAutoExecute));
-            //printf("tradingclient_1: putRecord \n");
+            //printf("PosixClient: putRecord \n");
             ((*it).second)->putRecord(tickPriceRec_ptr(new TickPriceRecord(field,price,canAutoExecute))); //what thread r MarketData objects?
-            //printf("tradingclient_1: notify \n");
+            //printf("PosixClient: notify \n");
             ((*it).second)->notifyObservers(); // observers are in the main thread
-            //printf("tradingclient_1: notifyOK \n");
+            //printf("PosixClient: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
     
     tickerIdGUIMarketDataMap::iterator it2=tickPriceGUIMarketDataFeed.find(tickerId);
         if(it2!=tickPriceGUIMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("tradingclient_1::tickPrice: putRecord to GUIMarketData object \n");
+            //printf("PosixClient::tickPrice: putRecord to GUIMarketData object \n");
             (*it2).second->putRecord(tickPriceRec_ptr(new TickPriceRecord(field,price,canAutoExecute)));
-            //printf("tradingclient_1::tickPrice: GUIMarketData->notifyObservers \n");
+            //printf("PosixClient::tickPrice: GUIMarketData->notifyObservers \n");
             (*it2).second->notifyObservers();
-            //printf("tradingclient_1::tickPrice: GUIMarketData notifyOK \n");
+            //printf("PosixClient::tickPrice: GUIMarketData notifyOK \n");
             //TODO: start thread to store incoming data in repository
             (*it2).second->saveRecord();
         }
 }
 void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
 #ifdef DEBUG 
-    printf("tradingclient_1::tickSize\n");
+    printf("PosixClient::tickSize\n");
 #endif
     tickerIdMarketDataMap::iterator it=tickSizeMarketDataFeed.find(tickerId);
         if(it!=tickSizeMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("tradingclient_1::tickSize: putRecord \n");
+            //printf("PosixClient::tickSize: putRecord \n");
             ((*it).second)->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
-            //printf("tradingclient_1::tickSize: notify \n");
+            //printf("PosixClient::tickSize: notify \n");
             ((*it).second)->notifyObservers();
-            //printf("tradingclient_1::tickSize: notifyOK \n");
+            //printf("PosixClient::tickSize: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
     
     tickerIdGUIMarketDataMap::iterator it2=tickSizeGUIMarketDataFeed.find(tickerId);
         if(it2!=tickSizeGUIMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("tradingclient_1: putRecord to GUIMarketData object \n");
+            //printf("PosixClient: putRecord to GUIMarketData object \n");
             (*it2).second->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
-            //printf("tradingclient_1: GUIMarketData->notifyObservers \n");
+            //printf("PosixClient: GUIMarketData->notifyObservers \n");
             (*it2).second->notifyObservers();
-            //printf("tradingclient_1: GUIMarketData notifyOK \n");
+            //printf("PosixClient: GUIMarketData notifyOK \n");
             //TODO: start thread to store incoming data in repository
             (*it2).second->saveRecord();
         }
 }
 void PosixClient::tickOptionComputation( TickerId tickerId, TickType tickType, double impliedVol, double delta,
 											 double optPrice, double pvDividend,
-											 double gamma, double vega, double theta, double undPrice) {}
+											 double gamma, double vega, double theta, double undPrice) {
+    #ifdef DEBUG 
+         printf("PosixClient::tickOptionComputation\n");
+    #endif
+}
 void PosixClient::tickGeneric(TickerId tickerId, TickType tickType, double value) {
-    printf("tradingclient_1::tickGeneric\n");
+    #ifdef DEBUG 
+         printf("PosixClient::tickGeneric\n");
+    #endif
 }
 void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& value) {
     #ifdef DEBUG 
-    printf("tradingclient_1::tickString\n");
+    printf("PosixClient::tickString\n");
 #endif
     tickerIdMarketDataMap::iterator it=tickStringMarketDataFeed.find(tickerId);
         if(it!=tickStringMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("tradingclient_1: putRecord \n");
+            //printf("PosixClient: putRecord \n");
             ((*it).second)->putRecord(tickStringRec_ptr(new TickStringRecord(field,value)));
-            //printf("tradingclient_1: notify \n");
+            //printf("PosixClient: notify \n");
             ((*it).second)->notifyObservers();
-            //printf("tradingclient_1: notifyOK \n");
+            //printf("PosixClient: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
     
     tickerIdGUIMarketDataMap::iterator it2=tickStringGUIMarketDataFeed.find(tickerId);
         if(it2!=tickStringGUIMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("tradingclient_1: putRecord \n");
+            //printf("PosixClient: putRecord \n");
             (*it2).second->putRecord(tickStringRec_ptr(new TickStringRecord(field,value)));
-            //printf("tradingclient_1: notify \n");
+            //printf("PosixClient: notify \n");
             (*it2).second->notifyObservers();
-            //printf("tradingclient_1: notifyOK \n");
+            //printf("PosixClient: notifyOK \n");
             //TODO: start thread to store incoming data in repository
             (*it2).second->saveRecord();
         }
     //printf("tickerId: %lu, TickType: %d, value: %s\n", tickerId, tickType, value.c_str());
 }
 void PosixClient::tickEFP(TickerId tickerId, TickType tickType, double basisPoints, const IBString& formattedBasisPoints,
-							   double totalDividends, int holdDays, const IBString& futureExpiry, double dividendImpact, double dividendsToExpiry) {}
-void PosixClient::openOrder( OrderId orderId, const Contract&, const Order&, const OrderState& ostate) {}
-void PosixClient::openOrderEnd() {}
-void PosixClient::winError( const IBString &str, int lastError) {}
-void PosixClient::connectionClosed() {}
+							   double totalDividends, int holdDays, const IBString& futureExpiry, double dividendImpact, double dividendsToExpiry) {
+    #ifdef DEBUG 
+        printf("PosixClient::tickEFP\n");
+    #endif
+}
+void PosixClient::openOrder( OrderId orderId, const Contract&, const Order&, const OrderState& ostate) {
+    #ifdef DEBUG 
+    printf("PosixClient::openOrder\n");
+    #endif
+}
+void PosixClient::openOrderEnd() {    
+    #ifdef DEBUG 
+    printf("PosixClient::openOrderEnd\n"); 
+    #endif
+}
+void PosixClient::winError( const IBString &str, int lastError) {
+    #ifdef DEBUG 
+    printf("PosixClient::winError\n");
+    #endif
+}
+void PosixClient::connectionClosed() {
+    #ifdef DEBUG 
+    printf("PosixClient::connectionClosed\n");
+    #endif
+}
 void PosixClient::updateAccountValue(const IBString& key, const IBString& val,
-										  const IBString& currency, const IBString& accountName) {}
+										  const IBString& currency, const IBString& accountName) {
+    #ifdef DEBUG 
+    printf("PosixClient::updateAccountValue\n");
+    #endif
+}
 void PosixClient::updatePortfolio(const Contract& contract, int position,
 		double marketPrice, double marketValue, double averageCost,
-		double unrealizedPNL, double realizedPNL, const IBString& accountName){}
-void PosixClient::updateAccountTime(const IBString& timeStamp) {}
-void PosixClient::accountDownloadEnd(const IBString& accountName) {}
-void PosixClient::contractDetails( int reqId, const ContractDetails& contractDetails) {}
-void PosixClient::bondContractDetails( int reqId, const ContractDetails& contractDetails) {}
-void PosixClient::contractDetailsEnd( int reqId) {}
-void PosixClient::execDetails( int reqId, const Contract& contract, const Execution& execution) {}
-void PosixClient::execDetailsEnd( int reqId) {}
+		double unrealizedPNL, double realizedPNL, const IBString& accountName){
+    #ifdef DEBUG 
+    printf("PosixClient::updatePortfolio\n");
+    #endif
+}
+void PosixClient::updateAccountTime(const IBString& timeStamp) {
+    #ifdef DEBUG 
+    printf("PosixClient::updateAccountTime\n");
+    #endif
+}
+void PosixClient::accountDownloadEnd(const IBString& accountName) {
+    #ifdef DEBUG 
+    printf("PosixClient::accountDownloadEnd\n");
+    #endif
+}
+void PosixClient::contractDetails( int reqId, const ContractDetails& contractDetails) {
+    #ifdef DEBUG 
+    printf("PosixClient::contractDetails\n");
+    #endif
+}
+void PosixClient::bondContractDetails( int reqId, const ContractDetails& contractDetails) {
+    #ifdef DEBUG 
+    printf("PosixClient::bondContractDetails\n");
+    #endif
+}
+void PosixClient::contractDetailsEnd( int reqId) {
+    #ifdef DEBUG 
+    printf("PosixClient::contractDetailsEnd\n");
+    #endif
+}
+void PosixClient::execDetails( int reqId, const Contract& contract, const Execution& execution) {
+    #ifdef DEBUG 
+    printf("PosixClient::execDetails\n");
+    #endif
+}
+void PosixClient::execDetailsEnd( int reqId) {
+    #ifdef DEBUG 
+    printf("PosixClient::execDetailsEnd\n");
+    #endif
+}
 
 void PosixClient::updateMktDepth(TickerId id, int position, int operation, int side,
-									  double price, int size) {}
+									  double price, int size) {
+    #ifdef DEBUG 
+    printf("PosixClient::updateMktDepth\n");
+    #endif
+}
 void PosixClient::updateMktDepthL2(TickerId id, int position, IBString marketMaker, int operation,
-										int side, double price, int size) {}
-void PosixClient::updateNewsBulletin(int msgId, int msgType, const IBString& newsMessage, const IBString& originExch) {}
-void PosixClient::managedAccounts( const IBString& accountsList) {}
-void PosixClient::receiveFA(faDataType pFaDataType, const IBString& cxml) {}
+										int side, double price, int size) {
+    #ifdef DEBUG 
+    printf("PosixClient::updateMktDepthL2\n");
+    #endif
+}
+void PosixClient::updateNewsBulletin(int msgId, int msgType, const IBString& newsMessage, const IBString& originExch) {
+    #ifdef DEBUG 
+    printf("PosixClient::updateNewsBulletin\n");
+    #endif
+}
+void PosixClient::managedAccounts( const IBString& accountsList) {
+    #ifdef DEBUG 
+    printf("PosixClient::managedAccounts\n");
+    #endif
+}
+void PosixClient::receiveFA(faDataType pFaDataType, const IBString& cxml) {
+    #ifdef DEBUG 
+    printf("PosixClient::receiveFA\n");
+    #endif
+}
 void PosixClient::historicalData(TickerId reqId, const IBString& date, double open, double high,
-									  double low, double close, int volume, int barCount, double WAP, int hasGaps) {}
-void PosixClient::scannerParameters(const IBString &xml) {}
+									  double low, double close, int volume, int barCount, double WAP, int hasGaps) {
+    #ifdef DEBUG 
+    printf("PosixClient::historicalData\n");
+    #endif
+}
+void PosixClient::scannerParameters(const IBString &xml) {
+    #ifdef DEBUG 
+    printf("PosixClient::scannerParameters\n");
+    #endif
+}
 void PosixClient::scannerData(int reqId, int rank, const ContractDetails &contractDetails,
 	   const IBString &distance, const IBString &benchmark, const IBString &projection,
-	   const IBString &legsStr) {}
-void PosixClient::scannerDataEnd(int reqId) {}
+	   const IBString &legsStr) {
+    #ifdef DEBUG 
+    printf("PosixClient::scannerData\n");
+    #endif
+}
+void PosixClient::scannerDataEnd(int reqId) {
+    #ifdef DEBUG 
+    printf("PosixClient::scannerDataEnd\n");
+    #endif
+}
 void PosixClient::realtimeBar(TickerId reqId, long time, double open, double high, double low, double close,
-								   long volume, double wap, int count) {}
-void PosixClient::fundamentalData(TickerId reqId, const IBString& data) {}
-void PosixClient::deltaNeutralValidation(int reqId, const UnderComp& underComp) {}
-void PosixClient::tickSnapshotEnd(int reqId) {}
-void PosixClient::marketDataType(TickerId reqId, int marketDataType) {}
+								   long volume, double wap, int count) {
+    #ifdef DEBUG 
+    printf("PosixClient::realtimeBar\n");
+    #endif
+}
+void PosixClient::fundamentalData(TickerId reqId, const IBString& data) {
+    #ifdef DEBUG 
+    printf("PosixClient::fundamentalData\n");
+    #endif
+}
+void PosixClient::deltaNeutralValidation(int reqId, const UnderComp& underComp) {
+    #ifdef DEBUG 
+    printf("PosixClient::deltaNeutralValidation\n");
+    #endif
+}
+void PosixClient::tickSnapshotEnd(int reqId) {
+    #ifdef DEBUG 
+    printf("PosixClient::tickSnapshotEnd\n");
+    #endif
+}
+void PosixClient::marketDataType(TickerId reqId, int marketDataType) {
+    #ifdef DEBUG 
+    printf("PosixClient::marketDataType\n");
+    #endif
+}
 
 }

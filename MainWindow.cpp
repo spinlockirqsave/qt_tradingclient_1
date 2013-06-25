@@ -43,6 +43,7 @@ void cf16tradingclient_1::connectClicked() {
 
 void cf16tradingclient_1::disconnectClicked() {
     if (client->isConnected()) {
+        endProcessMessages();
         client->disconnect();
         if (!client->isConnected()) {
             widget.label_6_connected->setText(QStringLiteral("not connected"));

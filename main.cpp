@@ -51,7 +51,8 @@ void* processMessages(void* t){
             client->processMessages();
         pthread_mutex_unlock (&mxq2);
     }
-    pthread_exit(NULL);
+    //pthread_exit(NULL);
+    return NULL;
 }
 
 void processMessages() {

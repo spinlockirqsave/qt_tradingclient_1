@@ -47,6 +47,7 @@ public:
     QAction *actionReqMktData;
     QAction *actionReqContractDetails;
     QAction *actionReqMktDataGUI;
+    QAction *actionReqMktDepth;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QListView *listView_2;
@@ -110,6 +111,8 @@ public:
         actionReqContractDetails->setObjectName(QStringLiteral("actionReqContractDetails"));
         actionReqMktDataGUI = new QAction(cf16tradingclient_1);
         actionReqMktDataGUI->setObjectName(QStringLiteral("actionReqMktDataGUI"));
+        actionReqMktDepth = new QAction(cf16tradingclient_1);
+        actionReqMktDepth->setObjectName(QStringLiteral("actionReqMktDepth"));
         centralwidget = new QWidget(cf16tradingclient_1);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
@@ -234,7 +237,7 @@ public:
         menuMarket->addAction(actionBonds);
         menuAction->addAction(actionReqMktData);
         menuAction->addAction(actionReqContractDetails);
-        menuAction->addAction(actionReqMktDataGUI);
+        menuAction->addAction(actionReqMktDepth);
 
         retranslateUi(cf16tradingclient_1);
 
@@ -259,6 +262,7 @@ public:
         actionReqMktData->setText(QApplication::translate("cf16tradingclient_1", "ReqMktData", 0));
         actionReqContractDetails->setText(QApplication::translate("cf16tradingclient_1", "ReqContractDetails", 0));
         actionReqMktDataGUI->setText(QApplication::translate("cf16tradingclient_1", "ReqMktDataGUI", 0));
+        actionReqMktDepth->setText(QApplication::translate("cf16tradingclient_1", "ReqMktDepth", 0));
         groupBox_2->setTitle(QApplication::translate("cf16tradingclient_1", "GroupBox", 0));
         groupBox->setTitle(QString());
         label_2->setText(QApplication::translate("cf16tradingclient_1", "time", 0));

@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'ReqMktDataGUI.ui'
+** Form generated from reading UI file 'ReqMktDepthGUI.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.0.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_REQMKTDATAGUI_H
-#define UI_REQMKTDATAGUI_H
+#ifndef UI_REQMKTDEPTHGUI_H
+#define UI_REQMKTDEPTHGUI_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
@@ -28,7 +28,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_reqMktDataGUI
+class Ui_reqMktDepthGUI
 {
 public:
     QGroupBox *groupBox_4;
@@ -74,20 +74,20 @@ public:
     QPushButton *requestButton;
     QPushButton *guiRequestButton;
 
-    void setupUi(QDialog *reqMktDataGUI)
+    void setupUi(QDialog *reqMktDepthGUI)
     {
-        if (reqMktDataGUI->objectName().isEmpty())
-            reqMktDataGUI->setObjectName(QStringLiteral("reqMktDataGUI"));
-        reqMktDataGUI->setEnabled(true);
-        reqMktDataGUI->resize(637, 586);
+        if (reqMktDepthGUI->objectName().isEmpty())
+            reqMktDepthGUI->setObjectName(QStringLiteral("reqMktDepthGUI"));
+        reqMktDepthGUI->setEnabled(true);
+        reqMktDepthGUI->resize(637, 586);
         QFont font;
         font.setBold(false);
         font.setItalic(false);
         font.setWeight(50);
         font.setStrikeOut(false);
-        reqMktDataGUI->setFont(font);
-        reqMktDataGUI->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 0);"));
-        groupBox_4 = new QGroupBox(reqMktDataGUI);
+        reqMktDepthGUI->setFont(font);
+        reqMktDepthGUI->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 0);"));
+        groupBox_4 = new QGroupBox(reqMktDepthGUI);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
         groupBox_4->setGeometry(QRect(9, 9, 557, 63));
         groupBox_4->setFlat(false);
@@ -109,7 +109,7 @@ public:
 
         gridLayout_4->addWidget(lineEdit_Id, 0, 1, 1, 1);
 
-        groupBox = new QGroupBox(reqMktDataGUI);
+        groupBox = new QGroupBox(reqMktDepthGUI);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setGeometry(QRect(9, 78, 619, 454));
         gridLayout = new QGridLayout(groupBox);
@@ -307,7 +307,7 @@ public:
         lineEdit_ContractId->raise();
         checkBox_Snapshot->raise();
         textEdit_dataFeed->raise();
-        layoutWidget = new QWidget(reqMktDataGUI);
+        layoutWidget = new QWidget(reqMktDepthGUI);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(9, 538, 611, 29));
         horizontalLayout = new QHBoxLayout(layoutWidget);
@@ -329,46 +329,46 @@ public:
         horizontalLayout->addWidget(guiRequestButton);
 
 
-        retranslateUi(reqMktDataGUI);
+        retranslateUi(reqMktDepthGUI);
 
-        QMetaObject::connectSlotsByName(reqMktDataGUI);
+        QMetaObject::connectSlotsByName(reqMktDepthGUI);
     } // setupUi
 
-    void retranslateUi(QDialog *reqMktDataGUI)
+    void retranslateUi(QDialog *reqMktDepthGUI)
     {
-        reqMktDataGUI->setWindowTitle(QApplication::translate("reqMktDataGUI", "reqMktData", 0));
-        groupBox_4->setTitle(QApplication::translate("reqMktDataGUI", "Market Data Request Description", 0));
-        label_Id->setText(QApplication::translate("reqMktDataGUI", "Id", 0));
-        groupBox->setTitle(QApplication::translate("reqMktDataGUI", "Contract Description", 0));
+        reqMktDepthGUI->setWindowTitle(QApplication::translate("reqMktDepthGUI", "reqMktData", 0));
+        groupBox_4->setTitle(QApplication::translate("reqMktDepthGUI", "Market Data Request Description", 0));
+        label_Id->setText(QApplication::translate("reqMktDepthGUI", "Id", 0));
+        groupBox->setTitle(QApplication::translate("reqMktDepthGUI", "Contract Description", 0));
         lineEdit_Expiry->setText(QString());
-        checkBox_Snapshot->setText(QApplication::translate("reqMktDataGUI", "CheckBox", 0));
-        label_Strike->setText(QApplication::translate("reqMktDataGUI", "Strike", 0));
+        checkBox_Snapshot->setText(QApplication::translate("reqMktDepthGUI", "CheckBox", 0));
+        label_Strike->setText(QApplication::translate("reqMktDepthGUI", "Strike", 0));
         lineEdit_Type->setText(QString());
-        label_Type->setText(QApplication::translate("reqMktDataGUI", "Type", 0));
-        label_Multiplier->setText(QApplication::translate("reqMktDataGUI", "Multiplier", 0));
-        label_IncludeExpired->setText(QApplication::translate("reqMktDataGUI", "include Expired", 0));
-        label_Currency->setText(QApplication::translate("reqMktDataGUI", "Currency", 0));
-        label_Snapshot->setText(QApplication::translate("reqMktDataGUI", "Snapshot", 0));
-        label_LocalSymbol->setText(QApplication::translate("reqMktDataGUI", "Local Symbol", 0));
+        label_Type->setText(QApplication::translate("reqMktDepthGUI", "Type", 0));
+        label_Multiplier->setText(QApplication::translate("reqMktDepthGUI", "Multiplier", 0));
+        label_IncludeExpired->setText(QApplication::translate("reqMktDepthGUI", "include Expired", 0));
+        label_Currency->setText(QApplication::translate("reqMktDepthGUI", "Currency", 0));
+        label_Snapshot->setText(QApplication::translate("reqMktDepthGUI", "Snapshot", 0));
+        label_LocalSymbol->setText(QApplication::translate("reqMktDepthGUI", "Local Symbol", 0));
         lineEdit_Symbol->setText(QString());
-        label_GenericTickTags->setText(QApplication::translate("reqMktDataGUI", "Generic Tick Tags", 0));
-        label_PrimaryExchange->setText(QApplication::translate("reqMktDataGUI", "Primary Exchange", 0));
-        label_ContractId->setText(QApplication::translate("reqMktDataGUI", "Contract Id", 0));
-        label_Right->setText(QApplication::translate("reqMktDataGUI", "Right", 0));
-        label_Expiry->setText(QApplication::translate("reqMktDataGUI", "Expiry", 0));
-        label_Symbol->setText(QApplication::translate("reqMktDataGUI", "Symbol", 0));
-        label_Exchange->setText(QApplication::translate("reqMktDataGUI", "Exchange", 0));
-        cancelButton->setText(QApplication::translate("reqMktDataGUI", "Cancel", 0));
-        requestButton->setText(QApplication::translate("reqMktDataGUI", "Request", 0));
-        guiRequestButton->setText(QApplication::translate("reqMktDataGUI", "GUI Request", 0));
+        label_GenericTickTags->setText(QApplication::translate("reqMktDepthGUI", "Generic Tick Tags", 0));
+        label_PrimaryExchange->setText(QApplication::translate("reqMktDepthGUI", "Primary Exchange", 0));
+        label_ContractId->setText(QApplication::translate("reqMktDepthGUI", "Contract Id", 0));
+        label_Right->setText(QApplication::translate("reqMktDepthGUI", "Right", 0));
+        label_Expiry->setText(QApplication::translate("reqMktDepthGUI", "Expiry", 0));
+        label_Symbol->setText(QApplication::translate("reqMktDepthGUI", "Symbol", 0));
+        label_Exchange->setText(QApplication::translate("reqMktDepthGUI", "Exchange", 0));
+        cancelButton->setText(QApplication::translate("reqMktDepthGUI", "Cancel", 0));
+        requestButton->setText(QApplication::translate("reqMktDepthGUI", "Request", 0));
+        guiRequestButton->setText(QApplication::translate("reqMktDepthGUI", "GUI Request", 0));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class reqMktDataGUI: public Ui_reqMktDataGUI {};
+    class reqMktDepthGUI: public Ui_reqMktDepthGUI {};
 } // namespace Ui
 
 QT_END_NAMESPACE
 
-#endif // UI_REQMKTDATAGUI_H
+#endif // UI_REQMKTDEPTHGUI_H

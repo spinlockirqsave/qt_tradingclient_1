@@ -11,6 +11,7 @@
 #include "GUIMarketData.h"
 #include "MainWindow.h"
 #include "ReqMktDataGUI.h"
+#include "ReqMktDepthGUI.h"
 #include <boost/shared_ptr.hpp>
 #include <pthread.h>
 #include <errno.h>
@@ -23,7 +24,7 @@ pthread_mutex_t mxq; /* mutex used for processMessages as quit flag */
 pthread_attr_t attr;
 pthread_mutex_t mxq2; /* mutex used for processMessages to avoid segmentation fault */
 int ReqMktDataGUI::totalGUIReqActive = 0;
-
+int ReqMktDepthGUI::totalGUIReqActive = 0;
 
 /* Returns 1 (true) if the mutex is unlocked, which is the
  * thread's signal to terminate. 

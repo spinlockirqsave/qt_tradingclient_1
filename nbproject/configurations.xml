@@ -27,8 +27,12 @@
         <itemPath>ReqMktDataGUI.cpp</itemPath>
         <itemPath>ReqMktDataGUI.h</itemPath>
         <itemPath>ReqMktDataGUI.ui</itemPath>
+        <itemPath>ReqMktDepthGUI.cpp</itemPath>
+        <itemPath>ReqMktDepthGUI.h</itemPath>
+        <itemPath>ReqMktDepthGUI.ui</itemPath>
         <itemPath>ui_MainWindow.h</itemPath>
         <itemPath>ui_reqMktDataGUI.h</itemPath>
+        <itemPath>ui_reqMktDepthGUI.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="SourceFiles"

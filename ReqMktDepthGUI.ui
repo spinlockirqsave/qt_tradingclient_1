@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>reqMktDataGUI</class>
- <widget class="QDialog" name="reqMktDataGUI">
+ <class>reqMktDepthGUI</class>
+ <widget class="QDialog" name="reqMktDepthGUI">
   <property name="enabled">
    <bool>true</bool>
   </property>

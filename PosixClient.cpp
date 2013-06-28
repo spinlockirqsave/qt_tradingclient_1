@@ -238,6 +238,10 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
 	m_pClient->reqMktData( tickerId, contract, genericTicks, snapshot);
     }
 
+void reqMktDepth(TickerId tickerId, const Contract &contract, int numRows){
+    
+}
+
     void PosixClient::marketDataFeedInsert(boost::shared_ptr<MarketData> marketData) {
         IB::Event event = marketData->getEvent();
         switch (event) {

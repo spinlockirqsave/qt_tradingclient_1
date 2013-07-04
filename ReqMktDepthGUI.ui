@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>637</width>
-    <height>586</height>
+    <width>645</width>
+    <height>597</height>
    </rect>
   </property>
   <property name="font">
@@ -22,7 +22,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>reqMktData</string>
+   <string>reqMktDepth</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(0, 0, 0);</string>
@@ -88,6 +88,19 @@
     <string>Contract Description</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="4" rowspan="15" colspan="2">
+     <widget class="QTextEdit" name="textEdit_dataFeed">
+      <property name="minimumSize">
+       <size>
+        <width>360</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(197, 197, 197);</string>
+      </property>
+     </widget>
+    </item>
     <item row="3" column="1" colspan="3">
      <widget class="QLineEdit" name="lineEdit_Expiry">
       <property name="styleSheet">
@@ -98,7 +111,7 @@
       </property>
      </widget>
     </item>
-    <item row="13" column="2" colspan="2">
+    <item row="14" column="2" colspan="2">
      <widget class="QCheckBox" name="checkBox_Snapshot">
       <property name="text">
        <string>CheckBox</string>
@@ -150,6 +163,13 @@
       </property>
      </widget>
     </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_Expiry">
+      <property name="text">
+       <string>Expiry</string>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_Type">
       <property name="text">
@@ -184,6 +204,13 @@
       </property>
      </widget>
     </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="label_Currency">
+      <property name="text">
+       <string>Currency</string>
+      </property>
+     </widget>
+    </item>
     <item row="12" column="1" colspan="3">
      <widget class="QLineEdit" name="lineEdit_genericTickTags">
       <property name="styleSheet">
@@ -198,31 +225,10 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="label_Currency">
-      <property name="text">
-       <string>Currency</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="0">
+    <item row="14" column="0">
      <widget class="QLabel" name="label_Snapshot">
       <property name="text">
        <string>Snapshot</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2" colspan="2">
-     <widget class="QLineEdit" name="lineEdit_ContractId">
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="1" colspan="3">
-     <widget class="QLineEdit" name="lineEdit_Currency">
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
@@ -233,13 +239,17 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="2" colspan="2">
-     <widget class="QLineEdit" name="lineEdit_Symbol">
+    <item row="0" column="2" colspan="2">
+     <widget class="QLineEdit" name="lineEdit_ContractIdt">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
-      <property name="text">
-       <string/>
+     </widget>
+    </item>
+    <item row="9" column="1" colspan="3">
+     <widget class="QLineEdit" name="lineEdit_Currency">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
@@ -257,10 +267,13 @@
       </property>
      </widget>
     </item>
-    <item row="7" column="1" colspan="3">
-     <widget class="QLineEdit" name="lineEdit_Exchange">
+    <item row="1" column="2" colspan="2">
+     <widget class="QLineEdit" name="lineEdit_Symbol">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </item>
@@ -278,17 +291,10 @@
       </property>
      </widget>
     </item>
-    <item row="11" column="1" colspan="3">
-     <widget class="QLineEdit" name="lineEdit_IncludeExpired">
+    <item row="7" column="1" colspan="3">
+     <widget class="QLineEdit" name="lineEdit_Exchange">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_Expiry">
-      <property name="text">
-       <string>Expiry</string>
       </property>
      </widget>
     </item>
@@ -299,6 +305,13 @@
       </property>
      </widget>
     </item>
+    <item row="11" column="1" colspan="3">
+     <widget class="QLineEdit" name="lineEdit_IncludeExpired">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
     <item row="7" column="0">
      <widget class="QLabel" name="label_Exchange">
       <property name="text">
@@ -306,18 +319,15 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="4" rowspan="14" colspan="2">
-     <widget class="QTextEdit" name="textEdit_dataFeed">
-      <property name="minimumSize">
-       <size>
-        <width>360</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(197, 197, 197);</string>
+    <item row="13" column="0">
+     <widget class="QLabel" name="label_MaxNumberOfRows">
+      <property name="text">
+       <string>Max Number of Rows</string>
       </property>
      </widget>
+    </item>
+    <item row="13" column="1" colspan="3">
+     <widget class="QLineEdit" name="lineEdit_MaxNumberOfRows"/>
     </item>
    </layout>
    <zorder>label_Symbol</zorder>
@@ -346,10 +356,12 @@
    <zorder>lineEdit_IncludeExpired</zorder>
    <zorder>lineEdit_genericTickTags</zorder>
    <zorder>label_ContractId</zorder>
-   <zorder>lineEdit_ContractId</zorder>
+   <zorder>lineEdit_ContractIdt</zorder>
    <zorder>checkBox_Snapshot</zorder>
    <zorder>verticalSpacer</zorder>
    <zorder>textEdit_dataFeed</zorder>
+   <zorder>lineEdit_MaxNumberOfRows</zorder>
+   <zorder>label_MaxNumberOfRows</zorder>
   </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">

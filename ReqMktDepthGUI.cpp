@@ -154,5 +154,32 @@ void ReqMktDepthGUI::displayData(int tickerId, rec_ptr record_ptr){
 }
 
 void ReqMktDepthGUI::guiRequestClicked(){
-
+    contract_ptr contract(new IB::Contract());
+    contract->symbol = widget.lineEdit_Symbol->text().toStdString();
+    contract->secType = widget.lineEdit_Type->text().toStdString();
+    contract->strike = ::atof(widget.lineEdit_Strike->text().toStdString().c_str());
+    contract->exchange = widget.lineEdit_Exchange->text().toStdString();
+    contract->primaryExchange = widget.lineEdit_PrimaryExchange->text().toStdString();
+    contract->currency = widget.lineEdit_Currency->text().toStdString();
+    contract->includeExpired = widget.lineEdit_IncludeExpired->text().toInt();
+    
+    // register for tickPrice updates
+    // map MarketData to event, tickerId and contractDescription
+    boost::shared_ptr<GUIMarketData> tickPriceGUIMktData(new GUIMarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));    
+    // connect slot to signal
+    QObject::connect(tickPriceGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickPriceGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
+    // put this connection into tickerIdGUIMarketDataMap, it will be stored in tickPriceGUIMarketDataFeed
+    client->guiMarketDataFeedInsert(tickPriceGUIMktData);
+    
+   
+    //TODO: client->reqMktData has to take all parameters of contract specified in GUI
+    // now we process only few of them
+    client->reqMktDepth(widget.lineEdit_Id->text().toInt(),contract, widget.lineEdit_MaxNumberOfRows->text().toInt());
+    guiObservedContracts.insert(std::pair<int, contract_ptr >(widget.lineEdit_Id->text().toInt(), contract));
+    
+    thisGUIReqActive=true;
+    totalGUIReqActive++;
+//    if(totalGUIReqActive==1){
+//        processMessages();
+//    }
 }

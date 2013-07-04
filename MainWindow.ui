@@ -211,6 +211,7 @@ QMenu::item:selected {border: 1px solid dark blue;}</string>
     <addaction name="actionReqMktData"/>
     <addaction name="actionReqContractDetails"/>
     <addaction name="actionReqMktDepth"/>
+    <addaction name="actionUpdatePortfolio"/>
    </widget>
    <addaction name="menuCf16_tradingclient_1"/>
    <addaction name="menuStrategies"/>
@@ -296,6 +297,11 @@ QMenu::item:selected {border: 1px solid dark blue;}</string>
   <action name="actionReqMktDepth">
    <property name="text">
     <string>ReqMktDepth</string>
+   </property>
+  </action>
+  <action name="actionUpdatePortfolio">
+   <property name="text">
+    <string>UpdatePortfolio</string>
    </property>
   </action>
  </widget>

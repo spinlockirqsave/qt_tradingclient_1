@@ -244,6 +244,14 @@ void ReqMktDataGUI::guiRequestClicked(){
     QObject::connect(tickSizeGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickSizeGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
     // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
     client->guiMarketDataFeedInsert(tickSizeGUIMktData);   
+    
+    // register for tickString updates
+    // map MarketData to event, tickerId and contractDescription
+    boost::shared_ptr<GUIMarketData> tickStringGUIMktData(new GUIMarketData(IB::TickString,widget.lineEdit_Id->text().toInt(),contract));    
+    // connect slot to signal
+    QObject::connect(tickStringGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickStringGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
+    // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
+    client->guiMarketDataFeedInsert(tickStringGUIMktData);    
    
     //TODO: client->reqMktData has to take all parameters of contract specified in GUI
     // now we process only few of them

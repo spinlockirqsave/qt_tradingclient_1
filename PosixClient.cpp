@@ -238,7 +238,7 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
 	m_pClient->reqMktData( tickerId, contract, genericTicks, snapshot);
     }
 
-void reqMktDepth(TickerId tickerId, const Contract &contract, int numRows){
+void PosixClient::reqMktDepth(TickerId tickerId, boost::shared_ptr<Contract> contract, int numRows){
     
 }
 

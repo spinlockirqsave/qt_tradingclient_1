@@ -8,7 +8,7 @@
 #ifndef _MktDataGUI_H
 #define	_MktDataGUI_H
 
-#include "ui_reqMktDataGUI.h"
+#include "ui_ReqMktDataGUI.h"
 #include "PosixClient.h"
 #include "MarketData.h"
 #include "GUIMarketData.h"

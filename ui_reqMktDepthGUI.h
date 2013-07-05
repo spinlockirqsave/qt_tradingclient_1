@@ -1,5 +1,5 @@
 /********************************************************************************
-** Form generated from reading UI file 'reqMktDepthGUI.ui'
+** Form generated from reading UI file 'ReqMktDepthGUI.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.0.1
 **
@@ -38,6 +38,7 @@ public:
     QLineEdit *lineEdit_Id;
     QGroupBox *groupBox;
     QGridLayout *gridLayout;
+    QTextEdit *textEdit_dataFeed;
     QLineEdit *lineEdit_Expiry;
     QCheckBox *checkBox_Snapshot;
     QLineEdit *lineEdit_Strike;
@@ -46,29 +47,30 @@ public:
     QLineEdit *lineEdit_PrimaryExchange;
     QLineEdit *lineEdit_Multiplier;
     QLineEdit *lineEdit_Type;
+    QLabel *label_Expiry;
     QLabel *label_Type;
     QSpacerItem *verticalSpacer;
     QLineEdit *lineEdit_Right;
     QLabel *label_Multiplier;
+    QLabel *label_Currency;
     QLineEdit *lineEdit_genericTickTags;
     QLabel *label_IncludeExpired;
-    QLabel *label_Currency;
     QLabel *label_Snapshot;
-    QLineEdit *lineEdit_ContractId;
-    QLineEdit *lineEdit_Currency;
     QLabel *label_LocalSymbol;
-    QLineEdit *lineEdit_Symbol;
+    QLineEdit *lineEdit_ContractIdt;
+    QLineEdit *lineEdit_Currency;
     QLabel *label_GenericTickTags;
     QLabel *label_PrimaryExchange;
-    QLineEdit *lineEdit_Exchange;
+    QLineEdit *lineEdit_Symbol;
     QLabel *label_ContractId;
     QLabel *label_Right;
-    QLineEdit *lineEdit_IncludeExpired;
-    QLabel *label_Expiry;
+    QLineEdit *lineEdit_Exchange;
     QLabel *label_Symbol;
+    QLineEdit *lineEdit_IncludeExpired;
     QLabel *label_Exchange;
-    QTextEdit *textEdit_dataFeed;
-    QWidget *widget;
+    QLabel *label_MaxNumberOfRows;
+    QLineEdit *lineEdit_MaxNumberOfRows;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *cancelButton;
     QPushButton *requestButton;
@@ -79,7 +81,7 @@ public:
         if (reqMktDepthGUI->objectName().isEmpty())
             reqMktDepthGUI->setObjectName(QStringLiteral("reqMktDepthGUI"));
         reqMktDepthGUI->setEnabled(true);
-        reqMktDepthGUI->resize(637, 586);
+        reqMktDepthGUI->resize(645, 597);
         QFont font;
         font.setBold(false);
         font.setItalic(false);
@@ -114,6 +116,13 @@ public:
         groupBox->setGeometry(QRect(9, 78, 619, 454));
         gridLayout = new QGridLayout(groupBox);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        textEdit_dataFeed = new QTextEdit(groupBox);
+        textEdit_dataFeed->setObjectName(QStringLiteral("textEdit_dataFeed"));
+        textEdit_dataFeed->setMinimumSize(QSize(360, 0));
+        textEdit_dataFeed->setStyleSheet(QStringLiteral("color: rgb(197, 197, 197);"));
+
+        gridLayout->addWidget(textEdit_dataFeed, 0, 4, 15, 2);
+
         lineEdit_Expiry = new QLineEdit(groupBox);
         lineEdit_Expiry->setObjectName(QStringLiteral("lineEdit_Expiry"));
         lineEdit_Expiry->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -123,7 +132,7 @@ public:
         checkBox_Snapshot = new QCheckBox(groupBox);
         checkBox_Snapshot->setObjectName(QStringLiteral("checkBox_Snapshot"));
 
-        gridLayout->addWidget(checkBox_Snapshot, 13, 2, 1, 2);
+        gridLayout->addWidget(checkBox_Snapshot, 14, 2, 1, 2);
 
         lineEdit_Strike = new QLineEdit(groupBox);
         lineEdit_Strike->setObjectName(QStringLiteral("lineEdit_Strike"));
@@ -160,6 +169,11 @@ public:
 
         gridLayout->addWidget(lineEdit_Type, 2, 2, 1, 2);
 
+        label_Expiry = new QLabel(groupBox);
+        label_Expiry->setObjectName(QStringLiteral("label_Expiry"));
+
+        gridLayout->addWidget(label_Expiry, 3, 0, 1, 1);
+
         label_Type = new QLabel(groupBox);
         label_Type->setObjectName(QStringLiteral("label_Type"));
 
@@ -180,6 +194,11 @@ public:
 
         gridLayout->addWidget(label_Multiplier, 6, 0, 1, 1);
 
+        label_Currency = new QLabel(groupBox);
+        label_Currency->setObjectName(QStringLiteral("label_Currency"));
+
+        gridLayout->addWidget(label_Currency, 9, 0, 1, 1);
+
         lineEdit_genericTickTags = new QLineEdit(groupBox);
         lineEdit_genericTickTags->setObjectName(QStringLiteral("lineEdit_genericTickTags"));
         lineEdit_genericTickTags->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -191,38 +210,27 @@ public:
 
         gridLayout->addWidget(label_IncludeExpired, 11, 0, 1, 1);
 
-        label_Currency = new QLabel(groupBox);
-        label_Currency->setObjectName(QStringLiteral("label_Currency"));
-
-        gridLayout->addWidget(label_Currency, 9, 0, 1, 1);
-
         label_Snapshot = new QLabel(groupBox);
         label_Snapshot->setObjectName(QStringLiteral("label_Snapshot"));
 
-        gridLayout->addWidget(label_Snapshot, 13, 0, 1, 1);
-
-        lineEdit_ContractId = new QLineEdit(groupBox);
-        lineEdit_ContractId->setObjectName(QStringLiteral("lineEdit_ContractId"));
-        lineEdit_ContractId->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(lineEdit_ContractId, 0, 2, 1, 2);
-
-        lineEdit_Currency = new QLineEdit(groupBox);
-        lineEdit_Currency->setObjectName(QStringLiteral("lineEdit_Currency"));
-        lineEdit_Currency->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(lineEdit_Currency, 9, 1, 1, 3);
+        gridLayout->addWidget(label_Snapshot, 14, 0, 1, 1);
 
         label_LocalSymbol = new QLabel(groupBox);
         label_LocalSymbol->setObjectName(QStringLiteral("label_LocalSymbol"));
 
         gridLayout->addWidget(label_LocalSymbol, 10, 0, 1, 1);
 
-        lineEdit_Symbol = new QLineEdit(groupBox);
-        lineEdit_Symbol->setObjectName(QStringLiteral("lineEdit_Symbol"));
-        lineEdit_Symbol->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        lineEdit_ContractIdt = new QLineEdit(groupBox);
+        lineEdit_ContractIdt->setObjectName(QStringLiteral("lineEdit_ContractIdt"));
+        lineEdit_ContractIdt->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit_Symbol, 1, 2, 1, 2);
+        gridLayout->addWidget(lineEdit_ContractIdt, 0, 2, 1, 2);
+
+        lineEdit_Currency = new QLineEdit(groupBox);
+        lineEdit_Currency->setObjectName(QStringLiteral("lineEdit_Currency"));
+        lineEdit_Currency->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(lineEdit_Currency, 9, 1, 1, 3);
 
         label_GenericTickTags = new QLabel(groupBox);
         label_GenericTickTags->setObjectName(QStringLiteral("label_GenericTickTags"));
@@ -234,11 +242,11 @@ public:
 
         gridLayout->addWidget(label_PrimaryExchange, 8, 0, 1, 3);
 
-        lineEdit_Exchange = new QLineEdit(groupBox);
-        lineEdit_Exchange->setObjectName(QStringLiteral("lineEdit_Exchange"));
-        lineEdit_Exchange->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        lineEdit_Symbol = new QLineEdit(groupBox);
+        lineEdit_Symbol->setObjectName(QStringLiteral("lineEdit_Symbol"));
+        lineEdit_Symbol->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit_Exchange, 7, 1, 1, 3);
+        gridLayout->addWidget(lineEdit_Symbol, 1, 2, 1, 2);
 
         label_ContractId = new QLabel(groupBox);
         label_ContractId->setObjectName(QStringLiteral("label_ContractId"));
@@ -250,33 +258,37 @@ public:
 
         gridLayout->addWidget(label_Right, 5, 0, 1, 1);
 
-        lineEdit_IncludeExpired = new QLineEdit(groupBox);
-        lineEdit_IncludeExpired->setObjectName(QStringLiteral("lineEdit_IncludeExpired"));
-        lineEdit_IncludeExpired->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        lineEdit_Exchange = new QLineEdit(groupBox);
+        lineEdit_Exchange->setObjectName(QStringLiteral("lineEdit_Exchange"));
+        lineEdit_Exchange->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lineEdit_IncludeExpired, 11, 1, 1, 3);
-
-        label_Expiry = new QLabel(groupBox);
-        label_Expiry->setObjectName(QStringLiteral("label_Expiry"));
-
-        gridLayout->addWidget(label_Expiry, 3, 0, 1, 1);
+        gridLayout->addWidget(lineEdit_Exchange, 7, 1, 1, 3);
 
         label_Symbol = new QLabel(groupBox);
         label_Symbol->setObjectName(QStringLiteral("label_Symbol"));
 
         gridLayout->addWidget(label_Symbol, 1, 0, 1, 1);
 
+        lineEdit_IncludeExpired = new QLineEdit(groupBox);
+        lineEdit_IncludeExpired->setObjectName(QStringLiteral("lineEdit_IncludeExpired"));
+        lineEdit_IncludeExpired->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(lineEdit_IncludeExpired, 11, 1, 1, 3);
+
         label_Exchange = new QLabel(groupBox);
         label_Exchange->setObjectName(QStringLiteral("label_Exchange"));
 
         gridLayout->addWidget(label_Exchange, 7, 0, 1, 1);
 
-        textEdit_dataFeed = new QTextEdit(groupBox);
-        textEdit_dataFeed->setObjectName(QStringLiteral("textEdit_dataFeed"));
-        textEdit_dataFeed->setMinimumSize(QSize(360, 0));
-        textEdit_dataFeed->setStyleSheet(QStringLiteral("color: rgb(197, 197, 197);"));
+        label_MaxNumberOfRows = new QLabel(groupBox);
+        label_MaxNumberOfRows->setObjectName(QStringLiteral("label_MaxNumberOfRows"));
 
-        gridLayout->addWidget(textEdit_dataFeed, 0, 4, 14, 2);
+        gridLayout->addWidget(label_MaxNumberOfRows, 13, 0, 1, 1);
+
+        lineEdit_MaxNumberOfRows = new QLineEdit(groupBox);
+        lineEdit_MaxNumberOfRows->setObjectName(QStringLiteral("lineEdit_MaxNumberOfRows"));
+
+        gridLayout->addWidget(lineEdit_MaxNumberOfRows, 13, 1, 1, 3);
 
         label_Symbol->raise();
         label_Type->raise();
@@ -304,26 +316,28 @@ public:
         lineEdit_IncludeExpired->raise();
         lineEdit_genericTickTags->raise();
         label_ContractId->raise();
-        lineEdit_ContractId->raise();
+        lineEdit_ContractIdt->raise();
         checkBox_Snapshot->raise();
         textEdit_dataFeed->raise();
-        widget = new QWidget(reqMktDepthGUI);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(9, 538, 611, 29));
-        horizontalLayout = new QHBoxLayout(widget);
+        lineEdit_MaxNumberOfRows->raise();
+        label_MaxNumberOfRows->raise();
+        layoutWidget = new QWidget(reqMktDepthGUI);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(9, 538, 611, 29));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        cancelButton = new QPushButton(widget);
+        cancelButton = new QPushButton(layoutWidget);
         cancelButton->setObjectName(QStringLiteral("cancelButton"));
 
         horizontalLayout->addWidget(cancelButton);
 
-        requestButton = new QPushButton(widget);
+        requestButton = new QPushButton(layoutWidget);
         requestButton->setObjectName(QStringLiteral("requestButton"));
 
         horizontalLayout->addWidget(requestButton);
 
-        guiRequestButton = new QPushButton(widget);
+        guiRequestButton = new QPushButton(layoutWidget);
         guiRequestButton->setObjectName(QStringLiteral("guiRequestButton"));
 
         horizontalLayout->addWidget(guiRequestButton);
@@ -344,20 +358,21 @@ public:
         checkBox_Snapshot->setText(QApplication::translate("reqMktDepthGUI", "CheckBox", 0));
         label_Strike->setText(QApplication::translate("reqMktDepthGUI", "Strike", 0));
         lineEdit_Type->setText(QString());
+        label_Expiry->setText(QApplication::translate("reqMktDepthGUI", "Expiry", 0));
         label_Type->setText(QApplication::translate("reqMktDepthGUI", "Type", 0));
         label_Multiplier->setText(QApplication::translate("reqMktDepthGUI", "Multiplier", 0));
-        label_IncludeExpired->setText(QApplication::translate("reqMktDepthGUI", "include Expired", 0));
         label_Currency->setText(QApplication::translate("reqMktDepthGUI", "Currency", 0));
+        label_IncludeExpired->setText(QApplication::translate("reqMktDepthGUI", "include Expired", 0));
         label_Snapshot->setText(QApplication::translate("reqMktDepthGUI", "Snapshot", 0));
         label_LocalSymbol->setText(QApplication::translate("reqMktDepthGUI", "Local Symbol", 0));
-        lineEdit_Symbol->setText(QString());
         label_GenericTickTags->setText(QApplication::translate("reqMktDepthGUI", "Generic Tick Tags", 0));
         label_PrimaryExchange->setText(QApplication::translate("reqMktDepthGUI", "Primary Exchange", 0));
+        lineEdit_Symbol->setText(QString());
         label_ContractId->setText(QApplication::translate("reqMktDepthGUI", "Contract Id", 0));
         label_Right->setText(QApplication::translate("reqMktDepthGUI", "Right", 0));
-        label_Expiry->setText(QApplication::translate("reqMktDepthGUI", "Expiry", 0));
         label_Symbol->setText(QApplication::translate("reqMktDepthGUI", "Symbol", 0));
         label_Exchange->setText(QApplication::translate("reqMktDepthGUI", "Exchange", 0));
+        label_MaxNumberOfRows->setText(QApplication::translate("reqMktDepthGUI", "Max Number of Rows", 0));
         cancelButton->setText(QApplication::translate("reqMktDepthGUI", "Cancel", 0));
         requestButton->setText(QApplication::translate("reqMktDepthGUI", "Request", 0));
         guiRequestButton->setText(QApplication::translate("reqMktDepthGUI", "GUI Request", 0));

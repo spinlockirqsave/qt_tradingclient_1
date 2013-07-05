@@ -174,7 +174,7 @@ void ReqMktDepthGUI::guiRequestClicked(){
    
     //TODO: client->reqMktData has to take all parameters of contract specified in GUI
     // now we process only few of them
-    client->reqMktDepth(widget.lineEdit_Id->text().toInt(),contract, widget.lineEdit_MaxNumberOfRows->text().toInt());
+    client->reqMktDepth((IB::TickerId)widget.lineEdit_Id->text().toInt(),contract, widget.lineEdit_MaxNumberOfRows->text().toInt());
     guiObservedContracts.insert(std::pair<int, contract_ptr >(widget.lineEdit_Id->text().toInt(), contract));
     
     thisGUIReqActive=true;

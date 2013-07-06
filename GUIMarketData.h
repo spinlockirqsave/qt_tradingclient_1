@@ -1,5 +1,5 @@
 /* 
- * File:   GUIGUIMarketData.h
+ * File:   GUIMarketData.h
  * Author: Piotr Gregor  postmaster@cf16.eu
  *
  * Created on June 16, 2013, 4:06 PM

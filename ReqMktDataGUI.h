@@ -1,5 +1,5 @@
 /* 
- * File:   GUI.h
+ * File:   ReqMktData.h
  * Author: Piotr Gregor  postmaster@cf16.eu
  *
  * Created on May 22, 2013, 8:36 PM

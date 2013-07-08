@@ -18,6 +18,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <EClientSocketBase.h>
+#include <EClientSocketBaseImpl.h>
 
 #if defined __INTEL_COMPILER
 # pragma warning (disable:869)
@@ -243,15 +244,15 @@ void PosixClient::reqMktDepth(TickerId tickerId, boost::shared_ptr<Contract> con
 }
 
     void PosixClient::marketDataFeedInsert(boost::shared_ptr<MarketData> marketData) {
-        IB::Event event = marketData->getEvent();
+        const int event = marketData->getEvent();
         switch (event) {
-            case IB::TickSize: 
+            case IB::TICK_SIZE: 
                 tickSizeMarketDataFeed.insert(std::pair<int, pMktDataObservable > (marketData->getTickerId(), marketData));
                 break;
-            case IB::TickPrice: 
+            case IB::TICK_PRICE: 
                 tickPriceMarketDataFeed.insert(std::pair<int, pMktDataObservable > (marketData->getTickerId(), marketData));
                 break;
-            case IB::TickString: 
+            case IB::TICK_STRING: 
                 tickStringMarketDataFeed.insert(std::pair<int, pMktDataObservable > (marketData->getTickerId(), marketData));
                 break;
             default:
@@ -260,17 +261,23 @@ void PosixClient::reqMktDepth(TickerId tickerId, boost::shared_ptr<Contract> con
     }
     
     void PosixClient::guiMarketDataFeedInsert(boost::shared_ptr<GUIMarketData> guiMarketData) {
-        IB::Event event = guiMarketData->getEvent();
+        const int event = guiMarketData->getEvent();
         switch (event) {
-            case IB::TickSize: 
+            case IB::TICK_SIZE: 
                 tickSizeGUIMarketDataFeed.insert(std::pair<int, pGUIMktData > (guiMarketData->getTickerId(), guiMarketData));
                 break;
-            case IB::TickPrice: 
+            case IB::TICK_PRICE: 
                 tickPriceGUIMarketDataFeed.insert(std::pair<int, pGUIMktData > (guiMarketData->getTickerId(), guiMarketData));
                 break;
-            case IB::TickString: 
+            case IB::TICK_STRING: 
                 tickStringGUIMarketDataFeed.insert(std::pair<int, pGUIMktData > (guiMarketData->getTickerId(), guiMarketData));
                 break;
+            case IB::MARKET_DEPTH:
+                updateMktDepthGUIMarketDataFeed.insert(std::pair<int, pGUIMktData > (guiMarketData->getTickerId(), guiMarketData));
+                break;
+            case IB::MARKET_DEPTH_L2:
+                updateMktDepthL2GUIMarketDataFeed.insert(std::pair<int, pGUIMktData > (guiMarketData->getTickerId(), guiMarketData));
+                break;                
             default:
                 break;
         }

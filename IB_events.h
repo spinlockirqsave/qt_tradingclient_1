@@ -10,11 +10,11 @@
 
 
 namespace IB{
-    enum Event {
-        TickPrice,
-        TickSize,
-        TickString
-    };
+//    enum Event {
+//        TickPrice,
+//        TickSize,
+//        TickString
+//    };
 }
 
 #endif	/* IB_EVENTS_H */

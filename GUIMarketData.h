@@ -21,7 +21,7 @@ class GUIMarketData : public QObject {
     Q_OBJECT
 public:
     GUIMarketData();
-    GUIMarketData(IB::Event processedEvent, int tickerId, contract_ptr contractDescription):
+    GUIMarketData(const int processedEvent, int tickerId, contract_ptr contractDescription):
                 processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~GUIMarketData();
     int getTickerId()const{ return tickerId; }
@@ -31,7 +31,7 @@ public:
     boost::shared_ptr<IB::Record> getRecord()const{
         return record_;
     }
-    IB::Event getEvent()const{
+    int getEvent()const{
         return processedEvent;
     }    
     void notifyObservers(){
@@ -51,7 +51,7 @@ private:
     
     // this GUIMarketData object can handle these events
     // any observer can subscribe to one of those events
-    IB::Event processedEvent;
+    const int processedEvent;
     int tickerId;
     contract_ptr contractDescription;
     

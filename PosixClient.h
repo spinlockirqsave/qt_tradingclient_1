@@ -138,7 +138,9 @@ private:
 
         tickerIdGUIMarketDataMap tickSizeGUIMarketDataFeed;
         tickerIdGUIMarketDataMap tickPriceGUIMarketDataFeed;
-        tickerIdGUIMarketDataMap tickStringGUIMarketDataFeed;        
+        tickerIdGUIMarketDataMap tickStringGUIMarketDataFeed;
+        tickerIdGUIMarketDataMap updateMktDepthGUIMarketDataFeed;
+        tickerIdGUIMarketDataMap updateMktDepthL2GUIMarketDataFeed;
 };
 
 }

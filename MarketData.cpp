@@ -7,12 +7,6 @@
 
 #include "MarketData.h"
 
-MarketData::MarketData() {
-}
-
-MarketData::MarketData(const MarketData& orig) {
-}
-
 MarketData::~MarketData() {
 }
 

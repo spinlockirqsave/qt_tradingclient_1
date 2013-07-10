@@ -60,7 +60,7 @@ typedef boost::function<void (int tickerId, boost::shared_ptr<IB::Record> record
 // you can subscribe many MarketDataObservers to one and the same MarketData instance
 class MarketDataObserver : public QuantLib::Observer{
 public:
-    MarketDataObserver(pMktDataObservable obs, const int observedEvent, f_action_ptr ptr)
+    MarketDataObserver(pMktDataObservable obs, IB::Event observedEvent, f_action_ptr ptr)
         : observable(obs), observedEvent_(observedEvent), f_ptr(ptr){
       this->registerWith(observable);
     }
@@ -69,7 +69,7 @@ public:
         observable(observer.observable){ // faction_ptr is not copied!
     }
     
-    int getEvent()const{
+    IB::Event getEvent()const{
         return observedEvent_;
     }
         
@@ -94,7 +94,7 @@ public:
 private:
     pMktDataObservable observable;
     f_action_ptr f_ptr;
-    const int observedEvent_; // the single event in which observer is interested
+    IB::Event observedEvent_; // the single event in which observer is interested
 };
 
 typedef boost::shared_ptr<MarketDataObserver> pMktDataObserver;

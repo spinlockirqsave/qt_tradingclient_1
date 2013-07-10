@@ -123,6 +123,19 @@ void ReqMktDepthGUI::myTickStringGUIUpdate(int tickerId, rec_ptr record_ptr){
         #endif
     }
 }
+
+void ReqMktDepthGUI::myMarketDepthGUIUpdate(int tickerId, rec_ptr record_ptr){
+    QString qs=QString("MarketDepthGUIUp! Id:%1").arg(tickerId);
+    qs+=QString(" tickType:%1").arg(record_ptr->tickType_);
+    widget.textEdit_dataFeed->append(qs);
+}
+
+void ReqMktDepthGUI::myMarketDepthL2GUIUpdate(int tickerId, rec_ptr record_ptr){
+    QString qs=QString("MarketDepthL2GUIUp! Id:%1").arg(tickerId);
+    qs+=QString(" tickType:%1").arg(record_ptr->tickType_);
+    widget.textEdit_dataFeed->append(qs);
+}
+
 //public slots
 void ReqMktDepthGUI::requestClicked(){
     
@@ -164,15 +177,22 @@ void ReqMktDepthGUI::guiRequestClicked(){
     contract->currency = widget.lineEdit_Currency->text().toStdString();
     contract->includeExpired = widget.lineEdit_IncludeExpired->text().toInt();
     
-    // register for tickPrice updates
+    // register for MarketDepth updates
     // map MarketData to event, tickerId and contractDescription
-    boost::shared_ptr<GUIMarketData> tickPriceGUIMktData(new GUIMarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));    
+    boost::shared_ptr<GUIMarketData> mktDepthGUIMktData(new GUIMarketData(IB::MarketDepth,widget.lineEdit_Id->text().toInt(),contract));    
     // connect slot to signal
-    QObject::connect(tickPriceGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickPriceGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
+    QObject::connect(mktDepthGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myMarketDepthGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
     // put this connection into tickerIdGUIMarketDataMap, it will be stored in tickPriceGUIMarketDataFeed
-    client->guiMarketDataFeedInsert(tickPriceGUIMktData);
+    client->guiMarketDataFeedInsert(mktDepthGUIMktData);
     
-   
+    // also register for MarketDepthL2 updates
+    // map MarketData to event, tickerId and contractDescription
+    boost::shared_ptr<GUIMarketData> mktDepthl2GUIMktData(new GUIMarketData(IB::MarketDepthL2,widget.lineEdit_Id->text().toInt(),contract));    
+    // connect slot to signal
+    QObject::connect(mktDepthl2GUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myMarketDepthL2GUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
+    // put this connection into tickerIdGUIMarketDataMap, it will be stored in tickPriceGUIMarketDataFeed
+    client->guiMarketDataFeedInsert(mktDepthl2GUIMktData);
+    
     //TODO: client->reqMktData has to take all parameters of contract specified in GUI
     // now we process only few of them
     client->reqMktDepth((IB::TickerId)widget.lineEdit_Id->text().toInt(),contract, widget.lineEdit_MaxNumberOfRows->text().toInt());

@@ -36,6 +36,8 @@ public slots:
     void myTickSizeGUIUpdate(int tickerId, rec_ptr record_ptr);
     void myTickPriceGUIUpdate(int tickerId, rec_ptr record_ptr);
     void myTickStringGUIUpdate(int tickerId, rec_ptr record_ptr);
+    void myMarketDepthGUIUpdate(int tickerId, rec_ptr recor_ptr);
+    void myMarketDepthL2GUIUpdate(int tickerId, rec_ptr recor_ptr);
 Q_SIGNALS:
     void newMktDepth(int tickerId, rec_ptr record_ptr);
 

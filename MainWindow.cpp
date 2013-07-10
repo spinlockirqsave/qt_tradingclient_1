@@ -11,7 +11,7 @@
 #include "ReqMktDataGUI.h"
     
 cf16tradingclient_1::cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> client_ptr): 
-host(""), port(7496), clientId(0), client(client_ptr){
+host(""), port(7496), clientId(1), client(client_ptr){
     widget.setupUi(this);
         QObject::connect(widget.connectButton, SIGNAL(clicked()), this, SLOT(connectClicked()));
         QObject::connect(widget.disconnectButton, SIGNAL(clicked()), this, SLOT(disconnectClicked()));

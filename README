@@ -80,7 +80,7 @@ onReceive():
  1. Any callback (except connectionClosed()) will be fired in state connected,
     even if we are going to be disconnected.
  2. Before connectionClosed() is fired we will get a "SOCKET_EXCEPTION"
-    callback still in state conneted.
+    callback still in state connected.
 
 
 all other req*() functions:

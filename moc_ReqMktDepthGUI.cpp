@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ReqMktDepthGUI_t {
-    QByteArrayData data[13];
-    char stringdata[179];
+    QByteArrayData data[16];
+    char stringdata[237];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,13 +41,18 @@ QT_MOC_LITERAL(8, 85, 17),
 QT_MOC_LITERAL(9, 103, 11),
 QT_MOC_LITERAL(10, 115, 19),
 QT_MOC_LITERAL(11, 135, 20),
-QT_MOC_LITERAL(12, 156, 21)
+QT_MOC_LITERAL(12, 156, 21),
+QT_MOC_LITERAL(13, 178, 22),
+QT_MOC_LITERAL(14, 201, 9),
+QT_MOC_LITERAL(15, 211, 24)
     },
     "ReqMktDepthGUI\0newMktDepth\0\0tickerId\0"
     "rec_ptr\0record_ptr\0requestClicked\0"
     "cancelClicked\0guiRequestClicked\0"
     "displayData\0myTickSizeGUIUpdate\0"
     "myTickPriceGUIUpdate\0myTickStringGUIUpdate\0"
+    "myMarketDepthGUIUpdate\0recor_ptr\0"
+    "myMarketDepthL2GUIUpdate\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -57,7 +62,7 @@ static const uint qt_meta_data_ReqMktDepthGUI[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -65,16 +70,18 @@ static const uint qt_meta_data_ReqMktDepthGUI[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   54,    2, 0x05,
+       1,    2,   64,    2, 0x05,
 
  // slots: name, argc, parameters, tag, flags
-       6,    0,   59,    2, 0x0a,
-       7,    0,   60,    2, 0x0a,
-       8,    0,   61,    2, 0x0a,
-       9,    2,   62,    2, 0x0a,
-      10,    2,   67,    2, 0x0a,
-      11,    2,   72,    2, 0x0a,
-      12,    2,   77,    2, 0x0a,
+       6,    0,   69,    2, 0x0a,
+       7,    0,   70,    2, 0x0a,
+       8,    0,   71,    2, 0x0a,
+       9,    2,   72,    2, 0x0a,
+      10,    2,   77,    2, 0x0a,
+      11,    2,   82,    2, 0x0a,
+      12,    2,   87,    2, 0x0a,
+      13,    2,   92,    2, 0x0a,
+      15,    2,   97,    2, 0x0a,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, 0x80000000 | 4,    3,    5,
@@ -87,6 +94,8 @@ static const uint qt_meta_data_ReqMktDepthGUI[] = {
     QMetaType::Void, QMetaType::Int, 0x80000000 | 4,    3,    5,
     QMetaType::Void, QMetaType::Int, 0x80000000 | 4,    3,    5,
     QMetaType::Void, QMetaType::Int, 0x80000000 | 4,    3,    5,
+    QMetaType::Void, QMetaType::Int, 0x80000000 | 4,    3,   14,
+    QMetaType::Void, QMetaType::Int, 0x80000000 | 4,    3,   14,
 
        0        // eod
 };
@@ -104,6 +113,8 @@ void ReqMktDepthGUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 5: _t->myTickSizeGUIUpdate((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< rec_ptr(*)>(_a[2]))); break;
         case 6: _t->myTickPriceGUIUpdate((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< rec_ptr(*)>(_a[2]))); break;
         case 7: _t->myTickStringGUIUpdate((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< rec_ptr(*)>(_a[2]))); break;
+        case 8: _t->myMarketDepthGUIUpdate((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< rec_ptr(*)>(_a[2]))); break;
+        case 9: _t->myMarketDepthL2GUIUpdate((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< rec_ptr(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -143,13 +154,13 @@ int ReqMktDepthGUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 10)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 10;
     }
     return _id;
 }

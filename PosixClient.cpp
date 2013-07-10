@@ -243,7 +243,7 @@ void PosixClient::reqMktDepth(TickerId tickerId, boost::shared_ptr<Contract> con
 }
 
     void PosixClient::marketDataFeedInsert(boost::shared_ptr<MarketData> marketData) {
-        const int event = marketData->getEvent();
+        IB::Event event = marketData->getEvent();
         switch (event) {
             case IB::TickSize: 
                 tickSizeMarketDataFeed.insert(std::pair<int, pMktDataObservable > (marketData->getTickerId(), marketData));
@@ -260,7 +260,7 @@ void PosixClient::reqMktDepth(TickerId tickerId, boost::shared_ptr<Contract> con
     }
     
     void PosixClient::guiMarketDataFeedInsert(boost::shared_ptr<GUIMarketData> guiMarketData) {
-        const int event = guiMarketData->getEvent();
+        IB::Event event = guiMarketData->getEvent();
         switch (event) {
             case IB::TickSize: 
                 tickSizeGUIMarketDataFeed.insert(std::pair<int, pGUIMktData > (guiMarketData->getTickerId(), guiMarketData));

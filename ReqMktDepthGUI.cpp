@@ -10,7 +10,7 @@
 #include <QtWidgets/QMessageBox>
 #include <typeinfo>
 #include <ql/patterns/observable.hpp>
-#include <EClientSocketBaseImpl.h>
+
     
 ReqMktDepthGUI::ReqMktDepthGUI(boost::shared_ptr<IB::PosixClient> client_ptr):client(client_ptr),thisGUIReqActive(false){
     widget.setupUi(this);
@@ -166,7 +166,7 @@ void ReqMktDepthGUI::guiRequestClicked(){
     
     // register for tickPrice updates
     // map MarketData to event, tickerId and contractDescription
-    boost::shared_ptr<GUIMarketData> tickPriceGUIMktData(new GUIMarketData(IB::TICK_PRICE,widget.lineEdit_Id->text().toInt(),contract));    
+    boost::shared_ptr<GUIMarketData> tickPriceGUIMktData(new GUIMarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));    
     // connect slot to signal
     QObject::connect(tickPriceGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickPriceGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
     // put this connection into tickerIdGUIMarketDataMap, it will be stored in tickPriceGUIMarketDataFeed

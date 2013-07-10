@@ -15,7 +15,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
 #include <boost/foreach.hpp>
-
+#include "IB_events.h"
 
 void processMessages();
 void endProcessMessages();

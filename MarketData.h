@@ -4,6 +4,7 @@
  *
  * Created on May 26, 2013, 7:06 PM
  */
+#include "IB_events.h"
 
 #ifndef MARKETDATA_H
 #define	MARKETDATA_H
@@ -11,7 +12,6 @@
 #include <ql/patterns/observable.hpp>
 #include "Contract.h"
 #include <boost/function.hpp>
-#include "IB_events.h"
 #include <list>
 
 typedef boost::shared_ptr<IB::Record> rec_ptr;
@@ -29,7 +29,7 @@ typedef boost::shared_ptr<IB::TickStringRecord>  tickStringRec_ptr;
 class MarketData : public QuantLib::Observable {
 public:
     MarketData();
-    MarketData(const int processedEvent, int tickerId, IB::Contract contractDescription):
+    MarketData(IB::Event processedEvent, int tickerId, IB::Contract contractDescription):
     processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~MarketData();
     int getTickerId()const{ return tickerId; }
@@ -39,7 +39,7 @@ public:
     boost::shared_ptr<IB::Record> getRecord()const{
         return record_;
     }
-    int getEvent()const{
+    IB::Event getEvent()const{
         return processedEvent;
     }    
 private:
@@ -47,7 +47,7 @@ private:
     boost::shared_ptr<IB::Record> record_;
     // this MarketData object can handle these events
     // any observer can subscribe to one of those events
-    const int processedEvent;
+    IB::Event processedEvent;
     int tickerId;
     IB::Contract contractDescription;
 };

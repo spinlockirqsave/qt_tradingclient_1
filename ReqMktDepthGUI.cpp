@@ -125,14 +125,18 @@ void ReqMktDepthGUI::myTickStringGUIUpdate(int tickerId, rec_ptr record_ptr){
 }
 
 void ReqMktDepthGUI::myMarketDepthGUIUpdate(int tickerId, rec_ptr record_ptr){
+    #ifdef DEBUG 
+        printf( "myMarketDepthGUIUpdate!\n");
+    #endif
     QString qs=QString("MarketDepthGUIUp! Id:%1").arg(tickerId);
-    qs+=QString(" tickType:%1").arg(record_ptr->tickType_);
     widget.textEdit_dataFeed->append(qs);
 }
 
 void ReqMktDepthGUI::myMarketDepthL2GUIUpdate(int tickerId, rec_ptr record_ptr){
+    #ifdef DEBUG 
+        printf( "myMarketDepthL2GUIUpdate!\n");
+    #endif    
     QString qs=QString("MarketDepthL2GUIUp! Id:%1").arg(tickerId);
-    qs+=QString(" tickType:%1").arg(record_ptr->tickType_);
     widget.textEdit_dataFeed->append(qs);
 }
 

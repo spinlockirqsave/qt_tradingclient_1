@@ -16,6 +16,7 @@ host(""), port(7496), clientId(1), client(client_ptr){
         QObject::connect(widget.connectButton, SIGNAL(clicked()), this, SLOT(connectClicked()));
         QObject::connect(widget.disconnectButton, SIGNAL(clicked()), this, SLOT(disconnectClicked()));
         QObject::connect(widget.actionReqMktData, SIGNAL(triggered()), this, SLOT(actionReqMktDataClicked()));
+        QObject::connect(widget.actionReqMktDepth, SIGNAL(triggered()), this, SLOT(actionReqMktDepthClicked()));
 }
 
 cf16tradingclient_1::~cf16tradingclient_1() {
@@ -56,5 +57,10 @@ void cf16tradingclient_1::actionReqMktDataClicked(){
     //reqMDGUI_ptr->show();
     ptr=new ReqMktDataGUI(client);
     ptr->show();
+}
+
+void cf16tradingclient_1::actionReqMktDepthClicked(){
+    ptr2=new ReqMktDepthGUI(client);
+    ptr2->show();
 }
 

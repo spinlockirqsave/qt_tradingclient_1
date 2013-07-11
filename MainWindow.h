@@ -13,6 +13,7 @@
 #include <boost/shared_ptr.hpp>
 #include "PosixClient.h"
 #include "ReqMktDataGUI.h"
+#include "ReqMktDepthGUI.h"
 
 class cf16tradingclient_1 : public QMainWindow {
     Q_OBJECT
@@ -23,6 +24,7 @@ public slots:
     void connectClicked();
     void disconnectClicked();
     void actionReqMktDataClicked();
+    void actionReqMktDepthClicked();
 private:
     Ui::cf16tradingclient_1 widget;
     boost::shared_ptr<IB::PosixClient> client;
@@ -31,6 +33,7 @@ private:
     int clientId;
     boost::shared_ptr<ReqMktDataGUI> reqMDGUI_ptr;
     ReqMktDataGUI* ptr;
+    ReqMktDepthGUI* ptr2;
 };
 
 

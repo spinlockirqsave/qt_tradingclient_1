@@ -128,16 +128,39 @@ void ReqMktDepthGUI::myMarketDepthGUIUpdate(int tickerId, rec_ptr record_ptr){
     #ifdef DEBUG 
         printf( "myMarketDepthGUIUpdate!\n");
     #endif
-    QString qs=QString("MarketDepthGUIUp! Id:%1").arg(tickerId);
-    widget.textEdit_dataFeed->append(qs);
+
+    try{
+        mktDepthRec_ptr mktDepthRecord_ptr(boost::dynamic_pointer_cast<IB::MktDepthRecord>(record_ptr));
+    #ifdef DEBUG 
+        printf( "myMarketDepthGUIUpdate! Id: %d, size: %d, tickType: %d\n", tickerId, mktDepthRecord_ptr->size_, mktDepthRecord_ptr->tickType_);
+    #endif
+        QString qs=QString("MarketDepthGUIUp! Id:%1").arg(tickerId);
+        widget.textEdit_dataFeed->append(qs);
+        //widget.textEdit_dataFeed->append("myTickSizeGUIUpdate something...");
+    }catch(std::bad_cast& e){
+        #ifdef DEBUG 
+            printf( "mymarketDepthGUIUpdate: badCast for tickerId: %d\n",tickerId);
+        #endif
+    }        
 }
 
 void ReqMktDepthGUI::myMarketDepthL2GUIUpdate(int tickerId, rec_ptr record_ptr){
     #ifdef DEBUG 
         printf( "myMarketDepthL2GUIUpdate!\n");
     #endif    
-    QString qs=QString("MarketDepthL2GUIUp! Id:%1").arg(tickerId);
-    widget.textEdit_dataFeed->append(qs);
+    try{
+        mktDepthL2Rec_ptr mktDepthL2Record_ptr(boost::dynamic_pointer_cast<IB::MktDepthL2Record>(record_ptr));
+    #ifdef DEBUG 
+        printf( "myMarketDepthL2GUIUpdate! Id: %d, size: %d, tickType: %d\n", tickerId, mktDepthL2Record_ptr->size_, mktDepthL2Record_ptr->tickType_);
+    #endif
+        QString qs=QString("MarketDepthL2GUIUp! Id:%1").arg(tickerId);
+        widget.textEdit_dataFeed->append(qs);
+        //widget.textEdit_dataFeed->append("myTickSizeGUIUpdate something...");
+    }catch(std::bad_cast& e){
+        #ifdef DEBUG 
+            printf( "mymarketDepthL2GUIUpdate: badCast for tickerId: %d\n",tickerId);
+        #endif
+    }
 }
 
 //public slots

@@ -22,9 +22,11 @@ class GUIMarketData : public QObject {
 public:
     GUIMarketData();
     GUIMarketData(IB::Event processedEvent, int tickerId, contract_ptr contractDescription):
-                processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
+                processedEvent_(processedEvent), tickerId_(tickerId), contractDescription_(contractDescription) {}
     virtual ~GUIMarketData();
-    int getTickerId()const{ return tickerId; }
+    int getTickerId()const{
+        return tickerId_;
+    }
     void putRecord(boost::shared_ptr<IB::Record> record){
         record_=record;
     }
@@ -32,15 +34,15 @@ public:
         return record_;
     }
     IB::Event getEvent()const{
-        return processedEvent;
+        return processedEvent_;
     }    
     void notifyObservers(){
-        emit newRecord(tickerId, record_);
+        emit newRecord(tickerId_, record_);
     }
     void saveRecord(void){
         // new rec_ptr is created inside vector and pointer owned by record_
         // is copied into it
-        data.push_back(record_);
+        data_.push_back(record_);
     }
     signals:
     void newRecord(int tickerId, rec_ptr record);
@@ -51,13 +53,13 @@ private:
     
     // this GUIMarketData object can handle these events
     // any observer can subscribe to one of those events
-    IB::Event processedEvent;
-    int tickerId;
-    contract_ptr contractDescription;
+    IB::Event processedEvent_;
+    int tickerId_;
+    contract_ptr contractDescription_;
     
     // vector of shared pointers ensures that the allocated object inside of
     // shared_ptr is safely transferred into the vector (ref counting mechanism asserts this)
-    std::vector<rec_ptr> data;
+    std::vector<rec_ptr> data_;
 };
 
 typedef boost::shared_ptr<GUIMarketData> pGUIMktData;

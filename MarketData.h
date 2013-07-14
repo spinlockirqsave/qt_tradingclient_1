@@ -18,6 +18,8 @@ typedef boost::shared_ptr<IB::Record> rec_ptr;
 typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;
 typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
 typedef boost::shared_ptr<IB::TickStringRecord>  tickStringRec_ptr;
+typedef boost::shared_ptr<IB::MktDepthRecord>  mktDepthRec_ptr;
+typedef boost::shared_ptr<IB::MktDepthL2Record>  mktDepthL2Rec_ptr;
 
 // This is a class which allows non GUI objects to subscribe
 // to market data being returned from tickSize, tickPrice, tickString

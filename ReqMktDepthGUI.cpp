@@ -139,7 +139,7 @@ void ReqMktDepthGUI::myMarketDepthGUIUpdate(int tickerId, rec_ptr record_ptr){
         //widget.textEdit_dataFeed->append("myTickSizeGUIUpdate something...");
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
-            printf( "mymarketDepthGUIUpdate: badCast for tickerId: %d\n",tickerId);
+            printf( "myMarketDepthGUIUpdate: badCast for tickerId: %d\n",tickerId);
         #endif
     }        
 }
@@ -158,7 +158,7 @@ void ReqMktDepthGUI::myMarketDepthL2GUIUpdate(int tickerId, rec_ptr record_ptr){
         //widget.textEdit_dataFeed->append("myTickSizeGUIUpdate something...");
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
-            printf( "mymarketDepthL2GUIUpdate: badCast for tickerId: %d\n",tickerId);
+            printf( "myMarketDepthL2GUIUpdate: badCast for tickerId: %d\n",tickerId);
         #endif
     }
 }

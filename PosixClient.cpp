@@ -519,12 +519,8 @@ void PosixClient::updateMktDepth(TickerId id, int position, int operation, int s
     #endif
     tickerIdGUIMarketDataMap::iterator it=updateMktDepthGUIMarketDataFeed.find(id);
         if(it!=updateMktDepthGUIMarketDataFeed.end()){
-            //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("PosixClient: putRecord \n");
             ((*it).second)->putRecord(rec_ptr(new MktDepthRecord(position,operation,side,price,size)));
-            //printf("PosixClient: notify \n");
             ((*it).second)->notifyObservers();
-            //printf("PosixClient: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
 }
@@ -535,12 +531,8 @@ void PosixClient::updateMktDepthL2(TickerId id, int position, IBString marketMak
     #endif
     tickerIdGUIMarketDataMap::iterator it=updateMktDepthL2GUIMarketDataFeed.find(id);
         if(it!=updateMktDepthL2GUIMarketDataFeed.end()){
-            //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("PosixClient: putRecord \n");
             ((*it).second)->putRecord(rec_ptr(new MktDepthL2Record(position,marketMaker,operation,side,price,size)));
-            //printf("PosixClient: notify \n");
             ((*it).second)->notifyObservers();
-            //printf("PosixClient: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
 }

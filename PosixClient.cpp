@@ -376,23 +376,15 @@ void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
 #endif
     tickerIdMarketDataMap::iterator it=tickSizeMarketDataFeed.find(tickerId);
         if(it!=tickSizeMarketDataFeed.end()){
-            //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("PosixClient::tickSize: putRecord \n");
             ((*it).second)->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
-            //printf("PosixClient::tickSize: notify \n");
             ((*it).second)->notifyObservers();
-            //printf("PosixClient::tickSize: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
     
     tickerIdGUIMarketDataMap::iterator it2=tickSizeGUIMarketDataFeed.find(tickerId);
         if(it2!=tickSizeGUIMarketDataFeed.end()){
-            //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("PosixClient: putRecord to GUIMarketData object \n");
             (*it2).second->putRecord(tickSizeRec_ptr(new TickSizeRecord(field,size)));
-            //printf("PosixClient: GUIMarketData->notifyObservers \n");
             (*it2).second->notifyObservers();
-            //printf("PosixClient: GUIMarketData notifyOK \n");
             //TODO: start thread to store incoming data in repository
             (*it2).second->saveRecord();
         }
@@ -415,23 +407,16 @@ void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& 
 #endif
     tickerIdMarketDataMap::iterator it=tickStringMarketDataFeed.find(tickerId);
         if(it!=tickStringMarketDataFeed.end()){
-            //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("PosixClient: putRecord \n");
             ((*it).second)->putRecord(tickStringRec_ptr(new TickStringRecord(field,value)));
-            //printf("PosixClient: notify \n");
             ((*it).second)->notifyObservers();
-            //printf("PosixClient: notifyOK \n");
             //TODO: start thread to store incoming data in repository
         }
     
     tickerIdGUIMarketDataMap::iterator it2=tickStringGUIMarketDataFeed.find(tickerId);
         if(it2!=tickStringGUIMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("PosixClient: putRecord \n");
             (*it2).second->putRecord(tickStringRec_ptr(new TickStringRecord(field,value)));
-            //printf("PosixClient: notify \n");
             (*it2).second->notifyObservers();
-            //printf("PosixClient: notifyOK \n");
             //TODO: start thread to store incoming data in repository
             (*it2).second->saveRecord();
         }

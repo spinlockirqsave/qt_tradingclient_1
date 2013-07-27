@@ -28,6 +28,7 @@ QtCore                        libpthread-2.15.so
 QtGui
 QtOpenGL
 
+
 Installation
 ------------
 
@@ -40,8 +41,19 @@ Repository layout
 
 
 
+GUI
+---
+
+GUI is written with Qt 5.0. Any GUI object who want to register its callback
+to be triggered from EClientSocketBase::processMsg() has to do appropriate 
+call to PosixClient and subscribe for notifications via GUIMarketData class. 
+This class inherits from QObject so call from message processing POSIX 
+thread can be 'connected' to object slot. It is also possible to use ordinary 
+MarketData class to subscribe for updates if there is no need to update GUI.
 
 
+IB C++ API
+----------
 
 Changes of original IB API included by use of Ruediger Meier's version of API
 --------------------------

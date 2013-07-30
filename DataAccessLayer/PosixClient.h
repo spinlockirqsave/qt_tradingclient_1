@@ -12,8 +12,8 @@
 #include <memory>
 #include <stdio.h> //printf()
 #include <map>
-#include "MarketData.h"
-#include "GUIMarketData.h"
+#include <DataAccessLayer/MarketData.h>
+#include <GUI/GUIMarketData.h>
 
 namespace IB {
 

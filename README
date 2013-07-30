@@ -52,6 +52,7 @@ thread can be 'connected' to object slot. It is also possible to use ordinary
 MarketData class to subscribe for updates if there is no need to update GUI.
 
 
+
 IB C++ API
 ----------
 

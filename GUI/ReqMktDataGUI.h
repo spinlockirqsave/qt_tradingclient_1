@@ -1,32 +1,32 @@
 /* 
- * File:   GUI.h
+ * File:   ReqMktData.h
  * Author: Piotr Gregor  postmaster@cf16.eu
  *
- * Created on June 28, 2013, 6:57 PM
+ * Created on May 22, 2013, 8:36 PM
  */
 
-#ifndef _MktDepthGUI_H
-#define	_MktDepthGUI_H
+#ifndef _MktDataGUI_H
+#define	_MktDataGUI_H
 
-#include "ui_reqMktDepthGUI.h"
-#include "PosixClient.h"
-#include "MarketData.h"
-#include "GUIMarketData.h"
+#include "ui_ReqMktDataGUI.h"
+#include <DataAccessLayer/PosixClient.h>
+#include <DataAccessLayer/MarketData.h>
+#include <GUI/GUIMarketData.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
 #include <boost/foreach.hpp>
-#include "IB_events.h"
+
 
 void processMessages();
 void endProcessMessages();
 void processMessages2();
 void processMessages3();
 
-class ReqMktDepthGUI : public QDialog {
+class ReqMktDataGUI : public QDialog {
     Q_OBJECT
 public:
-    ReqMktDepthGUI(boost::shared_ptr<IB::PosixClient> client_ptr);
-    virtual ~ReqMktDepthGUI();
+    ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr);
+    virtual ~ReqMktDataGUI();
     static int totalGUIReqActive;
 public slots:
     void requestClicked();    
@@ -36,13 +36,11 @@ public slots:
     void myTickSizeGUIUpdate(int tickerId, rec_ptr record_ptr);
     void myTickPriceGUIUpdate(int tickerId, rec_ptr record_ptr);
     void myTickStringGUIUpdate(int tickerId, rec_ptr record_ptr);
-    void myMarketDepthGUIUpdate(int tickerId, rec_ptr recor_ptr);
-    void myMarketDepthL2GUIUpdate(int tickerId, rec_ptr recor_ptr);
 Q_SIGNALS:
-    void newMktDepth(int tickerId, rec_ptr record_ptr);
+    void newMktData(int tickerId, rec_ptr record_ptr);
 
 private:
-    Ui::reqMktDepthGUI widget;
+    Ui::reqMktDataGUI widget;
     boost::shared_ptr<IB::PosixClient> client;
     
     std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;

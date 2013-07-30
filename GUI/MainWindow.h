@@ -11,9 +11,9 @@
 
 #include "ui_MainWindow.h"
 #include <boost/shared_ptr.hpp>
-#include "PosixClient.h"
-#include "ReqMktDataGUI.h"
-#include "ReqMktDepthGUI.h"
+#include <DataAccessLayer/PosixClient.h>
+#include <GUI/ReqMktDataGUI.h>
+#include <GUI/ReqMktDepthGUI.h>
 
 class cf16tradingclient_1 : public QMainWindow {
     Q_OBJECT

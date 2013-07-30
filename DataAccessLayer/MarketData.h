@@ -4,7 +4,7 @@
  *
  * Created on May 26, 2013, 7:06 PM
  */
-#include "IB_events.h"
+#include <IBAdditions/IB_events.h>
 
 #ifndef MARKETDATA_H
 #define	MARKETDATA_H

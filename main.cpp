@@ -4,14 +4,14 @@
  *
  * Created on May 22, 2013, 5:59 PM
  */
-#include "PosixClient.h"
+#include <DataAccessLayer/PosixClient.h>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
-#include "ProcessMsgClass.h"
-#include "GUIMarketData.h"
-#include "MainWindow.h"
-#include "ReqMktDataGUI.h"
-#include "ReqMktDepthGUI.h"
+#include <DataAccessLayer/ProcessMsgClass.h>
+#include <GUI/GUIMarketData.h>
+#include <GUI/MainWindow.h>
+#include <GUI/ReqMktDataGUI.h>
+#include <GUI/ReqMktDepthGUI.h>
 #include <boost/shared_ptr.hpp>
 #include <pthread.h>
 #include <errno.h>
@@ -68,7 +68,7 @@ void processMessages() {
         /* Initialize and set thread detached attribute */
         pthread_attr_init(&attr);
         pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-        printf("global::processMessages: creating thread !!!!!!!!!!!!!!!!\n");
+        printf("global::processMessages: creating thread !\n");
         rc = pthread_create(&thread[0], &attr, ::processMessages, &mxq);
         if (rc) {
             printf("ERROR; return code from pthread_create() is %d\n", rc);
@@ -88,7 +88,7 @@ void endProcessMessages(){
 //    pthread_attr_destroy(&attr);
 //    pthread_mutex_destroy(&mxq);
 //    pthread_mutex_destroy(&mxq2);
-    printf("global::endProcessMessages!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    printf("global::endProcessMessages!\n");
 }
 
 void processMessages3(){

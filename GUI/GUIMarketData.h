@@ -9,7 +9,7 @@
 #define	GUIMARKETDATA_H
 
 #include <QtCore/QObject>
-#include "MarketData.h"
+#include <DataAccessLayer/MarketData.h>
 
 typedef boost::shared_ptr<IB::Record> rec_ptr;
 typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;

@@ -5,43 +5,52 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f2" displayName="Data Access Layer" projectFiles="true">
-        <itemPath>GUIMarketData.h</itemPath>
-        <itemPath>MarketData.h</itemPath>
-        <itemPath>MessageProcessor.h</itemPath>
-        <itemPath>PosixClient.h</itemPath>
-        <itemPath>ProcessMsgClass.h</itemPath>
+        <logicalFolder name="DataAccessLayer"
+                       displayName="DataAccessLayer"
+                       projectFiles="true">
+          <itemPath>DataAccessLayer/MarketData.h</itemPath>
+          <itemPath>DataAccessLayer/MessageProcessor.h</itemPath>
+          <itemPath>DataAccessLayer/PosixClient.h</itemPath>
+          <itemPath>DataAccessLayer/ProcessMsgClass.h</itemPath>
+        </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Design Patterns" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="f3" displayName="IB_additions" projectFiles="true">
-        <itemPath>IB_events.h</itemPath>
+        <logicalFolder name="IBAdditions" displayName="IBAdditions" projectFiles="true">
+          <itemPath>IBAdditions/IB_events.h</itemPath>
+        </logicalFolder>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="GUI" projectFiles="true">
-        <itemPath>MainWindow.cpp</itemPath>
-        <itemPath>MainWindow.h</itemPath>
-        <itemPath>MainWindow.ui</itemPath>
-        <itemPath>ReqMktDataGUI.cpp</itemPath>
-        <itemPath>ReqMktDataGUI.h</itemPath>
-        <itemPath>ReqMktDataGUI.ui</itemPath>
-        <itemPath>ReqMktDepthGUI.cpp</itemPath>
-        <itemPath>ReqMktDepthGUI.h</itemPath>
-        <itemPath>ui_MainWindow.h</itemPath>
-        <itemPath>ui_ReqMktDataGUI.h</itemPath>
-        <itemPath>ui_reqMktDepthGUI.h</itemPath>
+        <logicalFolder name="GUI" displayName="GUI" projectFiles="true">
+          <itemPath>GUI/GUIMarketData.h</itemPath>
+          <itemPath>GUI/MainWindow.cpp</itemPath>
+          <itemPath>GUI/MainWindow.h</itemPath>
+          <itemPath>GUI/MainWindow.ui</itemPath>
+          <itemPath>GUI/ReqMktDataGUI.cpp</itemPath>
+          <itemPath>GUI/ReqMktDataGUI.h</itemPath>
+          <itemPath>GUI/ReqMktDataGUI.ui</itemPath>
+          <itemPath>GUI/ReqMktDepthGUI.cpp</itemPath>
+          <itemPath>GUI/ReqMktDepthGUI.h</itemPath>
+          <itemPath>GUI/ReqMktDepthGUI.ui</itemPath>
+          <itemPath>GUI/ui_MainWindow.h</itemPath>
+          <itemPath>GUI/ui_ReqMktDataGUI.h</itemPath>
+          <itemPath>GUI/ui_reqMktDepthGUI.h</itemPath>
+        </logicalFolder>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f2" displayName="Data Access Layer" projectFiles="true">
-        <itemPath>GUIMarketData.cpp</itemPath>
-        <itemPath>MarketData.cpp</itemPath>
-        <itemPath>MessageProcessor.cpp</itemPath>
-        <itemPath>PosixClient.cpp</itemPath>
+        <itemPath>DataAccessLayer/GUIMarketData.cpp</itemPath>
+        <itemPath>DataAccessLayer/MarketData.cpp</itemPath>
+        <itemPath>DataAccessLayer/MessageProcessor.cpp</itemPath>
+        <itemPath>DataAccessLayer/PosixClient.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Design Patterns" projectFiles="true">
       </logicalFolder>
@@ -60,6 +69,11 @@
       <itemPath>README</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>DataAccessLayer</Elem>
+    <Elem>IBAdditions</Elem>
+    <Elem>GUI</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="4">

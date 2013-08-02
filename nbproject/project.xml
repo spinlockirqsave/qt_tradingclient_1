@@ -13,6 +13,8 @@
                 <sourceRootElem>DataAccessLayer</sourceRootElem>
                 <sourceRootElem>IBAdditions</sourceRootElem>
                 <sourceRootElem>GUI</sourceRootElem>
+                <sourceRootElem>Strategies</sourceRootElem>
+                <sourceRootElem>TradingStrategies</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

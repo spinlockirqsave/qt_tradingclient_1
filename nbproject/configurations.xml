@@ -14,12 +14,15 @@
           <itemPath>DataAccessLayer/ProcessMsgClass.h</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <logicalFolder name="f1" displayName="Design Patterns" projectFiles="true">
-      </logicalFolder>
       <logicalFolder name="f3" displayName="IB_additions" projectFiles="true">
         <logicalFolder name="IBAdditions" displayName="IBAdditions" projectFiles="true">
           <itemPath>IBAdditions/IB_events.h</itemPath>
         </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="TradingStrategies"
+                     displayName="TradingStrategies"
+                     projectFiles="true">
+        <itemPath>TradingStrategies/TradingStrategy.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -52,7 +55,8 @@
         <itemPath>DataAccessLayer/MessageProcessor.cpp</itemPath>
         <itemPath>DataAccessLayer/PosixClient.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f1" displayName="Design Patterns" projectFiles="true">
+      <logicalFolder name="f1" displayName="TradingStrategies" projectFiles="true">
+        <itemPath>TradingStrategies/TradingStrategy.cpp</itemPath>
       </logicalFolder>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -73,6 +77,8 @@
     <Elem>DataAccessLayer</Elem>
     <Elem>IBAdditions</Elem>
     <Elem>GUI</Elem>
+    <Elem>Strategies</Elem>
+    <Elem>TradingStrategies</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

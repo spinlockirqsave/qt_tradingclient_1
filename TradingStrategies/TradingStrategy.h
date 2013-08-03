@@ -8,13 +8,16 @@
 #ifndef TRADINGSTRATEGY_H
 #define	TRADINGSTRATEGY_H
 
+#include <CommonDefs.h>
+
+
 class TradingStrategy {
 public:
     TradingStrategy();
     TradingStrategy(const TradingStrategy& orig);
     virtual ~TradingStrategy();
 private:
-
+    virtual void subscribeToData(IB::TickerId tickerId)=0;
 };
 
 #endif	/* TRADINGSTRATEGY_H */

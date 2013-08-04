@@ -16,6 +16,30 @@ Cointegration::Cointegration(const Cointegration& orig) : TradingStrategy(orig) 
 Cointegration::~Cointegration() {
 }
 
-void Cointegration::subscribeToData(IB::TickerId tickerId){
+void Cointegration::doSubscribeToData(IB::TickerId tickerId){
+    
+}
+
+void Cointegration::doStart(){
+    
+}
+
+void Cointegration::tickPriceUpdate(int tickerId, rec_ptr record_ptr){
+    
+}
+
+void Cointegration::tickSizeUpdate(int tickerId, rec_ptr record_ptr){
+    
+}
+
+void Cointegration::tickStringUpdate(int tickerId, rec_ptr record_ptr){
+    
+}
+
+void Cointegration::marketDepthUpdate(int tickerId, rec_ptr recor_ptr){
+    
+}
+
+void Cointegration::marketDepthL2update(int tickerId, rec_ptr recor_ptr){
     
 }

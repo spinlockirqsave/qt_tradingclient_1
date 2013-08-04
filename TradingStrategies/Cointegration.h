@@ -17,7 +17,13 @@ public:
     Cointegration(const Cointegration& orig);
     virtual ~Cointegration();
 private:
-    void subscribeToData(IB::TickerId tickerId);
+    virtual void doSubscribeToData(IB::TickerId tickerId);
+    virtual void doStart();
+    virtual void tickPriceUpdate(int tickerId, rec_ptr record_ptr);
+    virtual void tickSizeUpdate(int tickerId, rec_ptr record_ptr);
+    virtual void tickStringUpdate(int tickerId, rec_ptr record_ptr);
+    void marketDepthUpdate(int tickerId, rec_ptr recor_ptr);
+    void marketDepthL2update(int tickerId, rec_ptr recor_ptr);    
 };
 
 #endif	/* COINTEGRATION_H */

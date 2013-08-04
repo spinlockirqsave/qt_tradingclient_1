@@ -18,6 +18,7 @@ public:
     virtual ~TradingStrategy();
 private:
     virtual void subscribeToData(IB::TickerId tickerId)=0;
+    void start();
 };
 
 #endif	/* TRADINGSTRATEGY_H */

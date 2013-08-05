@@ -18,8 +18,13 @@ public:
     TradingStrategy(const TradingStrategy& orig);
     virtual ~TradingStrategy();
     
-    void subscribeToData(IB::TickerId tickerId);
-    void start();
+    // Template Method Pattern
+    void subscribeToData(IB::TickerId tickerId){
+        doSubscribeToData(tickerId);
+    }
+    void start(){
+        doStart();
+    }
 private:
     virtual void doSubscribeToData(IB::TickerId tickerId)=0;
     virtual void doStart()=0;

@@ -13,17 +13,26 @@
 
 class Cointegration : TradingStrategy {
 public:
-    Cointegration();
-    Cointegration(const Cointegration& orig);
+    Cointegration(int dimension);
     virtual ~Cointegration();
+    
 private:
+    
+    Cointegration(const Cointegration& orig);
     virtual void doSubscribeToData(IB::TickerId tickerId);
     virtual void doStart();
     virtual void tickPriceUpdate(int tickerId, rec_ptr record_ptr);
     virtual void tickSizeUpdate(int tickerId, rec_ptr record_ptr);
     virtual void tickStringUpdate(int tickerId, rec_ptr record_ptr);
-    void marketDepthUpdate(int tickerId, rec_ptr recor_ptr);
-    void marketDepthL2update(int tickerId, rec_ptr recor_ptr);    
+    virtual void marketDepthUpdate(int tickerId, rec_ptr recor_ptr);
+    virtual void marketDepthL2update(int tickerId, rec_ptr recor_ptr);
+    
+    virtual bool longSignal();
+    virtual bool shortSignal();
+    virtual bool doLongTrade();
+    virtual bool doShortTrade();
+    
+    int dimension_;
 };
 
 #endif	/* COINTEGRATION_H */

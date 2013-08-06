@@ -33,6 +33,11 @@ private:
     virtual void tickStringUpdate(int tickerId, rec_ptr record_ptr)=0;
     virtual void marketDepthUpdate(int tickerId, rec_ptr recor_ptr)=0;
     virtual void marketDepthL2update(int tickerId, rec_ptr recor_ptr)=0;
+    
+    virtual bool longSignal()=0;
+    virtual bool shortSignal()=0;
+    virtual bool doLongTrade()=0;
+    virtual bool doShortTrade()=0;
 };
 
 #endif	/* TRADINGSTRATEGY_H */

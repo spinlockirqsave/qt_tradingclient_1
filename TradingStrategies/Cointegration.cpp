@@ -7,7 +7,7 @@
 
 #include "Cointegration.h"
 
-Cointegration::Cointegration() {
+Cointegration::Cointegration(int dimension):dimension_(dimension) {
 }
 
 Cointegration::Cointegration(const Cointegration& orig) : TradingStrategy(orig) {
@@ -41,5 +41,21 @@ void Cointegration::marketDepthUpdate(int tickerId, rec_ptr recor_ptr){
 }
 
 void Cointegration::marketDepthL2update(int tickerId, rec_ptr recor_ptr){
+    
+}
+
+bool Cointegration::longSignal(){
+    
+}
+
+bool Cointegration::shortSignal(){
+    
+}
+
+bool Cointegration::doLongTrade(){
+    
+}
+
+bool Cointegration::doShortTrade(){
     
 }

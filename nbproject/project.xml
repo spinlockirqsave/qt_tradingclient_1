@@ -15,6 +15,7 @@
                 <sourceRootElem>GUI</sourceRootElem>
                 <sourceRootElem>Strategies</sourceRootElem>
                 <sourceRootElem>TradingStrategies</sourceRootElem>
+                <sourceRootElem>Statistics</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

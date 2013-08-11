@@ -10,9 +10,8 @@
 #define	MARKETDATA_H
 
 #include <ql/patterns/observable.hpp>
-#include "Contract.h"
+#include <Shared/Contract.h>
 #include <boost/function.hpp>
-#include <list>
 
 typedef boost::shared_ptr<IB::Record> rec_ptr;
 typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;

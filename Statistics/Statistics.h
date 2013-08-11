@@ -8,7 +8,10 @@
 #ifndef STATISTICS_H
 #define	STATISTICS_H
 
-class Statistics {
+#include <ql/math/statistics/generalstatistics.hpp>
+
+
+class Statistics : public QuantLib::GeneralStatistics {
 public:
     Statistics();
     Statistics(const Statistics& orig);

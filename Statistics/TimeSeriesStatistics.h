@@ -10,8 +10,9 @@
 
 #include <DataAccessLayer/MarketData.h>
 #include <Statistics/Statistics.h>
+#include <ql/math/statistics/gaussianstatistics.hpp>
 
-class TimeSeriesStatistics : Statistics {
+class TimeSeriesStatistics : public Statistics, public QuantLib::GaussianStatistics {
 public:
     TimeSeriesStatistics(std::vector<rec_ptr>& data);
     TimeSeriesStatistics(const TimeSeriesStatistics& orig);

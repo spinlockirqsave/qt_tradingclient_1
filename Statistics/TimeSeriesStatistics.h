@@ -9,8 +9,9 @@
 #define	TIMESERIESSTATISTICS_H
 
 #include <DataAccessLayer/MarketData.h>
+#include <Statistics/Statistics.h>
 
-class TimeSeriesStatistics {
+class TimeSeriesStatistics : Statistics {
 public:
     TimeSeriesStatistics(std::vector<rec_ptr>& data);
     TimeSeriesStatistics(const TimeSeriesStatistics& orig);

@@ -25,7 +25,7 @@ typedef boost::shared_ptr<IB::MktDepthL2Record>  mktDepthL2Rec_ptr;
 // and other PosixClient callbacks when corresponding reqMktData request
 // has been sent to be processed by PosixClient instance. This class
 // and MarketDataObserver class use Observer Pattern implemented with 
-// help from QuantLib::Observervable and QuantLib::Observer.
+// help from QuantLib::Observable and QuantLib::Observer.
 
 class MarketData : public QuantLib::Observable {
 public:

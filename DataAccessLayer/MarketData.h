@@ -47,7 +47,7 @@ private:
     MarketData(const MarketData& orig);
     boost::shared_ptr<IB::Record> record_;
     // this MarketData object can handle these events
-    // any observer can subscribe to one of those events
+    // any observer can subscribe to one of these events
     IB::Event processedEvent;
     int tickerId;
     IB::Contract contractDescription;

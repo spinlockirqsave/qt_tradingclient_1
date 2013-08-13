@@ -8,13 +8,20 @@
 #ifndef REPOSITORY_H
 #define	REPOSITORY_H
 
+#include <map>
+#include <vector>
+#include <Shared/Contract.h>
+#include <boost/foreach.hpp>
+
 class Repository {
 public:
-    Repository();
+    Repository(const std::vector<IB::Contract>& contracts);
     virtual ~Repository();
     
 private:
     Repository(const Repository& orig);
+    typedef std::map<const IB::Contract, std::vector<double> > ContractDataMap;
+    ContractDataMap map_;
 
 };
 

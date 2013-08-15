@@ -10,6 +10,11 @@
 
 #include <CommonDefs.h>
 #include <DataAccessLayer/MarketData.h>
+#include <Shared/Contract.h>
+
+#include <boost/foreach.hpp>
+
+#include <map>
 
 
 class TradingStrategy {
@@ -22,6 +27,7 @@ public:
     void subscribeToData(IB::TickerId tickerId){
         doSubscribeToData(tickerId);
     }
+    
     void start(){
         doStart();
     }
@@ -38,6 +44,9 @@ private:
     virtual bool shortSignal()=0;
     virtual bool doLongTrade()=0;
     virtual bool doShortTrade()=0;
+    
+    typedef std::map<const IB::TickerId, const IB::Contract> TickerContractMap;
+    TickerContractMap oservedContracts_;
 };
 
 #endif	/* TRADINGSTRATEGY_H */

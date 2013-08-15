@@ -21,7 +21,7 @@ public:
 private:
     Repository(const Repository& orig);
     typedef std::map<const IB::Contract, std::vector<double> > ContractDataMap;
-    ContractDataMap map_;
+    ContractDataMap contractDataMap_;
 
 };
 

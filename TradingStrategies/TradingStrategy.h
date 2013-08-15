@@ -11,7 +11,9 @@
 #include <CommonDefs.h>
 #include <DataAccessLayer/MarketData.h>
 #include <Shared/Contract.h>
+#include <DataAccessLayer/PosixClient.h>
 
+#include <boost/shared_ptr.hpp>
 #include <boost/foreach.hpp>
 
 #include <map>
@@ -24,15 +26,16 @@ public:
     virtual ~TradingStrategy();
     
     // Template Method Pattern
-    void subscribeToData(IB::TickerId tickerId){
-        doSubscribeToData(tickerId);
+    void subscribeToData(IB::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr){
+        doSubscribeToData(event, tickerId, contract, ptr);
     }
     
     void start(){
         doStart();
     }
+    
 private:
-    virtual void doSubscribeToData(IB::TickerId tickerId)=0;
+    virtual void doSubscribeToData(IB::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr);
     virtual void doStart()=0;
     virtual void tickPriceUpdate(int tickerId, rec_ptr record_ptr)=0;
     virtual void tickSizeUpdate(int tickerId, rec_ptr record_ptr)=0;
@@ -45,8 +48,14 @@ private:
     virtual bool doLongTrade()=0;
     virtual bool doShortTrade()=0;
     
+protected:
     typedef std::map<const IB::TickerId, const IB::Contract> TickerContractMap;
     TickerContractMap oservedContracts_;
+    std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;
+    std::vector<pMktDataObserver> tickPriceObservers;
+    std::vector<pMktDataObserver> tickStringObservers;
+    
+    boost::shared_ptr<IB::PosixClient> client;
 };
 
 #endif	/* TRADINGSTRATEGY_H */

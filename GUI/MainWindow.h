@@ -14,6 +14,7 @@
 #include <DataAccessLayer/PosixClient.h>
 #include <GUI/ReqMktDataGUI.h>
 #include <GUI/ReqMktDepthGUI.h>
+#include <DataAccessLayer/Repository.h>
 
 class cf16tradingclient_1 : public QMainWindow {
     Q_OBJECT
@@ -34,6 +35,8 @@ private:
     boost::shared_ptr<ReqMktDataGUI> reqMDGUI_ptr;
     ReqMktDataGUI* ptr;
     ReqMktDepthGUI* ptr2;
+    
+    boost::shared_ptr<Repository> repository;
 };
 
 

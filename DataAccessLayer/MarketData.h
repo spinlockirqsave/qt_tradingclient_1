@@ -13,12 +13,12 @@
 #include <Shared/Contract.h>
 #include <boost/function.hpp>
 
-typedef boost::shared_ptr<IB::Record> rec_ptr;
+typedef boost::shared_ptr<IBAdditions::Record> rec_ptr;
 typedef boost::shared_ptr<IBAdditions::TickPriceRecord> tickPriceRec_ptr;
 typedef boost::shared_ptr<IBAdditions::TickSizeRecord>  tickSizeRec_ptr;
 typedef boost::shared_ptr<IBAdditions::TickStringRecord>  tickStringRec_ptr;
-typedef boost::shared_ptr<IB::MktDepthRecord>  mktDepthRec_ptr;
-typedef boost::shared_ptr<IB::MktDepthL2Record>  mktDepthL2Rec_ptr;
+typedef boost::shared_ptr<IBAdditions::MktDepthRecord>  mktDepthRec_ptr;
+typedef boost::shared_ptr<IBAdditions::MktDepthL2Record>  mktDepthL2Rec_ptr;
 
 // This is a class which allows non GUI objects to subscribe
 // to market data being returned from tickSize, tickPrice, tickString
@@ -34,10 +34,10 @@ public:
     processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~MarketData();
     int getTickerId()const{ return tickerId; }
-    void putRecord(boost::shared_ptr<IB::Record> record){
+    void putRecord(boost::shared_ptr<IBAdditions::Record> record){
         record_=record;
     }
-    boost::shared_ptr<IB::Record> getRecord()const{
+    boost::shared_ptr<IBAdditions::Record> getRecord()const{
         return record_;
     }
     IBAdditions::Event getEvent()const{
@@ -45,7 +45,7 @@ public:
     }    
 private:
     MarketData(const MarketData& orig);
-    boost::shared_ptr<IB::Record> record_;
+    boost::shared_ptr<IBAdditions::Record> record_;
     // this MarketData object can handle these events
     // any observer can subscribe to one of these events
     IBAdditions::Event processedEvent;
@@ -54,7 +54,7 @@ private:
 };
 
 typedef boost::shared_ptr<MarketData> pMktDataObservable;
-typedef boost::function<void (int tickerId, boost::shared_ptr<IB::Record> record)> f_action_ptr;
+typedef boost::function<void (int tickerId, boost::shared_ptr<IBAdditions::Record> record)> f_action_ptr;
 
 // one MarketDataObserver may observe one tickerId and for one event
 // if you want to be notified when many events happened (i.e. TickSize and TickPrice)
@@ -75,11 +75,11 @@ public:
     }
         
     // object which subscribed to data stream using this MarketDataObserver
-    // will be notified about incoming IB::Record
+    // will be notified about incoming IBAdditions::Record
     void update(){
         if (observable->getEvent() == observedEvent_) {
-            //const IB::Record& data=observable->tickPriceData.back();
-            boost::shared_ptr<IB::Record> data = observable->getRecord();
+            //const IBAdditions::Record& data=observable->tickPriceData.back();
+            boost::shared_ptr<IBAdditions::Record> data = observable->getRecord();
 
             // here appropriate function of subscribing object is called:
             // myTickPriceUpdate, myTickSizeUpdate or myTickStringUpdate 

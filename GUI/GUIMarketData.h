@@ -11,7 +11,7 @@
 #include <QtCore/QObject>
 #include <DataAccessLayer/MarketData.h>
 
-typedef boost::shared_ptr<IB::Record> rec_ptr;
+typedef boost::shared_ptr<IBAdditions::Record> rec_ptr;
 typedef boost::shared_ptr<IBAdditions::TickPriceRecord> tickPriceRec_ptr;
 typedef boost::shared_ptr<IBAdditions::TickSizeRecord>  tickSizeRec_ptr;
 typedef boost::shared_ptr<IBAdditions::TickStringRecord>  tickStringRec_ptr;
@@ -27,10 +27,10 @@ public:
     int getTickerId()const{
         return tickerId_;
     }
-    void putRecord(boost::shared_ptr<IB::Record> record){
+    void putRecord(boost::shared_ptr<IBAdditions::Record> record){
         record_=record;
     }
-    boost::shared_ptr<IB::Record> getRecord()const{
+    boost::shared_ptr<IBAdditions::Record> getRecord()const{
         return record_;
     }
     IBAdditions::Event getEvent()const{

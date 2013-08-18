@@ -10,7 +10,7 @@
 #include "Repository.h"
 
 Repository::Repository(const std::vector<IBAdditions::ContractEvent>& contractEventVector) {
-    BOOST_FOREACH(const IBAdditions::ContractEvent ce, contractEventDataMap){
+    BOOST_FOREACH(const IBAdditions::ContractEvent ce, contractEventVector){
         //EventDataMap edm = std::pair<IBAdditions::Event, std::vector<double> >(ce.second, std::vector<double>())
         //contractEventDataMap_.insert(std::pair<IB::Contract, EventDataMap>(ce.first, ));
     }

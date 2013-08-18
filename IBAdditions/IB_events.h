@@ -144,6 +144,86 @@ namespace IBAdditions {
             return (int)this->event_ < rhs.event_;
         }
     };
+    
+    //Additions
+class Record{
+public:
+    IB::TickType tickType_;
+    Record(){}
+    Record(IB::TickType tickType): tickType_(tickType){
+        
+    }
+    virtual std::string getName(){return "Record";}
+    virtual ~Record(){}
+};
+
+class TickPriceRecord : public Record{
+public:
+    std::string name;
+    TickPriceRecord(IB::TickType tickType, double price, int canAutoExecute):
+    Record(tickType), price_(price), canAutoExecute(canAutoExecute),name("TickPriceRecord"){
+        
+    }
+    double price_;
+    int canAutoExecute;
+    std::string getName(){return name;}
+};
+
+class TickSizeRecord : public Record{
+public:
+    std::string name;
+    TickSizeRecord(IB::TickType tickType, int size):
+    Record(tickType), size_(size), name("TickSizeRecord"){
+        
+    }
+    int size_;
+    std::string getName(){return name;}    
+};
+
+class TickStringRecord : public Record{
+public:
+    std::string name;
+    TickStringRecord(IB::TickType tickType, const std::string& string):
+    Record(tickType), string(string), name("TickStringRecord"){
+        
+    }
+    const std::string string;
+    std::string getName(){return name;}    
+};
+
+class MktDepthRecord : public Record{
+public:
+    std::string name;
+    MktDepthRecord(int position, int operation, int side, double price, int size):
+    Record(IB::NOT_SET), position_(position), operation_(operation), side_(side),
+    price_(price), size_(size), name("MktDepthRecord"){
+        
+    }
+    int position_;
+    int operation_;
+    int side_;
+    double price_;
+    int size_;
+    std::string getName(){return name;}    
+};
+
+class MktDepthL2Record : public Record{
+public:
+    std::string name;
+    MktDepthL2Record(int position, IBString marketMaker, int operation, int side, double price, int size):
+    Record(IB::NOT_SET), position_(position), marketMaker_(marketMaker), operation_(operation), side_(side),
+    price_(price), size_(size), name("MktDepthL2Record"){
+        
+    }
+    int position_;
+    IB::IBString marketMaker_;
+    int operation_;
+    int side_;
+    double price_;
+    int size_;
+    std::string getName(){return name;}    
+};
+
 }
 
 #endif	/* IB_EVENTS_H */

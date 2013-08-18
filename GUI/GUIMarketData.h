@@ -13,8 +13,8 @@
 
 typedef boost::shared_ptr<IB::Record> rec_ptr;
 typedef boost::shared_ptr<IBAdditions::TickPriceRecord> tickPriceRec_ptr;
-typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
-typedef boost::shared_ptr<IB::TickStringRecord>  tickStringRec_ptr;
+typedef boost::shared_ptr<IBAdditions::TickSizeRecord>  tickSizeRec_ptr;
+typedef boost::shared_ptr<IBAdditions::TickStringRecord>  tickStringRec_ptr;
 typedef boost::shared_ptr<IB::Contract> contract_ptr;
 
 class GUIMarketData : public QObject {

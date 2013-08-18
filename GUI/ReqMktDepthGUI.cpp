@@ -47,7 +47,7 @@ void ReqMktDepthGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
 }
 void ReqMktDepthGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
     try{
-        tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IB::TickSizeRecord>(record_ptr));
+        tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>(record_ptr));
     #ifdef DEBUG 
         printf( "myTickSizeUpdate! Id: %d, size: %d, tickType: %d\n",tickerId,tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
     #endif
@@ -62,7 +62,7 @@ void ReqMktDepthGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
 }
 void ReqMktDepthGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
         try{
-        tickStringRec_ptr tickStringRecord_ptr(boost::dynamic_pointer_cast<IB::TickStringRecord>(record_ptr));
+        tickStringRec_ptr tickStringRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickStringRecord>(record_ptr));
     #ifdef DEBUG 
         printf( "myTickStringUpdate! Id: %d, string: %s, tickType: %d\n",tickerId,tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
     #endif
@@ -94,7 +94,7 @@ void ReqMktDepthGUI::myTickPriceGUIUpdate(int tickerId, rec_ptr record_ptr){
 
 void ReqMktDepthGUI::myTickSizeGUIUpdate(int tickerId, rec_ptr record_ptr){
     try{
-        tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IB::TickSizeRecord>(record_ptr));
+        tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>(record_ptr));
     #ifdef DEBUG 
         printf( "myTickSizeGUIUpdate! Id: %d, size: %d, tickType: %d\n",tickerId,tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
     #endif
@@ -110,7 +110,7 @@ void ReqMktDepthGUI::myTickSizeGUIUpdate(int tickerId, rec_ptr record_ptr){
 
 void ReqMktDepthGUI::myTickStringGUIUpdate(int tickerId, rec_ptr record_ptr){
         try{
-        tickStringRec_ptr tickStringRecord_ptr(boost::dynamic_pointer_cast<IB::TickStringRecord>(record_ptr));
+        tickStringRec_ptr tickStringRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickStringRecord>(record_ptr));
     #ifdef DEBUG 
         printf( "myTickStringGUIUpdate! Id: %d, string: %s, tickType: %d\n",tickerId,tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
     #endif

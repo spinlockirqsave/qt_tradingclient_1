@@ -29,7 +29,7 @@ typedef boost::shared_ptr<IBAdditions::MktDepthL2Record>  mktDepthL2Rec_ptr;
 
 class MarketData : public QuantLib::Observable {
 public:
-    MarketData();
+    //MarketData();
     MarketData(IBAdditions::Event processedEvent, int tickerId, IB::Contract contractDescription):
     processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~MarketData();
@@ -37,7 +37,7 @@ public:
     void putRecord(boost::shared_ptr<IBAdditions::Record> record){
         record_=record;
     }
-    boost::shared_ptr<IBAdditions::Record> getRecord()const{
+    boost::shared_ptr<IBAdditions::Record> getRecord() const {
         return record_;
     }
     IBAdditions::Event getEvent()const{
@@ -46,8 +46,8 @@ public:
 private:
     MarketData(const MarketData& orig);
     boost::shared_ptr<IBAdditions::Record> record_;
-    // this MarketData object can handle these events
-    // any observer can subscribe to one of these events
+    
+    // this MarketData object can handle this event
     IBAdditions::Event processedEvent;
     int tickerId;
     IB::Contract contractDescription;
@@ -58,7 +58,7 @@ typedef boost::function<void (int tickerId, boost::shared_ptr<IBAdditions::Recor
 
 // one MarketDataObserver may observe one tickerId and for one event
 // if you want to be notified when many events happened (i.e. TickSize and TickPrice)
-// you can subscribe many MarketDataObservers to one and the same MarketData instance
+// you can subscribe to appropriate MarketData instance
 class MarketDataObserver : public QuantLib::Observer{
 public:
     MarketDataObserver(pMktDataObservable obs, IBAdditions::Event observedEvent, f_action_ptr ptr)

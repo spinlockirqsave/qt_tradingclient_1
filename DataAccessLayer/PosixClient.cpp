@@ -355,7 +355,7 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
             //printf("PosixClient: notify \n");
             ((*it).second)->notifyObservers(); // observers are in the main thread
             //printf("PosixClient: notifyOK \n");
-            //TODO: start thread to store incoming data in repository
+            //TODO: start thread to store incoming data in repository -> moved to putRecord() 
         }
     
     tickerIdGUIMarketDataMap::iterator it2=tickPriceGUIMarketDataFeed.find(tickerId);

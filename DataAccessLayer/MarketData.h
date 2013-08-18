@@ -5,6 +5,7 @@
  * Created on May 26, 2013, 7:06 PM
  */
 #include <IBAdditions/IB_events.h>
+#include <DataAccessLayer/Repository.h>
 
 #ifndef MARKETDATA_H
 #define	MARKETDATA_H
@@ -12,6 +13,8 @@
 #include <ql/patterns/observable.hpp>
 #include <Shared/Contract.h>
 #include <boost/function.hpp>
+
+extern Repository marketDataRepository;
 
 typedef boost::shared_ptr<IBAdditions::Record> rec_ptr;
 typedef boost::shared_ptr<IBAdditions::TickPriceRecord> tickPriceRec_ptr;
@@ -26,7 +29,6 @@ typedef boost::shared_ptr<IBAdditions::MktDepthL2Record>  mktDepthL2Rec_ptr;
 // has been sent to be processed by PosixClient instance. This class
 // and MarketDataObserver class use Observer Pattern implemented with 
 // help from QuantLib::Observable and QuantLib::Observer.
-
 class MarketData : public QuantLib::Observable {
 public:
     //MarketData();
@@ -36,6 +38,7 @@ public:
     int getTickerId()const{ return tickerId; }
     void putRecord(boost::shared_ptr<IBAdditions::Record> record){
         record_=record;
+        marketDataRepository
     }
     boost::shared_ptr<IBAdditions::Record> getRecord() const {
         return record_;

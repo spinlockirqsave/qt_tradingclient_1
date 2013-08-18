@@ -16,7 +16,7 @@
 
 class Repository {
 public:
-    typedef std::map<const IBAdditions::ContractEvent, std::vector<double> > ContractEventDataMap;
+    typedef std::map<const IBAdditions::ContractEvent, std::vector<IBAdditions::rec_ptr> > ContractEventDataMap;
     Repository(const std::vector<IBAdditions::ContractEvent>& contractEventVector);
     Repository();
     virtual ~Repository();

@@ -10,6 +10,7 @@
 
 #include <Shared/Contract.h>
 #include <Shared/IBString.h>
+#include <boost/shared_ptr.hpp>
 
 namespace IBAdditions {
 
@@ -224,6 +225,13 @@ public:
     int size_;
     std::string getName(){return name;}    
 };
+
+typedef boost::shared_ptr<IBAdditions::Record> rec_ptr;
+typedef boost::shared_ptr<IBAdditions::TickPriceRecord> tickPriceRec_ptr;
+typedef boost::shared_ptr<IBAdditions::TickSizeRecord>  tickSizeRec_ptr;
+typedef boost::shared_ptr<IBAdditions::TickStringRecord>  tickStringRec_ptr;
+typedef boost::shared_ptr<IBAdditions::MktDepthRecord>  mktDepthRec_ptr;
+typedef boost::shared_ptr<IBAdditions::MktDepthL2Record>  mktDepthL2Rec_ptr;
 
 }
 

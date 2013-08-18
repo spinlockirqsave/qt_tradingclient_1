@@ -10,8 +10,13 @@
 #include <QtWidgets/QMessageBox>
 #include "ReqMktDataGUI.h"
     
-cf16tradingclient_1::cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> client_ptr): 
-host(""), port(7496), clientId(1), client(client_ptr){
+cf16tradingclient_1::cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> client_ptr,
+        Repository& mktDataRepository): 
+        host_(""),
+        port_(7496),
+        clientId_(1),
+        client_(client_ptr),
+        mktDataRepository_(mktDataRepository){
     widget.setupUi(this);
         QObject::connect(widget.connectButton, SIGNAL(clicked()), this, SLOT(connectClicked()));
         QObject::connect(widget.disconnectButton, SIGNAL(clicked()), this, SLOT(disconnectClicked()));
@@ -20,10 +25,10 @@ host(""), port(7496), clientId(1), client(client_ptr){
 }
 
 cf16tradingclient_1::~cf16tradingclient_1() {
-    if (client->isConnected()) {
+    if (client_->isConnected()) {
         endProcessMessages();
-        client->disconnect();
-        if (!client->isConnected()) {
+        client_->disconnect();
+        if (!client_->isConnected()) {
             widget.label_6_connected->setText(QStringLiteral("not connected"));
         }
     }
@@ -31,9 +36,9 @@ cf16tradingclient_1::~cf16tradingclient_1() {
 
 //public slots
 void cf16tradingclient_1::connectClicked() {
-    if (!client->isConnected()) {
-        client->connect(host, port, clientId);
-        if (client->isConnected()) {
+    if (!client_->isConnected()) {
+        client_->connect(host_, port_, clientId_);
+        if (client_->isConnected()) {
             widget.label_6_connected->setText(QStringLiteral("connected"));
             processMessages();
         }
@@ -43,10 +48,10 @@ void cf16tradingclient_1::connectClicked() {
 }
 
 void cf16tradingclient_1::disconnectClicked() {
-    if (client->isConnected()) {
+    if (client_->isConnected()) {
         endProcessMessages();
-        client->disconnect();
-        if (!client->isConnected()) {
+        client_->disconnect();
+        if (!client_->isConnected()) {
             widget.label_6_connected->setText(QStringLiteral("not connected"));
         }
     }
@@ -55,12 +60,12 @@ void cf16tradingclient_1::disconnectClicked() {
 void cf16tradingclient_1::actionReqMktDataClicked(){
     //reqMDGUI_ptr=boost::shared_ptr<reqMktDataGUI>(new reqMktDataGUI(client));
     //reqMDGUI_ptr->show();
-    ptr=new ReqMktDataGUI(client);
-    ptr->show();
+    ptr_=new ReqMktDataGUI(client_);
+    ptr_->show();
 }
 
 void cf16tradingclient_1::actionReqMktDepthClicked(){
-    ptr2=new ReqMktDepthGUI(client);
-    ptr2->show();
+    ptr2_=new ReqMktDepthGUI(client_);
+    ptr2_->show();
 }
 

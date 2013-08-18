@@ -26,7 +26,7 @@ public:
     virtual ~TradingStrategy();
     
     // Template Method Pattern
-    void subscribeToData(IB::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr){
+    void subscribeToData(IBAdditions::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr){
         doSubscribeToData(event, tickerId, contract, ptr);
     }
     
@@ -35,7 +35,7 @@ public:
     }
     
 private:
-    virtual void doSubscribeToData(IB::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr);
+    virtual void doSubscribeToData(IBAdditions::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr);
     virtual void doStart()=0;
     virtual void tickPriceUpdate(int tickerId, rec_ptr record_ptr)=0;
     virtual void tickSizeUpdate(int tickerId, rec_ptr record_ptr)=0;

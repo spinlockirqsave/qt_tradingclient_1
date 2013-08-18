@@ -19,7 +19,7 @@ public:
 private:
     
     Cointegration(const Cointegration& orig);
-    virtual void doSubscribeToData(IB::Event event, IB::TickerId tickerId, IB::Contract, f_action_ptr ptr);
+    virtual void doSubscribeToData(IBAdditions::Event event, IB::TickerId tickerId, IB::Contract, f_action_ptr ptr);
     virtual void doStart();
     virtual void tickPriceUpdate(int tickerId, rec_ptr record_ptr);
     virtual void tickSizeUpdate(int tickerId, rec_ptr record_ptr);

@@ -19,24 +19,26 @@
 class cf16tradingclient_1 : public QMainWindow {
     Q_OBJECT
 public:
-    cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> client_ptr);
+    cf16tradingclient_1(boost::shared_ptr<IB::PosixClient>, Repository&);
     virtual ~cf16tradingclient_1();
+    
 public slots:
     void connectClicked();
     void disconnectClicked();
     void actionReqMktDataClicked();
     void actionReqMktDepthClicked();
+    
 private:
     Ui::cf16tradingclient_1 widget;
-    boost::shared_ptr<IB::PosixClient> client;
-    const char* host;
-    unsigned int port;
-    int clientId;
-    boost::shared_ptr<ReqMktDataGUI> reqMDGUI_ptr;
-    ReqMktDataGUI* ptr;
-    ReqMktDepthGUI* ptr2;
+    boost::shared_ptr<IB::PosixClient> client_;
+    const char* host_;
+    unsigned int port_;
+    int clientId_;
+    boost::shared_ptr<ReqMktDataGUI> reqMDGUI_ptr_;
+    ReqMktDataGUI* ptr_;
+    ReqMktDepthGUI* ptr2_;
     
-    boost::shared_ptr<Repository> repository;
+    Repository& mktDataRepository_;
 };
 
 

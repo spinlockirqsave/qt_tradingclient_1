@@ -32,8 +32,8 @@ ReqMktDepthGUI::~ReqMktDepthGUI() {
 
 void ReqMktDepthGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
     try{
-        //const IB::TickPriceRecord* tickPriceRecord = dynamic_cast<const IB::TickPriceRecord*>(record.get());
-        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IB::TickPriceRecord>(record_ptr));
+        //const IBAdditions::TickPriceRecord* tickPriceRecord = dynamic_cast<const IBAdditions::TickPriceRecord*>(record.get());
+        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickPriceRecord>(record_ptr));
         #ifdef DEBUG 
            printf( "myTickPriceUpdate! Id: %d, price: %f, tickType: %d\n",tickerId,tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
         #endif
@@ -78,8 +78,8 @@ void ReqMktDepthGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
 
 void ReqMktDepthGUI::myTickPriceGUIUpdate(int tickerId, rec_ptr record_ptr){
     try{
-        //const IB::TickPriceRecord* tickPriceRecord = dynamic_cast<const IB::TickPriceRecord*>(record.get());
-        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IB::TickPriceRecord>(record_ptr));
+        //const IBAdditions::TickPriceRecord* tickPriceRecord = dynamic_cast<const IBAdditions::TickPriceRecord*>(record.get());
+        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickPriceRecord>(record_ptr));
         #ifdef DEBUG 
            printf( "myTickPriceGUIUpdate! Id: %d, price: %f, tickType: %d\n",tickerId,tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
         #endif

@@ -12,16 +12,18 @@
 #include <vector>
 #include <Shared/Contract.h>
 #include <boost/foreach.hpp>
+#include <IBAdditions/IB_events.h>
 
 class Repository {
 public:
-    Repository(const std::vector<IB::Contract>& contracts);
+    typedef std::map<const IBAdditions::ContractEvent, std::vector<double> > ContractEventDataMap;
+    Repository(const std::vector<IBAdditions::ContractEvent>& contractEventVector);
+    Repository();
     virtual ~Repository();
     
 private:
     Repository(const Repository& orig);
-    typedef std::map<const IB::Contract, std::vector<double> > ContractDataMap;
-    ContractDataMap contractDataMap_;
+    ContractEventDataMap contractEventDataMap_;
 
 };
 

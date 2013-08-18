@@ -14,7 +14,7 @@
 #include <boost/function.hpp>
 
 typedef boost::shared_ptr<IB::Record> rec_ptr;
-typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;
+typedef boost::shared_ptr<IBAdditions::TickPriceRecord> tickPriceRec_ptr;
 typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
 typedef boost::shared_ptr<IB::TickStringRecord>  tickStringRec_ptr;
 typedef boost::shared_ptr<IB::MktDepthRecord>  mktDepthRec_ptr;
@@ -30,7 +30,7 @@ typedef boost::shared_ptr<IB::MktDepthL2Record>  mktDepthL2Rec_ptr;
 class MarketData : public QuantLib::Observable {
 public:
     MarketData();
-    MarketData(IB::Event processedEvent, int tickerId, IB::Contract contractDescription):
+    MarketData(IBAdditions::Event processedEvent, int tickerId, IB::Contract contractDescription):
     processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
     virtual ~MarketData();
     int getTickerId()const{ return tickerId; }
@@ -40,7 +40,7 @@ public:
     boost::shared_ptr<IB::Record> getRecord()const{
         return record_;
     }
-    IB::Event getEvent()const{
+    IBAdditions::Event getEvent()const{
         return processedEvent;
     }    
 private:
@@ -48,7 +48,7 @@ private:
     boost::shared_ptr<IB::Record> record_;
     // this MarketData object can handle these events
     // any observer can subscribe to one of these events
-    IB::Event processedEvent;
+    IBAdditions::Event processedEvent;
     int tickerId;
     IB::Contract contractDescription;
 };
@@ -61,7 +61,7 @@ typedef boost::function<void (int tickerId, boost::shared_ptr<IB::Record> record
 // you can subscribe many MarketDataObservers to one and the same MarketData instance
 class MarketDataObserver : public QuantLib::Observer{
 public:
-    MarketDataObserver(pMktDataObservable obs, IB::Event observedEvent, f_action_ptr ptr)
+    MarketDataObserver(pMktDataObservable obs, IBAdditions::Event observedEvent, f_action_ptr ptr)
         : observable(obs), observedEvent_(observedEvent), f_ptr(ptr){
       this->registerWith(observable);
     }
@@ -70,7 +70,7 @@ public:
         observable(observer.observable){ // faction_ptr is not copied!
     }
     
-    IB::Event getEvent()const{
+    IBAdditions::Event getEvent()const{
         return observedEvent_;
     }
         
@@ -95,7 +95,7 @@ public:
 private:
     pMktDataObservable observable;
     f_action_ptr f_ptr;
-    IB::Event observedEvent_; // the single event in which observer is interested
+    IBAdditions::Event observedEvent_; // the single event in which observer is interested
 };
 
 typedef boost::shared_ptr<MarketDataObserver> pMktDataObserver;

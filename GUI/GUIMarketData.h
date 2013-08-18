@@ -12,7 +12,7 @@
 #include <DataAccessLayer/MarketData.h>
 
 typedef boost::shared_ptr<IB::Record> rec_ptr;
-typedef boost::shared_ptr<IB::TickPriceRecord> tickPriceRec_ptr;
+typedef boost::shared_ptr<IBAdditions::TickPriceRecord> tickPriceRec_ptr;
 typedef boost::shared_ptr<IB::TickSizeRecord>  tickSizeRec_ptr;
 typedef boost::shared_ptr<IB::TickStringRecord>  tickStringRec_ptr;
 typedef boost::shared_ptr<IB::Contract> contract_ptr;
@@ -21,7 +21,7 @@ class GUIMarketData : public QObject {
     Q_OBJECT
 public:
     GUIMarketData();
-    GUIMarketData(IB::Event processedEvent, int tickerId, contract_ptr contractDescription):
+    GUIMarketData(IBAdditions::Event processedEvent, int tickerId, contract_ptr contractDescription):
                 processedEvent_(processedEvent), tickerId_(tickerId), contractDescription_(contractDescription) {}
     virtual ~GUIMarketData();
     int getTickerId()const{
@@ -33,7 +33,7 @@ public:
     boost::shared_ptr<IB::Record> getRecord()const{
         return record_;
     }
-    IB::Event getEvent()const{
+    IBAdditions::Event getEvent()const{
         return processedEvent_;
     }    
     void notifyObservers(){
@@ -53,7 +53,7 @@ private:
     
     // this GUIMarketData object can handle these events
     // any observer can subscribe to one of those events
-    IB::Event processedEvent_;
+    IBAdditions::Event processedEvent_;
     int tickerId_;
     contract_ptr contractDescription_;
     

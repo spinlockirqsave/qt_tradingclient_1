@@ -8,6 +8,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <DataAccessLayer/ProcessMsgClass.h>
+#include <DataAccessLayer/Repository.h>
 #include <GUI/GUIMarketData.h>
 #include <GUI/MainWindow.h>
 #include <GUI/ReqMktDataGUI.h>
@@ -105,13 +106,14 @@ int main(int argc, char *argv[]) {
     
     client.reset(new IB::PosixClient());
     
-    // initialize resources, if needed
+    // initialize resources
+    Repository marketDataRepository;
     // Q_INIT_RESOURCE(resfile);
     QApplication app(argc, argv);
     app.setStyleSheet("QMenu::item:selected {border: 1px solid blue;}");  
     
     // create QMainWindow::QWidget and show it
-    cf16tradingclient_1 cf16(client);    
+    cf16tradingclient_1 cf16(client, marketDataRepository);    
     cf16.show();
     
     //pthread_exit (NULL);

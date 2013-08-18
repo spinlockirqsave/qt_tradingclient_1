@@ -25,9 +25,10 @@ void processMessages3();
 class ReqMktDataGUI : public QDialog {
     Q_OBJECT
 public:
-    ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr);
+    ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr, QWidget* parent=0);
     virtual ~ReqMktDataGUI();
     static int totalGUIReqActive;
+    
 public slots:
     void requestClicked();    
     void cancelClicked();
@@ -41,7 +42,7 @@ Q_SIGNALS:
 
 private:
     Ui::reqMktDataGUI widget;
-    boost::shared_ptr<IB::PosixClient> client;
+    boost::shared_ptr<IB::PosixClient> client_;
     
     std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;
     std::vector<pMktDataObserver> tickPriceObservers;

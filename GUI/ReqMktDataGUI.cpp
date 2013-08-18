@@ -11,7 +11,7 @@
 #include <typeinfo>
 #include <ql/patterns/observable.hpp>
     
-ReqMktDataGUI::ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr):client(client_ptr),thisGUIReqActive(false){
+ReqMktDataGUI::ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr, QWidget* parent):client_(client_ptr),QDialog(parent),thisGUIReqActive(false){
     widget.setupUi(this);
     QObject::connect(widget.requestButton, SIGNAL(clicked()), this, SLOT(requestClicked()));
     QObject::connect(widget.cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
@@ -31,8 +31,8 @@ ReqMktDataGUI::~ReqMktDataGUI() {
 
 void ReqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
     try{
-        //const IB::TickPriceRecord* tickPriceRecord = dynamic_cast<const IB::TickPriceRecord*>(record.get());
-        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IB::TickPriceRecord>(record_ptr));
+        //const IBAdditions::TickPriceRecord* tickPriceRecord = dynamic_cast<const IBAdditions::TickPriceRecord*>(record.get());
+        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickPriceRecord>(record_ptr));
         #ifdef DEBUG 
            printf( "myTickPriceUpdate! Id: %d, price: %f, tickType: %d\n",tickerId,tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
         #endif
@@ -77,8 +77,8 @@ void ReqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
 
 void ReqMktDataGUI::myTickPriceGUIUpdate(int tickerId, rec_ptr record_ptr){
     try{
-        //const IB::TickPriceRecord* tickPriceRecord = dynamic_cast<const IB::TickPriceRecord*>(record.get());
-        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IB::TickPriceRecord>(record_ptr));
+        //const IBAdditions::TickPriceRecord* tickPriceRecord = dynamic_cast<const IBAdditions::TickPriceRecord*>(record.get());
+        tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickPriceRecord>(record_ptr));
         #ifdef DEBUG 
            printf( "myTickPriceGUIUpdate! Id: %d, price: %f, tickType: %d\n",tickerId,tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
         #endif
@@ -133,12 +133,12 @@ void ReqMktDataGUI::requestClicked(){
     contract.localSymbol = widget.lineEdit_LocalSymbol->text().toStdString();
     
     // map MarketData to event, tickerId and contractDescription
-    boost::shared_ptr<MarketData> tickPriceMktData(new MarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));
+    boost::shared_ptr<MarketData> tickPriceMktData(new MarketData(IBAdditions::TickPrice,widget.lineEdit_Id->text().toInt(),contract));
     // create tickPrice event observer and push it into vector stored in this GUI form
     tickPriceObservers.push_back(boost::shared_ptr<MarketDataObserver>(
-            new MarketDataObserver(tickPriceMktData,IB::TickPrice,boost::bind(&ReqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
+            new MarketDataObserver(tickPriceMktData,IBAdditions::TickPrice,boost::bind(&ReqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
     // put this connection into tickerIdMarketDataMap, it will be stored in tickSizeMarketDataFeed
-    client->marketDataFeedInsert(tickPriceMktData);
+    client_->marketDataFeedInsert(tickPriceMktData);
     
     
     // also register for tickSize updates
@@ -148,7 +148,7 @@ void ReqMktDataGUI::requestClicked(){
     tickSizeObservers.push_back(boost::shared_ptr<MarketDataObserver>(
             new MarketDataObserver(tickSizeMktData,IB::TickSize,boost::bind(&ReqMktDataGUI::myTickSizeUpdate,this,_1,_2))));
     // put this connection into tickerIdMarketDataMap, it will be stored in tickSizeMarketDataFeed
-    client->marketDataFeedInsert(tickSizeMktData);
+    client_->marketDataFeedInsert(tickSizeMktData);
     
     
     // and register also for tickString updates
@@ -158,10 +158,10 @@ void ReqMktDataGUI::requestClicked(){
     tickStringObservers.push_back(boost::shared_ptr<MarketDataObserver>(
             new MarketDataObserver(tickStringMktData,IB::TickString,boost::bind(&ReqMktDataGUI::myTickStringUpdate,this,_1,_2))));
     // put this connection into tickerIdMarketDataMap, it will be stored in tickStringMarketDataFeed
-    client->marketDataFeedInsert(tickStringMktData);    
+    client_->marketDataFeedInsert(tickStringMktData);    
     
     
-    client->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
+    client_->reqMktData(widget.lineEdit_Symbol->text().toStdString(), widget.lineEdit_Type->text().toStdString(),
         widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 
             widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
             widget.lineEdit_LocalSymbol->text().toStdString(), widget.checkBox_Snapshot->isChecked());
@@ -177,7 +177,7 @@ void ReqMktDataGUI::requestClicked(){
 
 void ReqMktDataGUI::cancelClicked() {
     if (thisGUIReqActive) {
-        if(client->isConnected()){
+        if(client_->isConnected()){
             guiMarketDataFeedDelete();
             marketDataFeedDelete();
         }
@@ -192,19 +192,19 @@ void ReqMktDataGUI::cancelClicked() {
 void ReqMktDataGUI::marketDataFeedDelete(void){
     vecPmktDataObsIt it;
     for(it=tickPriceObservers.begin();it!=tickPriceObservers.end();it++){
-        client->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
+        client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
         (*it)->unregisterWithAll();
         tickPriceObservers.erase(it);
     }
     
     for(it=tickSizeObservers.begin();it!=tickSizeObservers.end();it++){
-        client->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
+        client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
         (*it)->unregisterWithAll();
         tickSizeObservers.erase(it);
     }
 
     for(it=tickStringObservers.begin();it!=tickStringObservers.end();it++){
-        client->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
+        client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
         (*it)->unregisterWithAll();
         tickStringObservers.erase(it);
     }
@@ -212,7 +212,7 @@ void ReqMktDataGUI::marketDataFeedDelete(void){
 
 void ReqMktDataGUI::guiMarketDataFeedDelete(void){
     for(tickerIdContractMap::iterator it=guiObservedContracts.begin();it!=guiObservedContracts.end();it++){
-        client->cancelMktData((*it).first);
+        client_->cancelMktData((*it).first);
     }
 }
 
@@ -231,11 +231,11 @@ void ReqMktDataGUI::guiRequestClicked(){
     
     // register for tickPrice updates
     // map MarketData to event, tickerId and contractDescription
-    boost::shared_ptr<GUIMarketData> tickPriceGUIMktData(new GUIMarketData(IB::TickPrice,widget.lineEdit_Id->text().toInt(),contract));    
+    boost::shared_ptr<GUIMarketData> tickPriceGUIMktData(new GUIMarketData(IBAdditions::TickPrice,widget.lineEdit_Id->text().toInt(),contract));    
     // connect slot to signal
     QObject::connect(tickPriceGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickPriceGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
     // put this connection into tickerIdGUIMarketDataMap, it will be stored in tickPriceGUIMarketDataFeed
-    client->guiMarketDataFeedInsert(tickPriceGUIMktData);
+    client_->guiMarketDataFeedInsert(tickPriceGUIMktData);
     
     // register for tickSize updates
     // map MarketData to event, tickerId and contractDescription
@@ -243,7 +243,7 @@ void ReqMktDataGUI::guiRequestClicked(){
     // connect slot to signal
     QObject::connect(tickSizeGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickSizeGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
     // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
-    client->guiMarketDataFeedInsert(tickSizeGUIMktData);   
+    client_->guiMarketDataFeedInsert(tickSizeGUIMktData);   
     
     // register for tickString updates
     // map MarketData to event, tickerId and contractDescription
@@ -251,11 +251,11 @@ void ReqMktDataGUI::guiRequestClicked(){
     // connect slot to signal
     QObject::connect(tickStringGUIMktData.get(), SIGNAL(newRecord(int, rec_ptr)), this, SLOT(myTickStringGUIUpdate(int, rec_ptr)), Qt::QueuedConnection);
     // put this connection into marketDataFeed map, it will be stored in tickSizeMarketDataFeed
-    client->guiMarketDataFeedInsert(tickStringGUIMktData);    
+    client_->guiMarketDataFeedInsert(tickStringGUIMktData);    
    
     //TODO: client->reqMktData has to take all parameters of contract specified in GUI
     // now we process only few of them
-    client->reqMktData(contract->symbol, contract->secType, contract->exchange, contract->currency, 
+    client_->reqMktData(contract->symbol, contract->secType, contract->exchange, contract->currency, 
             widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
             contract->localSymbol, widget.checkBox_Snapshot->isChecked());
     guiObservedContracts.insert(std::pair<int, contract_ptr >(widget.lineEdit_Id->text().toInt(), contract));

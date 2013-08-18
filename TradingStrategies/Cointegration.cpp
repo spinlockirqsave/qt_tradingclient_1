@@ -16,7 +16,7 @@ Cointegration::Cointegration(const Cointegration& orig) : TradingStrategy(orig) 
 Cointegration::~Cointegration() {
 }
 
-void Cointegration::doSubscribeToData(IB::Event event, IB::TickerId tickerId, 
+void Cointegration::doSubscribeToData(IBAdditions::Event event, IB::TickerId tickerId, 
         IB::Contract contract, f_action_ptr action_ptr){
     // map MarketData to event, tickerId and contractDescription
     boost::shared_ptr<MarketData> tickMktData(new MarketData(event, tickerId, contract));
@@ -27,7 +27,7 @@ void Cointegration::doSubscribeToData(IB::Event event, IB::TickerId tickerId,
     
     // put this connection into tickerIdMarketDataMap,
     // it will be stored in appropriate tickMarketData
-    // depending on IB::Event type specified in this 
+    // depending on IBAdditions::Event type specified in this 
     // MarketData instance
     client->marketDataFeedInsert(tickMktData);
 }

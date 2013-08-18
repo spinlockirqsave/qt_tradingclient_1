@@ -139,6 +139,13 @@ namespace IBAdditions {
 
     struct ContractEvent : IB::Contract {
         Event event_;
+        
+        ContractEvent(){}
+        ContractEvent(IB::Contract& c, IBAdditions::Event& e) : IB::Contract(c) {
+            event_=e;
+        }
+        ContractEvent(const ContractEvent& ce){  
+        }
 
         inline bool operator<(const ContractEvent & rhs) const {
             if(this->IB::Contract::operator <(rhs) == true) return true;

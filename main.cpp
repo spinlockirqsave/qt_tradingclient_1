@@ -107,7 +107,6 @@ int main(int argc, char *argv[]) {
     client.reset(new IB::PosixClient());
     
     // initialize resources
-    Repository marketDataRepository;
     // Q_INIT_RESOURCE(resfile);
     QApplication app(argc, argv);
     app.setStyleSheet("QMenu::item:selected {border: 1px solid blue;}");  

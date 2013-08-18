@@ -9,6 +9,8 @@
 
 #include "Repository.h"
 
+Repository marketDataRepository;
+
 Repository::Repository(const std::vector<IBAdditions::ContractEvent>& contractEventVector) {
     BOOST_FOREACH(const IBAdditions::ContractEvent ce, contractEventVector){
         //EventDataMap edm = std::pair<IBAdditions::Event, std::vector<double> >(ce.second, std::vector<double>())
@@ -23,5 +25,9 @@ Repository::Repository(const Repository& orig) {
 }
 
 Repository::~Repository() {
+}
+
+void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAdditions::rec_ptr rptr){
+    contractEventDataMap_[ce].push_back(rptr);
 }
 

@@ -32,13 +32,15 @@ typedef boost::shared_ptr<IBAdditions::MktDepthL2Record>  mktDepthL2Rec_ptr;
 class MarketData : public QuantLib::Observable {
 public:
     //MarketData();
-    MarketData(IBAdditions::Event processedEvent, int tickerId, IB::Contract contractDescription):
-    processedEvent(processedEvent), tickerId(tickerId), contractDescription(contractDescription) {}
+    MarketData(IBAdditions::Event processedEvent, int tickerId, IB::Contract contract):
+    processedEvent(processedEvent), tickerId(tickerId), contract_(contract) {
+        contractEvent_ = IBAdditions::ContractEvent(contract, processedEvent);
+    }
     virtual ~MarketData();
     int getTickerId()const{ return tickerId; }
     void putRecord(boost::shared_ptr<IBAdditions::Record> record){
         record_=record;
-        marketDataRepository
+        marketDataRepository.putRecord(contractEvent_,record_);
     }
     boost::shared_ptr<IBAdditions::Record> getRecord() const {
         return record_;
@@ -53,7 +55,8 @@ private:
     // this MarketData object can handle this event
     IBAdditions::Event processedEvent;
     int tickerId;
-    IB::Contract contractDescription;
+    IB::Contract contract_;
+    IBAdditions::ContractEvent contractEvent_;
 };
 
 typedef boost::shared_ptr<MarketData> pMktDataObservable;

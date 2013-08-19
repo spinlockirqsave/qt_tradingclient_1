@@ -137,7 +137,7 @@ void ReqMktDataGUI::requestClicked(){
     // create tickPrice event observer and push it into vector stored in this GUI form
     tickPriceObservers.push_back(boost::shared_ptr<MarketDataObserver>(
             new MarketDataObserver(tickPriceMktData,IBAdditions::TickPrice,boost::bind(&ReqMktDataGUI::myTickPriceUpdate,this,_1,_2))));
-    // put this connection into tickerIdMarketDataMap, it will be stored in tickSizeMarketDataFeed
+    // put this connection into tickerIdMarketDataMap, it will be stored in tickPriceMarketDataFeed
     client_->marketDataFeedInsert(tickPriceMktData);
     
     
@@ -165,7 +165,7 @@ void ReqMktDataGUI::requestClicked(){
         widget.lineEdit_Exchange->text().toStdString(), widget.lineEdit_Currency->text().toStdString(), 
             widget.lineEdit_Id->text().toInt(), widget.lineEdit_genericTickTags->text().toStdString(), 
             widget.lineEdit_LocalSymbol->text().toStdString(), widget.checkBox_Snapshot->isChecked());
-    observedContracts.push_back(contract);
+    observedContracts.insert(std::pair<int, IB::Contract>(widget.lineEdit_Id->text().toInt(),contract));
 //    int i=0;
 //    while(i<30000000){
 //        client->processMessages();
@@ -186,31 +186,37 @@ void ReqMktDataGUI::cancelClicked() {
 //        }
         thisGUIReqActive = false;
         totalGUIReqActive--;
+    } else {
+        marketDataFeedDelete();
     }
 } 
 
 void ReqMktDataGUI::marketDataFeedDelete(void){
-    for(vecPmktDataObsIt it=tickPriceObservers.begin();it!=tickPriceObservers.end();it++){
-        client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
-        (*it)->unregisterWithAll();
-        tickPriceObservers.erase(it);
-    }
-    
-    for(vecPmktDataObsIt it=tickSizeObservers.begin();it!=tickSizeObservers.end();it++){
-        client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
-        (*it)->unregisterWithAll();
-        tickSizeObservers.erase(it);
-    }
-
-    for(vecPmktDataObsIt it=tickStringObservers.begin();it!=tickStringObservers.end();it++){
-        client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
-        (*it)->unregisterWithAll();
-        tickStringObservers.erase(it);
+//    for(vecPmktDataObsIt it=tickPriceObservers.begin();it!=tickPriceObservers.end();it++){
+//        client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
+//        (*it)->unregisterWithAll();
+//        tickPriceObservers.erase(it);
+//    }
+//    
+//    for(vecPmktDataObsIt it=tickSizeObservers.begin();it!=tickSizeObservers.end();it++){
+//        client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
+//        (*it)->unregisterWithAll();
+//        tickSizeObservers.erase(it);
+//    }
+//
+//    for(vecPmktDataObsIt it=tickStringObservers.begin();it!=tickStringObservers.end();it++){
+//        client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
+//        (*it)->unregisterWithAll();
+//        tickStringObservers.erase(it);
+//    }
+    printf("\nReqMktdataGUI: canceling mkt data requests\n");
+    for(tickerIdContractMap::iterator it = observedContracts.begin(); it!=observedContracts.end(); it++){
+        client_->cancelMktData((*it).first);
     }
 }
 
 void ReqMktDataGUI::guiMarketDataFeedDelete(void){
-    for(tickerIdContractMap::iterator it=guiObservedContracts.begin();it!=guiObservedContracts.end();it++){
+    for(tickerIdContractPtrMap::iterator it=guiObservedContracts.begin();it!=guiObservedContracts.end();it++){
         client_->cancelMktData((*it).first);
     }
 }

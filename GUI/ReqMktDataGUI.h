@@ -55,11 +55,12 @@ private:
     void marketDataFeedDelete(void);
     void guiMarketDataFeedDelete(void);
     
-    std::vector<IB::Contract> observedContracts;
+    std::map<int, IB::Contract> observedContracts;
     std::map<int, boost::shared_ptr<IB::Contract> > guiObservedContracts;
     bool thisGUIReqActive;
 };
-typedef std::map<int, boost::shared_ptr<IB::Contract> > tickerIdContractMap;
+typedef std::map<int, IB::Contract> tickerIdContractMap;
+typedef std::map<int, boost::shared_ptr<IB::Contract> > tickerIdContractPtrMap;
 typedef std::vector<boost::shared_ptr<MarketDataObserver> >::iterator vecPmktDataObsIt;
 
 #endif	/* _GUI_H */

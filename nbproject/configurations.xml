@@ -13,6 +13,7 @@
           <itemPath>DataAccessLayer/PosixClient.h</itemPath>
           <itemPath>DataAccessLayer/ProcessMsgClass.h</itemPath>
           <itemPath>DataAccessLayer/Repository.h</itemPath>
+          <itemPath>DataAccessLayer/globals.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f3" displayName="IB_additions" projectFiles="true">

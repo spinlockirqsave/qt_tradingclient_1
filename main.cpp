@@ -13,11 +13,15 @@
 #include <GUI/MainWindow.h>
 #include <GUI/ReqMktDataGUI.h>
 #include <GUI/ReqMktDepthGUI.h>
+
+#include <DataAccessLayer/globals.h>
+
 #include <boost/shared_ptr.hpp>
 #include <pthread.h>
 #include <errno.h>
 
 boost::shared_ptr<IB::PosixClient> client;
+Repository marketDataRepository;
 
 #define NUM_THREADS	1
 pthread_t thread[NUM_THREADS];
@@ -41,7 +45,6 @@ int needQuit(pthread_mutex_t *mtx)
   }
   return 1;
 }
-
 
 /* Thread function, containing a loop that's infinite except that it checks for
  * termination with needQuit() 

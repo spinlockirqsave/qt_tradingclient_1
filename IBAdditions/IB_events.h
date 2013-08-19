@@ -150,7 +150,7 @@ namespace IBAdditions {
         inline bool operator<(const ContractEvent & rhs) const {
             if(this->IB::Contract::operator <(rhs) == true) return true;
             if(rhs.::IB::Contract::operator <(*this) == true) return false;
-            return (int)this->event_ < rhs.event_;
+            return (int)this->event_ < (int)rhs.event_;
         }
     };
     

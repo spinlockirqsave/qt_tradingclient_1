@@ -190,20 +190,19 @@ void ReqMktDataGUI::cancelClicked() {
 } 
 
 void ReqMktDataGUI::marketDataFeedDelete(void){
-    vecPmktDataObsIt it;
-    for(it=tickPriceObservers.begin();it!=tickPriceObservers.end();it++){
+    for(vecPmktDataObsIt it=tickPriceObservers.begin();it!=tickPriceObservers.end();it++){
         client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
         (*it)->unregisterWithAll();
         tickPriceObservers.erase(it);
     }
     
-    for(it=tickSizeObservers.begin();it!=tickSizeObservers.end();it++){
+    for(vecPmktDataObsIt it=tickSizeObservers.begin();it!=tickSizeObservers.end();it++){
         client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
         (*it)->unregisterWithAll();
         tickSizeObservers.erase(it);
     }
 
-    for(it=tickStringObservers.begin();it!=tickStringObservers.end();it++){
+    for(vecPmktDataObsIt it=tickStringObservers.begin();it!=tickStringObservers.end();it++){
         client_->cancelMktData((*it)->get_pMktDataObservable()->getTickerId());
         (*it)->unregisterWithAll();
         tickStringObservers.erase(it);

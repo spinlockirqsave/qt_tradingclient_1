@@ -90,7 +90,7 @@ public:
             // here appropriate function of subscribing object is called:
             // myTickPriceUpdate, myTickSizeUpdate or myTickStringUpdate 
             // depending on what subscribing object has specified in 
-            //f_action_ptr ptr in MarketDataObserver constructor
+            // f_action_ptr ptr in MarketDataObserver constructor
             f_ptr(observable->getTickerId(), data);
         }
     }

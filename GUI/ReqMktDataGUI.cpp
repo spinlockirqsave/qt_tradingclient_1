@@ -209,14 +209,15 @@ void ReqMktDataGUI::marketDataFeedDelete(void){
 //        (*it)->unregisterWithAll();
 //        tickStringObservers.erase(it);
 //    }
-    printf("\nReqMktdataGUI: canceling mkt data requests\n");
     for(tickerIdContractMap::iterator it = observedContracts.begin(); it!=observedContracts.end(); it++){
+        printf("\nReqMktdataGUI::marketDataFeedDelete: canceling mkt data requests with id %d\n",(*it).first);
         client_->cancelMktData((*it).first);
     }
 }
 
 void ReqMktDataGUI::guiMarketDataFeedDelete(void){
     for(tickerIdContractPtrMap::iterator it=guiObservedContracts.begin();it!=guiObservedContracts.end();it++){
+        printf("\nReqMktdataGUI::guiMarketDataFeedDelete: canceling mkt data request with id %d\n",(*it).first);
         client_->cancelMktData((*it).first);
     }
 }

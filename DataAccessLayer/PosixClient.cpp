@@ -239,8 +239,8 @@ void PosixClient::reqMktData(IBString symbol, IBString secType,
 	m_pClient->reqMktData( tickerId, contract, genericTicks, snapshot);
     }
 
-void PosixClient::reqMktDepth(TickerId tickerId, boost::shared_ptr<Contract> contract, int numRows){
-    m_pClient->reqMktDepth(tickerId, *contract, numRows);
+void PosixClient::reqMktDepth(TickerId tickerId, IB::Contract contract, int numRows){
+    m_pClient->reqMktDepth(tickerId, contract, numRows);
 }
 
     void PosixClient::marketDataFeedInsert(boost::shared_ptr<MarketData> marketData) {
@@ -368,7 +368,7 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
             (*it2).second->notifyObservers();
             //printf("PosixClient::tickPrice: GUIMarketData notifyOK \n");
             //TODO: start thread to store incoming data in repository
-            (*it2).second->saveRecord();
+            //(*it2).second->saveRecord();
         }
 }
 void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
@@ -387,7 +387,7 @@ void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
             (*it2).second->putRecord(tickSizeRec_ptr(new IBAdditions::TickSizeRecord(field,IBAdditions::TickSize,size)));
             (*it2).second->notifyObservers();
             //TODO: start thread to store incoming data in repository
-            (*it2).second->saveRecord();
+            //(*it2).second->saveRecord();
         }
 }
 void PosixClient::tickOptionComputation( TickerId tickerId, TickType tickType, double impliedVol, double delta,
@@ -419,7 +419,7 @@ void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& 
             (*it2).second->putRecord(tickStringRec_ptr(new IBAdditions::TickStringRecord(field,IBAdditions::TickString,value)));
             (*it2).second->notifyObservers();
             //TODO: start thread to store incoming data in repository
-            (*it2).second->saveRecord();
+            //(*it2).second->saveRecord();
         }
     //printf("tickerId: %lu, TickType: %d, value: %s\n", tickerId, tickType, value.c_str());
 }

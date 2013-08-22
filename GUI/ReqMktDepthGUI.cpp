@@ -196,14 +196,14 @@ void ReqMktDepthGUI::displayData(int tickerId, rec_ptr record_ptr){
 }
 
 void ReqMktDepthGUI::guiRequestClicked(){
-    contract_ptr contract(new IB::Contract());
-    contract->symbol = widget.lineEdit_Symbol->text().toStdString();
-    contract->secType = widget.lineEdit_Type->text().toStdString();
-    contract->strike = ::atof(widget.lineEdit_Strike->text().toStdString().c_str());
-    contract->exchange = widget.lineEdit_Exchange->text().toStdString();
-    contract->primaryExchange = widget.lineEdit_PrimaryExchange->text().toStdString();
-    contract->currency = widget.lineEdit_Currency->text().toStdString();
-    contract->includeExpired = widget.lineEdit_IncludeExpired->text().toInt();
+    IB::Contract contract;
+    contract.symbol = widget.lineEdit_Symbol->text().toStdString();
+    contract.secType = widget.lineEdit_Type->text().toStdString();
+    contract.strike = ::atof(widget.lineEdit_Strike->text().toStdString().c_str());
+    contract.exchange = widget.lineEdit_Exchange->text().toStdString();
+    contract.primaryExchange = widget.lineEdit_PrimaryExchange->text().toStdString();
+    contract.currency = widget.lineEdit_Currency->text().toStdString();
+    contract.includeExpired = widget.lineEdit_IncludeExpired->text().toInt();
     
     // register for MarketDepth updates
     // map MarketData to event, tickerId and contractDescription
@@ -224,7 +224,7 @@ void ReqMktDepthGUI::guiRequestClicked(){
     //TODO: client->reqMktData has to take all parameters of contract specified in GUI
     // now we process only few of them
     client->reqMktDepth((IB::TickerId)widget.lineEdit_Id->text().toInt(),contract, widget.lineEdit_MaxNumberOfRows->text().toInt());
-    guiObservedContracts.insert(std::pair<int, contract_ptr >(widget.lineEdit_Id->text().toInt(), contract));
+    guiObservedContracts.insert(std::pair<int, IB::Contract >(widget.lineEdit_Id->text().toInt(), contract));
     
     thisGUIReqActive=true;
     totalGUIReqActive++;

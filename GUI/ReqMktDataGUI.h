@@ -59,7 +59,7 @@ private:
     void guiMarketDataFeedDelete(void);
     
     std::map<int, IB::Contract> observedContracts_;
-    std::map<int, boost::shared_ptr<IB::Contract> > guiObservedContracts_;
+    std::map<int, IB::Contract> guiObservedContracts_;
     bool thisGUIReqActive_;
 };
 typedef std::map<int, IB::Contract> tickerIdContractMap;

@@ -21,14 +21,17 @@ class GUIMarketData : public QObject {
     Q_OBJECT
 public:
     GUIMarketData();
-    GUIMarketData(IBAdditions::Event processedEvent, int tickerId, contract_ptr contractDescription):
-                processedEvent_(processedEvent), tickerId_(tickerId), contractDescription_(contractDescription) {}
+    GUIMarketData(IBAdditions::Event processedEvent, int tickerId, IB::Contract contract):
+                processedEvent_(processedEvent), tickerId_(tickerId), contract_(contract) {
+        contractEvent_ = IBAdditions::ContractEvent(contract, processedEvent_);
+    }
     virtual ~GUIMarketData();
     int getTickerId()const{
         return tickerId_;
     }
     void putRecord(boost::shared_ptr<IBAdditions::Record> record){
         record_=record;
+        marketDataRepository.putRecord(contractEvent_,record_);
     }
     boost::shared_ptr<IBAdditions::Record> getRecord()const{
         return record_;
@@ -51,11 +54,12 @@ private:
     GUIMarketData(const GUIMarketData& orig);
     rec_ptr record_;
     
-    // this GUIMarketData object can handle these events
-    // any observer can subscribe to one of those events
+    // this GUIMarketData object can handle this event
+    // any observer can subscribe to this
     IBAdditions::Event processedEvent_;
     int tickerId_;
-    contract_ptr contractDescription_;
+    IB::Contract contract_;
+    IBAdditions::ContractEvent contractEvent_;
     
     // vector of shared pointers ensures that the allocated object inside of
     // shared_ptr is safely transferred into the vector (ref counting mechanism asserts this)

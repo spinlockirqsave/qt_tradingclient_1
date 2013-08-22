@@ -13,6 +13,7 @@
           <itemPath>DataAccessLayer/PosixClient.h</itemPath>
           <itemPath>DataAccessLayer/ProcessMsgClass.h</itemPath>
           <itemPath>DataAccessLayer/Repository.h</itemPath>
+          <itemPath>DataAccessLayer/RepositoryOnStack.h</itemPath>
           <itemPath>DataAccessLayer/globals.h</itemPath>
         </logicalFolder>
       </logicalFolder>
@@ -62,6 +63,7 @@
         <itemPath>DataAccessLayer/MessageProcessor.cpp</itemPath>
         <itemPath>DataAccessLayer/PosixClient.cpp</itemPath>
         <itemPath>DataAccessLayer/Repository.cpp</itemPath>
+        <itemPath>DataAccessLayer/RepositoryOnStack.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="IBAdditions" projectFiles="true">
         <itemPath>DataAccessLayer/IB_events.cpp</itemPath>

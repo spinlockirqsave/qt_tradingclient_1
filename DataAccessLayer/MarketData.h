@@ -33,11 +33,11 @@ class MarketData : public QuantLib::Observable {
 public:
     //MarketData();
     MarketData(IBAdditions::Event processedEvent, int tickerId, IB::Contract contract):
-    processedEvent(processedEvent), tickerId(tickerId), contract_(contract) {
+    processedEvent_(processedEvent), tickerId_(tickerId), contract_(contract) {
         contractEvent_ = IBAdditions::ContractEvent(contract, processedEvent);
     }
     virtual ~MarketData();
-    int getTickerId()const{ return tickerId; }
+    int getTickerId()const{ return tickerId_; }
     void putRecord(boost::shared_ptr<IBAdditions::Record> record){
         record_=record;
         marketDataRepository.putRecord(contractEvent_,record_);
@@ -46,15 +46,15 @@ public:
         return record_;
     }
     IBAdditions::Event getEvent()const{
-        return processedEvent;
+        return processedEvent_;
     }    
 private:
     MarketData(const MarketData& orig);
     boost::shared_ptr<IBAdditions::Record> record_;
     
     // this MarketData object can handle this event
-    IBAdditions::Event processedEvent;
-    int tickerId;
+    IBAdditions::Event processedEvent_;
+    int tickerId_;
     IB::Contract contract_;
     IBAdditions::ContractEvent contractEvent_;
 };

@@ -133,25 +133,26 @@ namespace IBAdditions {
         //        const int EXCHANGE_UNAVAIL_MSG = 3; // control message specifing that an exchange is unavailable for trading
     };
 
-    inline bool operator<(const Event& lhs, const Event& rhs) {
-        return (int) lhs < (int) rhs;
-    }
+//    inline bool operator<(const Event& lhs, const Event& rhs) {
+//        return (int) lhs < (int) rhs;
+//    }
 
     struct ContractEvent : IB::Contract {
         Event event_;
         
-        ContractEvent(){}
+        ContractEvent() : event_(IBAdditions::TickSize) {}
         ContractEvent(IB::Contract& c, IBAdditions::Event& e) : IB::Contract(c) {
             event_=e;
         }
-        ContractEvent(const ContractEvent& ce){  
+        ContractEvent(const ContractEvent& other) : IB::Contract(other) {
+            event_=other.event_;
         }
 
         inline bool operator<(const ContractEvent & rhs) const {
 //            if(IB::Contract::operator<(rhs)==false && rhs.::IB::Contract::operator<(*this)==false)
 //                return (int)event_ < (int)rhs.event_;
-            return IB::Contract::operator<(rhs);
-            
+            //return IB::Contract::operator<(rhs);
+            return symbol<rhs.symbol || (!(rhs.symbol<symbol) && (int)event_<(int)rhs.event_);
 //            if (IB::Contract::operator<(rhs)) return false;
 //            if (!IB::Contract::operator<(rhs)) return true;
 //            return (int)event_ < (int)rhs.event_;

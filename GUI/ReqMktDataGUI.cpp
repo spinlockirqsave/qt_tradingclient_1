@@ -34,17 +34,17 @@ void ReqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
         //const IBAdditions::TickPriceRecord* tickPriceRecord = dynamic_cast<const IBAdditions::TickPriceRecord*>(record.get());
         tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickPriceRecord>(record_ptr));
         #ifdef DEBUG 
-           printf( "%s myTickPriceUpdate! Id: %d, price: %f, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickPriceRecord_ptr->tickType_).c_str(), tickerId, tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
+           printf( "[ReqMktDataGUI::myTickPriceUpdate] %s Id: %d, price: %f, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickPriceRecord_ptr->tickType_).c_str(), tickerId, tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
            
            IBAdditions::ContractEvent contractEvent_ = IBAdditions::ContractEvent(observedContracts_[tickerId], tickPriceRecord_ptr->event_);
-           printf("vector->size: %d\n", marketDataRepository[contractEvent_].size());
-           printf("repo->size: %d\n", marketDataRepository.contractEventCount());
+           printf("[ReqMktDataGUI::myTickPriceUpdate] vector->size: %d\n", marketDataRepository[contractEvent_].size());
+           printf("[ReqMktDataGUI::myTickPriceUpdate] repo->size: %d\n", marketDataRepository.contractEventCount());
         #endif
 //        QString qs=QString("myTickPriceUpdate! Id: %1, price: %2, tickType: %3").arg(tickerId).arg(tickPriceRecord_ptr->price_).arg(tickPriceRecord_ptr->tickType_);
 //        widget.textEdit_dataFeed->append(qs);
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
-           printf( "myTickPriceUpdate: badCast for tickerId: %d\n",tickerId);
+           printf( "[ReqMktDataGUI::myTickPriceUpdate] badCast for tickerId: %d\n",tickerId);
         #endif
     }
 }
@@ -52,22 +52,22 @@ void ReqMktDataGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
     try{
         tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>(record_ptr));
     #ifdef DEBUG 
-        printf( "%s myTickSizeUpdate! Id: %d, size: %d, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickSizeRecord_ptr->tickType_).c_str(), tickerId, tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
+        printf( "[ReqMktDataGUI::myTickSizeUpdate] %s Id: %d, size: %d, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickSizeRecord_ptr->tickType_).c_str(), tickerId, tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
         IBAdditions::ContractEvent contractEvent_ = IBAdditions::ContractEvent(observedContracts_[tickerId], tickSizeRecord_ptr->event_);
-//        boost::shared_ptr<IBAdditions::TickSizeRecord> repoRecord = boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>
-//                (marketDataRepository[contractEvent_].back());
+        boost::shared_ptr<IBAdditions::TickSizeRecord> repoRecord = boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>
+                (marketDataRepository[contractEvent_].back());
         
-        printf("vector->size: %d\n", marketDataRepository[contractEvent_].size());
-        printf("repo->size: %d\n", marketDataRepository.contractEventCount());
-        //int size = repoRecord->size_;
-        //printf("repoRecord->size_: %d\n", size);
+        printf("[ReqMktDataGUI::myTickSizeUpdate] vector->size: %d\n", marketDataRepository[contractEvent_].size());
+        printf("[ReqMktDataGUI::myTickSizeUpdate] repo->size: %d\n", marketDataRepository.contractEventCount());
+        int size = repoRecord->size_;
+        printf("[ReqMktDataGUI::myTickSizeUpdate] repoRecord->size_: %d\n", size);
     #endif
 //        QString qs=QString("myTickSizeUpdate! Id: %1, size: %2, tickType: %3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
 //        widget.textEdit_dataFeed->append(qs);
         //widget.textEdit_dataFeed->append("myTickSizeUpdate something...");
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
-            printf( "myTickSizeUpdate: badCast for tickerId: %d\n",tickerId);
+            printf( "[ReqMktDataGUI::myTickSizeUpdate] badCast for tickerId: %d\n",tickerId);
         #endif
     }
 }
@@ -75,14 +75,14 @@ void ReqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
         try{
         tickStringRec_ptr tickStringRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickStringRecord>(record_ptr));
     #ifdef DEBUG 
-        printf( "%s myTickStringUpdate! Id: %d, string: %s, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickStringRecord_ptr->tickType_).c_str(), tickerId, tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
+        printf( "[ReqMktDataGUI::myTickStringUpdate] %s Id: %d, string: %s, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickStringRecord_ptr->tickType_).c_str(), tickerId, tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
     #endif
 //        QString qs=QString("myTickStringUpdate! Id: %1, string: ").arg(tickerId)+QString::fromStdString(tickStringRecord_ptr->string);
 //        qs+=QString(" tickType: %1").arg(tickStringRecord_ptr->tickType_);
 //        widget.textEdit_dataFeed->append(qs);
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
-            printf( "myTickStringUpdate: badCast for tickerId: %d\n",tickerId);
+            printf( "[ReqMktDataGUI::myTickStringUpdate] badCast for tickerId: %d\n",tickerId);
         #endif
     }
 }

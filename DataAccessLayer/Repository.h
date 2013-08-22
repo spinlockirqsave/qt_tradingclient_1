@@ -47,6 +47,7 @@ public:
     int contractEventCount(){
         return contractEventDataMap_.size();
     }
+    
 private:
     Repository(const Repository& orig);
     ContractEventDataMap contractEventDataMap_;

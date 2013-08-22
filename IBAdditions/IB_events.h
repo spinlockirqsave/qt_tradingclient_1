@@ -133,174 +133,198 @@ namespace IBAdditions {
         //        const int EXCHANGE_UNAVAIL_MSG = 3; // control message specifing that an exchange is unavailable for trading
     };
 
-//    inline bool operator<(const Event& lhs, const Event& rhs) {
-//        return (int) lhs < (int) rhs;
-//    }
+    //    inline bool operator<(const Event& lhs, const Event& rhs) {
+    //        return (int) lhs < (int) rhs;
+    //    }
 
     struct ContractEvent : IB::Contract {
-        Event event_;
-        
-        ContractEvent() : event_(IBAdditions::TickSize) {}
-        ContractEvent(IB::Contract& c, IBAdditions::Event& e) : IB::Contract(c) {
-            event_=e;
+
+        ContractEvent() {
         }
-        ContractEvent(const ContractEvent& other) : IB::Contract(other) {
-            event_=other.event_;
+
+        ContractEvent(IB::Contract& c, IBAdditions::Event & e) : IB::Contract(c) {
+            event_ = e;
+        }
+
+        ContractEvent(const ContractEvent & other) : IB::Contract(other) {
+            event_ = other.event_;
         }
 
         inline bool operator<(const ContractEvent & rhs) const {
-//            if(IB::Contract::operator<(rhs)==false && rhs.::IB::Contract::operator<(*this)==false)
-//                return (int)event_ < (int)rhs.event_;
-            //return IB::Contract::operator<(rhs);
-            return symbol<rhs.symbol || (!(rhs.symbol<symbol) && (int)event_<(int)rhs.event_);
-//            if (IB::Contract::operator<(rhs)) return false;
-//            if (!IB::Contract::operator<(rhs)) return true;
-//            return (int)event_ < (int)rhs.event_;
-            
-            //if(rhs.::IB::Contract::operator <(*this) == true) return false;
-            //return (int)event_ < (int)rhs.event_;
+            return symbol < rhs.symbol || (!(rhs.symbol < symbol) && (int) event_ < (int) rhs.event_);
+        }
+
+        Event event_;
+    };
+
+    //Additions
+
+    class Record {
+    public:
+        IB::TickType tickType_;
+        IBAdditions::Event event_;
+
+        Record() {
+        }
+
+        Record(IB::TickType tickType, IBAdditions::Event event) : tickType_(tickType), event_(event) {
+        }
+
+        virtual std::string getName() {
+            return "Record";
+        }
+
+        virtual ~Record() {
         }
     };
-    
-    //Additions
-class Record{
-public:
-    IB::TickType tickType_;
-    IBAdditions::Event event_;
-    Record(){}
-    Record(IB::TickType tickType, IBAdditions::Event event): tickType_(tickType), event_(event) {
-    }
-    virtual std::string getName(){return "Record";}
-    virtual ~Record(){}
-};
 
-class TickPriceRecord : public Record{
-public:
-    std::string name;
-    TickPriceRecord(IB::TickType tickType, IBAdditions::Event event, double price, int canAutoExecute):
-    Record(tickType, event), price_(price), canAutoExecute(canAutoExecute),name("TickPriceRecord"){
-        
-    }
-    double price_;
-    int canAutoExecute;
-    std::string getName(){return name;}
-};
+    class TickPriceRecord : public Record {
+    public:
+        std::string name;
 
-class TickSizeRecord : public Record{
-public:
-    std::string name;
-    TickSizeRecord(IB::TickType tickType, IBAdditions::Event event, int size):
-    Record(tickType, event), size_(size), name("TickSizeRecord"){
-        
-    }
-    int size_;
-    std::string getName(){return name;}    
-};
+        TickPriceRecord(IB::TickType tickType, IBAdditions::Event event, double price, int canAutoExecute) :
+        Record(tickType, event), price_(price), canAutoExecute(canAutoExecute), name("TickPriceRecord") {
 
-class TickStringRecord : public Record{
-public:
-    std::string name;
-    TickStringRecord(IB::TickType tickType, IBAdditions::Event event, const std::string& string):
-    Record(tickType, event), string(string), name("TickStringRecord"){
-        
-    }
-    const std::string string;
-    std::string getName(){return name;}    
-};
+        }
+        double price_;
+        int canAutoExecute;
 
-class MktDepthRecord : public Record{
-public:
-    std::string name;
-    MktDepthRecord(int position, int operation, int side, double price, int size):
-    Record(IB::NOT_SET, IBAdditions::MarketDepth), position_(position), operation_(operation), side_(side),
-    price_(price), size_(size), name("MktDepthRecord"){
-        
-    }
-    int position_;
-    int operation_;
-    int side_;
-    double price_;
-    int size_;
-    std::string getName(){return name;}    
-};
+        std::string getName() {
+            return name;
+        }
+    };
 
-class MktDepthL2Record : public Record{
-public:
-    std::string name;
-    MktDepthL2Record(int position, IB::IBString marketMaker, int operation, int side, double price, int size):
-    Record(IB::NOT_SET, IBAdditions::MarketDepthL2), position_(position), marketMaker_(marketMaker), operation_(operation), side_(side),
-    price_(price), size_(size), name("MktDepthL2Record"){
-        
-    }
-    int position_;
-    IB::IBString marketMaker_;
-    int operation_;
-    int side_;
-    double price_;
-    int size_;
-    std::string getName(){return name;}    
-};
+    class TickSizeRecord : public Record {
+    public:
+        std::string name;
 
-typedef boost::shared_ptr<IBAdditions::Record> rec_ptr;
-typedef boost::shared_ptr<IBAdditions::TickPriceRecord> tickPriceRec_ptr;
-typedef boost::shared_ptr<IBAdditions::TickSizeRecord>  tickSizeRec_ptr;
-typedef boost::shared_ptr<IBAdditions::TickStringRecord>  tickStringRec_ptr;
-typedef boost::shared_ptr<IBAdditions::MktDepthRecord>  mktDepthRec_ptr;
-typedef boost::shared_ptr<IBAdditions::MktDepthL2Record>  mktDepthL2Rec_ptr;
+        TickSizeRecord(IB::TickType tickType, IBAdditions::Event event, int size) :
+        Record(tickType, event), size_(size), name("TickSizeRecord") {
 
-std::string ibTickTypeToStdString(IB::TickType tickType);
+        }
+        int size_;
 
-//enum TickType { BID_SIZE, BID, ASK, ASK_SIZE, LAST, LAST_SIZE, // 0,1,2,3,4,5
-//				HIGH, LOW, VOLUME, CLOSE,//6,7,8,9
-//				BID_OPTION_COMPUTATION, //10
-//				ASK_OPTION_COMPUTATION, //11
-//				LAST_OPTION_COMPUTATION,//12
-//				MODEL_OPTION,//13
-//				OPEN,//14
-//				LOW_13_WEEK,//15
-//				HIGH_13_WEEK,//16
-//				LOW_26_WEEK,//17
-//				HIGH_26_WEEK,//18
-//				LOW_52_WEEK,//19
-//				HIGH_52_WEEK,//20
-//				AVG_VOLUME,//21
-//				OPEN_INTEREST,//22
-//				OPTION_HISTORICAL_VOL,//23
-//				OPTION_IMPLIED_VOL,//24
-//				OPTION_BID_EXCH,
-//				OPTION_ASK_EXCH,
-//				OPTION_CALL_OPEN_INTEREST,
-//				OPTION_PUT_OPEN_INTEREST,
-//				OPTION_CALL_VOLUME,
-//				OPTION_PUT_VOLUME,
-//				INDEX_FUTURE_PREMIUM,
-//				BID_EXCH,
-//				ASK_EXCH,
-//				AUCTION_VOLUME,
-//				AUCTION_PRICE,
-//				AUCTION_IMBALANCE,
-//				MARK_PRICE,
-//				BID_EFP_COMPUTATION,
-//				ASK_EFP_COMPUTATION,
-//				LAST_EFP_COMPUTATION,
-//				OPEN_EFP_COMPUTATION,
-//				HIGH_EFP_COMPUTATION,
-//				LOW_EFP_COMPUTATION,
-//				CLOSE_EFP_COMPUTATION,
-//				LAST_TIMESTAMP,//45
-//				SHORTABLE,
-//				FUNDAMENTAL_RATIOS,
-//				RT_VOLUME,
-//				HALTED,
-//				BID_YIELD,
-//				ASK_YIELD,
-//				LAST_YIELD,
-//				CUST_OPTION_COMPUTATION,
-//				TRADE_COUNT,
-//				TRADE_RATE,
-//				VOLUME_RATE,
-//				LAST_RTH_TRADE,
-//				NOT_SET };
+        std::string getName() {
+            return name;
+        }
+    };
+
+    class TickStringRecord : public Record {
+    public:
+        std::string name;
+
+        TickStringRecord(IB::TickType tickType, IBAdditions::Event event, const std::string& string) :
+        Record(tickType, event), string(string), name("TickStringRecord") {
+
+        }
+        const std::string string;
+
+        std::string getName() {
+            return name;
+        }
+    };
+
+    class MktDepthRecord : public Record {
+    public:
+        std::string name;
+
+        MktDepthRecord(int position, int operation, int side, double price, int size) :
+        Record(IB::NOT_SET, IBAdditions::MarketDepth), position_(position), operation_(operation), side_(side),
+        price_(price), size_(size), name("MktDepthRecord") {
+
+        }
+        int position_;
+        int operation_;
+        int side_;
+        double price_;
+        int size_;
+
+        std::string getName() {
+            return name;
+        }
+    };
+
+    class MktDepthL2Record : public Record {
+    public:
+        std::string name;
+
+        MktDepthL2Record(int position, IB::IBString marketMaker, int operation, int side, double price, int size) :
+        Record(IB::NOT_SET, IBAdditions::MarketDepthL2), position_(position), marketMaker_(marketMaker), operation_(operation), side_(side),
+        price_(price), size_(size), name("MktDepthL2Record") {
+
+        }
+        int position_;
+        IB::IBString marketMaker_;
+        int operation_;
+        int side_;
+        double price_;
+        int size_;
+
+        std::string getName() {
+            return name;
+        }
+    };
+
+    typedef boost::shared_ptr<IBAdditions::Record> rec_ptr;
+    typedef boost::shared_ptr<IBAdditions::TickPriceRecord> tickPriceRec_ptr;
+    typedef boost::shared_ptr<IBAdditions::TickSizeRecord> tickSizeRec_ptr;
+    typedef boost::shared_ptr<IBAdditions::TickStringRecord> tickStringRec_ptr;
+    typedef boost::shared_ptr<IBAdditions::MktDepthRecord> mktDepthRec_ptr;
+    typedef boost::shared_ptr<IBAdditions::MktDepthL2Record> mktDepthL2Rec_ptr;
+
+    std::string ibTickTypeToStdString(IB::TickType tickType);
+
+    //enum TickType { BID_SIZE, BID, ASK, ASK_SIZE, LAST, LAST_SIZE, // 0,1,2,3,4,5
+    //				HIGH, LOW, VOLUME, CLOSE,//6,7,8,9
+    //				BID_OPTION_COMPUTATION, //10
+    //				ASK_OPTION_COMPUTATION, //11
+    //				LAST_OPTION_COMPUTATION,//12
+    //				MODEL_OPTION,//13
+    //				OPEN,//14
+    //				LOW_13_WEEK,//15
+    //				HIGH_13_WEEK,//16
+    //				LOW_26_WEEK,//17
+    //				HIGH_26_WEEK,//18
+    //				LOW_52_WEEK,//19
+    //				HIGH_52_WEEK,//20
+    //				AVG_VOLUME,//21
+    //				OPEN_INTEREST,//22
+    //				OPTION_HISTORICAL_VOL,//23
+    //				OPTION_IMPLIED_VOL,//24
+    //				OPTION_BID_EXCH,
+    //				OPTION_ASK_EXCH,
+    //				OPTION_CALL_OPEN_INTEREST,
+    //				OPTION_PUT_OPEN_INTEREST,
+    //				OPTION_CALL_VOLUME,
+    //				OPTION_PUT_VOLUME,
+    //				INDEX_FUTURE_PREMIUM,
+    //				BID_EXCH,
+    //				ASK_EXCH,
+    //				AUCTION_VOLUME,
+    //				AUCTION_PRICE,
+    //				AUCTION_IMBALANCE,
+    //				MARK_PRICE,
+    //				BID_EFP_COMPUTATION,
+    //				ASK_EFP_COMPUTATION,
+    //				LAST_EFP_COMPUTATION,
+    //				OPEN_EFP_COMPUTATION,
+    //				HIGH_EFP_COMPUTATION,
+    //				LOW_EFP_COMPUTATION,
+    //				CLOSE_EFP_COMPUTATION,
+    //				LAST_TIMESTAMP,//45
+    //				SHORTABLE,
+    //				FUNDAMENTAL_RATIOS,
+    //				RT_VOLUME,
+    //				HALTED,
+    //				BID_YIELD,
+    //				ASK_YIELD,
+    //				LAST_YIELD,
+    //				CUST_OPTION_COMPUTATION,
+    //				TRADE_COUNT,
+    //				TRADE_RATE,
+    //				VOLUME_RATE,
+    //				LAST_RTH_TRADE,
+    //				NOT_SET };
 }
 
 #endif	/* IB_EVENTS_H */

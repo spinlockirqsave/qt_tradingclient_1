@@ -35,6 +35,10 @@ void ReqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
         tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickPriceRecord>(record_ptr));
         #ifdef DEBUG 
            printf( "%s myTickPriceUpdate! Id: %d, price: %f, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickPriceRecord_ptr->tickType_).c_str(), tickerId, tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
+           
+           IBAdditions::ContractEvent contractEvent_ = IBAdditions::ContractEvent(observedContracts_[tickerId], tickPriceRecord_ptr->event_);
+           printf("vector->size: %d\n", marketDataRepository[contractEvent_].size());
+           printf("repo->size: %d\n", marketDataRepository.contractEventCount());
         #endif
 //        QString qs=QString("myTickPriceUpdate! Id: %1, price: %2, tickType: %3").arg(tickerId).arg(tickPriceRecord_ptr->price_).arg(tickPriceRecord_ptr->tickType_);
 //        widget.textEdit_dataFeed->append(qs);

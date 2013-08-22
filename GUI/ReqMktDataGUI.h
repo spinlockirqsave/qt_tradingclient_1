@@ -11,7 +11,9 @@
 #include "ui_ReqMktDataGUI.h"
 #include <DataAccessLayer/PosixClient.h>
 #include <DataAccessLayer/MarketData.h>
+#include <DataAccessLayer/globals.h>
 #include <GUI/GUIMarketData.h>
+
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
 #include <boost/foreach.hpp>

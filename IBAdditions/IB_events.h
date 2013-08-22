@@ -240,6 +240,59 @@ typedef boost::shared_ptr<IBAdditions::TickStringRecord>  tickStringRec_ptr;
 typedef boost::shared_ptr<IBAdditions::MktDepthRecord>  mktDepthRec_ptr;
 typedef boost::shared_ptr<IBAdditions::MktDepthL2Record>  mktDepthL2Rec_ptr;
 
+std::string ibTickTypeToStdString(IB::TickType tickType);
+
+//enum TickType { BID_SIZE, BID, ASK, ASK_SIZE, LAST, LAST_SIZE, // 0,1,2,3,4,5
+//				HIGH, LOW, VOLUME, CLOSE,//6,7,8,9
+//				BID_OPTION_COMPUTATION, //10
+//				ASK_OPTION_COMPUTATION, //11
+//				LAST_OPTION_COMPUTATION,//12
+//				MODEL_OPTION,//13
+//				OPEN,//14
+//				LOW_13_WEEK,//15
+//				HIGH_13_WEEK,//16
+//				LOW_26_WEEK,//17
+//				HIGH_26_WEEK,//18
+//				LOW_52_WEEK,//19
+//				HIGH_52_WEEK,//20
+//				AVG_VOLUME,//21
+//				OPEN_INTEREST,//22
+//				OPTION_HISTORICAL_VOL,//23
+//				OPTION_IMPLIED_VOL,//24
+//				OPTION_BID_EXCH,
+//				OPTION_ASK_EXCH,
+//				OPTION_CALL_OPEN_INTEREST,
+//				OPTION_PUT_OPEN_INTEREST,
+//				OPTION_CALL_VOLUME,
+//				OPTION_PUT_VOLUME,
+//				INDEX_FUTURE_PREMIUM,
+//				BID_EXCH,
+//				ASK_EXCH,
+//				AUCTION_VOLUME,
+//				AUCTION_PRICE,
+//				AUCTION_IMBALANCE,
+//				MARK_PRICE,
+//				BID_EFP_COMPUTATION,
+//				ASK_EFP_COMPUTATION,
+//				LAST_EFP_COMPUTATION,
+//				OPEN_EFP_COMPUTATION,
+//				HIGH_EFP_COMPUTATION,
+//				LOW_EFP_COMPUTATION,
+//				CLOSE_EFP_COMPUTATION,
+//				LAST_TIMESTAMP,//45
+//				SHORTABLE,
+//				FUNDAMENTAL_RATIOS,
+//				RT_VOLUME,
+//				HALTED,
+//				BID_YIELD,
+//				ASK_YIELD,
+//				LAST_YIELD,
+//				CUST_OPTION_COMPUTATION,
+//				TRADE_COUNT,
+//				TRADE_RATE,
+//				VOLUME_RATE,
+//				LAST_RTH_TRADE,
+//				NOT_SET };
 }
 
 #endif	/* IB_EVENTS_H */

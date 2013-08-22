@@ -34,7 +34,7 @@ void ReqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
         //const IBAdditions::TickPriceRecord* tickPriceRecord = dynamic_cast<const IBAdditions::TickPriceRecord*>(record.get());
         tickPriceRec_ptr tickPriceRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickPriceRecord>(record_ptr));
         #ifdef DEBUG 
-           printf( "myTickPriceUpdate! Id: %d, price: %f, tickType: %d\n",tickerId,tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
+           printf( "%s myTickPriceUpdate! Id: %d, price: %f, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickPriceRecord_ptr->tickType_).c_str(), tickerId, tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
         #endif
 //        QString qs=QString("myTickPriceUpdate! Id: %1, price: %2, tickType: %3").arg(tickerId).arg(tickPriceRecord_ptr->price_).arg(tickPriceRecord_ptr->tickType_);
 //        widget.textEdit_dataFeed->append(qs);
@@ -48,7 +48,7 @@ void ReqMktDataGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
     try{
         tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>(record_ptr));
     #ifdef DEBUG 
-        printf( "myTickSizeUpdate! Id: %d, size: %d, tickType: %d\n",tickerId,tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
+        printf( "%s myTickSizeUpdate! Id: %d, size: %d, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickSizeRecord_ptr->tickType_).c_str(), tickerId, tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
     #endif
 //        QString qs=QString("myTickSizeUpdate! Id: %1, size: %2, tickType: %3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
 //        widget.textEdit_dataFeed->append(qs);
@@ -63,7 +63,7 @@ void ReqMktDataGUI::myTickStringUpdate(int tickerId, rec_ptr record_ptr){
         try{
         tickStringRec_ptr tickStringRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickStringRecord>(record_ptr));
     #ifdef DEBUG 
-        printf( "myTickStringUpdate! Id: %d, string: %s, tickType: %d\n",tickerId,tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
+        printf( "%s myTickStringUpdate! Id: %d, string: %s, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickStringRecord_ptr->tickType_).c_str(), tickerId, tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
     #endif
 //        QString qs=QString("myTickStringUpdate! Id: %1, string: ").arg(tickerId)+QString::fromStdString(tickStringRecord_ptr->string);
 //        qs+=QString(" tickType: %1").arg(tickStringRecord_ptr->tickType_);
@@ -82,7 +82,8 @@ void ReqMktDataGUI::myTickPriceGUIUpdate(int tickerId, rec_ptr record_ptr){
         #ifdef DEBUG 
            printf( "myTickPriceGUIUpdate! Id: %d, price: %f, tickType: %d\n",tickerId,tickPriceRecord_ptr->price_,tickPriceRecord_ptr->tickType_);
         #endif
-        QString qs=QString("TickPriceGUIUp! Id:%1, price:%2, tickType:%3").arg(tickerId).arg(tickPriceRecord_ptr->price_).arg(tickPriceRecord_ptr->tickType_);
+        QString qs=QString::fromStdString(IBAdditions::ibTickTypeToStdString(tickPriceRecord_ptr->tickType_)) +
+                QString(" TickPrice Id:%1, price:%2, tickType:%3").arg(tickerId).arg(tickPriceRecord_ptr->price_).arg(tickPriceRecord_ptr->tickType_);
         widget.textEdit_dataFeed->append(qs);
     }catch(std::bad_cast& e){
         #ifdef DEBUG 
@@ -97,7 +98,8 @@ void ReqMktDataGUI::myTickSizeGUIUpdate(int tickerId, rec_ptr record_ptr){
     #ifdef DEBUG 
         printf( "myTickSizeGUIUpdate! Id: %d, size: %d, tickType: %d\n",tickerId,tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
     #endif
-        QString qs=QString("TickSizeGUIUp! Id:%1, size:%2, tickType:%3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
+        QString qs=QString::fromStdString(IBAdditions::ibTickTypeToStdString(tickSizeRecord_ptr->tickType_)) +
+                QString(" TickSize Id:%1, size:%2, tickType:%3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
         widget.textEdit_dataFeed->append(qs);
         //widget.textEdit_dataFeed->append("myTickSizeGUIUpdate something...");
     }catch(std::bad_cast& e){
@@ -113,7 +115,8 @@ void ReqMktDataGUI::myTickStringGUIUpdate(int tickerId, rec_ptr record_ptr){
     #ifdef DEBUG 
         printf( "myTickStringGUIUpdate! Id: %d, string: %s, tickType: %d\n",tickerId,tickStringRecord_ptr->string.c_str(),tickStringRecord_ptr->tickType_);
     #endif
-        QString qs=QString("TickStringGUIUp! Id:%1, string:").arg(tickerId)+QString::fromStdString(tickStringRecord_ptr->string);
+        QString qs=QString::fromStdString(IBAdditions::ibTickTypeToStdString(tickStringRecord_ptr->tickType_)) +
+                QString(" TickString Id:%1, string:").arg(tickerId)+QString::fromStdString(tickStringRecord_ptr->string);
         qs+=QString(" tickType:%1").arg(tickStringRecord_ptr->tickType_);
         widget.textEdit_dataFeed->append(qs);
     }catch(std::bad_cast& e){

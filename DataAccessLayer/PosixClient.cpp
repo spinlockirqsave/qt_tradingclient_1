@@ -168,6 +168,7 @@ void PosixClient::processMessages()
 		if( FD_ISSET( m_pClient->fd(), &readSet)) {
 			// socket is ready for reading
                         printf("PosixClient::processMessages: onReceive\n");
+                        // will call EPosixClientSocket::onReceive()
 			m_pClient->onReceive();
 		}
 	}

@@ -20,16 +20,19 @@
 #include <pthread.h>
 #include <errno.h>
 
+// initialize global data
 boost::shared_ptr<IB::PosixClient> client;
 Repository marketDataRepository;
+
+// initialize static members
+int ReqMktDataGUI::totalGUIReqActive = 0;
+int ReqMktDepthGUI::totalGUIReqActive = 0;
 
 #define NUM_THREADS	1
 pthread_t thread[NUM_THREADS];
 pthread_mutex_t mxq; /* mutex used for processMessages as quit flag */
 pthread_attr_t attr;
 pthread_mutex_t mxq2; /* mutex used for processMessages to avoid segmentation fault */
-int ReqMktDataGUI::totalGUIReqActive = 0;
-int ReqMktDepthGUI::totalGUIReqActive = 0;
 
 /* Returns 1 (true) if the mutex is unlocked, which is the
  * thread's signal to terminate. 

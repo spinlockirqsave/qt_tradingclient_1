@@ -98,7 +98,8 @@ void ReqMktDepthGUI::myTickSizeGUIUpdate(int tickerId, rec_ptr record_ptr){
     #ifdef DEBUG 
         printf( "myTickSizeGUIUpdate! Id: %d, size: %d, tickType: %d\n",tickerId,tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
     #endif
-        QString qs=QString("TickSizeGUIUp! Id:%1, size:%2, tickType:%3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
+//QString(IBAdditions::macro_ibTickTypeToStdString(tickSizeRecord_ptr->tickType_)) + 
+        QString qs= QString("TickSizeGUIUp! Id:%1, size:%2, tickType:%3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
         widget.textEdit_dataFeed->append(qs);
         //widget.textEdit_dataFeed->append("myTickSizeGUIUpdate something...");
     }catch(std::bad_cast& e){

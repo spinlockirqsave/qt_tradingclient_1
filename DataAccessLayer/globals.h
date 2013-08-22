@@ -1,6 +1,6 @@
 /* 
  * File:   globals.h
- * Author: root
+ * Author: Piotr Gregor  postmaster@cf16.eu
  *
  * Created on August 18, 2013, 11:59 PM
  */
@@ -10,6 +10,7 @@
 
 extern Repository marketDataRepository;
 
+#define macro_ibTickTypeToStdString(ibTickType) "\"" #ibTickType "\""
 
 #endif	/* GLOBALS_H */
 

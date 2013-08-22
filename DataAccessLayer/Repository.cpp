@@ -9,7 +9,10 @@
 #include <stdio.h>
 #include "Repository.h"
 
-
+/**
+ * 
+ * @param contractEventVector
+ */
 Repository::Repository(const std::vector<IBAdditions::ContractEvent>& contractEventVector) {
     BOOST_FOREACH(const IBAdditions::ContractEvent ce, contractEventVector){
         contractEventDataMap_.insert(std::pair<IBAdditions::ContractEvent, 
@@ -26,6 +29,11 @@ Repository::Repository(const Repository& orig) {
 Repository::~Repository() {
 }
 
+/**
+ * 
+ * @param ce key to the map, IB::Contract and IBAdditions::Event
+ * @param rptr record to be stored into repository
+ */
 void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAdditions::rec_ptr rptr){
     printf("[Repository] vector size is; %d\n", contractEventDataMap_[ce].size());
     contractEventDataMap_[ce].push_back(rptr);

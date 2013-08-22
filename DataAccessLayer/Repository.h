@@ -14,7 +14,9 @@
 #include <boost/foreach.hpp>
 #include <IBAdditions/IB_events.h>
 
-
+/**
+ * in memory database implementation
+ */
 class Repository {
 public:
     typedef std::map<const IBAdditions::ContractEvent, std::vector<IBAdditions::rec_ptr> > ContractEventDataMap;
@@ -22,12 +24,26 @@ public:
     Repository();
     virtual ~Repository();
     
-    void putRecord(const IBAdditions::ContractEvent, const IBAdditions::rec_ptr);
+    /**
+     * insert record into repository
+     * @param ce key to the map, IB::Contract and IBAdditions::Event
+     * @param rptr record to be stored into repository
+     */
+    void putRecord(const IBAdditions::ContractEvent ce, const IBAdditions::rec_ptr rptr);
     
+    /**
+     * get corresponding vector based on ContactEvent key
+     * @param contractEvent
+     * @return reference to vector of records
+     */
     std::vector<IBAdditions::rec_ptr>& operator[](const IBAdditions::ContractEvent& contractEvent){
         return contractEventDataMap_[contractEvent];
     }
     
+    /**
+     * 
+     * @return 
+     */
     int contractEventCount(){
         return contractEventDataMap_.size();
     }

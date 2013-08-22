@@ -23,6 +23,9 @@ public:
     virtual ~Repository();
     
     void putRecord(const IBAdditions::ContractEvent, const IBAdditions::rec_ptr);
+    std::vector<IBAdditions::rec_ptr>& operator[](IBAdditions::ContractEvent& contractEvent){
+        return contractEventDataMap_[contractEvent];
+    }
     
 private:
     Repository(const Repository& orig);

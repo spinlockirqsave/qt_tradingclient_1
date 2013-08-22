@@ -49,8 +49,8 @@ void ReqMktDataGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
         tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>(record_ptr));
     #ifdef DEBUG 
         printf( "%s myTickSizeUpdate! Id: %d, size: %d, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickSizeRecord_ptr->tickType_).c_str(), tickerId, tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
-        //IBAdditions::ContractEvent contractEvent_ = IBAdditions::ContractEvent(observedContracts_[tickerId], tickSizeRecord_ptr->tickType_);
-        //double size = 
+        IBAdditions::ContractEvent contractEvent_ = IBAdditions::ContractEvent(observedContracts_[tickerId], tickSizeRecord_ptr->event_);
+        //double size = marketDataRepository[contractEvent_]
         //printf("%d", mkt)
     #endif
 //        QString qs=QString("myTickSizeUpdate! Id: %1, size: %2, tickType: %3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);

@@ -50,8 +50,13 @@ void ReqMktDataGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
     #ifdef DEBUG 
         printf( "%s myTickSizeUpdate! Id: %d, size: %d, tickType: %d\n",IBAdditions::ibTickTypeToStdString(tickSizeRecord_ptr->tickType_).c_str(), tickerId, tickSizeRecord_ptr->size_,tickSizeRecord_ptr->tickType_);
         IBAdditions::ContractEvent contractEvent_ = IBAdditions::ContractEvent(observedContracts_[tickerId], tickSizeRecord_ptr->event_);
-        //double size = marketDataRepository[contractEvent_]
-        //printf("%d", mkt)
+        boost::shared_ptr<IBAdditions::TickSizeRecord> repoRecord = boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>
+                (marketDataRepository[contractEvent_].back());
+        
+        printf("vector->size: %d\n", marketDataRepository[contractEvent_].size());
+        printf("repo->size: %d\n", marketDataRepository.contractEventCount());
+        int size = repoRecord->size_;
+        printf("repoRecord->size_: %d\n", size);
     #endif
 //        QString qs=QString("myTickSizeUpdate! Id: %1, size: %2, tickType: %3").arg(tickerId).arg(tickSizeRecord_ptr->size_).arg(tickSizeRecord_ptr->tickType_);
 //        widget.textEdit_dataFeed->append(qs);

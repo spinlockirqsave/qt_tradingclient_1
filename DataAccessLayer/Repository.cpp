@@ -6,7 +6,7 @@
  */
 
 #include <math.h>
-
+#include <stdio.h>
 #include "Repository.h"
 
 
@@ -28,5 +28,6 @@ Repository::~Repository() {
 
 void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAdditions::rec_ptr rptr){
     contractEventDataMap_[ce].push_back(rptr);
+    printf("[Repository] vector size is; %d\n", contractEventDataMap_[ce].size());
 }
 

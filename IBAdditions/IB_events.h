@@ -148,9 +148,16 @@ namespace IBAdditions {
         }
 
         inline bool operator<(const ContractEvent & rhs) const {
-            if(this->IB::Contract::operator <(rhs) == true) return true;
-            if(rhs.::IB::Contract::operator <(*this) == true) return false;
-            return (int)this->event_ < (int)rhs.event_;
+//            if(IB::Contract::operator<(rhs)==false && rhs.::IB::Contract::operator<(*this)==false)
+//                return (int)event_ < (int)rhs.event_;
+            return IB::Contract::operator<(rhs);
+            
+//            if (IB::Contract::operator<(rhs)) return false;
+//            if (!IB::Contract::operator<(rhs)) return true;
+//            return (int)event_ < (int)rhs.event_;
+            
+            //if(rhs.::IB::Contract::operator <(*this) == true) return false;
+            //return (int)event_ < (int)rhs.event_;
         }
     };
     

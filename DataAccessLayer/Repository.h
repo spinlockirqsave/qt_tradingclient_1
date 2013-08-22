@@ -52,7 +52,6 @@ private:
     ContractEventDataMap contractEventDataMap_;
 
 };
-//extern Repository marketDataRepository;
 
 #endif	/* REPOSITORY_H */
 

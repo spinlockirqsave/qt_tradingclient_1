@@ -352,7 +352,7 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
         if(it!=tickPriceMarketDataFeed.end()){
             //(*it)->tickPriceData.push_back(TickPriceRecord(field,price,canAutoExecute));
             //printf("PosixClient: putRecord \n");
-            ((*it).second)->putRecord(tickPriceRec_ptr(new IBAdditions::TickPriceRecord(field,price,canAutoExecute))); //what thread r MarketData objects?
+            ((*it).second)->putRecord(tickPriceRec_ptr(new IBAdditions::TickPriceRecord(field,IBAdditions::TickPrice,price,canAutoExecute))); //what thread r MarketData objects?
             //printf("PosixClient: notify \n");
             ((*it).second)->notifyObservers(); // observers are in the main thread
             //printf("PosixClient: notifyOK \n");
@@ -363,7 +363,7 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
         if(it2!=tickPriceGUIMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
             //printf("PosixClient::tickPrice: putRecord to GUIMarketData object \n");
-            (*it2).second->putRecord(tickPriceRec_ptr(new IBAdditions::TickPriceRecord(field,price,canAutoExecute)));
+            (*it2).second->putRecord(tickPriceRec_ptr(new IBAdditions::TickPriceRecord(field,IBAdditions::TickPrice,price,canAutoExecute)));
             //printf("PosixClient::tickPrice: GUIMarketData->notifyObservers \n");
             (*it2).second->notifyObservers();
             //printf("PosixClient::tickPrice: GUIMarketData notifyOK \n");
@@ -377,14 +377,14 @@ void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
 #endif
     tickerIdMarketDataMap::iterator it=tickSizeMarketDataFeed.find(tickerId);
         if(it!=tickSizeMarketDataFeed.end()){
-            ((*it).second)->putRecord(tickSizeRec_ptr(new IBAdditions::TickSizeRecord(field,size)));
+            ((*it).second)->putRecord(tickSizeRec_ptr(new IBAdditions::TickSizeRecord(field,IBAdditions::TickSize,size)));
             ((*it).second)->notifyObservers();
             //TODO: start thread to store incoming data in repository
         }
     
     tickerIdGUIMarketDataMap::iterator it2=tickSizeGUIMarketDataFeed.find(tickerId);
         if(it2!=tickSizeGUIMarketDataFeed.end()){
-            (*it2).second->putRecord(tickSizeRec_ptr(new IBAdditions::TickSizeRecord(field,size)));
+            (*it2).second->putRecord(tickSizeRec_ptr(new IBAdditions::TickSizeRecord(field,IBAdditions::TickSize,size)));
             (*it2).second->notifyObservers();
             //TODO: start thread to store incoming data in repository
             (*it2).second->saveRecord();
@@ -408,7 +408,7 @@ void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& 
 #endif
     tickerIdMarketDataMap::iterator it=tickStringMarketDataFeed.find(tickerId);
         if(it!=tickStringMarketDataFeed.end()){
-            ((*it).second)->putRecord(tickStringRec_ptr(new IBAdditions::TickStringRecord(field,value)));
+            ((*it).second)->putRecord(tickStringRec_ptr(new IBAdditions::TickStringRecord(field,IBAdditions::TickString,value)));
             ((*it).second)->notifyObservers();
             //TODO: start thread to store incoming data in repository
         }
@@ -416,7 +416,7 @@ void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& 
     tickerIdGUIMarketDataMap::iterator it2=tickStringGUIMarketDataFeed.find(tickerId);
         if(it2!=tickStringGUIMarketDataFeed.end()){
             //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            (*it2).second->putRecord(tickStringRec_ptr(new IBAdditions::TickStringRecord(field,value)));
+            (*it2).second->putRecord(tickStringRec_ptr(new IBAdditions::TickStringRecord(field,IBAdditions::TickString,value)));
             (*it2).second->notifyObservers();
             //TODO: start thread to store incoming data in repository
             (*it2).second->saveRecord();

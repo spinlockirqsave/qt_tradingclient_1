@@ -13,6 +13,7 @@
 #include <DataAccessLayer/MarketData.h>
 #include <DataAccessLayer/globals.h>
 #include <GUI/GUIMarketData.h>
+#include <DataAccessLayer/globals.h>
 
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
@@ -43,12 +44,12 @@ Q_SIGNALS:
     void newMktData(int tickerId, rec_ptr record_ptr);
 
 private:
-    Ui::reqMktDataGUI widget;
+    Ui::reqMktDataGUI widget_;
     boost::shared_ptr<IB::PosixClient> client_;
     
-    std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;
-    std::vector<pMktDataObserver> tickPriceObservers;
-    std::vector<pMktDataObserver> tickStringObservers;
+    std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers_;
+    std::vector<pMktDataObserver> tickPriceObservers_;
+    std::vector<pMktDataObserver> tickStringObservers_;
     
     void myTickPriceUpdate(int tickerId, rec_ptr record_ptr);
     void myTickSizeUpdate(int tickerId, rec_ptr record_ptr);
@@ -57,9 +58,9 @@ private:
     void marketDataFeedDelete(void);
     void guiMarketDataFeedDelete(void);
     
-    std::map<int, IB::Contract> observedContracts;
-    std::map<int, boost::shared_ptr<IB::Contract> > guiObservedContracts;
-    bool thisGUIReqActive;
+    std::map<int, IB::Contract> observedContracts_;
+    std::map<int, boost::shared_ptr<IB::Contract> > guiObservedContracts_;
+    bool thisGUIReqActive_;
 };
 typedef std::map<int, IB::Contract> tickerIdContractMap;
 typedef std::map<int, boost::shared_ptr<IB::Contract> > tickerIdContractPtrMap;

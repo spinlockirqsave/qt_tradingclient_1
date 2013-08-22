@@ -158,9 +158,9 @@ namespace IBAdditions {
 class Record{
 public:
     IB::TickType tickType_;
+    IBAdditions::Event event_;
     Record(){}
-    Record(IB::TickType tickType): tickType_(tickType){
-        
+    Record(IB::TickType tickType, IBAdditions::Event event): tickType_(tickType), event_(event) {
     }
     virtual std::string getName(){return "Record";}
     virtual ~Record(){}
@@ -169,8 +169,8 @@ public:
 class TickPriceRecord : public Record{
 public:
     std::string name;
-    TickPriceRecord(IB::TickType tickType, double price, int canAutoExecute):
-    Record(tickType), price_(price), canAutoExecute(canAutoExecute),name("TickPriceRecord"){
+    TickPriceRecord(IB::TickType tickType, IBAdditions::Event event, double price, int canAutoExecute):
+    Record(tickType, event), price_(price), canAutoExecute(canAutoExecute),name("TickPriceRecord"){
         
     }
     double price_;
@@ -181,8 +181,8 @@ public:
 class TickSizeRecord : public Record{
 public:
     std::string name;
-    TickSizeRecord(IB::TickType tickType, int size):
-    Record(tickType), size_(size), name("TickSizeRecord"){
+    TickSizeRecord(IB::TickType tickType, IBAdditions::Event event, int size):
+    Record(tickType, event), size_(size), name("TickSizeRecord"){
         
     }
     int size_;
@@ -192,8 +192,8 @@ public:
 class TickStringRecord : public Record{
 public:
     std::string name;
-    TickStringRecord(IB::TickType tickType, const std::string& string):
-    Record(tickType), string(string), name("TickStringRecord"){
+    TickStringRecord(IB::TickType tickType, IBAdditions::Event event, const std::string& string):
+    Record(tickType, event), string(string), name("TickStringRecord"){
         
     }
     const std::string string;
@@ -204,7 +204,7 @@ class MktDepthRecord : public Record{
 public:
     std::string name;
     MktDepthRecord(int position, int operation, int side, double price, int size):
-    Record(IB::NOT_SET), position_(position), operation_(operation), side_(side),
+    Record(IB::NOT_SET, IBAdditions::MarketDepth), position_(position), operation_(operation), side_(side),
     price_(price), size_(size), name("MktDepthRecord"){
         
     }
@@ -220,7 +220,7 @@ class MktDepthL2Record : public Record{
 public:
     std::string name;
     MktDepthL2Record(int position, IB::IBString marketMaker, int operation, int side, double price, int size):
-    Record(IB::NOT_SET), position_(position), marketMaker_(marketMaker), operation_(operation), side_(side),
+    Record(IB::NOT_SET, IBAdditions::MarketDepthL2), position_(position), marketMaker_(marketMaker), operation_(operation), side_(side),
     price_(price), size_(size), name("MktDepthL2Record"){
         
     }

@@ -15,7 +15,10 @@
 #include <IBAdditions/IB_events.h>
 
 /**
- * in memory database implementation
+ * in memory database implementation shared pointers to records are kept on the 
+ * free store as this is the way std::vector allocates its elements
+ * records itself are also on heap because this is the way we allocate them
+ * in PosixClient callbacks
  */
 class Repository {
 public:

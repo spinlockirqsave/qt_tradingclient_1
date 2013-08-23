@@ -23,9 +23,8 @@
 // initialize global data
 boost::shared_ptr<IB::PosixClient> client;
 Repository marketDataRepository;
-#define NUM_REPOTHREADS 5
-static pthread_mutex_t repoMutexes[NUM_REPOTHREADS];
 
+pthread_mutex_t repoMutexes[NUM_REPOTHREADS];
 /**
  * initialize mutexes that protect Repository vectors
  */

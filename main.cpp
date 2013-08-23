@@ -23,6 +23,16 @@
 // initialize global data
 boost::shared_ptr<IB::PosixClient> client;
 Repository marketDataRepository;
+#define NUM_REPOTHREADS 5
+static pthread_mutex_t repoMutexes[NUM_REPOTHREADS];
+
+/**
+ * initialize mutexes that protect Repository vectors
+ */
+void init_repoMutexes() {
+    for (int i = 0; i < NUM_REPOTHREADS; i++)
+        pthread_mutex_init(&repoMutexes[i], NULL);
+}
 
 // initialize static members
 int ReqMktDataGUI::totalGUIReqActive = 0;
@@ -49,7 +59,7 @@ int needQuit(pthread_mutex_t *mtx)
   return 1;
 }
 
-/* Thread function, containing a loop that's infinite except that it checks for
+/* Thread function containing a loop that's infinite except that it checks for
  * termination with needQuit() 
  */
 void* processMessages(void* t){
@@ -110,9 +120,10 @@ void processMessages3(){
 int main(int argc, char *argv[]) {
     qRegisterMetaType<rec_ptr>("rec_ptr");
     
-    client.reset(new IB::PosixClient());
-    
     // initialize resources
+    client.reset(new IB::PosixClient());
+    init_repoMutexes();
+    
     // Q_INIT_RESOURCE(resfile);
     QApplication app(argc, argv);
     app.setStyleSheet("QMenu::item:selected {border: 1px solid blue;}");  

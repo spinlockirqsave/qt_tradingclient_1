@@ -33,7 +33,8 @@ Repository::~Repository() {
  * 
  * @param ce key to the map, IB::Contract and IBAdditions::Event
  * @param rptr record to be stored into repository
- * TODO: unlock mutex here before push_back into Repository
+ * TODO: lock mutex here before push_back into Repository
+ * and wake up waiting threads
  */
 void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAdditions::rec_ptr rptr){
     printf("[Repository] vector size is; %d\n", contractEventDataMap_[ce].size());

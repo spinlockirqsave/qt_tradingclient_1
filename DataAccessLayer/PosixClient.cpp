@@ -344,6 +344,13 @@ void PosixClient::error(const int id, const int errorCode, const IBString errorS
 		disconnect();
 }
 
+/**
+ * 
+ * @param tickerId
+ * @param field
+ * @param price
+ * @param canAutoExecute
+ */
 void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, int canAutoExecute) {
 #ifdef DEBUG
     printf("PosixClient::tickPrice \n");
@@ -371,6 +378,13 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
             //(*it2).second->saveRecord();
         }
 }
+
+/**
+ * 
+ * @param tickerId
+ * @param field
+ * @param size
+ */
 void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
 #ifdef DEBUG 
     printf("PosixClient::tickSize\n");

@@ -17,6 +17,7 @@ extern Repository marketDataRepository;
 
 #define NUM_REPOTHREADS 20
 extern pthread_mutex_t repoMutexes[NUM_REPOTHREADS];
+extern pthread_cond_t repoConditions[NUM_REPOTHREADS];
 
 #define macro_ibTickTypeToStdString(ibTickType) "\"" #ibTickType "\""
 

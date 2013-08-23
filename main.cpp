@@ -25,12 +25,16 @@ boost::shared_ptr<IB::PosixClient> client;
 Repository marketDataRepository;
 
 pthread_mutex_t repoMutexes[NUM_REPOTHREADS];
+pthread_cond_t repoConditions[NUM_REPOTHREADS];
+
 /**
  * initialize mutexes that protect Repository vectors
  */
 void init_repoMutexes() {
-    for (int i = 0; i < NUM_REPOTHREADS; i++)
+    for (int i = 0; i < NUM_REPOTHREADS; i++){
         pthread_mutex_init(&repoMutexes[i], NULL);
+        pthread_cond_init(&repoConditions[i], NULL);
+    }
 }
 
 // initialize static members

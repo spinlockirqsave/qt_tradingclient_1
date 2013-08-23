@@ -48,6 +48,14 @@ void ReqMktDataGUI::myTickPriceUpdate(int tickerId, rec_ptr record_ptr){
         #endif
     }
 }
+
+/**
+ * 
+ * @param tickerId the identifier to mktDataRequest
+ * @param record_ptr incoming data
+ * TODO: signal mutex conditional variable here so 
+ * each strategy will be recalculated
+ */
 void ReqMktDataGUI::myTickSizeUpdate(int tickerId, rec_ptr record_ptr){
     try{
         tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>(record_ptr));
@@ -107,6 +115,11 @@ void ReqMktDataGUI::myTickPriceGUIUpdate(int tickerId, rec_ptr record_ptr){
     }
 }
 
+/**
+ * 
+ * @param tickerId the identifier to mktDataRequest
+ * @param record_ptr incoming data
+ */
 void ReqMktDataGUI::myTickSizeGUIUpdate(int tickerId, rec_ptr record_ptr){
     try{
         tickSizeRec_ptr tickSizeRecord_ptr(boost::dynamic_pointer_cast<IBAdditions::TickSizeRecord>(record_ptr));

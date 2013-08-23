@@ -54,7 +54,7 @@ public:
 private:
     Repository(const Repository& orig);
     ContractEventDataMap contractEventDataMap_;
-
+    std::vector<
 };
 
 #endif	/* REPOSITORY_H */

@@ -38,6 +38,11 @@ public:
     }
     virtual ~MarketData();
     int getTickerId()const{ return tickerId_; }
+    
+    /**
+     * 
+     * @param record data record to be stored into database
+     */
     void putRecord(boost::shared_ptr<IBAdditions::Record> record){
         record_=record;
         marketDataRepository.putRecord(contractEvent_,record_);

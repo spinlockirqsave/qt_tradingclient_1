@@ -4,6 +4,9 @@
  *
  * Created on May 22, 2013, 5:59 PM
  */
+
+#include <DataAccessLayer/globals.h>
+
 #include <DataAccessLayer/PosixClient.h>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
@@ -14,7 +17,7 @@
 #include <GUI/ReqMktDataGUI.h>
 #include <GUI/ReqMktDepthGUI.h>
 
-#include <DataAccessLayer/globals.h>
+
 
 #include <boost/shared_ptr.hpp>
 #include <pthread.h>

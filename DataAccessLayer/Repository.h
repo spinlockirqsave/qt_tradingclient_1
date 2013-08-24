@@ -8,11 +8,21 @@
 #ifndef REPOSITORY_H
 #define	REPOSITORY_H
 
-#include <map>
-#include <vector>
+#include <DataAccessLayer/globals.h>
 #include <Shared/Contract.h>
 #include <boost/foreach.hpp>
 #include <IBAdditions/IB_events.h>
+
+#include <map>
+#include <vector>
+
+#include <pthread.h>
+
+
+struct mutexData{
+    pthread_mutex_t* mutex;
+    pthread_cond_t* condition;
+};
 
 /**
  * in memory database implementation shared pointers to records are kept on the 
@@ -22,7 +32,12 @@
  */
 class Repository {
 public:
+    typedef boost::shared_ptr<pthread_mutex_t> mutex_ptr;
+    typedef boost::shared_ptr<pthread_cond_t> cond_ptr;
+    
     typedef std::map<const IBAdditions::ContractEvent, std::vector<IBAdditions::rec_ptr> > ContractEventDataMap;
+    typedef std::map<const IBAdditions::ContractEvent, mutexData> ContractEventMutexMap;
+    
     Repository(const std::vector<IBAdditions::ContractEvent>& contractEventVector);
     Repository();
     virtual ~Repository();
@@ -54,6 +69,7 @@ public:
 private:
     Repository(const Repository& orig);
     ContractEventDataMap contractEventDataMap_;
+    ContractEventMutexMap contractEventMutexMap_;
 };
 
 #endif	/* REPOSITORY_H */

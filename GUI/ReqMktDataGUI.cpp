@@ -12,7 +12,22 @@
 #include <ql/patterns/observable.hpp>
     
 ReqMktDataGUI::ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr, QWidget* parent):client_(client_ptr),QDialog(parent),thisGUIReqActive_(false){
+    
     widget_.setupUi(this);
+    
+    //tickerId
+    widget_.lineEdit_Id->setText(QString::number(totalGUIReqActive+1));
+    //contract.symbol
+    widget_.lineEdit_Symbol->setText("eur");
+    //contract.secType
+    widget_.lineEdit_Type->setText("cash");
+    //contract.exchange
+    widget_.lineEdit_Exchange->setText("idealpro");
+    //contract.currency
+    widget_.lineEdit_Currency->setText("usd");
+    //generic tick tags
+    widget_.lineEdit_genericTickTags->setText("233");
+    
     QObject::connect(widget_.requestButton, SIGNAL(clicked()), this, SLOT(requestClicked()));
     QObject::connect(widget_.cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
     QObject::connect(widget_.guiRequestButton, SIGNAL(clicked()), this, SLOT(guiRequestClicked()));

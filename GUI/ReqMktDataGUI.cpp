@@ -15,7 +15,7 @@ ReqMktDataGUI::ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr, QWid
     
     widget_.setupUi(this);
     
-    //tickerId
+    //tickerId: use next possible value based on existing gui requests
     widget_.lineEdit_Id->setText(QString::number(totalGUIReqActive+1));
     //contract.symbol
     widget_.lineEdit_Symbol->setText("eur");

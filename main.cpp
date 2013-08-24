@@ -40,15 +40,22 @@ void init_repoMutexes() {
     }
 }
 
+void destroy_repoMutexes() {
+    for (int i = 0; i < NUM_REPOTHREADS; i++){
+        pthread_mutex_destroy(&repoMutexes[i]);
+        pthread_cond_destroy(&repoConditions[i]);
+    }
+}
+
 // initialize static members
 int ReqMktDataGUI::totalGUIReqActive = 0;
 int ReqMktDepthGUI::totalGUIReqActive = 0;
 
 #define NUM_THREADS	1
 pthread_t thread[NUM_THREADS];
-pthread_mutex_t mxq; /* mutex used for processMessages as quit flag */
+pthread_mutex_t continue_mutex; /* mutex used for processMessages as quit flag */
 pthread_attr_t attr;
-pthread_mutex_t mxq2; /* mutex used for processMessages to avoid segmentation fault */
+pthread_mutex_t client_mutex; /* mutex used for processMessages to avoid segmentation fault */
 
 /* Returns 1 (true) if the mutex is unlocked, which is the
  * thread's signal to terminate. 
@@ -71,9 +78,9 @@ int needQuit(pthread_mutex_t *mtx)
 void* processMessages(void* t){
     pthread_mutex_t *mx = (pthread_mutex_t *)t;
     while(!needQuit(mx)){
-        pthread_mutex_lock (&mxq2); // avoid segmentation fault
+        pthread_mutex_lock (&client_mutex); // avoid segmentation fault
             client->processMessages();
-        pthread_mutex_unlock (&mxq2);
+        pthread_mutex_unlock (&client_mutex);
     }
     //pthread_exit(NULL);
     return NULL;
@@ -83,16 +90,16 @@ void processMessages() {
     //pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
         int rc;
 
-        pthread_mutex_init(&mxq, NULL);
-        pthread_mutex_lock(&mxq);
+        pthread_mutex_init(&continue_mutex, NULL);
+        pthread_mutex_lock(&continue_mutex);
 
-        pthread_mutex_init(&mxq2, NULL);
+        pthread_mutex_init(&client_mutex, NULL);
 
         /* Initialize and set thread detached attribute */
         pthread_attr_init(&attr);
         pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
         printf("global::processMessages: creating thread !\n");
-        rc = pthread_create(&thread[0], &attr, ::processMessages, &mxq);
+        rc = pthread_create(&thread[0], &attr, ::processMessages, &continue_mutex);
         if (rc) {
             printf("ERROR; return code from pthread_create() is %d\n", rc);
             exit(-1);
@@ -105,8 +112,10 @@ void processMessages2(){
 
 void endProcessMessages(){
     /* unlock mxq to tell the processMessages thread to terminate, then join the thread */
-    pthread_mutex_unlock(&mxq); 
+    pthread_mutex_unlock(&continue_mutex); 
     pthread_join(thread[0],NULL);
+    
+    destroy_repoMutexes();
     
 //    pthread_attr_destroy(&attr);
 //    pthread_mutex_destroy(&mxq);

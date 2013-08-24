@@ -36,7 +36,7 @@ Repository::~Repository() {
  * TODO: lock mutex here before push_back into Repository
  * and wake up waiting threads
  */
-void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAdditions::rec_ptr rptr){
+void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAdditions::rec_ptr rptr) {
     if(contractEventDataMap_.find(ce) == contractEventDataMap_.end()){
         /* 
          * there is no such ContractEvent in the map

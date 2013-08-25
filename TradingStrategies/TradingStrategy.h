@@ -8,7 +8,7 @@
 #ifndef TRADINGSTRATEGY_H
 #define	TRADINGSTRATEGY_H
 
-#include <CommonDefs.h>
+#include <Shared/CommonDefs.h>
 #include <DataAccessLayer/MarketData.h>
 #include <Shared/Contract.h>
 #include <DataAccessLayer/PosixClient.h>

@@ -1,7 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.0.1
+** Created: Sun Aug 25 01:47:35 2013
+**      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -49,6 +50,7 @@ public:
     QAction *actionReqMktDataGUI;
     QAction *actionReqMktDepth;
     QAction *actionUpdatePortfolio;
+    QAction *actionTriangular_arbitrage;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QListView *listView_2;
@@ -78,104 +80,106 @@ public:
     void setupUi(QMainWindow *cf16tradingclient_1)
     {
         if (cf16tradingclient_1->objectName().isEmpty())
-            cf16tradingclient_1->setObjectName(QStringLiteral("cf16tradingclient_1"));
+            cf16tradingclient_1->setObjectName(QString::fromUtf8("cf16tradingclient_1"));
         cf16tradingclient_1->resize(956, 888);
-        cf16tradingclient_1->setStyleSheet(QLatin1String("background-color: rgb(42, 42, 42);\n"
+        cf16tradingclient_1->setStyleSheet(QString::fromUtf8("background-color: rgb(42, 42, 42);\n"
 "QMenu::item:selected {border: 1px solid dark blue;}"));
         actionOpen = new QAction(cf16tradingclient_1);
-        actionOpen->setObjectName(QStringLiteral("actionOpen"));
+        actionOpen->setObjectName(QString::fromUtf8("actionOpen"));
         actionSave = new QAction(cf16tradingclient_1);
-        actionSave->setObjectName(QStringLiteral("actionSave"));
+        actionSave->setObjectName(QString::fromUtf8("actionSave"));
         actionSave_as = new QAction(cf16tradingclient_1);
-        actionSave_as->setObjectName(QStringLiteral("actionSave_as"));
+        actionSave_as->setObjectName(QString::fromUtf8("actionSave_as"));
         actionFX = new QAction(cf16tradingclient_1);
-        actionFX->setObjectName(QStringLiteral("actionFX"));
+        actionFX->setObjectName(QString::fromUtf8("actionFX"));
         actionIR = new QAction(cf16tradingclient_1);
-        actionIR->setObjectName(QStringLiteral("actionIR"));
+        actionIR->setObjectName(QString::fromUtf8("actionIR"));
         actionStocks = new QAction(cf16tradingclient_1);
-        actionStocks->setObjectName(QStringLiteral("actionStocks"));
+        actionStocks->setObjectName(QString::fromUtf8("actionStocks"));
         actionOptions = new QAction(cf16tradingclient_1);
-        actionOptions->setObjectName(QStringLiteral("actionOptions"));
+        actionOptions->setObjectName(QString::fromUtf8("actionOptions"));
         actionForwards = new QAction(cf16tradingclient_1);
-        actionForwards->setObjectName(QStringLiteral("actionForwards"));
+        actionForwards->setObjectName(QString::fromUtf8("actionForwards"));
         actionFutures = new QAction(cf16tradingclient_1);
-        actionFutures->setObjectName(QStringLiteral("actionFutures"));
+        actionFutures->setObjectName(QString::fromUtf8("actionFutures"));
         actionSwaps = new QAction(cf16tradingclient_1);
-        actionSwaps->setObjectName(QStringLiteral("actionSwaps"));
+        actionSwaps->setObjectName(QString::fromUtf8("actionSwaps"));
         actionBonds = new QAction(cf16tradingclient_1);
-        actionBonds->setObjectName(QStringLiteral("actionBonds"));
+        actionBonds->setObjectName(QString::fromUtf8("actionBonds"));
         actionCointegration = new QAction(cf16tradingclient_1);
-        actionCointegration->setObjectName(QStringLiteral("actionCointegration"));
+        actionCointegration->setObjectName(QString::fromUtf8("actionCointegration"));
         actionReqMktData = new QAction(cf16tradingclient_1);
-        actionReqMktData->setObjectName(QStringLiteral("actionReqMktData"));
+        actionReqMktData->setObjectName(QString::fromUtf8("actionReqMktData"));
         actionReqContractDetails = new QAction(cf16tradingclient_1);
-        actionReqContractDetails->setObjectName(QStringLiteral("actionReqContractDetails"));
+        actionReqContractDetails->setObjectName(QString::fromUtf8("actionReqContractDetails"));
         actionReqMktDataGUI = new QAction(cf16tradingclient_1);
-        actionReqMktDataGUI->setObjectName(QStringLiteral("actionReqMktDataGUI"));
+        actionReqMktDataGUI->setObjectName(QString::fromUtf8("actionReqMktDataGUI"));
         actionReqMktDepth = new QAction(cf16tradingclient_1);
-        actionReqMktDepth->setObjectName(QStringLiteral("actionReqMktDepth"));
+        actionReqMktDepth->setObjectName(QString::fromUtf8("actionReqMktDepth"));
         actionUpdatePortfolio = new QAction(cf16tradingclient_1);
-        actionUpdatePortfolio->setObjectName(QStringLiteral("actionUpdatePortfolio"));
+        actionUpdatePortfolio->setObjectName(QString::fromUtf8("actionUpdatePortfolio"));
+        actionTriangular_arbitrage = new QAction(cf16tradingclient_1);
+        actionTriangular_arbitrage->setObjectName(QString::fromUtf8("actionTriangular_arbitrage"));
         centralwidget = new QWidget(cf16tradingclient_1);
-        centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         listView_2 = new QListView(centralwidget);
-        listView_2->setObjectName(QStringLiteral("listView_2"));
+        listView_2->setObjectName(QString::fromUtf8("listView_2"));
 
         gridLayout->addWidget(listView_2, 2, 0, 1, 2);
 
         groupBox_2 = new QGroupBox(centralwidget);
-        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
 
         gridLayout->addWidget(groupBox_2, 2, 3, 1, 1);
 
         tableView = new QTableView(centralwidget);
-        tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setObjectName(QString::fromUtf8("tableView"));
 
         gridLayout->addWidget(tableView, 0, 0, 1, 2);
 
         listView = new QListView(centralwidget);
-        listView->setObjectName(QStringLiteral("listView"));
+        listView->setObjectName(QString::fromUtf8("listView"));
 
         gridLayout->addWidget(listView, 1, 0, 1, 4);
 
         groupBox = new QGroupBox(centralwidget);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setStyleSheet(QStringLiteral(""));
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setStyleSheet(QString::fromUtf8(""));
         layoutWidget = new QWidget(groupBox);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(6, 5, 301, 71));
         gridLayout_2 = new QGridLayout(layoutWidget);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
         lcdNumber = new QLCDNumber(layoutWidget);
-        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setObjectName(QString::fromUtf8("lcdNumber"));
 
         gridLayout_2->addWidget(lcdNumber, 2, 1, 1, 1);
 
         label_2 = new QLabel(layoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
 
         gridLayout_2->addWidget(label_2, 0, 0, 1, 1);
 
         label_3 = new QLabel(layoutWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
         gridLayout_2->addWidget(label_3, 0, 1, 1, 1);
 
         label = new QLabel(layoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
 
         gridLayout_2->addWidget(label, 2, 0, 1, 1);
 
         label_4 = new QLabel(layoutWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setObjectName(QString::fromUtf8("label_4"));
 
         gridLayout_2->addWidget(label_4, 1, 0, 1, 1);
 
         label_5 = new QLabel(layoutWidget);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setObjectName(QString::fromUtf8("label_5"));
 
         gridLayout_2->addWidget(label_5, 1, 1, 1, 1);
 
@@ -183,42 +187,42 @@ public:
         gridLayout->addWidget(groupBox, 0, 3, 1, 1);
 
         groupBox_3 = new QGroupBox(centralwidget);
-        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         label_6_connected = new QLabel(groupBox_3);
-        label_6_connected->setObjectName(QStringLiteral("label_6_connected"));
+        label_6_connected->setObjectName(QString::fromUtf8("label_6_connected"));
         label_6_connected->setGeometry(QRect(10, 40, 131, 17));
         connectButton = new QPushButton(groupBox_3);
-        connectButton->setObjectName(QStringLiteral("connectButton"));
+        connectButton->setObjectName(QString::fromUtf8("connectButton"));
         connectButton->setGeometry(QRect(10, 80, 99, 27));
         disconnectButton = new QPushButton(groupBox_3);
-        disconnectButton->setObjectName(QStringLiteral("disconnectButton"));
+        disconnectButton->setObjectName(QString::fromUtf8("disconnectButton"));
         disconnectButton->setGeometry(QRect(120, 80, 99, 27));
 
         gridLayout->addWidget(groupBox_3, 0, 2, 1, 1);
 
         cf16tradingclient_1->setCentralWidget(centralwidget);
         menubar = new QMenuBar(cf16tradingclient_1);
-        menubar->setObjectName(QStringLiteral("menubar"));
+        menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 956, 25));
         menubar->setFocusPolicy(Qt::NoFocus);
         menubar->setContextMenuPolicy(Qt::DefaultContextMenu);
-        menubar->setStyleSheet(QStringLiteral("border-color: rgb(0, 0, 255);"));
+        menubar->setStyleSheet(QString::fromUtf8("border-color: rgb(0, 0, 255);"));
         menuCf16_tradingclient_1 = new QMenu(menubar);
-        menuCf16_tradingclient_1->setObjectName(QStringLiteral("menuCf16_tradingclient_1"));
+        menuCf16_tradingclient_1->setObjectName(QString::fromUtf8("menuCf16_tradingclient_1"));
         menuCf16_tradingclient_1->setFocusPolicy(Qt::NoFocus);
-        menuCf16_tradingclient_1->setStyleSheet(QStringLiteral(""));
+        menuCf16_tradingclient_1->setStyleSheet(QString::fromUtf8(""));
         menuStrategies = new QMenu(menubar);
-        menuStrategies->setObjectName(QStringLiteral("menuStrategies"));
-        menuStrategies->setStyleSheet(QStringLiteral(""));
+        menuStrategies->setObjectName(QString::fromUtf8("menuStrategies"));
+        menuStrategies->setStyleSheet(QString::fromUtf8(""));
         menuMarket = new QMenu(menubar);
-        menuMarket->setObjectName(QStringLiteral("menuMarket"));
+        menuMarket->setObjectName(QString::fromUtf8("menuMarket"));
         menuMarket->setFocusPolicy(Qt::NoFocus);
-        menuMarket->setStyleSheet(QStringLiteral(""));
+        menuMarket->setStyleSheet(QString::fromUtf8(""));
         menuAction = new QMenu(menubar);
-        menuAction->setObjectName(QStringLiteral("menuAction"));
+        menuAction->setObjectName(QString::fromUtf8("menuAction"));
         cf16tradingclient_1->setMenuBar(menubar);
         statusbar = new QStatusBar(cf16tradingclient_1);
-        statusbar->setObjectName(QStringLiteral("statusbar"));
+        statusbar->setObjectName(QString::fromUtf8("statusbar"));
         cf16tradingclient_1->setStatusBar(statusbar);
 
         menubar->addAction(menuCf16_tradingclient_1->menuAction());
@@ -230,6 +234,7 @@ public:
         menuCf16_tradingclient_1->addAction(actionSave_as);
         menuStrategies->addAction(actionCointegration);
         menuStrategies->addSeparator();
+        menuStrategies->addAction(actionTriangular_arbitrage);
         menuMarket->addAction(actionFX);
         menuMarket->addAction(actionIR);
         menuMarket->addAction(actionStocks);
@@ -268,6 +273,7 @@ public:
         actionReqMktDataGUI->setText(QApplication::translate("cf16tradingclient_1", "ReqMktDataGUI", 0));
         actionReqMktDepth->setText(QApplication::translate("cf16tradingclient_1", "ReqMktDepth", 0));
         actionUpdatePortfolio->setText(QApplication::translate("cf16tradingclient_1", "UpdatePortfolio", 0));
+        actionTriangular_arbitrage->setText(QApplication::translate("cf16tradingclient_1", "Triangular arbitrage", 0));
         groupBox_2->setTitle(QApplication::translate("cf16tradingclient_1", "GroupBox", 0));
         groupBox->setTitle(QString());
         label_2->setText(QApplication::translate("cf16tradingclient_1", "time", 0));

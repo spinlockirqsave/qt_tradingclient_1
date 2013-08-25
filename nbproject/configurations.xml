@@ -112,12 +112,8 @@
       <compileType>
         <ccTool>
           <incDir>
-            <pElem>../twsapi/PosixSocketClient/src</pElem>
-            <pElem>../twsapi/Shared</pElem>
-            <pElem>../twsapi</pElem>
-            <pElem>../twsapi/PosixSocketClient</pElem>
-            <pElem>/usr/include/boost</pElem>
             <pElem>/opt/Qt5.0.1/5.0.1/gcc_64/include</pElem>
+            <pElem>../twsapi</pElem>
           </incDir>
           <preprocessorList>
             <Elem>DEBUG</Elem>
@@ -150,13 +146,6 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
-          <incDir>
-            <pElem>../twsapi/PosixSocketClient/src</pElem>
-            <pElem>../twsapi/Shared</pElem>
-            <pElem>../twsapi</pElem>
-            <pElem>../twsapi/PosixSocketClient</pElem>
-            <pElem>/usr/include/boost</pElem>
-          </incDir>
           <preprocessorList>
             <Elem>HAVE_CONFIG_H</Elem>
             <Elem>IB_USE_STD_STRING</Elem>

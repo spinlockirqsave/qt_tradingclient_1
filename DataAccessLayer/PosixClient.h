@@ -8,7 +8,7 @@
 #ifndef posixtestclient_h__INCLUDED
 #define posixtestclient_h__INCLUDED
 
-#include "EWrapper.h"
+#include <Shared/EWrapper.h>
 #include <memory>
 #include <stdio.h> //printf()
 #include <map>

@@ -7,17 +7,17 @@
 
 #include "PosixClient.h"
 
-#include "EPosixClientSocket.h"
+#include <PosixSocketClient/src/EPosixClientSocket.h>
 /* In this example we just include the platform header to have select(). In real
    life you should include the needed headers from your system. */
-#include "EPosixClientSocketPlatform.h"
+#include <PosixSocketClient/src/EPosixClientSocketPlatform.h>
 
-#include "Contract.h"
-#include "Order.h"
+#include <Shared/Contract.h>
+#include <Shared/Order.h>
 
 #include <time.h>
 #include <sys/time.h>
-#include <EClientSocketBase.h>
+#include <Shared/EClientSocketBase.h>
 
 #if defined __INTEL_COMPILER
 # pragma warning (disable:869)

@@ -20,5 +20,5 @@ UI_DIR =
 QMAKE_CC = gcc
 QMAKE_CXX = g++
 DEFINES += HAVE_CONFIG_H IB_USE_STD_STRING _GNU_SOURCE 
-INCLUDEPATH += ../twsapi/PosixSocketClient/src ../twsapi/Shared ../twsapi ../twsapi/PosixSocketClient /usr/include/boost 
+INCLUDEPATH += 
 LIBS += -lQuantLib -ltwsapi  

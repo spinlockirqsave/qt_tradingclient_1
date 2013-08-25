@@ -49,6 +49,7 @@ public:
     QAction *actionReqMktDataGUI;
     QAction *actionReqMktDepth;
     QAction *actionUpdatePortfolio;
+    QAction *actionTriangular_arbitrage;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QListView *listView_2;
@@ -116,6 +117,8 @@ public:
         actionReqMktDepth->setObjectName(QStringLiteral("actionReqMktDepth"));
         actionUpdatePortfolio = new QAction(cf16tradingclient_1);
         actionUpdatePortfolio->setObjectName(QStringLiteral("actionUpdatePortfolio"));
+        actionTriangular_arbitrage = new QAction(cf16tradingclient_1);
+        actionTriangular_arbitrage->setObjectName(QStringLiteral("actionTriangular_arbitrage"));
         centralwidget = new QWidget(cf16tradingclient_1);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
@@ -230,6 +233,7 @@ public:
         menuCf16_tradingclient_1->addAction(actionSave_as);
         menuStrategies->addAction(actionCointegration);
         menuStrategies->addSeparator();
+        menuStrategies->addAction(actionTriangular_arbitrage);
         menuMarket->addAction(actionFX);
         menuMarket->addAction(actionIR);
         menuMarket->addAction(actionStocks);
@@ -268,6 +272,7 @@ public:
         actionReqMktDataGUI->setText(QApplication::translate("cf16tradingclient_1", "ReqMktDataGUI", 0));
         actionReqMktDepth->setText(QApplication::translate("cf16tradingclient_1", "ReqMktDepth", 0));
         actionUpdatePortfolio->setText(QApplication::translate("cf16tradingclient_1", "UpdatePortfolio", 0));
+        actionTriangular_arbitrage->setText(QApplication::translate("cf16tradingclient_1", "Triangular arbitrage", 0));
         groupBox_2->setTitle(QApplication::translate("cf16tradingclient_1", "GroupBox", 0));
         groupBox->setTitle(QString());
         label_2->setText(QApplication::translate("cf16tradingclient_1", "time", 0));

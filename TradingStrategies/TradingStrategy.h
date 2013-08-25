@@ -8,9 +8,9 @@
 #ifndef TRADINGSTRATEGY_H
 #define	TRADINGSTRATEGY_H
 
-#include <Shared/CommonDefs.h>
-#include <DataAccessLayer/MarketData.h>
-#include <Shared/Contract.h>
+//#include <Shared/CommonDefs.h>
+//#include <DataAccessLayer/MarketData.h>
+//#include <Shared/Contract.h>
 #include <DataAccessLayer/PosixClient.h>
 
 #include <boost/shared_ptr.hpp>
@@ -34,6 +34,11 @@ class TradingStrategyImpl;
  *  Then all requests are simply delegated by the
  *  interface class to the encapsulated implementation
  */
+
+//struct IBAdditions::Event;
+//class IB::TickerId; 
+class IB::Contract;
+
 class TradingStrategy {
 public:
     TradingStrategy(TradingStrategyImpl* pimpl);

@@ -38,6 +38,9 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="GUI" projectFiles="true">
         <logicalFolder name="GUI" displayName="GUI" projectFiles="true">
+          <itemPath>GUI/CointegrationGUI.cpp</itemPath>
+          <itemPath>GUI/CointegrationGUI.h</itemPath>
+          <itemPath>GUI/CointegrationGUI.ui</itemPath>
           <itemPath>GUI/GUIMarketData.h</itemPath>
           <itemPath>GUI/MainWindow.cpp</itemPath>
           <itemPath>GUI/MainWindow.h</itemPath>
@@ -48,6 +51,9 @@
           <itemPath>GUI/ReqMktDepthGUI.cpp</itemPath>
           <itemPath>GUI/ReqMktDepthGUI.h</itemPath>
           <itemPath>GUI/ReqMktDepthGUI.ui</itemPath>
+          <itemPath>GUI/qcustomplot.cpp</itemPath>
+          <itemPath>GUI/qcustomplot.h</itemPath>
+          <itemPath>GUI/ui_Cointegration.h</itemPath>
           <itemPath>GUI/ui_MainWindow.h</itemPath>
           <itemPath>GUI/ui_ReqMktDataGUI.h</itemPath>
           <itemPath>GUI/ui_reqMktDepthGUI.h</itemPath>
@@ -107,7 +113,7 @@
         <compilerSet>GNU|GNU</compilerSet>
       </toolsSet>
       <qt>
-        <modules>core gui opengl</modules>
+        <modules>core gui network opengl sql svg xml webkit</modules>
       </qt>
       <compileType>
         <ccTool>
@@ -127,6 +133,7 @@
             <linkerLibLibItem>twsapi</linkerLibLibItem>
             <linkerLibLibItem>QuantLib</linkerLibLibItem>
             <linkerLibLibItem>pthread-2.15</linkerLibLibItem>
+            <linkerLibLibItem>Qt5PrintSupport</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

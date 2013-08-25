@@ -22,6 +22,7 @@ cf16tradingclient_1::cf16tradingclient_1(boost::shared_ptr<IB::PosixClient> clie
         QObject::connect(widget.disconnectButton, SIGNAL(clicked()), this, SLOT(disconnectClicked()));
         QObject::connect(widget.actionReqMktData, SIGNAL(triggered()), this, SLOT(actionReqMktDataClicked()));
         QObject::connect(widget.actionReqMktDepth, SIGNAL(triggered()), this, SLOT(actionReqMktDepthClicked()));
+        QObject::connect(widget.actionCointegration, SIGNAL(triggered()), this, SLOT(actionCointegrationClicked()));
 }
 
 cf16tradingclient_1::~cf16tradingclient_1() {
@@ -69,3 +70,7 @@ void cf16tradingclient_1::actionReqMktDepthClicked(){
     ptr2_->show();
 }
 
+void cf16tradingclient_1::actionCointegrationClicked(){
+    ptr3_ = new CointegrationGUI();
+    ptr3_->show();
+}

@@ -14,6 +14,7 @@
 #include <DataAccessLayer/PosixClient.h>
 #include <GUI/ReqMktDataGUI.h>
 #include <GUI/ReqMktDepthGUI.h>
+#include <GUI/CointegrationGUI.h>
 #include <DataAccessLayer/Repository.h>
 
 class cf16tradingclient_1 : public QMainWindow {
@@ -27,6 +28,7 @@ public slots:
     void disconnectClicked();
     void actionReqMktDataClicked();
     void actionReqMktDepthClicked();
+    void actionCointegrationClicked();
     
 private:
     Ui::cf16tradingclient_1 widget;
@@ -37,6 +39,7 @@ private:
     boost::shared_ptr<ReqMktDataGUI> reqMDGUI_ptr_;
     ReqMktDataGUI* ptr_;
     ReqMktDepthGUI* ptr2_;
+    CointegrationGUI* ptr3_;
     
     Repository& mktDataRepository_;
 };

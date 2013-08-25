@@ -13,7 +13,6 @@
 #include <DataAccessLayer/MarketData.h>
 #include <DataAccessLayer/globals.h>
 #include <GUI/GUIMarketData.h>
-#include <DataAccessLayer/globals.h>
 
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>

@@ -1,7 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CointegrationGUI.ui'
 **
-** Created by: Qt User Interface Compiler version 5.0.1
+** Created: Sun Aug 25 17:26:46 2013
+**      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -20,7 +21,9 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QWidget>
-#include "qcustomplot.h"
+#include <QtWidgets/QDialog>
+
+#include <GUI/qcustomplot.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -40,16 +43,16 @@ public:
     void setupUi(QWidget *CointegrationGUI)
     {
         if (CointegrationGUI->objectName().isEmpty())
-            CointegrationGUI->setObjectName(QStringLiteral("CointegrationGUI"));
+            CointegrationGUI->setObjectName(QString::fromUtf8("CointegrationGUI"));
         CointegrationGUI->resize(522, 593);
-        CointegrationGUI->setStyleSheet(QStringLiteral("background-color: rgb(59, 63, 85);"));
+        CointegrationGUI->setStyleSheet(QString::fromUtf8("background-color: rgb(59, 63, 85);"));
         gridLayout_3 = new QGridLayout(CointegrationGUI);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
         splitter = new QSplitter(CointegrationGUI);
-        splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setObjectName(QString::fromUtf8("splitter"));
         splitter->setOrientation(Qt::Vertical);
         listWidget = new QListWidget(splitter);
-        listWidget->setObjectName(QStringLiteral("listWidget"));
+        listWidget->setObjectName(QString::fromUtf8("listWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(1);
@@ -58,7 +61,7 @@ public:
         listWidget->setMinimumSize(QSize(0, 400));
         splitter->addWidget(listWidget);
         widget = new QCustomPlot(splitter);
-        widget->setObjectName(QStringLiteral("widget"));
+        widget->setObjectName(QString::fromUtf8("widget"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(2);
@@ -90,7 +93,7 @@ public:
         gridLayout_3->addWidget(splitter, 0, 1, 2, 1);
 
         groupBox_strategyInstructions = new QGroupBox(CointegrationGUI);
-        groupBox_strategyInstructions->setObjectName(QStringLiteral("groupBox_strategyInstructions"));
+        groupBox_strategyInstructions->setObjectName(QString::fromUtf8("groupBox_strategyInstructions"));
         QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Minimum);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
@@ -98,26 +101,26 @@ public:
         groupBox_strategyInstructions->setSizePolicy(sizePolicy2);
         groupBox_strategyInstructions->setMaximumSize(QSize(200, 16777215));
         groupBox_strategyInstructions->setBaseSize(QSize(200, 0));
-        groupBox_strategyInstructions->setStyleSheet(QStringLiteral("color:white;"));
+        groupBox_strategyInstructions->setStyleSheet(QString::fromUtf8("color:white;"));
         pushButton_subscribe = new QPushButton(groupBox_strategyInstructions);
-        pushButton_subscribe->setObjectName(QStringLiteral("pushButton_subscribe"));
+        pushButton_subscribe->setObjectName(QString::fromUtf8("pushButton_subscribe"));
         pushButton_subscribe->setGeometry(QRect(10, 30, 161, 27));
-        pushButton_subscribe->setStyleSheet(QLatin1String("color:white;\n"
+        pushButton_subscribe->setStyleSheet(QString::fromUtf8("color:white;\n"
 "background-color: rgb(40, 46, 59);"));
         pushButton_start = new QPushButton(groupBox_strategyInstructions);
-        pushButton_start->setObjectName(QStringLiteral("pushButton_start"));
+        pushButton_start->setObjectName(QString::fromUtf8("pushButton_start"));
         pushButton_start->setGeometry(QRect(10, 60, 99, 27));
-        pushButton_start->setStyleSheet(QLatin1String("color:white;\n"
+        pushButton_start->setStyleSheet(QString::fromUtf8("color:white;\n"
 "background-color: rgb(79, 79, 79);"));
         pushButton_pause = new QPushButton(groupBox_strategyInstructions);
-        pushButton_pause->setObjectName(QStringLiteral("pushButton_pause"));
+        pushButton_pause->setObjectName(QString::fromUtf8("pushButton_pause"));
         pushButton_pause->setGeometry(QRect(10, 90, 99, 27));
-        pushButton_pause->setStyleSheet(QLatin1String("color:white;\n"
+        pushButton_pause->setStyleSheet(QString::fromUtf8("color:white;\n"
 "background-color: rgb(79, 79, 79);"));
         pushButton_stop = new QPushButton(groupBox_strategyInstructions);
-        pushButton_stop->setObjectName(QStringLiteral("pushButton_stop"));
+        pushButton_stop->setObjectName(QString::fromUtf8("pushButton_stop"));
         pushButton_stop->setGeometry(QRect(10, 120, 99, 27));
-        pushButton_stop->setStyleSheet(QLatin1String("color:white;\n"
+        pushButton_stop->setStyleSheet(QString::fromUtf8("color:white;\n"
 "background-color: rgb(79, 79, 79);"));
 
         gridLayout_3->addWidget(groupBox_strategyInstructions, 0, 0, 2, 1);

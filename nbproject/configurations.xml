@@ -54,6 +54,7 @@
           <itemPath>GUI/qcustomplot.cpp</itemPath>
           <itemPath>GUI/qcustomplot.h</itemPath>
           <itemPath>GUI/ui_Cointegration.h</itemPath>
+          <itemPath>GUI/ui_CointegrationGUI.h</itemPath>
           <itemPath>GUI/ui_MainWindow.h</itemPath>
           <itemPath>GUI/ui_ReqMktDataGUI.h</itemPath>
           <itemPath>GUI/ui_reqMktDepthGUI.h</itemPath>

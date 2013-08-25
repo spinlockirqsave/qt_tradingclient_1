@@ -8,7 +8,7 @@
 #ifndef COINTEGRATIONGUI_H
 #define	COINTEGRATIONGUI_H
 
-#include "ui_Cointegration.h"
+#include "ui_CointegrationGUI.h"
 
 
 class CointegrationGUI : public QDialog {
@@ -17,7 +17,7 @@ public:
     CointegrationGUI();
     virtual ~CointegrationGUI(){}
 private:
-    Ui::Cointegration widget_;
+    Ui::CointegrationGUI widget_;
 
 };
 

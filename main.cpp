@@ -21,7 +21,6 @@
 #include <pthread.h>
 #include <errno.h>
 
-#include <GUI/qcustomplot.h>
 
 // initialize global data
 boost::shared_ptr<IB::PosixClient> client;

@@ -13,7 +13,7 @@
 
 class Cointegration : TradingStrategy {
 public:
-    Cointegration(int dimension);
+    Cointegration(int dimension = 2);
     virtual ~Cointegration();
     
 private:

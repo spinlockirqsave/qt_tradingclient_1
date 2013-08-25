@@ -7,7 +7,8 @@
 
 #include "CointegrationGUI.h"
 
-CointegrationGUI::CointegrationGUI(){
+CointegrationGUI::CointegrationGUI() {
+    
     widget_.setupUi(this);
     this->setAttribute(Qt::WA_DeleteOnClose);
 }

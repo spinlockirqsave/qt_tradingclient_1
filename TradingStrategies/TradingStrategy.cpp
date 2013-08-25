@@ -5,7 +5,7 @@
  * Created on August 3, 2013, 12:21 AM
  */
 
-#include "TradingStrategy.h"
+#include <TradingStrategies/TradingStrategy.h>
 
 TradingStrategy::TradingStrategy() {
 }

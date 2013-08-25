@@ -48,6 +48,8 @@ private:
     virtual bool doLongTrade()=0;
     virtual bool doShortTrade()=0;
     
+    
+    
 protected:
     typedef std::map<const IB::TickerId, const IB::Contract> TickerContractMap;
     TickerContractMap oservedContracts_;

@@ -7,7 +7,7 @@
 
 #include "Cointegration.h"
 
-Cointegration::Cointegration(int dimension):dimension_(dimension) {
+Cointegration::Cointegration(int dimension) : dimension_(dimension) {
 }
 
 Cointegration::Cointegration(const Cointegration& orig) : TradingStrategy(orig) {

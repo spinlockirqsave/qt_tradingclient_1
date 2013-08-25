@@ -8,8 +8,8 @@
 #ifndef COINTEGRATIONGUI_H
 #define	COINTEGRATIONGUI_H
 
-#include "ui_CointegrationGUI.h"
-
+#include <GUI/ui_CointegrationGUI.h>
+#include <TradingStrategies/Cointegration.h>
 
 class CointegrationGUI : public QDialog {
     Q_OBJECT
@@ -18,7 +18,7 @@ public:
     virtual ~CointegrationGUI(){}
 private:
     Ui::CointegrationGUI widget_;
-
+    Cointegration cointegration_;
 };
 
 #endif	/* COINTEGRATIONGUI_H */

@@ -18,10 +18,25 @@
 
 #include <map>
 
+/** Bridge pattern: "Implementor" */
+class TradingStrategyImpl;
 
+
+/** Bridge pattern: "Abstraction" */
+/**
+ * @param pimpl pointer to implementation
+ * 
+ *  Here the interface base class “has” a pointer
+ *  to the implementation base class, and each class
+ *  in the interface hierarchy is responsible for
+ *  populating the base class pointer with the correct
+ *  concrete trading strategy implementation class. 
+ *  Then all requests are simply delegated by the
+ *  interface class to the encapsulated implementation
+ */
 class TradingStrategy {
 public:
-    TradingStrategy();
+    TradingStrategy(TradingStrategyImpl* pimpl);
     TradingStrategy(const TradingStrategy& orig);
     virtual ~TradingStrategy();
     
@@ -48,7 +63,7 @@ private:
     virtual bool doLongTrade()=0;
     virtual bool doShortTrade()=0;
     
-    
+    TradingStrategyImpl* pimpl_;
     
 protected:
     typedef std::map<const IB::TickerId, const IB::Contract> TickerContractMap;

@@ -7,7 +7,7 @@
 
 #include <TradingStrategies/TradingStrategy.h>
 
-TradingStrategy::TradingStrategy() {
+TradingStrategy::TradingStrategy(TradingStrategyImpl* pimpl) : pimpl_(pimpl) {
 }
 
 TradingStrategy::TradingStrategy(const TradingStrategy& orig) {

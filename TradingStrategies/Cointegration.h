@@ -9,9 +9,10 @@
 #define	COINTEGRATION_H
 
 #include <TradingStrategies/TradingStrategy.h>
+#include <TradingStrategies/CointegrationImpl.h>
 
-
-class Cointegration : TradingStrategy {
+/** Bridge pattern: "Refined Abstraction" */
+class Cointegration : public TradingStrategy {
 public:
     Cointegration(int dimension = 2);
     virtual ~Cointegration();
@@ -33,6 +34,7 @@ private:
     virtual bool doShortTrade();
     
     int dimension_;
+    CointegrationImpl* pimpl;
 };
 
 #endif	/* COINTEGRATION_H */

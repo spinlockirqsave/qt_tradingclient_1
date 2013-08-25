@@ -30,7 +30,9 @@
                      displayName="TradingStrategies"
                      projectFiles="true">
         <itemPath>TradingStrategies/Cointegration.h</itemPath>
+        <itemPath>TradingStrategies/CointegrationImpl.h</itemPath>
         <itemPath>TradingStrategies/TradingStrategy.h</itemPath>
+        <itemPath>TradingStrategies/TradingStrategyImpl.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -81,7 +83,9 @@
       </logicalFolder>
       <logicalFolder name="f1" displayName="TradingStrategies" projectFiles="true">
         <itemPath>TradingStrategies/Cointegration.cpp</itemPath>
+        <itemPath>TradingStrategies/CointegrationImpl.cpp</itemPath>
         <itemPath>TradingStrategies/TradingStrategy.cpp</itemPath>
+        <itemPath>TradingStrategies/TradingStrategyImpl.cpp</itemPath>
       </logicalFolder>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>

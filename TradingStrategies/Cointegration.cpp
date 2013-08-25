@@ -5,9 +5,9 @@
  * Created on August 3, 2013, 10:53 PM
  */
 
-#include "Cointegration.h"
+#include <TradingStrategies/Cointegration.h>
 
-Cointegration::Cointegration(int dimension) : dimension_(dimension) {
+Cointegration::Cointegration(int dimension) : TradingStrategy(new CointegrationImpl()), dimension_(dimension) {
 }
 
 Cointegration::Cointegration(const Cointegration& orig) : TradingStrategy(orig) {

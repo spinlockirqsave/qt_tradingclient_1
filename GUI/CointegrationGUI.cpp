@@ -1,6 +1,6 @@
 /* 
  * File:   CointegrationGUI.cpp
- * Author: root
+ * Author: Piotr Gregor  postmaster@cf16.eu
  * 
  * Created on August 25, 2013, 4:31 AM
  */

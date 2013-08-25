@@ -19,7 +19,7 @@
 
 #include <map>
 
-/** Bridge pattern: "Implementor" */
+/** Bridge pattern: "Implementor abstract base" */
 class TradingStrategyImpl {
 public:
     TradingStrategyImpl();
@@ -27,6 +27,7 @@ public:
     virtual ~TradingStrategyImpl();
     
     virtual void doSubscribeToData(IBAdditions::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr)=0;
+    virtual void doStart()=0;
 private:
 
 };

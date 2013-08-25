@@ -27,7 +27,7 @@ public:
     virtual ~CointegrationImpl();
     
     void doSubscribeToData(IBAdditions::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr);
-    
+    void doStart();
 private:
     typedef std::map<const IB::TickerId, const IB::Contract> TickerContractMap;
     TickerContractMap oservedContracts_;

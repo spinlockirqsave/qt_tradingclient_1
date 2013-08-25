@@ -32,4 +32,8 @@ void CointegrationImpl::doSubscribeToData(IBAdditions::Event event, IB::TickerId
     client_->marketDataFeedInsert(tickMktData);
 }
 
+void CointegrationImpl::doStart(){
+    //do start !
+}
+
 

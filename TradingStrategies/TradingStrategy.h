@@ -66,13 +66,7 @@ private:
     TradingStrategyImpl* pimpl_;
     
 protected:
-    typedef std::map<const IB::TickerId, const IB::Contract> TickerContractMap;
-    TickerContractMap oservedContracts_;
-    std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers;
-    std::vector<pMktDataObserver> tickPriceObservers;
-    std::vector<pMktDataObserver> tickStringObservers;
     
-    boost::shared_ptr<IB::PosixClient> client;
 };
 
 #endif	/* TRADINGSTRATEGY_H */

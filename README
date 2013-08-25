@@ -27,6 +27,7 @@ Qt:                           Posix threads:
 QtCore                        libpthread-2.15.so
 QtGui
 QtOpenGL
+Qt5PrintSupport
 
 
 Installation

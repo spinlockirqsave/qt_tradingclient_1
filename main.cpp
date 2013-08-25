@@ -17,8 +17,6 @@
 #include <GUI/ReqMktDataGUI.h>
 #include <GUI/ReqMktDepthGUI.h>
 
-
-
 #include <boost/shared_ptr.hpp>
 #include <pthread.h>
 #include <errno.h>

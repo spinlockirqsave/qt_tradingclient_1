@@ -378,6 +378,9 @@ void PosixClient::error(const int id, const int errorCode, const IBString errorS
  * however by redefinition of map to multimap and corresponding
  * change of notification mechanism here (notify all MarketData
  * with given, same tickerId) 
+ * 
+ * TODO: store data into Repository from here (not from MarketData)
+ * it will be much cleaner design
  */
 void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, int canAutoExecute) {
 #ifdef DEBUG
@@ -424,7 +427,10 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
  * MarketData objects for same tickerId, it might be changed
  * however by redefinition of map to multimap and corresponding
  * change of notification mechanism here (notify all MarketData
- * with given, same tickerId) 
+ * with given, same tickerId)
+ * 
+ * TODO: store data into Repository from here (not from MarketData)
+ * it will be much cleaner design
  */
 void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
 #ifdef DEBUG 
@@ -479,7 +485,10 @@ void PosixClient::tickGeneric(TickerId tickerId, TickType tickType, double value
  * MarketData objects for same tickerId, it might be changed
  * however by redefinition of map to multimap and corresponding
  * change of notification mechanism here (notify all MarketData
- * with given, same tickerId) 
+ * with given, same tickerId)
+ * 
+ * TODO: store data into Repository from here (not from MarketData)
+ * it will be much cleaner design
  */
 void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& value) {
     #ifdef DEBUG 
@@ -600,7 +609,10 @@ void PosixClient::execDetailsEnd( int reqId) {
  * MarketData objects for same tickerId, it might be changed
  * however by redefinition of map to multimap and corresponding
  * change of notification mechanism here (notify all MarketData
- * with given, same tickerId) 
+ * with given, same tickerId)
+ * 
+ * TODO: store data into Repository from here (not from MarketData)
+ * it will be much cleaner design
  */
 void PosixClient::updateMktDepth(TickerId id, int position, int operation, int side,
 									  double price, int size) {
@@ -635,7 +647,10 @@ void PosixClient::updateMktDepth(TickerId id, int position, int operation, int s
  * MarketData objects for same tickerId, it might be changed
  * however by redefinition of map to multimap and corresponding
  * change of notification mechanism here (notify all MarketData
- * with given, same tickerId) 
+ * with given, same tickerId)
+ * 
+ * TODO: store data into Repository from here (not from MarketData)
+ * it will be much cleaner design
  */
 void PosixClient::updateMktDepthL2(TickerId id, int position, IBString marketMaker, int operation,
 										int side, double price, int size) {

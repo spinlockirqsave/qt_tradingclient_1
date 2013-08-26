@@ -151,7 +151,8 @@ namespace IBAdditions {
         }
 
         inline bool operator<(const ContractEvent & rhs) const {
-            return symbol < rhs.symbol || (!(rhs.symbol < symbol) && (int) event_ < (int) rhs.event_);
+            //return symbol < rhs.symbol || (!(rhs.symbol < symbol) && (int) event_ < (int) rhs.event_);
+            return symbol < rhs.symbol || (!(rhs.symbol < symbol) && ((currency < rhs.currency) || (!(rhs.currency < currency) && ((int) event_ < (int) rhs.event_))));
         }
 
         Event event_;

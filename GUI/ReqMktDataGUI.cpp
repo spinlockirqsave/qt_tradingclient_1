@@ -272,9 +272,12 @@ void ReqMktDataGUI::marketDataFeedDelete(void){
 }
 
 void ReqMktDataGUI::guiMarketDataFeedDelete(void){
-    for(tickerIdContractMap::iterator it=guiObservedContracts_.begin();it!=guiObservedContracts_.end();it++){
+    tickerIdContractMap::iterator it=guiObservedContracts_.begin();
+    while(it!=guiObservedContracts_.end()){
         printf("\n[ReqMktdataGUI::guiMarketDataFeedDelete] canceling mkt data request with id %d\n",(*it).first);
         client_->cancelMktData((*it).first);
+        client_->guiMarketDataFeedDelete((*it).first);
+        guiObservedContracts_.erase(it++);
     }
 }
 
@@ -284,6 +287,11 @@ void ReqMktDataGUI::displayData(int tickerId, rec_ptr record_ptr){
 }
 
 void ReqMktDataGUI::guiRequestClicked(){
+    
+    // note: if tickerId is not unique GUIMarketData
+    // will not be inserted into marketDataFeed map of client_
+    // and Repository won't be resized
+    // TODO: change map to multimap or assert unique tickerId
     IB::Contract contract;
     contract.symbol = widget_.lineEdit_Symbol->text().toStdString();
     contract.secType = widget_.lineEdit_Type->text().toStdString();

@@ -282,6 +282,27 @@ void PosixClient::reqMktDepth(TickerId tickerId, IB::Contract contract, int numR
                 break;
         }
     }
+    
+    void PosixClient::guiMarketDataFeedDelete(TickerId tickerId){
+        printf("[PosixClient::guiMarketDataFeedDelete] for tickerId: %d\n");
+        tickerIdGUIMarketDataMap::iterator it1=tickPriceGUIMarketDataFeed.find(tickerId);
+        if(it1!=tickPriceGUIMarketDataFeed.end()){
+            printf("-> tickPriceGUIMarketDataFeed.erase()\n");
+            tickPriceGUIMarketDataFeed.erase(it1);
+        }
+        
+        tickerIdGUIMarketDataMap::iterator it2=tickSizeGUIMarketDataFeed.find(tickerId);
+        if(it2!=tickSizeGUIMarketDataFeed.end()){
+            printf("-> tickSizeGUIMarketDataFeed.erase()\n");
+            tickSizeGUIMarketDataFeed.erase(it2);
+        }
+        
+        tickerIdGUIMarketDataMap::iterator it3=tickStringGUIMarketDataFeed.find(tickerId);
+        if(it3!=tickStringGUIMarketDataFeed.end()){
+            printf("-> tickStringGUIMarketDataFeed.erase()\n");
+            tickStringGUIMarketDataFeed.erase(it3);
+        }
+    }
 
 void PosixClient::cancelOrder()
 {
@@ -293,7 +314,7 @@ void PosixClient::cancelOrder()
 }
 
 void PosixClient::cancelMktData(TickerId tickerId){
-    printf( "PosixClient::cancelMktData for tickerId: %d\n",tickerId);
+    printf( "[PosixClient::cancelMktData] for tickerId: %d\n",tickerId);
     m_pClient->cancelMktData(tickerId);
 }
 

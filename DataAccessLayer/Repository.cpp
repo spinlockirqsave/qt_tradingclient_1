@@ -43,6 +43,7 @@ void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAddition
          * next available mutex's identifier is contractEventDataMap_.size()
          * ( before inserting ce into contractEventDataMap_ )
          */
+        printf("[Repository:putRecord] locking mutex %d\n", contractEventDataMap_.size());
         mutexData m;
         m.mutex = &repoMutexes[contractEventDataMap_.size()];
         m.condition = &repoConditions[contractEventDataMap_.size()];

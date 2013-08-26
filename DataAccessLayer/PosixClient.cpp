@@ -371,6 +371,13 @@ void PosixClient::error(const int id, const int errorCode, const IBString errorS
  * @param field
  * @param price
  * @param canAutoExecute
+ * 
+ * maps incoming record to MarketData and GUIMarketData
+ * based on tickerId. At the moment we don't allow multiple
+ * MarketData objects for same tickerId, it might be changed
+ * however by redefinition of map to multimap and corresponding
+ * change of notification mechanism here (notify all MarketData
+ * with given, same tickerId) 
  */
 void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, int canAutoExecute) {
 #ifdef DEBUG
@@ -378,8 +385,11 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
 #endif
     tickerIdMarketDataMap::iterator it=tickPriceMarketDataFeed.find(tickerId);
         if(it!=tickPriceMarketDataFeed.end()){
-            //(*it)->tickPriceData.push_back(TickPriceRecord(field,price,canAutoExecute));
-            //printf("PosixClient: putRecord \n");
+            
+            /* put this record into MarketData object with given tickerId
+             * MarketData will next store it into Repository with a key
+             * being its observed ContractEvent contractEvent_
+             */
             ((*it).second)->putRecord(tickPriceRec_ptr(new IBAdditions::TickPriceRecord(field,IBAdditions::TickPrice,price,canAutoExecute))); //what thread r MarketData objects?
             //printf("PosixClient: notify \n");
             ((*it).second)->notifyObservers(); // observers are in the main thread
@@ -389,8 +399,11 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
     
     tickerIdGUIMarketDataMap::iterator it2=tickPriceGUIMarketDataFeed.find(tickerId);
         if(it2!=tickPriceGUIMarketDataFeed.end()){
-            //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
-            //printf("PosixClient::tickPrice: putRecord to GUIMarketData object \n");
+            
+            /* put this record into MarketData object with given tickerId
+             * MarketData will next store it into Repository with a key
+             * being its observed ContractEvent contractEvent_
+             */
             (*it2).second->putRecord(tickPriceRec_ptr(new IBAdditions::TickPriceRecord(field,IBAdditions::TickPrice,price,canAutoExecute)));
             //printf("PosixClient::tickPrice: GUIMarketData->notifyObservers \n");
             (*it2).second->notifyObservers();
@@ -405,6 +418,13 @@ void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, in
  * @param tickerId
  * @param field
  * @param size
+ * 
+ * maps incoming record to MarketData and GUIMarketData
+ * based on tickerId. At the moment we don't allow multiple
+ * MarketData objects for same tickerId, it might be changed
+ * however by redefinition of map to multimap and corresponding
+ * change of notification mechanism here (notify all MarketData
+ * with given, same tickerId) 
  */
 void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
 #ifdef DEBUG 
@@ -412,6 +432,11 @@ void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
 #endif
     tickerIdMarketDataMap::iterator it=tickSizeMarketDataFeed.find(tickerId);
         if(it!=tickSizeMarketDataFeed.end()){
+            
+            /* put this record into MarketData object with given tickerId
+             * MarketData will next store it into Repository with a key
+             * being its observed ContractEvent contractEvent_
+             */
             ((*it).second)->putRecord(tickSizeRec_ptr(new IBAdditions::TickSizeRecord(field,IBAdditions::TickSize,size)));
             ((*it).second)->notifyObservers();
             //TODO: start thread to store incoming data in repository
@@ -419,6 +444,11 @@ void PosixClient::tickSize( TickerId tickerId, TickType field, int size) {
     
     tickerIdGUIMarketDataMap::iterator it2=tickSizeGUIMarketDataFeed.find(tickerId);
         if(it2!=tickSizeGUIMarketDataFeed.end()){
+            
+            /* put this record into MarketData object with given tickerId
+             * MarketData will next store it into Repository with a key
+             * being its observed ContractEvent contractEvent_
+             */
             (*it2).second->putRecord(tickSizeRec_ptr(new IBAdditions::TickSizeRecord(field,IBAdditions::TickSize,size)));
             (*it2).second->notifyObservers();
             //TODO: start thread to store incoming data in repository
@@ -437,12 +467,31 @@ void PosixClient::tickGeneric(TickerId tickerId, TickType tickType, double value
          printf("PosixClient::tickGeneric\n");
     #endif
 }
+
+/**
+ * 
+ * @param tickerId
+ * @param field
+ * @param value
+ * 
+ * maps incoming record to MarketData and GUIMarketData
+ * based on tickerId. At the moment we don't allow multiple
+ * MarketData objects for same tickerId, it might be changed
+ * however by redefinition of map to multimap and corresponding
+ * change of notification mechanism here (notify all MarketData
+ * with given, same tickerId) 
+ */
 void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& value) {
     #ifdef DEBUG 
     printf("PosixClient::tickString\n");
 #endif
     tickerIdMarketDataMap::iterator it=tickStringMarketDataFeed.find(tickerId);
         if(it!=tickStringMarketDataFeed.end()){
+            
+            /* put this record into MarketData object with given tickerId
+             * MarketData will next store it into Repository with a key
+             * being its observed ContractEvent contractEvent_
+             */
             ((*it).second)->putRecord(tickStringRec_ptr(new IBAdditions::TickStringRecord(field,IBAdditions::TickString,value)));
             ((*it).second)->notifyObservers();
             //TODO: start thread to store incoming data in repository
@@ -450,7 +499,11 @@ void PosixClient::tickString(TickerId tickerId, TickType field, const IBString& 
     
     tickerIdGUIMarketDataMap::iterator it2=tickStringGUIMarketDataFeed.find(tickerId);
         if(it2!=tickStringGUIMarketDataFeed.end()){
-            //(*it)->tickSizeData.push_back(TickSizeRecord(field,size));
+            
+            /* put this record into MarketData object with given tickerId
+             * MarketData will next store it into Repository with a key
+             * being its observed ContractEvent contractEvent_
+             */
             (*it2).second->putRecord(tickStringRec_ptr(new IBAdditions::TickStringRecord(field,IBAdditions::TickString,value)));
             (*it2).second->notifyObservers();
             //TODO: start thread to store incoming data in repository
@@ -533,6 +586,22 @@ void PosixClient::execDetailsEnd( int reqId) {
     #endif
 }
 
+/**
+ * 
+ * @param id
+ * @param position
+ * @param operation
+ * @param side
+ * @param price
+ * @param size
+ * 
+ * maps incoming record to MarketData and GUIMarketData
+ * based on tickerId. At the moment we don't allow multiple
+ * MarketData objects for same tickerId, it might be changed
+ * however by redefinition of map to multimap and corresponding
+ * change of notification mechanism here (notify all MarketData
+ * with given, same tickerId) 
+ */
 void PosixClient::updateMktDepth(TickerId id, int position, int operation, int side,
 									  double price, int size) {
     #ifdef DEBUG 
@@ -540,11 +609,34 @@ void PosixClient::updateMktDepth(TickerId id, int position, int operation, int s
     #endif
     tickerIdGUIMarketDataMap::iterator it=updateMktDepthGUIMarketDataFeed.find(id);
         if(it!=updateMktDepthGUIMarketDataFeed.end()){
+            
+            /* put this record into MarketData object with given tickerId
+             * MarketData will next store it into Repository with a key
+             * being its observed ContractEvent contractEvent_
+             */
             ((*it).second)->putRecord(rec_ptr(new IBAdditions::MktDepthRecord(position,operation,side,price,size)));
             ((*it).second)->notifyObservers();
             //TODO: start thread to store incoming data in repository
         }
 }
+
+/**
+ * 
+ * @param id
+ * @param position
+ * @param marketMaker
+ * @param operation
+ * @param side
+ * @param price
+ * @param size
+ * 
+ * maps incoming record to MarketData and GUIMarketData
+ * based on tickerId. At the moment we don't allow multiple
+ * MarketData objects for same tickerId, it might be changed
+ * however by redefinition of map to multimap and corresponding
+ * change of notification mechanism here (notify all MarketData
+ * with given, same tickerId) 
+ */
 void PosixClient::updateMktDepthL2(TickerId id, int position, IBString marketMaker, int operation,
 										int side, double price, int size) {
     #ifdef DEBUG 
@@ -552,6 +644,11 @@ void PosixClient::updateMktDepthL2(TickerId id, int position, IBString marketMak
     #endif
     tickerIdGUIMarketDataMap::iterator it=updateMktDepthL2GUIMarketDataFeed.find(id);
         if(it!=updateMktDepthL2GUIMarketDataFeed.end()){
+            
+            /* put this record into MarketData object with given tickerId
+             * MarketData will next store it into Repository with a key
+             * being its observed ContractEvent contractEvent_
+             */
             ((*it).second)->putRecord(rec_ptr(new IBAdditions::MktDepthL2Record(position,marketMaker,operation,side,price,size)));
             ((*it).second)->notifyObservers();
             //TODO: start thread to store incoming data in repository

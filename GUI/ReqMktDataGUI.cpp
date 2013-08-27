@@ -181,6 +181,13 @@ void ReqMktDataGUI::myTickStringGUIUpdate(int tickerId, rec_ptr record_ptr){
 //public slots
 void ReqMktDataGUI::requestClicked(){
     
+    /* note: if tickerId is not unique MarketData
+     * will not be inserted into marketDataFeed map of client_
+     * and Repository won't be resized (records coming for this
+     * tickerId will be stored for previous ContractEvent
+     * associated with this tickerId
+     * TODO: change map to multimap or assert unique tickerId
+     */
     IB::Contract contract;
     contract.symbol = widget_.lineEdit_Symbol->text().toStdString();
     contract.secType = widget_.lineEdit_Type->text().toStdString();
@@ -222,13 +229,6 @@ void ReqMktDataGUI::requestClicked(){
             widget_.lineEdit_Id->text().toInt(), widget_.lineEdit_genericTickTags->text().toStdString(), 
             widget_.lineEdit_LocalSymbol->text().toStdString(), widget_.checkBox_Snapshot->isChecked());
     observedContracts_.insert(std::pair<int, IB::Contract>(widget_.lineEdit_Id->text().toInt(),contract));
-//    int i=0;
-//    while(i<30000000){
-//        client->processMessages();
-//        i++;
-//    }
-
-   //processMessages();
 }
 
 void ReqMktDataGUI::cancelClicked() {
@@ -288,10 +288,13 @@ void ReqMktDataGUI::displayData(int tickerId, rec_ptr record_ptr){
 
 void ReqMktDataGUI::guiRequestClicked(){
     
-    // note: if tickerId is not unique GUIMarketData
-    // will not be inserted into marketDataFeed map of client_
-    // and Repository won't be resized
-    // TODO: change map to multimap or assert unique tickerId
+    /* note: if tickerId is not unique GUIMarketData
+     * will not be inserted into marketDataFeed map of client_
+     * and Repository won't be resized (records coming for this
+     * tickerId will be stored for previous ContractEvent
+     * associated with this tickerId
+     * TODO: change map to multimap or assert unique tickerId
+     */
     IB::Contract contract;
     contract.symbol = widget_.lineEdit_Symbol->text().toStdString();
     contract.secType = widget_.lineEdit_Type->text().toStdString();

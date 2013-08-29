@@ -75,7 +75,7 @@
         <itemPath>DataAccessLayer/RepositoryOnStack.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="IBAdditions" projectFiles="true">
-        <itemPath>DataAccessLayer/IB_events.cpp</itemPath>
+        <itemPath>IBAdditions/IB_events.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="Statistics" projectFiles="true">
         <itemPath>Statistics/Statistics.cpp</itemPath>

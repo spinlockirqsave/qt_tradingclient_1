@@ -6,6 +6,7 @@
  */
 
 #include "ReqMktDataGUI.h"
+#include "TradingStrategies/Cointegration.h"
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QMessageBox>
 #include <typeinfo>
@@ -272,6 +273,9 @@ void ReqMktDataGUI::marketDataFeedDelete(void){
         client_->marketDataFeedDelete((*it).first);
         observedContracts_.erase(it++);
     }
+    tickPriceObservers_.clear();
+    tickSizeObservers_.clear();
+    tickStringObservers_.clear();
 }
 
 void ReqMktDataGUI::guiMarketDataFeedDelete(void){

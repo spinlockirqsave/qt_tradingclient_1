@@ -55,6 +55,7 @@ public:
         void marketDataFeedInsert(boost::shared_ptr<MarketData> marketData);
         void guiMarketDataFeedInsert(boost::shared_ptr<GUIMarketData> guiMarketData);
         void guiMarketDataFeedDelete(TickerId tickerId);
+        void marketDataFeedDelete(TickerId tickerId);
         void cancelMktData(TickerId tickerId);
         void reqMktDepth(TickerId tickerId, IB::Contract contract, int numRows);
 

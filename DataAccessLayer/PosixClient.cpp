@@ -283,6 +283,27 @@ void PosixClient::reqMktDepth(TickerId tickerId, IB::Contract contract, int numR
         }
     }
     
+    void PosixClient::marketDataFeedDelete(TickerId tickerId){
+        printf("[PosixClient::marketDataFeedDelete] for tickerId: %d\n");
+        tickerIdMarketDataMap::iterator it1=tickPriceMarketDataFeed.find(tickerId);
+        if(it1!=tickPriceMarketDataFeed.end()){
+            printf("-> tickPriceMarketDataFeed.erase()\n");
+            tickPriceMarketDataFeed.erase(it1);
+        }
+        
+        tickerIdMarketDataMap::iterator it2=tickSizeMarketDataFeed.find(tickerId);
+        if(it2!=tickSizeMarketDataFeed.end()){
+            printf("-> tickSizeMarketDataFeed.erase()\n");
+            tickSizeMarketDataFeed.erase(it2);
+        }
+        
+        tickerIdMarketDataMap::iterator it3=tickStringMarketDataFeed.find(tickerId);
+        if(it3!=tickStringMarketDataFeed.end()){
+            printf("-> tickStringMarketDataFeed.erase()\n");
+            tickStringMarketDataFeed.erase(it3);
+        }
+    }
+    
     void PosixClient::guiMarketDataFeedDelete(TickerId tickerId){
         printf("[PosixClient::guiMarketDataFeedDelete] for tickerId: %d\n");
         tickerIdGUIMarketDataMap::iterator it1=tickPriceGUIMarketDataFeed.find(tickerId);

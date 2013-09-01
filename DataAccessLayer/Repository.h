@@ -50,7 +50,7 @@ public:
     void putRecord(const IBAdditions::ContractEvent ce, const IBAdditions::rec_ptr rptr);
     
     /**
-     * get corresponding vector based on ContactEvent key
+     * get a reference to corresponding vector based on ContactEvent key
      * @param contractEvent
      * @return reference to vector of records
      */

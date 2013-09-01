@@ -41,7 +41,8 @@ public:
     
     /**
      * 
-     * @param record data record to be stored into database
+     * @param record data to be stored into 
+     * with a given contractEvent_ as a key
      */
     void putRecord(boost::shared_ptr<IBAdditions::Record> record){
         record_=record;

@@ -28,6 +28,7 @@ Repository marketDataRepository;
 
 pthread_mutex_t repoMutexes[NUM_REPOTHREADS];
 pthread_cond_t repoConditions[NUM_REPOTHREADS];
+pthread_attr_t repoAttr;
 
 /**
  * initialize mutexes that protect Repository vectors

@@ -8,12 +8,18 @@
 #include <math.h>
 #include <stdio.h>
 #include "Repository.h"
+#include "MarketData.h"
 
 /**
  * 
  * @param contractEventVector
  */
 Repository::Repository(const std::vector<IBAdditions::ContractEvent>& contractEventVector) {
+    
+    /* For portability, explicitly create threads in a joinable state */
+    pthread_attr_init(&repoAttr);
+    pthread_attr_setdetachstate(&repoAttr, PTHREAD_CREATE_JOINABLE);
+  
     BOOST_FOREACH(const IBAdditions::ContractEvent ce, contractEventVector){
         contractEventDataMap_.insert(std::pair<IBAdditions::ContractEvent, 
                 std::vector<IBAdditions::rec_ptr> >(ce, std::vector<IBAdditions::rec_ptr>()));
@@ -27,6 +33,7 @@ Repository::Repository(const Repository& orig) {
 }
 
 Repository::~Repository() {
+    pthread_attr_destroy(&repoAttr);
 }
 
 /**
@@ -47,6 +54,11 @@ void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAddition
         mutexData m;
         m.mutex = &repoMutexes[contractEventDataMap_.size()];
         m.condition = &repoConditions[contractEventDataMap_.size()];
+        
+        /* Initialize mutex and condition variable objects */
+        pthread_mutex_init(m.mutex, NULL);
+        pthread_cond_init (m.condition, NULL);
+  
         contractEventMutexMap_[ce] = m;
         
         contractEventDataMap_[ce] = std::vector<IBAdditions::rec_ptr>();

@@ -150,6 +150,11 @@ namespace IBAdditions {
             event_ = other.event_;
         }
 
+        /**
+         * "less than" comparator
+         * @param rhs
+         * @return 
+         */
         inline bool operator<(const ContractEvent & rhs) const {
             //return symbol < rhs.symbol || (!(rhs.symbol < symbol) && (int) event_ < (int) rhs.event_);
             return symbol < rhs.symbol || (!(rhs.symbol < symbol) && ((currency < rhs.currency) || (!(rhs.currency < currency) && ((int) event_ < (int) rhs.event_))));

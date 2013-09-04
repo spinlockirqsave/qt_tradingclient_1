@@ -10,6 +10,9 @@
 
 #include <GUI/ui_CointegrationGUI.h>
 #include <TradingStrategies/Cointegration.h>
+#include <IBAdditions/IB_events.h>
+
+#include <list>
 
 class CointegrationGUI : public QDialog {
     Q_OBJECT
@@ -19,6 +22,7 @@ public:
 private:
     Ui::CointegrationGUI widget_;
     Cointegration cointegration_;
+    std::list<IBAdditions::ContractEvent> observedContracts_;
 };
 
 #endif	/* COINTEGRATIONGUI_H */

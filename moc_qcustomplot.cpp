@@ -9,8 +9,8 @@
 #include "GUI/qcustomplot.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
-#include <QtCore/QList>
 #include <QtCore/QVector>
+#include <QtCore/QList>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'qcustomplot.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67

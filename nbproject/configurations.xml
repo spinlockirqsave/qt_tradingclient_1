@@ -17,6 +17,12 @@
           <itemPath>DataAccessLayer/globals.h</itemPath>
         </logicalFolder>
       </logicalFolder>
+      <logicalFolder name="DataModelLayer"
+                     displayName="DataModelLayer"
+                     projectFiles="true">
+        <itemPath>DataModelLayer/TickerDisplayModel.cpp</itemPath>
+        <itemPath>DataModelLayer/TickerDisplayModel.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f3" displayName="IB_additions" projectFiles="true">
         <logicalFolder name="IBAdditions" displayName="IBAdditions" projectFiles="true">
           <itemPath>IBAdditions/IB_events.h</itemPath>
@@ -53,12 +59,14 @@
           <itemPath>GUI/ReqMktDepthGUI.cpp</itemPath>
           <itemPath>GUI/ReqMktDepthGUI.h</itemPath>
           <itemPath>GUI/ReqMktDepthGUI.ui</itemPath>
+          <itemPath>GUI/SubscribeToDataGUI.ui</itemPath>
           <itemPath>GUI/qcustomplot.cpp</itemPath>
           <itemPath>GUI/qcustomplot.h</itemPath>
           <itemPath>GUI/ui_Cointegration.h</itemPath>
           <itemPath>GUI/ui_CointegrationGUI.h</itemPath>
           <itemPath>GUI/ui_MainWindow.h</itemPath>
           <itemPath>GUI/ui_ReqMktDataGUI.h</itemPath>
+          <itemPath>GUI/ui_SubscribeToDataGUI.h</itemPath>
           <itemPath>GUI/ui_reqMktDepthGUI.h</itemPath>
         </logicalFolder>
       </logicalFolder>
@@ -109,6 +117,7 @@
     <Elem>Strategies</Elem>
     <Elem>TradingStrategies</Elem>
     <Elem>Statistics</Elem>
+    <Elem>DataModelLayer</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

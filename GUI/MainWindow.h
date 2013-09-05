@@ -10,12 +10,14 @@
 
 
 #include "ui_MainWindow.h"
-#include <boost/shared_ptr.hpp>
 #include <DataAccessLayer/PosixClient.h>
 #include <GUI/ReqMktDataGUI.h>
 #include <GUI/ReqMktDepthGUI.h>
 #include <GUI/CointegrationGUI.h>
 #include <DataAccessLayer/Repository.h>
+
+#include <boost/shared_ptr.hpp>
+#include <vector>
 
 class cf16tradingclient_1 : public QMainWindow {
     Q_OBJECT
@@ -36,7 +38,8 @@ private:
     const char* host_;
     unsigned int port_;
     int clientId_;
-    boost::shared_ptr<ReqMktDataGUI> reqMDGUI_ptr_;
+    std::vector<boost::shared_ptr<ReqMktDataGUI> > reqMktDataGUI_ptr_;
+    std::vector<boost::shared_ptr<ReqMktDepthGUI> > reqMktDepthGUI_ptr_;
     ReqMktDataGUI* ptr_;
     ReqMktDepthGUI* ptr2_;
     CointegrationGUI* ptr3_;

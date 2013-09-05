@@ -61,13 +61,17 @@ void cf16tradingclient_1::disconnectClicked() {
 void cf16tradingclient_1::actionReqMktDataClicked(){
     //reqMDGUI_ptr=boost::shared_ptr<reqMktDataGUI>(new reqMktDataGUI(client));
     //reqMDGUI_ptr->show();
-    ptr_=new ReqMktDataGUI(client_);
-    ptr_->show();
+    //ptr_=new ReqMktDataGUI(client_);
+    //ptr_->show();
+    reqMktDataGUI_ptr_.push_back(boost::shared_ptr<ReqMktDataGUI>(new ReqMktDataGUI(client_)));
+    reqMktDataGUI_ptr_.back()->show();
 }
 
 void cf16tradingclient_1::actionReqMktDepthClicked(){
-    ptr2_=new ReqMktDepthGUI(client_);
-    ptr2_->show();
+    //ptr2_=new ReqMktDepthGUI(client_);
+    //ptr2_->show();
+    reqMktDepthGUI_ptr_.push_back(boost::shared_ptr<ReqMktDepthGUI>(new ReqMktDepthGUI(client_)));
+    reqMktDepthGUI_ptr_.back()->show();
 }
 
 void cf16tradingclient_1::actionCointegrationClicked(){

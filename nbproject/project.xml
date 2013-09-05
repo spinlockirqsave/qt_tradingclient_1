@@ -16,6 +16,7 @@
                 <sourceRootElem>Strategies</sourceRootElem>
                 <sourceRootElem>TradingStrategies</sourceRootElem>
                 <sourceRootElem>Statistics</sourceRootElem>
+                <sourceRootElem>DataModelLayer</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

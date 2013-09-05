@@ -10,7 +10,12 @@
 CointegrationGUI::CointegrationGUI() {
     
     widget_.setupUi(this);
+    QObject::connect(widget_.pushButton_subscribe, SIGNAL(clicked()), this, SLOT(subscribeClicked()));
     this->setAttribute(Qt::WA_DeleteOnClose);
+}
+
+void CointegrationGUI::subscribeClicked(){
+    
 }
 
 

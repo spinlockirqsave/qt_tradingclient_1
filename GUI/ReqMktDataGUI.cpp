@@ -32,7 +32,7 @@ ReqMktDataGUI::ReqMktDataGUI(boost::shared_ptr<IB::PosixClient> client_ptr, QWid
     QObject::connect(widget_.requestButton, SIGNAL(clicked()), this, SLOT(requestClicked()));
     QObject::connect(widget_.cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
     QObject::connect(widget_.guiRequestButton, SIGNAL(clicked()), this, SLOT(guiRequestClicked()));
-    this->setAttribute(Qt::WA_DeleteOnClose);
+    //this->setAttribute(Qt::WA_DeleteOnClose);
     QObject::connect(this,SIGNAL(newMktData(int,rec_ptr)),this,SLOT(displayData(int,rec_ptr)));
 }
 

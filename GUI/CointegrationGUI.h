@@ -19,6 +19,10 @@ class CointegrationGUI : public QDialog {
 public:
     CointegrationGUI();
     virtual ~CointegrationGUI(){}
+    
+public slots:
+    void subscribeClicked();
+    
 private:
     Ui::CointegrationGUI widget_;
     Cointegration cointegration_;

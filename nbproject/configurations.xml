@@ -20,7 +20,6 @@
       <logicalFolder name="DataModelLayer"
                      displayName="DataModelLayer"
                      projectFiles="true">
-        <itemPath>DataModelLayer/TickerDisplayModel.cpp</itemPath>
         <itemPath>DataModelLayer/TickerDisplayModel.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="IB_additions" projectFiles="true">
@@ -81,6 +80,9 @@
         <itemPath>DataAccessLayer/PosixClient.cpp</itemPath>
         <itemPath>DataAccessLayer/Repository.cpp</itemPath>
         <itemPath>DataAccessLayer/RepositoryOnStack.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f5" displayName="DataModelLayer" projectFiles="true">
+        <itemPath>DataModelLayer/TickerDisplayModel.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="IBAdditions" projectFiles="true">
         <itemPath>IBAdditions/IB_events.cpp</itemPath>

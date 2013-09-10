@@ -8,7 +8,8 @@
 #include "SubscribeToDataGUI.h"
 
 SubscribeToDataGUI::SubscribeToDataGUI(QWidget* parent) : QDialog(parent) {
-    model_.reset(new TickerDisplayModel);
+    availableTickers_ = std::vector<IBAdditions::ContractEvent>(3);
+    model_.reset(new TickerDisplayModel(availableTickers_));
 }
 
 SubscribeToDataGUI::SubscribeToDataGUI(const SubscribeToDataGUI& orig) {

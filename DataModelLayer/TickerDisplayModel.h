@@ -24,7 +24,7 @@ class TickerDisplayModel : public QStandardItemModel {
     
 Q_OBJECT
  public:
-     TickerDisplayModel(QObject *parent = 0);
+     TickerDisplayModel(std::vector<IBAdditions::ContractEvent> availableTickers, QObject *parent = 0);
      int rowCount(const QModelIndex &parent = QModelIndex()) const ;
      int columnCount(const QModelIndex &parent = QModelIndex()) const;
      QVariant headerData(int section, Qt::Orientation orientation, int role) const;
@@ -34,7 +34,7 @@ Q_OBJECT
  private:
      int m_;
      int n_;
-     std::vector<IBAdditions::ContractEvent>& availableTickers;
+     std::vector<IBAdditions::ContractEvent>& availableTickers_;
  signals:
      void editCompleted(const QString &);
 };

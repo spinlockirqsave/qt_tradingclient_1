@@ -7,6 +7,11 @@
 
 #include "TickerDisplayModel.h"
 
+TickerDisplayModel::TickerDisplayModel(std::vector<IBAdditions::ContractEvent> availableTickers, QObject *parent) : 
+QStandardItemModel(parent), availableTickers_(availableTickers) {
+    
+}
+
 int TickerDisplayModel::rowCount(const QModelIndex &parent) const {
     return m_;
 }

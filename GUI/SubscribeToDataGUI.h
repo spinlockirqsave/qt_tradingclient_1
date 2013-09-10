@@ -26,6 +26,7 @@ public slots:
     
 private:
     std::auto_ptr<TickerDisplayModel> model_;
+    std::vector<IBAdditions::ContractEvent> availableTickers_;
 
 };
 

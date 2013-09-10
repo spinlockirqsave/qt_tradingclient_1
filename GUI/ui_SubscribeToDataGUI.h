@@ -11,17 +11,17 @@
 #define UI_SUBSCRIBETODATAGUI_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QGroupBox>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QListView>
-#include <QtGui/QPushButton>
-#include <QtGui/QSplitter>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QListView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -108,13 +108,13 @@ public:
 
     void retranslateUi(QWidget *subscribetodata)
     {
-        subscribetodata->setWindowTitle(QApplication::translate("subscribetodata", "Subscribe to data", 0, QApplication::UnicodeUTF8));
+        subscribetodata->setWindowTitle(QApplication::translate("subscribetodata", "Subscribe to data", 0));
 #ifndef QT_NO_WHATSTHIS
         subscribetodata->setWhatsThis(QString());
 #endif // QT_NO_WHATSTHIS
         groupBox_strategyInstructions->setTitle(QString());
-        pushButton_ok->setText(QApplication::translate("subscribetodata", "ok", 0, QApplication::UnicodeUTF8));
-        pushButton_cancel->setText(QApplication::translate("subscribetodata", "cancel", 0, QApplication::UnicodeUTF8));
+        pushButton_ok->setText(QApplication::translate("subscribetodata", "ok", 0));
+        pushButton_cancel->setText(QApplication::translate("subscribetodata", "cancel", 0));
     } // retranslateUi
 
 };

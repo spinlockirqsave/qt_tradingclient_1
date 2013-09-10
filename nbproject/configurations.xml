@@ -58,8 +58,8 @@
           <itemPath>GUI/ReqMktDepthGUI.cpp</itemPath>
           <itemPath>GUI/ReqMktDepthGUI.h</itemPath>
           <itemPath>GUI/ReqMktDepthGUI.ui</itemPath>
-          <itemPath>GUI/SubscribeToData.cpp</itemPath>
-          <itemPath>GUI/SubscribeToData.h</itemPath>
+          <itemPath>GUI/SubscribeToDataGUI.cpp</itemPath>
+          <itemPath>GUI/SubscribeToDataGUI.h</itemPath>
           <itemPath>GUI/SubscribeToDataGUI.ui</itemPath>
           <itemPath>GUI/qcustomplot.cpp</itemPath>
           <itemPath>GUI/qcustomplot.h</itemPath>

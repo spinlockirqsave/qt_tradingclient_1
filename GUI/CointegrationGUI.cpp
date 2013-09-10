@@ -11,11 +11,12 @@ CointegrationGUI::CointegrationGUI() {
     
     widget_.setupUi(this);
     QObject::connect(widget_.pushButton_subscribe, SIGNAL(clicked()), this, SLOT(subscribeClicked()));
-    this->setAttribute(Qt::WA_DeleteOnClose);
+    //this->setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void CointegrationGUI::subscribeClicked(){
-    
+    subscribeToDataGUI_ptr_.push_back(boost::shared_ptr<SubscribeToDataGUI>(new SubscribeToDataGUI()));
+    subscribeToDataGUI_ptr_.back()->show();
 }
 
 

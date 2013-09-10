@@ -11,9 +11,10 @@
 #include <GUI/ui_CointegrationGUI.h>
 #include <TradingStrategies/Cointegration.h>
 #include <IBAdditions/IB_events.h>
-#include <GUI/SubscribeToData.h>
+#include <GUI/SubscribeToDataGUI.h>
 
-#include <list>
+#include <vector>
+#include <boost/shared_ptr.hpp>
 
 class CointegrationGUI : public QDialog {
     Q_OBJECT
@@ -28,6 +29,8 @@ private:
     Ui::CointegrationGUI widget_;
     Cointegration cointegration_;
     std::list<IBAdditions::ContractEvent> observedContracts_;
+    
+    std::vector<boost::shared_ptr<SubscribeToDataGUI> > subscribeToDataGUI_ptr_;
 };
 
 #endif	/* COINTEGRATIONGUI_H */

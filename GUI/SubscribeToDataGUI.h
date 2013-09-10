@@ -9,12 +9,14 @@
 #define	SUBSCRIBETODATAGUI_H
 
 #include "ui_SubscribeToDataGUI.h"
+#include <DataModelLayer/TickerDisplayModel.h>
+
 #include <QtWidgets/QDialog>
 
 class SubscribeToDataGUI  : public QDialog {
     Q_OBJECT
 public:
-    SubscribeToDataGUI(QWidget* parent = 0);
+    explicit SubscribeToDataGUI(QWidget* parent = 0);
     SubscribeToDataGUI(const SubscribeToDataGUI& orig);
     virtual ~SubscribeToDataGUI();
 
@@ -23,6 +25,7 @@ public:
 public slots:
     
 private:
+    std::auto_ptr<TickerDisplayModel> model_;
 
 };
 

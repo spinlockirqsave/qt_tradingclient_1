@@ -24,7 +24,7 @@ class TickerDisplayModel : public QStandardItemModel {
     
 Q_OBJECT
  public:
-     TickerDisplayModel(QObject *parent);
+     TickerDisplayModel(QObject *parent = 0);
      int rowCount(const QModelIndex &parent = QModelIndex()) const ;
      int columnCount(const QModelIndex &parent = QModelIndex()) const;
      QVariant headerData(int section, Qt::Orientation orientation, int role) const;

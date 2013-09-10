@@ -58,6 +58,8 @@
           <itemPath>GUI/ReqMktDepthGUI.cpp</itemPath>
           <itemPath>GUI/ReqMktDepthGUI.h</itemPath>
           <itemPath>GUI/ReqMktDepthGUI.ui</itemPath>
+          <itemPath>GUI/SubscribeToData.cpp</itemPath>
+          <itemPath>GUI/SubscribeToData.h</itemPath>
           <itemPath>GUI/SubscribeToDataGUI.ui</itemPath>
           <itemPath>GUI/qcustomplot.cpp</itemPath>
           <itemPath>GUI/qcustomplot.h</itemPath>
@@ -66,6 +68,7 @@
           <itemPath>GUI/ui_MainWindow.h</itemPath>
           <itemPath>GUI/ui_ReqMktDataGUI.h</itemPath>
           <itemPath>GUI/ui_SubscribeToDataGUI.h</itemPath>
+          <itemPath>ui_SubscribeToDataGUI.h</itemPath>
           <itemPath>GUI/ui_reqMktDepthGUI.h</itemPath>
         </logicalFolder>
       </logicalFolder>

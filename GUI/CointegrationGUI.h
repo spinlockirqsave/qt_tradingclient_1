@@ -11,6 +11,7 @@
 #include <GUI/ui_CointegrationGUI.h>
 #include <TradingStrategies/Cointegration.h>
 #include <IBAdditions/IB_events.h>
+#include <GUI/SubscribeToData.h>
 
 #include <list>
 

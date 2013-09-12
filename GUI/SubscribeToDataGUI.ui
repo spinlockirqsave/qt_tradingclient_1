@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>subscribetodata</class>
- <widget class="QWidget" name="subscribetodata">
+ <class>SubscribeToDataGUI</class>
+ <widget class="QWidget" name="SubscribeToDataGUI">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -58,7 +58,7 @@
      <property name="title">
       <string/>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>17</x>

@@ -8,8 +8,13 @@
 #include "SubscribeToDataGUI.h"
 
 SubscribeToDataGUI::SubscribeToDataGUI(QWidget* parent) : QDialog(parent) {
-    availableTickers_ = std::vector<IBAdditions::ContractEvent>(3);
+    widget_.setupUi(this);
+    IBAdditions::ContractEvent c;
+    c.symbol = "EUR"; c.currency = "USD"; c.event_ = IBAdditions::TickPrice;
+    availableTickers_.push_back(c);
     model_.reset(new TickerDisplayModel(availableTickers_));
+    widget_.listView->setModel(model_.get());
+    widget_.listView->show();
 }
 
 SubscribeToDataGUI::SubscribeToDataGUI(const SubscribeToDataGUI& orig) {

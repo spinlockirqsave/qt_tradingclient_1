@@ -15,7 +15,7 @@ CointegrationGUI::CointegrationGUI() {
 }
 
 void CointegrationGUI::subscribeClicked(){
-    subscribeToDataGUI_ptr_.push_back(boost::shared_ptr<SubscribeToDataGUI>(new SubscribeToDataGUI()));
+    subscribeToDataGUI_ptr_.push_back(boost::shared_ptr<SubscribeToDataGUI>(new SubscribeToDataGUI(this)));
     subscribeToDataGUI_ptr_.back()->show();
 }
 

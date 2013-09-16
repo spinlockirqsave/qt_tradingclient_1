@@ -8,7 +8,7 @@
 #include "TickerDisplayModel.h"
 
 TickerDisplayModel::TickerDisplayModel(std::vector<IBAdditions::ContractEvent> availableTickers, QObject *parent) : 
-QStandardItemModel(parent), availableTickers_(availableTickers) {
+QStandardItemModel(parent), availableTickers_(availableTickers), m_(availableTickers.size()), n_(4) {
     
 }
 

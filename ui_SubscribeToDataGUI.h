@@ -88,6 +88,8 @@ public:
         splitter->setOrientation(Qt::Vertical);
         tableView = new QTableView(splitter);
         tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 127);\n"
+"selection-background-color: rgb(182, 182, 182);"));
         splitter->addWidget(tableView);
 
         horizontalLayout->addWidget(splitter);

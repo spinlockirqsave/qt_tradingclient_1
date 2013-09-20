@@ -99,7 +99,12 @@ background-color: rgb(79, 79, 79);</string>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <widget class="QTableView" name="tableView"/>
+     <widget class="QTableView" name="tableView">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 127);
+selection-background-color: rgb(182, 182, 182);</string>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>

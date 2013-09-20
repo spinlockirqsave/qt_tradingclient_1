@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'SubscribeToDataGUI.ui'
 **
-** Created: Fri Sep 20 23:25:00 2013
+** Created: Fri Sep 20 23:40:47 2013
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -89,6 +89,8 @@ public:
         splitter->setOrientation(Qt::Vertical);
         tableView = new QTableView(splitter);
         tableView->setObjectName(QString::fromUtf8("tableView"));
+        tableView->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);\n"
+"selection-background-color: rgb(182, 182, 182);"));
         splitter->addWidget(tableView);
 
         horizontalLayout->addWidget(splitter);

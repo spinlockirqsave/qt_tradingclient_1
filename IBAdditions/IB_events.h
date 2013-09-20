@@ -279,6 +279,7 @@ namespace IBAdditions {
     typedef boost::shared_ptr<IBAdditions::MktDepthL2Record> mktDepthL2Rec_ptr;
 
     std::string ibTickTypeToStdString(IB::TickType tickType);
+    std::string ibAdditionsEventToStdString(IBAdditions::Event event);
 
     //enum TickType { BID_SIZE, BID, ASK, ASK_SIZE, LAST, LAST_SIZE, // 0,1,2,3,4,5
     //				HIGH, LOW, VOLUME, CLOSE,//6,7,8,9

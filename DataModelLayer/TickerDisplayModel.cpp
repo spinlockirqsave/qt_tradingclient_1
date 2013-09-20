@@ -7,8 +7,8 @@
 
 #include "TickerDisplayModel.h"
 
-TickerDisplayModel::TickerDisplayModel(std::vector<IBAdditions::ContractEvent> availableTickers, QObject *parent) : 
-QAbstractTableModel(parent), availableTickers_(availableTickers), m_(availableTickers.size()+1), n_(4) {
+TickerDisplayModel::TickerDisplayModel(std::vector<IBAdditions::ContractEvent>& availableTickers, QObject *parent) : 
+QAbstractTableModel(parent), availableTickers_(availableTickers), m_(availableTickers.size()), n_(3) {
     
 }
 
@@ -26,7 +26,12 @@ QVariant TickerDisplayModel::data(const QModelIndex& index, int role) const {
 
      switch(role){
      case Qt::DisplayRole:
-         if (row == 0 && col == 1) return QString("<--left");
+         if (col == 0) 
+             return QString::fromStdString(availableTickers_[row].symbol);
+         if (col == 1) 
+             return QString::fromStdString(availableTickers_[row].currency);
+         if (col == 2) 
+             return QString::fromStdString(ibAdditionsEventToStdString(availableTickers_[row].event_));
          if (row == 1 && col == 1) return QString("right-->");
 
          return QString("Row%1, Column%2")
@@ -73,11 +78,12 @@ QVariant TickerDisplayModel::headerData(int section, Qt::Orientation orientation
              switch (section)
              {
              case 0:
-                 return QString("first");
+                 return QString("symbol");
              case 1:
-                 return QString("second");
+                 return QString("currency");
              case 2:
-                 return QString("third");
+                 return QString("event");
+                     
              }
          }
      }

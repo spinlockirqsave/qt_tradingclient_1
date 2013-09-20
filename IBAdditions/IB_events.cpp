@@ -47,4 +47,27 @@ std::string ibTickTypeToStdString(IB::TickType tickType){
     }
 }
 
+std::string ibAdditionsEventToStdString(IBAdditions::Event event) {
+    switch (event){
+        case IBAdditions::TickPrice:
+            return "TickPrice";
+            break;
+        case IBAdditions::TickSize:
+            return "TickSize";
+            break;
+        case IBAdditions::TickString:
+            return "TickString";
+            break;
+        case IBAdditions::MarketDepth:
+            return "MarketDepth";
+            break;
+        case IBAdditions::MarketDepthL2:
+            return "MarketDepthL2";
+            break;
+            
+        default:
+            return "NOT_SET";
+    }
+}
+
 }//namepsace IBAdditions

@@ -80,7 +80,7 @@ void TickerDisplayModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
 }
 
 const QMetaObject TickerDisplayModel::staticMetaObject = {
-    { &QStandardItemModel::staticMetaObject, qt_meta_stringdata_TickerDisplayModel.data,
+    { &QAbstractTableModel::staticMetaObject, qt_meta_stringdata_TickerDisplayModel.data,
       qt_meta_data_TickerDisplayModel,  qt_static_metacall, 0, 0}
 };
 
@@ -95,12 +95,12 @@ void *TickerDisplayModel::qt_metacast(const char *_clname)
     if (!_clname) return 0;
     if (!strcmp(_clname, qt_meta_stringdata_TickerDisplayModel.stringdata))
         return static_cast<void*>(const_cast< TickerDisplayModel*>(this));
-    return QStandardItemModel::qt_metacast(_clname);
+    return QAbstractTableModel::qt_metacast(_clname);
 }
 
 int TickerDisplayModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QStandardItemModel::qt_metacall(_c, _id, _a);
+    _id = QAbstractTableModel::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

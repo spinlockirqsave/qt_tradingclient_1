@@ -10,7 +10,7 @@
 
 #include <IBAdditions/IB_events.h>
 
-#include <QtGui/QStandardItemModel>
+#include <QtCore/QAbstractTableModel>
 #include <QtGui/QStandardItem>
 #include <QtCore/QtCore>
 
@@ -20,7 +20,7 @@
  * model which allows for display 
  * of available data streams as tickers
  */
-class TickerDisplayModel : public QStandardItemModel {
+class TickerDisplayModel : public QAbstractTableModel {
     
 Q_OBJECT
  public:

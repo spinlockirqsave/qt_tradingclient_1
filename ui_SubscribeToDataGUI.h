@@ -16,9 +16,9 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSplitter>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -33,8 +33,8 @@ public:
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton_ok;
     QPushButton *pushButton_cancel;
-    QListView *listView;
     QSplitter *splitter;
+    QTableView *tableView;
 
     void setupUi(QWidget *SubscribeToDataGUI)
     {
@@ -83,19 +83,12 @@ public:
 
         horizontalLayout->addWidget(groupBox_strategyInstructions);
 
-        listView = new QListView(SubscribeToDataGUI);
-        listView->setObjectName(QStringLiteral("listView"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(5);
-        sizePolicy2.setVerticalStretch(5);
-        sizePolicy2.setHeightForWidth(listView->sizePolicy().hasHeightForWidth());
-        listView->setSizePolicy(sizePolicy2);
-
-        horizontalLayout->addWidget(listView);
-
         splitter = new QSplitter(SubscribeToDataGUI);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Vertical);
+        tableView = new QTableView(splitter);
+        tableView->setObjectName(QStringLiteral("tableView"));
+        splitter->addWidget(tableView);
 
         horizontalLayout->addWidget(splitter);
 

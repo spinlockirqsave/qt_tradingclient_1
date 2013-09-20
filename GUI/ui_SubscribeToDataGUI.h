@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'SubscribeToDataGUI.ui'
 **
-** Created: Thu Sep 5 01:13:26 2013
+** Created: Fri Sep 20 23:25:00 2013
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -17,40 +17,40 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSplitter>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
-class Ui_subscribetodata
+class Ui_SubscribeToDataGUI
 {
 public:
     QHBoxLayout *horizontalLayout;
     QGroupBox *groupBox_strategyInstructions;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton_ok;
     QPushButton *pushButton_cancel;
-    QListView *listView;
     QSplitter *splitter;
+    QTableView *tableView;
 
-    void setupUi(QWidget *subscribetodata)
+    void setupUi(QWidget *SubscribeToDataGUI)
     {
-        if (subscribetodata->objectName().isEmpty())
-            subscribetodata->setObjectName(QString::fromUtf8("subscribetodata"));
-        subscribetodata->resize(616, 407);
+        if (SubscribeToDataGUI->objectName().isEmpty())
+            SubscribeToDataGUI->setObjectName(QString::fromUtf8("SubscribeToDataGUI"));
+        SubscribeToDataGUI->resize(616, 407);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(1);
         sizePolicy.setVerticalStretch(1);
-        sizePolicy.setHeightForWidth(subscribetodata->sizePolicy().hasHeightForWidth());
-        subscribetodata->setSizePolicy(sizePolicy);
-        subscribetodata->setStyleSheet(QString::fromUtf8("background-color: rgb(59, 63, 85);"));
-        horizontalLayout = new QHBoxLayout(subscribetodata);
+        sizePolicy.setHeightForWidth(SubscribeToDataGUI->sizePolicy().hasHeightForWidth());
+        SubscribeToDataGUI->setSizePolicy(sizePolicy);
+        SubscribeToDataGUI->setStyleSheet(QString::fromUtf8("background-color: rgb(59, 63, 85);"));
+        horizontalLayout = new QHBoxLayout(SubscribeToDataGUI);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        groupBox_strategyInstructions = new QGroupBox(subscribetodata);
+        groupBox_strategyInstructions = new QGroupBox(SubscribeToDataGUI);
         groupBox_strategyInstructions->setObjectName(QString::fromUtf8("groupBox_strategyInstructions"));
         QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Minimum);
         sizePolicy1.setHorizontalStretch(0);
@@ -61,20 +61,20 @@ public:
         groupBox_strategyInstructions->setMaximumSize(QSize(200, 16777215));
         groupBox_strategyInstructions->setBaseSize(QSize(200, 0));
         groupBox_strategyInstructions->setStyleSheet(QString::fromUtf8("color:white;"));
-        widget = new QWidget(groupBox_strategyInstructions);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(17, 118, 129, 128));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(groupBox_strategyInstructions);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(17, 118, 129, 128));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton_ok = new QPushButton(widget);
+        pushButton_ok = new QPushButton(layoutWidget);
         pushButton_ok->setObjectName(QString::fromUtf8("pushButton_ok"));
         pushButton_ok->setStyleSheet(QString::fromUtf8("color:white;\n"
 "background-color: rgb(79, 79, 79);"));
 
         verticalLayout->addWidget(pushButton_ok);
 
-        pushButton_cancel = new QPushButton(widget);
+        pushButton_cancel = new QPushButton(layoutWidget);
         pushButton_cancel->setObjectName(QString::fromUtf8("pushButton_cancel"));
         pushButton_cancel->setStyleSheet(QString::fromUtf8("color:white;\n"
 "background-color: rgb(79, 79, 79);"));
@@ -84,43 +84,36 @@ public:
 
         horizontalLayout->addWidget(groupBox_strategyInstructions);
 
-        listView = new QListView(subscribetodata);
-        listView->setObjectName(QString::fromUtf8("listView"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(5);
-        sizePolicy2.setVerticalStretch(5);
-        sizePolicy2.setHeightForWidth(listView->sizePolicy().hasHeightForWidth());
-        listView->setSizePolicy(sizePolicy2);
-
-        horizontalLayout->addWidget(listView);
-
-        splitter = new QSplitter(subscribetodata);
+        splitter = new QSplitter(SubscribeToDataGUI);
         splitter->setObjectName(QString::fromUtf8("splitter"));
         splitter->setOrientation(Qt::Vertical);
+        tableView = new QTableView(splitter);
+        tableView->setObjectName(QString::fromUtf8("tableView"));
+        splitter->addWidget(tableView);
 
         horizontalLayout->addWidget(splitter);
 
 
-        retranslateUi(subscribetodata);
+        retranslateUi(SubscribeToDataGUI);
 
-        QMetaObject::connectSlotsByName(subscribetodata);
+        QMetaObject::connectSlotsByName(SubscribeToDataGUI);
     } // setupUi
 
-    void retranslateUi(QWidget *subscribetodata)
+    void retranslateUi(QWidget *SubscribeToDataGUI)
     {
-        subscribetodata->setWindowTitle(QApplication::translate("subscribetodata", "Subscribe to data", 0));
+        SubscribeToDataGUI->setWindowTitle(QApplication::translate("SubscribeToDataGUI", "Subscribe to data", 0));
 #ifndef QT_NO_WHATSTHIS
-        subscribetodata->setWhatsThis(QString());
+        SubscribeToDataGUI->setWhatsThis(QString());
 #endif // QT_NO_WHATSTHIS
         groupBox_strategyInstructions->setTitle(QString());
-        pushButton_ok->setText(QApplication::translate("subscribetodata", "ok", 0));
-        pushButton_cancel->setText(QApplication::translate("subscribetodata", "cancel", 0));
+        pushButton_ok->setText(QApplication::translate("SubscribeToDataGUI", "ok", 0));
+        pushButton_cancel->setText(QApplication::translate("SubscribeToDataGUI", "cancel", 0));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class subscribetodata: public Ui_subscribetodata {};
+    class SubscribeToDataGUI: public Ui_SubscribeToDataGUI {};
 } // namespace Ui
 
 QT_END_NAMESPACE

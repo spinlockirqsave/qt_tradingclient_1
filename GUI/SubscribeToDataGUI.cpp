@@ -13,8 +13,8 @@ SubscribeToDataGUI::SubscribeToDataGUI(QWidget* parent) : QDialog(parent) {
     c.symbol = "EUR"; c.currency = "USD"; c.event_ = IBAdditions::TickPrice;
     availableTickers_.push_back(c);
     model_.reset(new TickerDisplayModel(availableTickers_));
-    widget_.listView->setModel(model_.get());
-    widget_.listView->show();
+    widget_.tableView->setModel(model_.get());
+    widget_.tableView->show();
 }
 
 SubscribeToDataGUI::SubscribeToDataGUI(const SubscribeToDataGUI& orig) {

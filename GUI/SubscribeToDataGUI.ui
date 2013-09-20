@@ -95,20 +95,11 @@ background-color: rgb(79, 79, 79);</string>
     </widget>
    </item>
    <item>
-    <widget class="QListView" name="listView">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>5</horstretch>
-       <verstretch>5</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QSplitter" name="splitter">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
+     <widget class="QTableView" name="tableView"/>
     </widget>
    </item>
   </layout>

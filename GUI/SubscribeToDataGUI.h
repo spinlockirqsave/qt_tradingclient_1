@@ -10,8 +10,12 @@
 
 #include "ui_SubscribeToDataGUI.h"
 #include <DataModelLayer/TickerDisplayModel.h>
+#include <DataAccessLayer/Repository.h>
 
 #include <QtWidgets/QDialog>
+
+extern Repository marketDataRepository;
+
 
 class SubscribeToDataGUI  : public QDialog {
     Q_OBJECT

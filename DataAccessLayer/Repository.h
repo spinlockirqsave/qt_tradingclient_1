@@ -59,6 +59,10 @@ public:
         return contractEventDataMap_[contractEvent];
     }
     
+    /**
+     * 
+     * @return a vector of available ContractEvent tickers 
+     */
     std::vector<IBAdditions::ContractEvent> availableTickers();
     
     /**

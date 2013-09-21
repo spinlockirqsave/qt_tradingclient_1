@@ -32,14 +32,13 @@ QVariant TickerDisplayModel::data(const QModelIndex& index, int role) const {
              return QString::fromStdString(availableTickers_[row].currency);
          if (col == 2) 
              return QString::fromStdString(ibAdditionsEventToStdString(availableTickers_[row].event_));
-         if (row == 1 && col == 1) return QString("right-->");
 
          return QString("Row%1, Column%2")
                  .arg(row + 1)
                  .arg(col +1);
          break;
      case Qt::FontRole:
-         if (row == 0 && col == 0) //change font only for cell(0,0)
+         if (col == 0) //change font only for column 0
          {
              QFont boldFont;
              boldFont.setBold(true);
@@ -48,24 +47,24 @@ QVariant TickerDisplayModel::data(const QModelIndex& index, int role) const {
          break;
      case Qt::BackgroundRole:
 
-         if (row == 1 && col == 2)  //change background only for cell(1,2)
+         if (col == 2)  //change background only for column with event
          {
-             QBrush redBackground(Qt::red);
-             return redBackground;
+             QBrush grayBackground(Qt::gray);
+             return grayBackground;
          }
          break;
      case Qt::TextAlignmentRole:
 
-         if (row == 1 && col == 1) //change text alignment only for cell(1,1)
+         if (col == 1) //change text alignment only for column 1
          {
              return Qt::AlignRight + Qt::AlignVCenter;
          }
          break;
      case Qt::CheckStateRole:
 
-         if (row == 1 && col == 0) //add a checkbox to cell(1,0)
+         if (col == 0) //add a checkbox to column 0
          {
-             return Qt::Checked;
+             return Qt::Unchecked;
          }
      }
      return QVariant();

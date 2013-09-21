@@ -15,6 +15,7 @@
 
 #include <map>
 #include <vector>
+#include <iterator>
 
 #include <pthread.h>
 
@@ -57,6 +58,8 @@ public:
     std::vector<IBAdditions::rec_ptr>& operator[](const IBAdditions::ContractEvent& contractEvent){
         return contractEventDataMap_[contractEvent];
     }
+    
+    std::vector<IBAdditions::ContractEvent> availableTickers();
     
     /**
      * 

@@ -68,3 +68,13 @@ void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAddition
     printf("[Repository] vector size is; %d\n", contractEventDataMap_[ce].size());
 }
 
+std::vector<IBAdditions::ContractEvent> Repository::availableTickers() {
+    std::vector<IBAdditions::ContractEvent> tickers;
+    ContractEventDataMap::iterator it = contractEventDataMap_.begin();
+    while (it != contractEventDataMap_.end()) {
+        tickers.push_back(it->first);
+        it++;
+    }
+    return tickers;
+}
+

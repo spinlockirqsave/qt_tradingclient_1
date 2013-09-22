@@ -6,10 +6,18 @@
  */
 
 #include "TickerDisplayModel.h"
+#include "TradingStrategies/Cointegration.h"
 
 TickerDisplayModel::TickerDisplayModel(std::vector<IBAdditions::ContractEvent>& availableTickers, QObject *parent) : 
 QAbstractTableModel(parent), availableTickers_(availableTickers), m_(availableTickers.size()), n_(3) {
-    
+    int i = 0;
+    std::vector<IBAdditions::ContractEvent>::iterator it = availableTickers_.begin();
+    while (it != availableTickers.end()){
+        Ticker t(it->symbol, it->currency, it->event_);
+        tickerMap_.insert(std::pair<int, Ticker>(i, t));
+        it++;
+        i++;
+    }
 }
 
 int TickerDisplayModel::rowCount(const QModelIndex &parent) const {
@@ -27,11 +35,11 @@ QVariant TickerDisplayModel::data(const QModelIndex& index, int role) const {
      switch(role){
      case Qt::DisplayRole:
          if (col == 0) 
-             return QString::fromStdString(availableTickers_[row].symbol);
+             return QString::fromStdString(tickerMap_[row].symbol_);
          if (col == 1) 
-             return QString::fromStdString(availableTickers_[row].currency);
+             return QString::fromStdString(tickerMap_[row].currency_);
          if (col == 2) 
-             return QString::fromStdString(ibAdditionsEventToStdString(availableTickers_[row].event_));
+             return QString::fromStdString(ibAdditionsEventToStdString(tickerMap_[row].event_));
 
          return QString("Row%1, Column%2")
                  .arg(row + 1)
@@ -55,7 +63,7 @@ QVariant TickerDisplayModel::data(const QModelIndex& index, int role) const {
          break;
      case Qt::TextAlignmentRole:
 
-         if (col == 1) //change text alignment only for column 1
+         if (col == 0 || col == 1) //change text alignment only for column 0 and 1
          {
              return Qt::AlignRight + Qt::AlignVCenter;
          }
@@ -64,7 +72,7 @@ QVariant TickerDisplayModel::data(const QModelIndex& index, int role) const {
 
          if (col == 0) //add a checkbox to column 0
          {
-             return Qt::Unchecked;
+             return tickerMap_[row].state_;
          }
      }
      return QVariant();
@@ -90,9 +98,12 @@ QVariant TickerDisplayModel::headerData(int section, Qt::Orientation orientation
  }
 
 bool TickerDisplayModel::setData(const QModelIndex & index, const QVariant & value, int role) {
+    if (index.column() == 0) 
+        tickerMap_[index.row()].state_= value.toInt();
     return true;
 }
 
 Qt::ItemFlags TickerDisplayModel::flags(const QModelIndex & index) const {
+    if (index.column() == 0) return Qt::ItemIsUserCheckable | Qt::ItemIsSelectable |  Qt::ItemIsEditable | Qt::ItemIsEnabled;
     return Qt::ItemIsSelectable |  Qt::ItemIsEditable | Qt::ItemIsEnabled;
 }

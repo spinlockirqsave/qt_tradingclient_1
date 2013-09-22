@@ -15,6 +15,7 @@
 #include <QtCore/QtCore>
 
 #include <vector>
+#include <map>
 
 /**
  * model which allows for display 
@@ -23,6 +24,7 @@
 class TickerDisplayModel : public QAbstractTableModel {
     
 Q_OBJECT
+
  public:
      TickerDisplayModel(std::vector<IBAdditions::ContractEvent>& availableTickers, QObject *parent = 0);
      int rowCount(const QModelIndex &parent = QModelIndex()) const ;
@@ -31,10 +33,23 @@ Q_OBJECT
      QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
      bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole);
      Qt::ItemFlags flags(const QModelIndex & index) const;
+     
+     struct Ticker{
+         std::string symbol_;
+         std::string currency_;
+         IBAdditions::Event event_;
+         int state_;
+         Ticker(){}
+         Ticker(std::string symbol, std::string currency, IBAdditions::Event event)
+                 : symbol_(symbol), currency_(currency), event_(event), state_(Qt::Unchecked) {}
+     };
+     
  private:
      int m_;
      int n_;
      std::vector<IBAdditions::ContractEvent>& availableTickers_;
+     mutable std::map<int, Ticker> tickerMap_;
+     
  signals:
      void editCompleted(const QString &);
 };

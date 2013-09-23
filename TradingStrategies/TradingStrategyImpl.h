@@ -26,10 +26,15 @@ public:
     TradingStrategyImpl(const TradingStrategyImpl& orig);
     virtual ~TradingStrategyImpl();
     
+    void subscribeToData(IBAdditions::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr) {
+        doSubscribeToData(event, tickerId, contract, ptr);
+    }
+    void start() {
+        doStart();
+    }
+private:
     virtual void doSubscribeToData(IBAdditions::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr)=0;
     virtual void doStart()=0;
-private:
-
 };
 
 #endif	/* TRADINGSTRATEGYIMPL_H */

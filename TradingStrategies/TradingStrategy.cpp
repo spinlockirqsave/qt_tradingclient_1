@@ -19,9 +19,9 @@ TradingStrategy::~TradingStrategy() {
 
 void TradingStrategy::doSubscribeToData(IBAdditions::Event event, IB::TickerId tickerId, 
         IB::Contract contract, f_action_ptr action_ptr){
-    pimpl_->doSubscribeToData(event, tickerId, contract, action_ptr);
+    pimpl_->subscribeToData(event, tickerId, contract, action_ptr);
 }
 
 void TradingStrategy::doStart(){
-    pimpl_->doStart();
+    pimpl_->start();
 }

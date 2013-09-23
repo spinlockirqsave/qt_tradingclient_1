@@ -26,9 +26,9 @@ public:
     CointegrationImpl(const CointegrationImpl& orig);
     virtual ~CointegrationImpl();
     
-    void doSubscribeToData(IBAdditions::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr);
-    void doStart();
 private:
+    void doStart();
+    void doSubscribeToData(IBAdditions::Event event, IB::TickerId tickerId, IB::Contract contract, f_action_ptr ptr);
     typedef std::map<const IB::TickerId, const IB::Contract> TickerContractMap;
     TickerContractMap oservedContracts_;
     std::vector<boost::shared_ptr<MarketDataObserver> > tickSizeObservers_;

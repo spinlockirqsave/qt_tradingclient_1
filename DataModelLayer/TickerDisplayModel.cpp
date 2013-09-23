@@ -11,7 +11,7 @@
 TickerDisplayModel::TickerDisplayModel(std::vector<IBAdditions::ContractEvent>& availableTickers, QObject *parent) : 
 QAbstractTableModel(parent), availableTickers_(availableTickers), m_(availableTickers.size()), n_(3) {
     int i = 0;
-    std::vector<IBAdditions::ContractEvent>::iterator it = availableTickers_.begin();
+    std::vector<IBAdditions::ContractEvent>::const_iterator it = availableTickers_.begin();
     while (it != availableTickers.end()){
         Ticker t(it->symbol, it->currency, it->event_);
         tickerMap_.insert(std::pair<int, Ticker>(i, t));

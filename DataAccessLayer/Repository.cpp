@@ -70,7 +70,7 @@ void Repository::putRecord(const IBAdditions::ContractEvent ce, const IBAddition
 
 std::vector<IBAdditions::ContractEvent> Repository::availableTickers() {
     std::vector<IBAdditions::ContractEvent> tickers;
-    ContractEventDataMap::iterator it = contractEventDataMap_.begin();
+    ContractEventDataMap::const_iterator it = contractEventDataMap_.begin();
     while (it != contractEventDataMap_.end()) {
         tickers.push_back(it->first);
         it++;

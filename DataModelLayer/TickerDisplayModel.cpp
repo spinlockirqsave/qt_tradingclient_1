@@ -20,6 +20,16 @@ QAbstractTableModel(parent), availableTickers_(availableTickers), m_(availableTi
     }
 }
 
+std::vector<IBAdditions::ContractEvent> TickerDisplayModel::selectedTickers() {
+    std::vector<IBAdditions::ContractEvent> st;
+    std::map<int, Ticker>::const_iterator it = tickerMap_.begin();
+    while ( it != tickerMap_.end()) {
+        if ( it->second.state_ == Qt::Checked)
+            st.push_back(availableTickers_[it->first]);
+        it++;
+    }
+}
+
 int TickerDisplayModel::rowCount(const QModelIndex &parent) const {
     return m_;
 }

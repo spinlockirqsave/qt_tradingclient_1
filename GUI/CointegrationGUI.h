@@ -22,13 +22,18 @@ public:
     CointegrationGUI();
     virtual ~CointegrationGUI(){}
     
-public slots:
+private slots:
+    /**
+     * open SubscribeToDataGUI dialog
+     */
     void subscribeClicked();
+
+    void subscribeToData();
     
 private:
     Ui::CointegrationGUI widget_;
     Cointegration cointegration_;
-    std::list<IBAdditions::ContractEvent> observedContracts_;
+    std::vector<IBAdditions::ContractEvent> observedContracts_;
     
     std::vector<boost::shared_ptr<SubscribeToDataGUI> > subscribeToDataGUI_ptr_;
 };

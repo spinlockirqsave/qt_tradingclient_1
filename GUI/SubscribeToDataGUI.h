@@ -23,8 +23,7 @@ public:
     explicit SubscribeToDataGUI(QWidget* parent = 0);
     SubscribeToDataGUI(const SubscribeToDataGUI& orig);
     virtual ~SubscribeToDataGUI();
-
-    Q_SIGNALS:
+    //std::vector<
     
 public slots:
     

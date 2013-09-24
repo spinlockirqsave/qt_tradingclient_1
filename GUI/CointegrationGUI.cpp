@@ -14,9 +14,13 @@ CointegrationGUI::CointegrationGUI() {
     //this->setAttribute(Qt::WA_DeleteOnClose);
 }
 
-void CointegrationGUI::subscribeClicked(){
+void CointegrationGUI::subscribeClicked() {
     subscribeToDataGUI_ptr_.push_back(boost::shared_ptr<SubscribeToDataGUI>(new SubscribeToDataGUI(this)));
     subscribeToDataGUI_ptr_.back()->show();
+    QObject::connect(subscribeToDataGUI_ptr_.back().get(), SIGNAL(accepted()), this, SLOT(subscribeToData()));
 }
 
+void CointegrationGUI::subscribeToData() {
+    
+}
 

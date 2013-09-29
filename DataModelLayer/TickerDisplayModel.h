@@ -26,6 +26,10 @@ class TickerDisplayModel : public QAbstractTableModel {
 Q_OBJECT
 
  public:
+     
+     /**
+      * methods handling Qt model
+      */
      TickerDisplayModel(std::vector<IBAdditions::ContractEvent>& availableTickers, QObject *parent = 0);
      int rowCount(const QModelIndex &parent = QModelIndex()) const ;
      int columnCount(const QModelIndex &parent = QModelIndex()) const;
@@ -33,6 +37,10 @@ Q_OBJECT
      QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
      bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole);
      Qt::ItemFlags flags(const QModelIndex & index) const;
+     
+     /**
+      * returns tickers which user checked
+      */
      std::vector<IBAdditions::ContractEvent> selectedTickers();
      
      struct Ticker{
@@ -46,9 +54,18 @@ Q_OBJECT
      };
      
  private:
+     
      int m_;
      int n_;
+     /**
+      * 
+      * @param what's in repository? 
+      */
      std::vector<IBAdditions::ContractEvent>& availableTickers_;
+     
+     /**
+      * mapping
+      */
      mutable std::map<int, Ticker> tickerMap_;
      
  signals:

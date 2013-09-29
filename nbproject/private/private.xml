@@ -5,43 +5,4 @@
         <activeConfIndexElem>0</activeConfIndexElem>
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/root/gitprojects/qt_tradingclient_1/main.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataAccessLayer/Repository.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataAccessLayer/Repository.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/GUIMarketData.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataAccessLayer/MarketData.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataAccessLayer/PosixClient.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/MainWindow.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/MainWindow.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataAccessLayer/globals.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/IBAdditions/IB_events.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataAccessLayer/RepositoryOnStack.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataAccessLayer/RepositoryOnStack.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/ui_reqMktDepthGUI.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/ui_ReqMktDataGUI.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataAccessLayer/GUIMarketData.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/ReqMktDataGUI.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/CointegrationGUI.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/CointegrationGUI.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/qcustomplot.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/qcustomplot.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/TradingStrategies/TradingStrategyImpl.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/TradingStrategies/TradingStrategyImpl.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/TradingStrategies/CointegrationImpl.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/TradingStrategies/CointegrationImpl.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/TradingStrategies/TradingStrategy.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/TradingStrategies/TradingStrategy.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/TradingStrategies/Cointegration.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/TradingStrategies/Cointegration.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataModelLayer/TickerDisplayModel.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataModelLayer/TickerDisplayModel.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/SubscribeToDataGUI.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/SubscribeToDataGUI.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/ui_SubscribeToDataGUI.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/ui_MainWindow.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/IBAdditions/IB_events.cpp</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/GUI/ReqMktDepthGUI.h</file>
-        <file>file:/root/gitprojects/qt_tradingclient_1/DataAccessLayer/PosixClient.cpp</file>
-    </open-files>
 </project-private>

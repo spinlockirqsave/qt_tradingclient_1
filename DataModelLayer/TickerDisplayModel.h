@@ -18,7 +18,7 @@
 #include <map>
 
 /**
- * model which allows for display 
+ * model which allows display 
  * of available data streams as tickers
  */
 class TickerDisplayModel : public QAbstractTableModel {

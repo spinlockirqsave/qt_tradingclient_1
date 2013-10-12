@@ -405,7 +405,9 @@ void PosixClient::error(const int id, const int errorCode, const IBString errorS
  */
 void PosixClient::tickPrice( TickerId tickerId, TickType field, double price, int canAutoExecute) {
 #ifdef DEBUG
-    printf("PosixClient::tickPrice \n");
+    pthread_t tid;
+    tid = pthread_self();
+    printf("PosixClient::tickPrice: tid: %08x\n", tid);
 #endif
     tickerIdMarketDataMap::iterator it=tickPriceMarketDataFeed.find(tickerId);
         if(it!=tickPriceMarketDataFeed.end()){

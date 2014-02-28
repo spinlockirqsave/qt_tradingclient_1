@@ -1,6 +1,6 @@
 /* 
  * File:   TradingStrategy.h
- * Author: Piotr Gregor  postmaster@cf16.eu
+ * Author: Piotr Gregor  piter cf16 eu
  *
  * Created on August 3, 2013, 12:21 AM
  */

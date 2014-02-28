@@ -1,6 +1,6 @@
 /* 
  * File:   Repository.h
- * Author: Piotr Gregor  postmaster@cf16.eu
+ * Author: Piotr Gregor  piter cf16 eu
  *
  * Created on August 6, 2013, 11:55 PM
  */

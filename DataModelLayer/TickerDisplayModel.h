@@ -1,6 +1,6 @@
 /* 
  * File:   TickerDisplayModel.h
- * Author: Piotr Gregor  postmaster@cf16.eu
+ * Author: Piotr Gregor  piter cf16 eu
  *
  * Created on September 5, 2013, 8:24 PM
  */

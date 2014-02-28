@@ -1,12 +1,16 @@
 /* 
  * File:   SubscribeToData.cpp
- * Author: Piotr Gregor  postmaster@cf16.eu
+ * Author: Piotr Gregor  piter cf16 eu
  * 
  * Created on September 10, 2013, 2:30 AM
  */
 
 #include "SubscribeToDataGUI.h"
 
+/**
+ * 
+ * @param parent
+ */
 SubscribeToDataGUI::SubscribeToDataGUI(QWidget* parent) : QDialog(parent),
 availableTickers_(marketDataRepository.availableTickers()) {
     widget_.setupUi(this);

@@ -1,6 +1,6 @@
 /* 
  * File:   SubscribeToData.h
- * Author: Piotr Gregor  postmaster@cf16.eu
+ * Author: Piotr Gregor  piter cf16 eu
  *
  * Created on September 10, 2013, 2:30 AM
  */

@@ -1,6 +1,6 @@
 /* 
  * File:   ProcessMsgClass.h
- * Author: Piotr Gregor  postmaster@cf16.eu
+ * Author: Piotr Gregor  piter cf16 eu
  *
  * Created on June 15, 2013, 4:01 PM
  */

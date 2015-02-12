@@ -1,6 +1,6 @@
 /* 
  * File:   MessageProcessor.h
- * Author: Piotr Gregor  piter cf16 eu
+ * Author: Piotr Gregor  peter cf16 eu
  *
  * Created on June 17, 2013, 11:57 PM
  */

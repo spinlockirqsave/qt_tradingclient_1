@@ -1,6 +1,6 @@
 /* 
  * File:   Cointegration.cpp
- * Author: Piotr Gregor  piter cf16 eu
+ * Author: Piotr Gregor  peter cf16 eu
  * 
  * Created on August 3, 2013, 10:53 PM
  */

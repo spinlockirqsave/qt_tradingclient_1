@@ -1,6 +1,6 @@
 /* 
  * File:   IB_events.cpp
- * Author: Piotr Gregor  piter cf16 eu
+ * Author: Piotr Gregor  peter cf16 eu
  *
  * Created on Aug 21, 2013, 2:30 AM
  */

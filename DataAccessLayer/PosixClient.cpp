@@ -1,6 +1,6 @@
 /*
  * File:   PosixClient.cpp
- * Author: piter cf16 eu
+ * Author: peter cf16 eu
  *
  * Created on May 22, 2013, 8:36 PM
  */

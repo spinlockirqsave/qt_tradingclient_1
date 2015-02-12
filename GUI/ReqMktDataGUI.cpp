@@ -1,6 +1,6 @@
 /*
  * File:   ReqMktData.cpp
- * Author: Piotr Gregor  piter cf16 eu
+ * Author: Piotr Gregor  peter cf16 eu
  *
  * Created on May 22, 2013, 8:36 PM
  */
